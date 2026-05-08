@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:amazon.es)",
+      "WebFetch(domain:amazon.com)",
+      "WebFetch(domain:amazon.co.uk)",
+      "WebFetch(domain:aliexpress.com)",
+      "WebFetch(domain:es.aliexpress.com)",
+      "Write(drafts/**)",
+      "Edit(drafts/**)",
+      "Write(guidelines/**)",
+      "Edit(guidelines/**)",
+      "Read(**)"
+    ],
+    "deny": [
+      "Bash(*)"
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+# Sistema de Agentes Redactores de Ofertas
+
+## Quién es el usuario
+
+El redactor es un profesional de contenidos sin perfil técnico que trabaja desde la app de escritorio de Claude Code. Su flujo de trabajo habitual es:
+
+1. Abrir el proyecto en Claude Code.
+2. Pegar la URL del producto (Amazon o AliExpress).
+3. Elegir el medio de destino.
+4. Recibir el artículo en markdown listo para pegar en el CMS.
+
+El sistema hace todo el trabajo de investigación, selección editorial y redacción de forma invisible. El redactor solo interviene cuando el sistema lo solicita explícitamente.
+
+---
+
+## Cómo arrancar
+
+Hay tres comandos disponibles. Escríbelos en el chat de Claude Code:
+
+| Comando | Para qué sirve |
+|---|---|
+| `/crear-articulo` | Flujo principal. Pega la URL y sigue las instrucciones. |
+| `/crear-guideline` | Crea o actualiza la voz editorial de un medio nuevo. |
+| `/importar-gpt` | Importa una instrucción de sistema desde ChatGPT para convertirla en guideline. |
+
+Antes de usar `/crear-articulo` por primera vez con un medio, ese medio debe tener su guideline creada con `/crear-guideline`. Si falta, el sistema lo avisará.
+
+---
+
+## Convención de carpetas
+
+```
+/drafts/           → Borradores generados por el sistema (nunca editar a mano)
+/guidelines/       → Archivos GUIDELINE-{medio}.md con la voz de cada medio
+/knowledge/        → Base de conocimiento estática del sistema
+  /ejemplos-publicados/  → Artículos reales aprobados (referencia de escritura)
+/docs/             → Planes, brainstorms y documentación interna
+  /brainstorms/
+  /plans/
+/changelog/        → Registro de cambios del sistema
+```
+
+Los archivos dentro de `/drafts/` y `/guidelines/` son los únicos que el sistema escribe de forma automática. El resto son de lectura o mantenimiento manual.
+
+---
+
+## Reglas operativas
+
+### Datos del producto
+- **Nunca inventes datos del producto.** Si la ficha es incompleta o el acceso a la URL está bloqueado, pide al redactor que pegue lo que falta: precio, nombre exacto, características principales o capturas de pantalla.
+- **No publiques borradores con `[PENDIENTE]` en el frontmatter.** Un draft solo es válido para entregarle al redactor cuando todos los campos del frontmatter están completos: `titulo`, `bajada`, `precio`, `enlace_afiliado`, `medio`, `angulo`, `autor`, `fecha`.
+
+### Idioma
+Todo el contenido generado va en español. Los nombres de variables, slugs y campos de frontmatter van en minúsculas con guiones bajos. Los artículos usan el español peninsular por defecto salvo que el guideline del medio indique otro registro.
+
+### Política de uso de WebFetch
+- `WebFetch` solo se ejecuta sobre URLs que el redactor ha pegado explícitamente en el chat.
+- El sistema **nunca** descubre, busca ni propone URLs de productos por iniciativa propia.
+- Dominios autorizados: `amazon.es`, `amazon.com`, `amazon.co.uk`, `aliexpress.com`, `es.aliexpress.com`.
+
+---
+
+## Arquitectura: regla de capas entre subagentes
+
+Cada subagente opera con un conjunto de fuentes bien definido. Ninguno accede a más información de la que necesita para su tarea.
+
+```
+product-researcher  →  URL + WebFetch
+                        NO lee guideline ni ejemplos publicados.
+                        Produce: ficha estructurada (nombre, precio, características, URL canónica).
+
+angle-picker        →  ficha del producto + GUIDELINE del medio
+                        Solo metadatos editoriales: tono, restricciones, ángulos permitidos.
+                        Produce: ángulo seleccionado + justificación editorial (1-2 frases).
+
+writer              →  ficha + ángulo + GUIDELINE + ejemplos publicados del medio
+                        Acceso completo de lectura. Sin acceso a escribir en guidelines.
+                        Produce: borrador en markdown con frontmatter completo.
+
+editor-in-chief     →  borrador + GUIDELINE + frases-vetadas + política de afiliación
+                        No reescribe desde cero; corrige, ajusta tono y valida compliance.
+                        Produce: versión final lista para CMS o lista de correcciones numeradas.
+```
+
+Los subagentes **no se llaman entre sí directamente**. El orquestador (este sistema) pasa los outputs de uno como input del siguiente. Si un subagente necesita algo que no está en su capa, lo señala como excepción y el orquestador decide.
+
+---
+
+## Excepciones tipadas y respuesta del sistema
+
+### `URLBlockedError`
+**Cuándo ocurre:** `product-researcher` recibe un error 403, captcha o redirección de antibot al intentar acceder a la URL del producto.
+
+**Respuesta del sistema:**
+> "No puedo acceder a la página del producto de forma automática. Por favor, copia y pega aquí la ficha del producto: nombre exacto, precio actual, las 3-5 características principales y el enlace final de afiliación. También puedes adjuntar una captura de pantalla de la página."
+
+El flujo continúa con los datos pegados por el redactor. No se reintenta el WebFetch sobre la misma URL.
+
+---
+
+### `GuidelineMissingError`
+**Cuándo ocurre:** El redactor pide crear un artículo para un medio cuyo archivo `GUIDELINE-{medio}.md` no existe en `/guidelines/`.
+
+**Respuesta del sistema:**
+> "El medio '{medio}' no tiene guideline configurada todavía. Antes de continuar, usa el comando `/crear-guideline` para definir la voz editorial de ese medio. Solo tardará unos minutos."
+
+El flujo de `/crear-articulo` se detiene. No se genera ningún borrador provisional.
+
+---
+
+### `AmbiguousAngleError`
+**Cuándo ocurre:** `angle-picker` evalúa los ángulos disponibles y ninguno supera un nivel de confianza editorial suficiente (producto genérico, precio sin contexto, guideline ambigua).
+
+**Respuesta del sistema:** El angle-picker interrumpe el flujo automático y presenta exactamente 3 opciones al redactor:
+
+> "No tengo claro cuál es el mejor ángulo para este producto en {medio}. Elige uno:
+>
+> **1. [nombre-ángulo]** — [descripción de una línea de cómo enfocaría el artículo]
+> **2. [nombre-ángulo]** — [descripción de una línea de cómo enfocaría el artículo]
+> **3. [nombre-ángulo]** — [descripción de una línea de cómo enfocaría el artículo]
+>
+> Responde con el número o escribe el ángulo que prefieras."
+
+El flujo solo continúa con la elección explícita del redactor.
+
+---
+
+## Ángulos editoriales disponibles
+
+| Slug | Cuándo usarlo |
+|---|---|
+| `recomendacion-personal` | El producto es sólido y el medio tiene autoridad para recomendarlo sin justificación de precio. |
+| `liquidacion` | El precio es el argumento principal; hay descuento verificable o stock limitado. |
+| `comparativa` | El producto compite directamente con otro conocido y la diferencia de precio o prestaciones es clara. |
+| `precio-psicologico` | El precio rompe una barrera (por debajo de 10€, 50€, 100€) y eso es noticia por sí solo. |
+| `uso-practico` | El valor está en la utilidad cotidiana, no en las specs. Ideal para productos domésticos. |
+| `tendencia` | El producto encaja con un momento cultural, estacional o viral concreto. |
+
+El guideline de cada medio puede restringir o priorizar ángulos. El `angle-picker` consulta esa restricción antes de proponer.
+
+---
+
+## Mantenimiento de `medios.md`
+
+El archivo `medios.md` en la raíz del proyecto es la tabla maestra de medios. **Debe actualizarse en dos momentos:**
+
+1. Al crear o actualizar un guideline con `/crear-guideline`.
+2. Al publicar un artículo (actualizar la columna "Última publicación").
+
+La actualización la hace el sistema de forma automática. Si detectas que la tabla está desincronizada, edítala manualmente o usa `/crear-guideline` sobre el medio afectado para recalibrar.
+
+Los slugs exactos de cada medio se confirman con el redactor o champion editorial antes de crear el guideline. Una vez fijados, no cambiar sin actualizar todos los drafts y el archivo de ejemplos de ese medio.
+
+---
+
+## Lo que el sistema nunca hace
+
+- No publica directamente en ningún CMS.
+- No accede a redes sociales ni a URLs fuera de los dominios autorizados.
+- No genera artículos sin guideline del medio.
+- No deja borradores con datos inventados o marcadores `[PENDIENTE]`.
+- No reintenta un WebFetch bloqueado de forma silenciosa.

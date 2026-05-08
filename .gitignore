@@ -1,0 +1,12 @@
+# Drafts generados — no versionar borradores de trabajo
+# Comenta esta línea si quieres versionar los drafts
+drafts/**/*.md
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.pyc
