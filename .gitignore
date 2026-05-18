@@ -1,3 +1,6 @@
+# Logs y snapshots temporales de Playwright MCP
+.playwright-mcp/
+
 # Drafts generados — no versionar borradores de trabajo
 # Comenta esta línea si quieres versionar los drafts
 drafts/**/*.md

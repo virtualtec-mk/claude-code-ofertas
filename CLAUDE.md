@@ -53,10 +53,14 @@ Los archivos dentro de `/drafts/` y `/guidelines/` son los únicos que el sistem
 ### Idioma
 Todo el contenido generado va en español. Los nombres de variables, slugs y campos de frontmatter van en minúsculas con guiones bajos. Los artículos usan el español peninsular por defecto salvo que el guideline del medio indique otro registro.
 
-### Política de uso de WebFetch
-- `WebFetch` solo se ejecuta sobre URLs que el redactor ha pegado explícitamente en el chat.
+### Política de uso de herramientas de scraping
+- El scraping se hace con **Playwright MCP** (navegador real) como vía principal. Si Playwright falla, se degrada al flujo manual (`URLBlockedError`). `WebFetch` ya no se usa para extraer fichas de producto.
+- Las herramientas de scraping (cualquier `mcp__plugin_playwright_playwright__browser_*`) solo se ejecutan sobre URLs que el redactor ha pegado explícitamente en el chat.
 - El sistema **nunca** descubre, busca ni propone URLs de productos por iniciativa propia.
 - Dominios autorizados: `amazon.es`, `amazon.com`, `amazon.co.uk`, `aliexpress.com`, `es.aliexpress.com`.
+
+### Requisitos del entorno
+- Plugin **Playwright MCP** instalado y activo en Claude Code del redactor. Sin él, el sistema sigue funcionando pero cae al flujo manual en la mayoría de URLs. Instrucciones de instalación en `docs/instalacion-playwright.txt`.
 
 ---
 
@@ -65,7 +69,7 @@ Todo el contenido generado va en español. Los nombres de variables, slugs y cam
 Cada subagente opera con un conjunto de fuentes bien definido. Ninguno accede a más información de la que necesita para su tarea.
 
 ```
-product-researcher  →  URL + WebFetch
+product-researcher  →  URL + Playwright MCP (fallback manual)
                         NO lee guideline ni ejemplos publicados.
                         Produce: ficha estructurada (nombre, precio, características, URL canónica).
 
@@ -89,12 +93,12 @@ Los subagentes **no se llaman entre sí directamente**. El orquestador (este sis
 ## Excepciones tipadas y respuesta del sistema
 
 ### `URLBlockedError`
-**Cuándo ocurre:** `product-researcher` recibe un error 403, captcha o redirección de antibot al intentar acceder a la URL del producto.
+**Cuándo ocurre:** `product-researcher` ha intentado cargar la URL con Playwright y se ha encontrado captcha, bloqueo antibot, timeout esperando el precio, o el plugin de Playwright no está disponible en la sesión.
 
 **Respuesta del sistema:**
 > "No puedo acceder a la página del producto de forma automática. Por favor, copia y pega aquí la ficha del producto: nombre exacto, precio actual, las 3-5 características principales y el enlace final de afiliación. También puedes adjuntar una captura de pantalla de la página."
 
-El flujo continúa con los datos pegados por el redactor. No se reintenta el WebFetch sobre la misma URL.
+El flujo continúa con los datos pegados por el redactor (`fuente: manual` en el frontmatter del output). No se reintenta Playwright sobre la misma URL.
 
 ---
 
@@ -159,4 +163,4 @@ Los slugs exactos de cada medio se confirman con el redactor o champion editoria
 - No accede a redes sociales ni a URLs fuera de los dominios autorizados.
 - No genera artículos sin guideline del medio.
 - No deja borradores con datos inventados o marcadores `[PENDIENTE]`.
-- No reintenta un WebFetch bloqueado de forma silenciosa.
+- No reintenta una extracción bloqueada (Playwright o WebFetch) de forma silenciosa.

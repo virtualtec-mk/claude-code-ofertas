@@ -1,0 +1,112 @@
+INSTALACIÓN DEL PLUGIN PLAYWRIGHT EN CLAUDE CODE
+=================================================
+
+Para qué sirve
+--------------
+
+El sistema de agentes redactores extrae automáticamente la ficha de producto
+(precio, nombre, specs, reseñas) a partir de la URL que pegas. Para hacerlo
+necesita abrir la página en un navegador real, porque Amazon y AliExpress
+bloquean los accesos automáticos sencillos o devuelven páginas vacías que
+se rellenan con JavaScript.
+
+Playwright es ese navegador real. Es un plugin que se instala una sola vez
+en tu Claude Code. Mientras esté activo, pegar una URL "simplemente funciona"
+en la mayoría de casos. Si no se puede instalar, el sistema sigue
+funcionando, solo que te pedirá pegar los datos del producto a mano más a
+menudo (mensaje "URLBlockedError").
+
+
+Antes de instalar: confirmar la versión
+---------------------------------------
+
+Pinea la versión del plugin a la que vayas a instalar. Si el plugin cambia
+los nombres de las tools en una actualización, el agente product-researcher
+deja de funcionar en silencio. Antes de instalar:
+
+1. Revisa el repositorio oficial del plugin de Playwright para Claude Code
+   y elige una versión estable concreta (no "latest").
+2. Apunta esa versión aquí mismo cuando la confirmes:
+
+   Versión instalada actualmente: ____________________
+   Fecha de instalación:          ____________________
+
+3. Cuando quieras actualizar, hazlo en un momento en que puedas hacer una
+   prueba inmediata: pega una URL de Amazon y otra de AliExpress y
+   verifica que el sistema sigue devolviendo la ficha correctamente. Si
+   algo falla, vuelve a la versión anterior.
+
+
+Cómo instalar
+-------------
+
+1. Abre Claude Code (app de escritorio).
+2. Escribe en el chat el comando para listar y gestionar plugins. Suele
+   ser `/plugins` o `/plugin`. Confirma cuál aplica en tu versión
+   ejecutando `/help` si tienes dudas.
+3. Busca "Playwright" en el listado y selecciónalo para instalar.
+4. Acepta los permisos que pida (abrir un navegador local).
+5. Confirma la versión exacta que se ha instalado y apúntala en la
+   sección anterior de este archivo.
+
+   Nota: el comando exacto y la interfaz de gestión de plugins puede
+   variar entre versiones de Claude Code. Si el comando `/plugins` no
+   está disponible en tu versión, busca "plugins" o "MCP servers" en los
+   ajustes de la app, o consulta la documentación oficial del plugin de
+   Playwright en su repositorio.
+
+
+Verificar que está activo
+-------------------------
+
+1. En el chat, escribe `/plugins` (o equivalente) y comprueba que
+   Playwright aparece como activo.
+2. Como prueba real: usa el comando `/crear-articulo` con una URL de
+   Amazon de un producto que tenga oferta visible. Si el sistema te
+   devuelve la ficha sin pedirte que pegues datos a mano, está
+   funcionando.
+
+
+Qué esperar al ejecutarse
+-------------------------
+
+- La primera vez que el sistema extraiga una ficha, se abrirá una
+  ventana de Chromium visible durante unos segundos. Es normal. No
+  necesitas hacer nada con ella; el sistema la cierra solo.
+- No hace falta modo "headless". La ventana visible facilita ver lo
+  que está haciendo si algo va mal.
+- Cada extracción tarda entre 5 y 15 segundos (frente a 1-3s del
+  método anterior). Es el coste de tener tasa de éxito alta.
+
+
+Qué hacer si no se puede instalar
+---------------------------------
+
+El sistema sigue funcionando sin Playwright. Lo que cambia:
+
+- Casi todas las URLs de Amazon y AliExpress te devolverán el mensaje
+  "URLBlockedError" pidiéndote que pegues los datos del producto
+  manualmente (nombre, precio, specs, reseñas).
+- El flujo es más lento por tu parte, pero el resultado final es el
+  mismo: un artículo en markdown listo para el CMS.
+
+Si la instalación falla repetidamente, sigue trabajando en modo manual y
+avisa al técnico de referencia del proyecto para revisar el entorno.
+
+
+Resolución de problemas habituales
+----------------------------------
+
+- "El navegador se abre pero la página queda en blanco":
+  La página puede estar bloqueando a Playwright (captcha, antibot). El
+  sistema lo detecta y degrada a "URLBlockedError" automáticamente.
+  Pega los datos a mano cuando te lo pida.
+
+- "Tarda demasiado y no responde":
+  El timeout interno es de unos 10-20 segundos. Si pasa más tiempo,
+  pulsa Esc o pide al sistema que aborte. Vuelve a intentarlo o
+  trabaja en modo manual con esa URL.
+
+- "Después de actualizar el plugin, todas las URLs fallan":
+  Probablemente han cambiado los nombres de las tools. Vuelve a la
+  versión anterior que tenías apuntada arriba y avisa al técnico.
