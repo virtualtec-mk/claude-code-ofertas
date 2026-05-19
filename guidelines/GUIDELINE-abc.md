@@ -226,6 +226,7 @@ Aparecen con mucha frecuencia y forman parte de la cadencia de la voz. Úsalos c
 ## Frases vetadas
 
 - **Globales:** ver `knowledge/frases-vetadas.md` (no duplicar aquí).
+- **Lectura obligatoria adicional:** la sección **"Patrones IA estructurales"** de `knowledge/frases-vetadas.md`. No basta con buscar palabras sueltas; hay que detectar los moldes de frase típicos de IA y reescribirlos antes de cerrar el draft.
 - **Adicionales del medio:**
   - "increíble" (sin dato detrás)
   - "imperdible"
@@ -238,6 +239,22 @@ Aparecen con mucha frecuencia y forman parte de la cadencia de la voz. Úsalos c
   - "en este artículo"
   - "a tener en cuenta" (cliché)
   - Cualquier exclamación con "¡!".
+
+### Test de "frase intercambiable" (obligatorio en ABC)
+
+ABC tiene un tono más prescriptivo y aspiracional, lo que facilita caer en frases bonitas pero vacías. Antes de cerrar cada párrafo aplica este test:
+
+> *"Si pego esta frase en un artículo de otro producto cambiando solo el nombre, ¿seguiría sonando bien?"*
+
+Si la respuesta es sí, la frase es genérica de IA y hay que reescribirla con un dato, un gesto o un escenario concreto. Especificidad antes que retórica.
+
+- ❌ *"Lo que la convierte en una compra acertada es la combinación de diseño y prestaciones."*
+- ✅ *"La diadema acolchada y la cancelación de ruido activa son las dos razones por las que aguanta un vuelo de seis horas sin que aparezca el clásico dolor en la oreja."*
+
+- ❌ *"Aquí Sony ha apostado por una pantalla más brillante."*
+- ✅ *"La pantalla pasa de 600 a 800 nits respecto al modelo del año pasado; en una terraza al mediodía, eso es la diferencia entre ver bien y no ver nada."*
+
+Aplicar este test es obligatorio antes de entregar el draft. El editor-in-chief lo aplica de nuevo en su pasada final.
 
 ---
 

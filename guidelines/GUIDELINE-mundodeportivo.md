@@ -242,6 +242,7 @@ Mencionar la fiabilidad de la marca y el volumen de valoraciones positivas como 
 ## Frases vetadas
 
 - **Globales:** ver `knowledge/frases-vetadas.md` (no duplicar aquí).
+- **Lectura obligatoria adicional:** la sección **"Patrones IA estructurales"** de `knowledge/frases-vetadas.md`. No basta con buscar palabras sueltas; hay que detectar los moldes de frase típicos de IA y reescribirlos antes de cerrar el draft.
 - **Adicionales de este medio:**
   - "el mejor del mercado"
   - "te lo contamos"
@@ -250,6 +251,22 @@ Mencionar la fiabilidad de la marca y el volumen de valoraciones positivas como 
   - "además" (como conector de párrafo)
   - Cualquier frase con signo de exclamación (!)
   - Hipérboles publicitarias directas ("increíble", "revolucionario", "sorprendente")
+
+### Test de "frase intercambiable" (obligatorio)
+
+Antes de dar por bueno un párrafo, aplica este test:
+
+> *"Si pego esta frase en un artículo de otro producto cambiando solo el nombre, ¿seguiría sonando bien?"*
+
+Si la respuesta es sí, la frase es genérica de IA y hay que reescribirla con un dato, un gesto o un escenario concreto que solo aplique al producto del que estás hablando. En El Recomendador, el ancla siempre es un beneficio activo concreto, no una afirmación intercambiable.
+
+- ❌ *"X es el modelo que más fuerte tira con esta oferta."*
+- ✅ *"El descuento más jugoso, el 35%, está en el modelo de 7000 mAh — el resto del comparativo baja entre el 15% y el 20%."*
+
+- ❌ *"Lo que la hace cómoda es la suela amortiguada."*
+- ✅ *"La suela amortiguada absorbe el impacto de los primeros 5.000 pasos y por eso aguanta una jornada completa de gym + recados."*
+
+Aplicar este test es obligatorio antes de entregar el draft. El editor-in-chief lo aplica de nuevo en su pasada final.
 
 ---
 

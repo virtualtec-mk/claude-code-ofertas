@@ -269,6 +269,7 @@ Las siguientes expresiones aparecen con recurrencia en los artículos analizados
 ## Frases vetadas
 
 - **Globales:** ver `knowledge/frases-vetadas.md` (no duplicar aquí).
+- **Lectura obligatoria adicional:** la sección **"Patrones IA estructurales"** de `knowledge/frases-vetadas.md`. No basta con buscar palabras sueltas; hay que detectar los moldes de frase típicos de IA y reescribirlos.
 - **Adicionales de este medio:**
   - ideal
   - perfecto
@@ -282,6 +283,25 @@ Las siguientes expresiones aparecen con recurrencia en los artículos analizados
   - en resumen
   - te contamos
   - te explicamos
+
+### Test de "frase intercambiable" (obligatorio en La Razón)
+
+Antes de dar por bueno un párrafo, el writer y el editor-in-chief aplican este test:
+
+> *"Si esta frase la pego en un artículo de otro producto cambiándole solo el nombre del producto, ¿seguiría sonando bien?"*
+
+Si la respuesta es sí, la frase es genérica y hay que reescribirla con un dato, un gesto o un escenario que solo aplique al producto del que se está hablando. Ejemplo:
+
+- ❌ *"Los descuentos llegan hasta el 40% en los más sólidos."* — sirve para cualquier multi-producto.
+- ✅ *"El 40% se queda en las X Ultra Pioneer Gore-Tex; el resto del lote se mueve entre el 20% y el 33%."* — solo sirve para este artículo.
+
+- ❌ *"X es la que más fuerte tira con esta oferta."*
+- ✅ *"La rebaja más fuerte del lote, el 40%, se la lleva la X Ultra Pioneer Gore-Tex."*
+
+- ❌ *"Lo que la hace cómoda desde el primer kilómetro es el ajuste SensiFit."*
+- ✅ *"El SensiFit envuelve el pie sin apretar, así que a las dos horas de caminata no aparecen los puntos de presión típicos."*
+
+Aplicar este test es **obligatorio** antes de entregar el draft. El editor-in-chief lo aplica de nuevo en su pasada final.
 
 ---
 
