@@ -45,3 +45,4 @@ logs/
 # Playwright
 playwright-report/
 test-results/
+.playwright-mcp/
