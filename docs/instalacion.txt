@@ -1,0 +1,140 @@
+===========================================================
+INSTALACIÓN — claude-code-localizador-ofertas
+===========================================================
+
+Este proyecto se opera desde Claude Code. No tiene servidor, ni base de
+datos, ni interfaz web. Todo son archivos markdown locales.
+
+-----------------------------------------------------------
+PORTABILIDAD — LEE ESTO ANTES DE NADA
+-----------------------------------------------------------
+
+Este repo asume que claude-code-text-agents vive como HERMANO bajo la
+misma carpeta padre, EN CUALQUIER UBICACIÓN DEL DISCO. Ejemplos válidos:
+
+    C:\proyectos\
+      claude-code-localizador-ofertas\
+      claude-code-text-agents\
+
+    /home/redactor/repos/
+      claude-code-localizador-ofertas/
+      claude-code-text-agents/
+
+Mientras los dos repos sean hermanos y abras Claude Code DESDE LA RAÍZ
+del localizador, la ruta relativa ../claude-code-text-agents/ resuelve
+sola y no hay nada que tocar.
+
+Si por la razón que sea NO puedes ponerlos como hermanos, edita estos
+dos sitios con la ruta real (relativa o absoluta):
+
+  1. CLAUDE.md → sección "Proyecto hermano: ubicación y reutilización"
+     Cambia toda mención a ../claude-code-text-agents/.
+
+  2. .claude/settings.json → en "allow" y "deny", todas las entradas
+     Read/Write que apuntan a ../claude-code-text-agents/...
+
+No hay variable de entorno ni config.json. Por diseño.
+
+-----------------------------------------------------------
+PRERREQUISITOS
+-----------------------------------------------------------
+
+1. Claude Code instalado y operativo.
+2. Plugin Playwright MCP activo en tu sesión de Claude Code.
+   Es el mismo plugin que usa el proyecto hermano claude-code-text-agents.
+3. El proyecto hermano claude-code-text-agents clonado en la carpeta
+   HERMANA a este repo:
+
+       proyectos-IA/
+         claude-code-localizador-ofertas/   <-- este repo
+         claude-code-text-agents/           <-- hermano (obligatorio)
+
+   El hermano debe tener al menos UN archivo en guidelines/ con el
+   patrón GUIDELINE-{medio}.md (por ejemplo
+   GUIDELINE-mundodeportivo.md). Sin guidelines no hay filtrado
+   editorial posible.
+
+   Si tu hermano vive en otra ruta, edita:
+     - CLAUDE.md (sección "Proyecto hermano")
+     - .claude/settings.json (todas las rutas que empiezan por
+       "../claude-code-text-agents/")
+
+-----------------------------------------------------------
+PRIMER USO — ORDEN RECOMENDADO
+-----------------------------------------------------------
+
+Paso 1: abre Claude Code DESDE LA RAÍZ de este repo.
+   Las rutas relativas (..) se resuelven desde tu cwd. Si abres desde
+   otro sitio, todo lo que apunta al hermano falla.
+
+Paso 2: crea la carpeta inbox en el hermano si no existe:
+
+       ../claude-code-text-agents/inbox/
+
+   Basta con un .gitkeep dentro. Comprueba que el settings.json del
+   hermano permite Write(inbox/**) y Read(inbox/**).
+
+Paso 3: copia una de las watchlists de ejemplo en watchlists/ y
+   edítala con tu temática real. Cambia el frontmatter al menos en:
+     - name
+     - medio_sugerido
+     - anunciante
+     - keywords / marcas / precio_min / precio_max
+
+   No hay esquema de validación: si un campo no aplica, bórralo.
+
+Paso 4: lanza la skill:
+
+       /buscar-ofertas
+
+   o con argumentos:
+
+       /buscar-ofertas mundodeportivo amazon auriculares-anc-md
+
+   La primera ejecución te pedirá aceptar el banner de cookies de
+   Chollometro a través de Playwright. A partir de la segunda
+   navegación en la misma sesión, las cookies persisten.
+
+-----------------------------------------------------------
+SI ALGO FALLA EN LA PRIMERA EJECUCIÓN REAL
+-----------------------------------------------------------
+
+- "AggregatorBlockedError": Cloudflare ha endurecido o el agregador
+  cambió de maquetación. Anota en knowledge/notas-degradacion.md la
+  fecha, la URL, el síntoma exacto y revisa los selectores accesibles
+  en .claude/agents/aggregator-scraper.md.
+
+- "StoreBlockedError": Amazon o AliExpress no se dejan scrapear en
+  una candidata concreta. La skill te pedirá pegar los datos a mano y
+  marcará la ficha como fuente: manual.
+
+- "GuidelineMissingError": el medio que pediste no existe en
+  ../claude-code-text-agents/guidelines/. Crea allí la guideline con
+  /crear-guideline y vuelve a lanzar.
+
+- "Playwright tool not available": el plugin no está instalado en
+  esta sesión. Actívalo desde la config de Claude Code y reinicia.
+
+- "No existe ../claude-code-text-agents/": revisa que clonaste el
+  hermano en la ruta correcta o ajusta CLAUDE.md + settings.json.
+
+-----------------------------------------------------------
+CHECKLIST DE INSTALACIÓN
+-----------------------------------------------------------
+
+[ ] Claude Code abre desde la raíz de este repo
+[ ] Playwright MCP responde (testea con una navegación simple)
+[ ] ../claude-code-text-agents/ existe y tiene guidelines/
+[ ] ../claude-code-text-agents/inbox/ existe (con .gitkeep)
+[ ] settings.json del hermano permite Write(inbox/**) y Read(inbox/**)
+[ ] Al menos una watchlist editada en watchlists/
+[ ] /buscar-ofertas arranca y muestra los medios disponibles
+
+-----------------------------------------------------------
+ACTUALIZACIONES
+-----------------------------------------------------------
+
+Apunta cualquier cambio relevante (selectores que cambian, nuevas
+watchlists tipo, errores nuevos) en:
+  - changelog/changelog-YYYY-MM-DD.txt    (qué cambió y por qué)
+  - knowledge/notas-degradacion.md         (dominios o patrones)

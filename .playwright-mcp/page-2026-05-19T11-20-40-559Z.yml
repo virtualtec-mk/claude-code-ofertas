@@ -1,0 +1,1026 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - banner [ref=e5]:
+      - generic [ref=e7]:
+        - link "Chollometro" [ref=e9] [cursor=pointer]:
+          - /url: https://www.chollometro.com
+        - button "Menú" [ref=e12] [cursor=pointer]:
+          - generic [ref=e14]:
+            - img
+            - generic [ref=e15]: Menú
+        - generic [ref=e22]:
+          - button "Categorías" [ref=e24] [cursor=pointer]:
+            - generic [ref=e25]:
+              - img
+              - generic [ref=e26]: Categorías
+            - img
+          - button "Cupones" [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]:
+              - img
+              - generic [ref=e30]: Cupones
+            - img
+          - button "Gratis" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]:
+              - img
+              - generic [ref=e34]: Gratis
+            - img
+          - link "Ofertas" [ref=e36] [cursor=pointer]:
+            - /url: https://www.chollometro.com/ofertas
+            - generic [ref=e37]:
+              - img
+              - text: Ofertas
+          - link "Foro de discusión" [ref=e39] [cursor=pointer]:
+            - /url: https://www.chollometro.com/temas
+            - generic [ref=e40]:
+              - img
+              - text: Foro de discusión
+          - link "Club" [ref=e42] [cursor=pointer]:
+            - /url: https://www.chollometro.com/club
+            - generic [ref=e43]:
+              - img
+              - text: Club
+    - generic [ref=e45]:
+      - navigation [ref=e46]:
+        - generic [ref=e47]:
+          - menuitem "Inicio" [ref=e49] [cursor=pointer]:
+            - generic [ref=e51]: Inicio
+          - menuitem "Cupones exclusivos" [ref=e53] [cursor=pointer]:
+            - generic [ref=e55]: Cupones exclusivos
+          - menuitem "Los mejores cupones" [ref=e57] [cursor=pointer]:
+            - generic [ref=e59]: Los mejores cupones
+          - menuitem "Supermarcas" [ref=e61] [cursor=pointer]:
+            - generic [ref=e63]: Supermarcas
+      - listbox [ref=e68]:
+        - generic [ref=e69]:
+          - textbox "Buscar" [ref=e70]
+          - generic [ref=e72]: search
+    - generic [ref=e75]:
+      - generic [ref=e76]:
+        - generic [ref=e78]: info-icon
+        - paragraph [ref=e79]:
+          - text: Si visitas o realizas un pedido a través de nuestra web, podríamos recibir una compensación del comerciante.
+          - link "Descubre cómo trabajamos." [ref=e80] [cursor=pointer]:
+            - /url: https://www.chollometro.com/cupones/como-trabajamos
+      - generic [ref=e81]:
+        - generic [ref=e84]:
+          - button "Amazon" [ref=e86] [cursor=pointer]:
+            - img "Amazon" [ref=e87]
+          - generic [ref=e89]:
+            - heading "Código promocional Amazon verificado en Mayo de 2026" [level=1] [ref=e90]
+            - heading "Utiliza uno de nuestros 18 códigos descuento Amazon disponibles hoy" [level=2] [ref=e91]
+        - generic [ref=e92]:
+          - list [ref=e99]:
+            - listitem [ref=e100]:
+              - button "Todos (18)" [ref=e101] [cursor=pointer]
+            - listitem [ref=e102]:
+              - button "Cupones (7)" [ref=e103] [cursor=pointer]
+            - listitem [ref=e104]:
+              - button "Descuentos (11)" [ref=e105] [cursor=pointer]
+            - listitem [ref=e106]:
+              - button "Verificados (7)" [ref=e107] [cursor=pointer]
+          - generic [ref=e109]:
+            - generic [ref=e112] [cursor=pointer]:
+              - generic [ref=e113]:
+                - generic [ref=e116]:
+                  - generic [ref=e117]: 5€
+                  - generic [ref=e118]: Menos
+                - generic [ref=e119]:
+                  - generic [ref=e120]:
+                    - generic [ref=e122]: offer-verified
+                    - generic [ref=e124]:
+                      - img [ref=e126]
+                      - text: Cupón
+                  - generic [ref=e130]:
+                    - heading "Obtén 5€ de ahorro en tu primer pedido con este código descuento Amazon" [level=3] [ref=e133]
+                    - button "Ver cupón" [ref=e136]:
+                      - text: Ver cupón
+                      - generic [ref=e138]: arrow-forwardlos
+              - generic [ref=e139]:
+                - button "Más detalles" [ref=e141]
+                - generic [ref=e142]: Expira en 03/06/2026
+            - generic [ref=e145] [cursor=pointer]:
+              - generic [ref=e146]:
+                - generic [ref=e149]:
+                  - generic [ref=e150]: 10€
+                  - generic [ref=e151]: Ahorro
+                - generic [ref=e152]:
+                  - generic [ref=e153]:
+                    - generic [ref=e155]: offer-verified
+                    - generic [ref=e157]:
+                      - img [ref=e159]
+                      - text: Cupón
+                  - generic [ref=e163]:
+                    - heading "Obtén en tu compra con este código promocional Amazon 10€ en puntos de recogida" [level=3] [ref=e166]
+                    - button "Ver cupón" [ref=e169]:
+                      - text: Ver cupón
+                      - generic [ref=e171]: arrow-forwardlos
+              - generic [ref=e172]:
+                - button "Más detalles" [ref=e174]
+                - generic [ref=e175]: Expira en 04/01/2027
+            - generic [ref=e178] [cursor=pointer]:
+              - generic [ref=e179]:
+                - generic [ref=e182]:
+                  - generic [ref=e183]: 15%
+                  - generic [ref=e184]: Ahorro
+                - generic [ref=e185]:
+                  - generic [ref=e186]:
+                    - generic [ref=e188]: offer-verified
+                    - generic [ref=e190]:
+                      - img [ref=e192]
+                      - text: Cupón
+                  - generic [ref=e196]:
+                    - heading "Ahorra un 15% con este código promocional Amazon verificado para la lista de nacimiento" [level=3] [ref=e199]
+                    - button "Ver cupón" [ref=e202]:
+                      - text: Ver cupón
+                      - generic [ref=e204]: arrow-forwardlos
+              - generic [ref=e206]: Expira en 04/06/2026
+            - generic [ref=e210] [cursor=pointer]:
+              - img "Explora los chollos de Amazon en Chollometro" [ref=e212]
+              - heading "Explora los chollos de Amazon en Chollometro" [level=3] [ref=e215]
+            - generic [ref=e218] [cursor=pointer]:
+              - generic [ref=e219]:
+                - generic [ref=e222]:
+                  - generic [ref=e223]: 25%
+                  - generic [ref=e224]: Ahorro
+                - generic [ref=e225]:
+                  - generic [ref=e226]:
+                    - generic [ref=e228]: offer-verified
+                    - generic [ref=e230]:
+                      - img [ref=e232]
+                      - text: Cupón
+                  - generic [ref=e236]:
+                    - heading "Hazte en tu primer pedido con este código promocional Amazon de un 25%" [level=3] [ref=e239]
+                    - button "Ver cupón" [ref=e242]:
+                      - text: Ver cupón
+                      - generic [ref=e244]: arrow-forwardlos
+              - generic [ref=e245]:
+                - button "Más detalles" [ref=e247]
+                - generic [ref=e248]: Expira en 15/07/2026
+            - generic [ref=e251] [cursor=pointer]:
+              - generic [ref=e252]:
+                - generic [ref=e255]:
+                  - generic [ref=e256]: 30€
+                  - generic [ref=e257]: Ahorro
+                - generic [ref=e258]:
+                  - generic [ref=e259]:
+                    - generic [ref=e261]: offer-verified
+                    - generic [ref=e263]:
+                      - img [ref=e265]
+                      - text: Cupón
+                  - generic [ref=e269]:
+                    - heading "Ahorra en Fresh con este código descuento Amazon 30€, ¡comprobado!" [level=3] [ref=e272]
+                    - button "Ver cupón" [ref=e275]:
+                      - text: Ver cupón
+                      - generic [ref=e277]: arrow-forwardlos
+              - generic [ref=e278]:
+                - button "Más detalles" [ref=e280]
+                - generic [ref=e281]: Expira en 01/09/2026
+            - generic [ref=e284] [cursor=pointer]:
+              - generic [ref=e285]:
+                - generic [ref=e288]:
+                  - generic [ref=e289]: 10€
+                  - generic [ref=e290]: Extra
+                - generic [ref=e291]:
+                  - generic [ref=e292]:
+                    - generic [ref=e294]: offer-verified
+                    - generic [ref=e296]:
+                      - img [ref=e298]
+                      - text: Cupón
+                  - generic [ref=e302]:
+                    - heading "Aplica este cupón Amazon de 10€ en tu tarjeta de Apple" [level=3] [ref=e305]
+                    - button "Ver cupón" [ref=e308]:
+                      - text: Ver cupón
+                      - generic [ref=e310]: arrow-forwardlos
+              - generic [ref=e311]:
+                - button "Más detalles" [ref=e313]
+                - generic [ref=e314]: Expira en 04/06/2026
+            - generic [ref=e317] [cursor=pointer]:
+              - generic [ref=e318]:
+                - generic [ref=e321]:
+                  - generic [ref=e322]: 5€
+                  - generic [ref=e323]: Ahorro
+                - generic [ref=e324]:
+                  - generic [ref=e325]:
+                    - generic [ref=e327]: offer-verified
+                    - generic [ref=e329]:
+                      - img [ref=e331]
+                      - text: Cupón
+                  - generic [ref=e335]:
+                    - heading "5€ menos con este cupón descuento Amazon en una selección de Ring" [level=3] [ref=e338]
+                    - button "Ver cupón" [ref=e341]:
+                      - text: Ver cupón
+                      - generic [ref=e343]: arrow-forwardlos
+              - generic [ref=e345]: Expira en 26/05/2026
+            - generic [ref=e349] [cursor=pointer]:
+              - generic [ref=e352]:
+                - generic [ref=e353]: 5€
+                - generic [ref=e354]: Promo
+              - generic [ref=e355]:
+                - generic [ref=e358]:
+                  - img [ref=e360]
+                  - text: Descuento
+                - generic [ref=e366]:
+                  - heading "Consigue tus cheques regalo desde 5€" [level=3] [ref=e369]
+                  - button "Ver descuento" [ref=e372]:
+                    - text: Ver descuento
+                    - generic [ref=e374]: arrow-forwardlos
+            - generic [ref=e378] [cursor=pointer]:
+              - generic [ref=e381]:
+                - generic [ref=e382]: 49%
+                - generic [ref=e383]: Menos
+              - generic [ref=e384]:
+                - generic [ref=e387]:
+                  - img [ref=e389]
+                  - text: Descuento
+                - generic [ref=e395]:
+                  - heading "Ahorra en dispositivos de Amazon hasta un 49%" [level=3] [ref=e398]
+                  - button "Ver descuento" [ref=e401]:
+                    - text: Ver descuento
+                    - generic [ref=e403]: arrow-forwardlos
+            - generic [ref=e406] [cursor=pointer]:
+              - generic [ref=e407]:
+                - generic [ref=e410]:
+                  - generic [ref=e411]: 10€
+                  - generic [ref=e412]: Ahorro
+                - generic [ref=e413]:
+                  - generic [ref=e416]:
+                    - img [ref=e418]
+                    - text: Descuento
+                  - generic [ref=e424]:
+                    - heading "Consigue 10€ de ahorro en tu primera compra desde la app" [level=3] [ref=e427]
+                    - button "Ver descuento" [ref=e430]:
+                      - text: Ver descuento
+                      - generic [ref=e432]: arrow-forwardlos
+              - button "Más detalles" [ref=e435]
+            - generic [ref=e439] [cursor=pointer]:
+              - generic [ref=e442]:
+                - generic [ref=e443]: 30%
+                - generic [ref=e444]: Ahorro
+              - generic [ref=e445]:
+                - generic [ref=e448]:
+                  - img [ref=e450]
+                  - text: Descuento
+                - generic [ref=e456]:
+                  - heading "Ahorra con un código promocional de Amazon hasta un 30% en estos productos" [level=3] [ref=e459]
+                  - button "Ver descuento" [ref=e462]:
+                    - text: Ver descuento
+                    - generic [ref=e464]: arrow-forwardlos
+            - generic [ref=e468] [cursor=pointer]:
+              - generic [ref=e471]:
+                - generic [ref=e472]: 30%
+                - generic [ref=e473]: Ahorro
+              - generic [ref=e474]:
+                - generic [ref=e477]:
+                  - img [ref=e479]
+                  - text: Descuento
+                - generic [ref=e485]:
+                  - heading "Ahorra en la Semana de los básicos hasta un 30% en tus favoritos" [level=3] [ref=e488]
+                  - button "Ver descuento" [ref=e491]:
+                    - text: Ver descuento
+                    - generic [ref=e493]: arrow-forwardlos
+            - generic [ref=e497] [cursor=pointer]:
+              - generic [ref=e500]:
+                - generic [ref=e501]: 10€
+                - generic [ref=e502]: Ahorro
+              - generic [ref=e503]:
+                - generic [ref=e506]:
+                  - img [ref=e508]
+                  - text: Descuento
+                - generic [ref=e514]:
+                  - heading "¡Si regalas 10€ a un amigo tuyo y recibirás 10€ por invitarlo!" [level=3] [ref=e517]
+                  - button "Ver descuento" [ref=e520]:
+                    - text: Ver descuento
+                    - generic [ref=e522]: arrow-forwardlos
+            - generic [ref=e526] [cursor=pointer]:
+              - generic [ref=e529]:
+                - generic [ref=e530]: 25%
+                - generic [ref=e531]: Extra
+              - generic [ref=e532]:
+                - generic [ref=e535]:
+                  - img [ref=e537]
+                  - text: Descuento
+                - generic [ref=e543]:
+                  - heading "¡Tu nuevo smartphone libre con hasta un 25% menos!" [level=3] [ref=e546]
+                  - button "Ver descuento" [ref=e549]:
+                    - text: Ver descuento
+                    - generic [ref=e551]: arrow-forwardlos
+            - generic [ref=e555] [cursor=pointer]:
+              - generic [ref=e558]:
+                - generic [ref=e559]: 50%
+                - generic [ref=e560]: Extra
+              - generic [ref=e561]:
+                - generic [ref=e564]:
+                  - img [ref=e566]
+                  - text: Descuento
+                - generic [ref=e572]:
+                  - heading "Una selección de artículos de bricolaje con un 50% menos" [level=3] [ref=e575]
+                  - button "Ver descuento" [ref=e578]:
+                    - text: Ver descuento
+                    - generic [ref=e580]: arrow-forwardlos
+            - generic [ref=e584] [cursor=pointer]:
+              - generic [ref=e587]:
+                - generic [ref=e588]: 51%
+                - generic [ref=e589]: Menos
+              - generic [ref=e590]:
+                - generic [ref=e593]:
+                  - img [ref=e595]
+                  - text: Descuento
+                - generic [ref=e601]:
+                  - heading "Artículos Made in Italy con hasta un 51% de ahorro" [level=3] [ref=e604]
+                  - button "Ver descuento" [ref=e607]:
+                    - text: Ver descuento
+                    - generic [ref=e609]: arrow-forwardlos
+            - generic [ref=e613] [cursor=pointer]:
+              - generic [ref=e616]:
+                - generic [ref=e617]: 20%
+                - generic [ref=e618]: Ahorro
+              - generic [ref=e619]:
+                - generic [ref=e622]:
+                  - img [ref=e624]
+                  - text: Descuento
+                - generic [ref=e630]:
+                  - heading "Obtén productos de cosmética de alta gama con un 20% adicional" [level=3] [ref=e633]
+                  - button "Ver descuento" [ref=e636]:
+                    - text: Ver descuento
+                    - generic [ref=e638]: arrow-forwardlos
+            - generic [ref=e642] [cursor=pointer]:
+              - generic [ref=e645]:
+                - generic [ref=e646]: 15%
+                - generic [ref=e647]: Extra
+              - generic [ref=e648]:
+                - generic [ref=e651]:
+                  - img [ref=e653]
+                  - text: Descuento
+                - generic [ref=e659]:
+                  - heading "¡Compra productos de comida con un 15% de ahorro! ¡Comprobado!" [level=3] [ref=e662]
+                  - button "Ver descuento" [ref=e665]:
+                    - text: Ver descuento
+                    - generic [ref=e667]: arrow-forwardlos
+          - generic [ref=e670] [cursor=pointer]:
+            - generic [ref=e671]:
+              - generic [ref=e672]:
+                - paragraph [ref=e673]: 30%
+                - paragraph [ref=e674]: Ahorro
+              - button [ref=e676]:
+                - generic [ref=e677]:
+                  - generic [ref=e679]: star
+                  - generic [ref=e682]: star
+                - generic [ref=e683]:
+                  - generic [ref=e685]: star
+                  - generic [ref=e688]: star
+                - generic [ref=e689]:
+                  - generic [ref=e691]: star
+                  - generic [ref=e694]: star
+                - generic [ref=e695]:
+                  - generic [ref=e697]: star
+                  - generic [ref=e700]: star
+                - generic [ref=e701]:
+                  - generic [ref=e703]: star
+                  - generic [ref=e706]: star
+            - generic [ref=e707]:
+              - heading "Nuestro mejor código promocional en Amazon" [level=2] [ref=e708]
+              - generic [ref=e710]:
+                - text: En Chollometro rastreamos continuamente las promociones más atractivas del mercado para simplificar el ahorro en cada compra digital. No hace mucho, por ejemplo, difundimos un cupón del 30% dirigido a quienes estrenaban cuenta en Amazon, una oportunidad que numerosos miembros de la comunidad supieron aprovechar al instante.
+                - text: "En nuestra página tienes una recopilación de códigos y ofertas distribuidas en múltiples secciones: electrónica, gadgets del ecosistema Amazon, moda, cosmética y un largo etcétera. Aunque la bonificación para primeros pedidos no se encuentra vigente ahora mismo, nos mantenemos atentos sobre cualquier movimiento y la compartiremos aquí tan pronto como vuelva a activarse."
+              - button "EL MEJOR DESCUENTO" [ref=e711]
+          - generic [ref=e713]:
+            - heading "¿Se te escapó algún descuento y ahora está caducado? Inténtalo, ¡quizás aún funcione!" [level=2] [ref=e714]
+            - generic [ref=e715]:
+              - generic [ref=e718] [cursor=pointer]:
+                - generic [ref=e719]:
+                  - generic [ref=e722]:
+                    - generic [ref=e723]: 30€
+                    - generic [ref=e724]: Menos
+                  - generic [ref=e725]:
+                    - generic [ref=e728]:
+                      - img [ref=e730]
+                      - text: Cupón
+                    - generic [ref=e734]:
+                      - generic [ref=e737]: 30€ menos usando este código descuento Amazon en Fresh
+                      - button "Ver cupón" [ref=e740]:
+                        - text: Ver cupón
+                        - generic [ref=e742]: arrow-forwardlos
+                - button "Más detalles" [ref=e745]
+              - generic [ref=e748] [cursor=pointer]:
+                - generic [ref=e749]:
+                  - generic [ref=e752]:
+                    - generic [ref=e753]: 5€
+                    - generic [ref=e754]: Menos
+                  - generic [ref=e755]:
+                    - generic [ref=e758]:
+                      - img [ref=e760]
+                      - text: Cupón
+                    - generic [ref=e764]:
+                      - generic [ref=e767]: Llévate 5€ menos con el código promocional Amazon activo
+                      - button "Ver cupón" [ref=e770]:
+                        - text: Ver cupón
+                        - generic [ref=e772]: arrow-forwardlos
+                - button "Más detalles" [ref=e775]
+              - generic [ref=e778] [cursor=pointer]:
+                - generic [ref=e779]:
+                  - generic [ref=e782]:
+                    - generic [ref=e783]: 5€
+                    - generic [ref=e784]: Menos
+                  - generic [ref=e785]:
+                    - generic [ref=e788]:
+                      - img [ref=e790]
+                      - text: Cupón
+                    - generic [ref=e794]:
+                      - generic [ref=e797]: 5€ menos en Haul con este cupón Amazon activo
+                      - button "Ver cupón" [ref=e800]:
+                        - text: Ver cupón
+                        - generic [ref=e802]: arrow-forwardlos
+                - button "Más detalles" [ref=e805]
+              - generic [ref=e809] [cursor=pointer]:
+                - generic [ref=e812]:
+                  - generic [ref=e813]: 30%
+                  - generic [ref=e814]: Menos
+                - generic [ref=e815]:
+                  - generic [ref=e818]:
+                    - img [ref=e820]
+                    - text: Descuento
+                  - generic [ref=e826]:
+                    - generic [ref=e829]: Descubre todos los productos de la semana del hogar y jardín con hasta un 30%
+                    - button "Ver descuento" [ref=e832]:
+                      - text: Ver descuento
+                      - generic [ref=e834]: arrow-forwardlos
+              - generic [ref=e838] [cursor=pointer]:
+                - generic [ref=e841]:
+                  - generic [ref=e842]: 35%
+                  - generic [ref=e843]: Extra
+                - generic [ref=e844]:
+                  - generic [ref=e847]:
+                    - img [ref=e849]
+                    - text: Descuento
+                  - generic [ref=e855]:
+                    - generic [ref=e858]: ¡Tés, remedios naturales y maquillaje botánico con un 35% menos!
+                    - button "Ver descuento" [ref=e861]:
+                      - text: Ver descuento
+                      - generic [ref=e863]: arrow-forwardlos
+          - generic [ref=e865]:
+            - img "Descubre cómo canjear un código promocional Amazon" [ref=e867]
+            - generic [ref=e868]:
+              - heading "Descubre cómo canjear un código promocional Amazon" [level=2] [ref=e869]
+              - generic [ref=e871]:
+                - text: "La plataforma ya de por sí ofrece precios muy competitivos, pero puedes arañar un ahorro adicional canjeando un cupón. Sigue estos pasos para hacerlo:"
+                - list [ref=e872]:
+                  - listitem [ref=e873]: "Revisa el cupón: consulta las promociones disponibles y asegúrate de que las condiciones encajan con los artículos que tienes en mente."
+                  - listitem [ref=e874]: "Entra en tu perfil: inicia sesión en Amazon o, si aún no dispones de cuenta, regístrate previamente; es imprescindible para aplicar cualquier código y acceder al resto de ventajas."
+                  - listitem [ref=e875]: "Añade los artículos a la cesta: mete los productos compatibles con la promoción, prestando atención a las restricciones de cada código, ya que algunos están limitados a referencias concretas."
+                  - listitem [ref=e876]: "Pega el código: dentro de la pantalla de pago, localiza el apartado \"Tarjetas regalo y cheques promocionales\" e introduce ahí tu cupón."
+                  - listitem [ref=e877]: "Verifica la rebaja: antes de confirmar el pedido, comprueba que el descuento aparece reflejado en el resumen y cierra la compra con el precio ya reducido."
+          - generic [ref=e879]:
+            - img "Pásate a Primer y descubre las ventajas" [ref=e881]
+            - generic [ref=e882]:
+              - heading "Pásate a Primer y descubre las ventajas" [level=2] [ref=e883]
+              - generic [ref=e885]:
+                - text: "En Chollometro te mostramos cómo ahorrar en Amazon aprovechando promociones y ventajas exclusivas. Con Amazon Prime, tu experiencia de compra mejora aún más: puedes probarlo gratis durante 30 días y, después, elegir entre 4,99€ al mes o 49,90 € al año, opción que te permite ahorrar alrededor de 10€ frente al pago mensual."
+                - text: La suscripción incluye entregas rápidas sin coste extra, acceso a contenido de entretenimiento y ofertas exclusivas para miembros Prime. Combinando estas ventajas con los descuentos que recopilamos en Chollometro, verás cómo tu ahorro crece en cada pedido.
+          - navigation [ref=e887]:
+            - link "Home" [ref=e888] [cursor=pointer]:
+              - /url: https://www.chollometro.com/
+            - generic [ref=e889]: /
+            - link "Cupones" [ref=e890] [cursor=pointer]:
+              - /url: https://www.chollometro.com/cupones/
+            - generic [ref=e891]: /
+            - link "Todas las tiendas" [ref=e892] [cursor=pointer]:
+              - /url: https://www.chollometro.com/cupones/todas-tiendas
+            - generic [ref=e893]: /
+            - paragraph [ref=e894]: Amazon
+          - generic [ref=e896]:
+            - heading "Más información de ahorro en Amazon" [level=2] [ref=e897]
+            - generic [ref=e898]:
+              - generic [ref=e899]:
+                - img "Recibe tus 10€ de descuento por invitación" [ref=e902]
+                - generic [ref=e903]:
+                  - heading "Recibe tus 10€ de descuento por invitación" [level=3] [ref=e904]
+                  - generic [ref=e906]: "Amazon cuenta con un programa de recomendación que premia a ambas partes. Al compartir tu enlace personalizado con alguien cercano, esa persona obtendrá 10 € de saldo para estrenar su cuenta, y tú recibirás otros 10 € canjeables en cualquier artículo del catálogo. Activarlo es muy sencillo: entra en tu perfil, genera la invitación y empieza a acumular crédito cada vez que alguien se una a través de ti."
+              - generic [ref=e907]:
+                - img "Accede al outlet para un mayor descuento" [ref=e910]
+                - generic [ref=e911]:
+                  - heading "Accede al outlet para un mayor descuento" [level=3] [ref=e912]
+                  - generic [ref=e914]: "La sección Outlet de Amazon funciona como un escaparate en constante rotación, con rebajas que se actualizan semanalmente y pueden superar el 50% en categorías tan variadas como tecnología, hogar, belleza, deporte, juguetes, telefonía y dispositivos de la propia marca. Y si quieres estirar aún más tu presupuesto, pásate por nuestra web: allí recopilamos los cupones vigentes que puedes aplicar directamente en esta sección o en productos específicos para conseguir un ahorro todavía mayor."
+              - generic [ref=e915]:
+                - img "Aprovecha los cupones descuento en seleccionados Amazon" [ref=e918]
+                - generic [ref=e919]:
+                  - heading "Aprovecha los cupones descuento en seleccionados Amazon" [level=3] [ref=e920]
+                  - generic [ref=e922]: "Amazon pone a disposición de sus usuarios cupones integrados en las fichas de determinados artículos, con reducciones que pueden alcanzar el 50%. Su funcionamiento es muy sencillo: en algunos casos basta con seleccionar el producto para que la rebaja se active de forma automática, mientras que en otros tendrás que tildar manualmente la casilla del cupón antes de añadirlo a la cesta. Una vez hecho, el descuento se descuenta directamente del importe final. Una vía práctica para conseguir mejores precios en categorías como tecnología, hogar, moda, cuidado personal y muchas otras."
+              - generic [ref=e923]:
+                - img "Ahorra hasta un 10% marcando tus favoritos" [ref=e926]
+                - generic [ref=e927]:
+                  - heading "Ahorra hasta un 10% marcando tus favoritos" [level=3] [ref=e928]
+                  - generic [ref=e930]: El programa Suscríbete y Ahorra de Amazon te permite programar envíos recurrentes de los artículos que consumes con frecuencia, ajustando tanto la cantidad como la periodicidad a tu ritmo. Aplicando un cupón de la plataforma, disfrutarás de un 10% de rebaja adicional en cada entrega. Una fórmula ideal para productos de uso cotidiano como higiene, limpieza, alimentación o cuidado infantil que une la comodidad de no tener que volver a pedirlos con un ahorro constante pedido tras pedido.
+          - generic [ref=e932]:
+            - heading "Más preguntas frecuentes sobre Amazon" [level=2] [ref=e933]
+            - generic [ref=e934]:
+              - generic [ref=e935]:
+                - button "¿Cómo puedo conseguir un código promocional Amazon?" [ref=e936] [cursor=pointer]:
+                  - heading "¿Cómo puedo conseguir un código promocional Amazon?" [level=3] [ref=e938]
+                  - generic [ref=e940]: expand-more
+                - paragraph [ref=e944]: "En Chollometro te compartimos las vías más efectivas para dar con ellos. Sin duda, la opción más fiable es revisar esta misma página: nuestro equipo rastrea y renueva cada día las mejores ofertas y códigos vigentes, así que si existe alguna rebaja activa, hay muchas probabilidades de que aparezca aquí antes que en cualquier otro sitio. Otra alternativa es explorar directamente la plataforma de Amazon, donde secciones como \"Cupones\" u \"Ofertas del día\" reúnen descuentos interesantes. Asimismo, su app para móviles suele incluir promos exclusivas con disponibilidad temporal muy reducida, pensadas para quienes realizan sus compras desde el teléfono."
+              - generic [ref=e945]:
+                - button "¿Hay algún código promocional de Amazon para estudiantes?" [ref=e946] [cursor=pointer]:
+                  - heading "¿Hay algún código promocional de Amazon para estudiantes?" [level=3] [ref=e948]
+                  - generic [ref=e950]: expand-more
+                - paragraph [ref=e954]: Actualmente, Amazon no dispone de cupones exclusivos para estudiantes que puedan canjearse en pedidos puntuales o categorías determinadas. No obstante, pone a disposición del público universitario una modalidad de Prime con un 50% de ahorro sobre la cuota habitual, además de un periodo de prueba sin coste durante 90 días.
+              - generic [ref=e955]:
+                - button "¿Qué códigos Amazon puedo encontrar disponibles actualmente?" [ref=e956] [cursor=pointer]:
+                  - heading "¿Qué códigos Amazon puedo encontrar disponibles actualmente?" [level=3] [ref=e958]
+                  - generic [ref=e960]: expand-more
+                - generic [ref=e963]:
+                  - paragraph [ref=e964]: "A día de hoy, Amazon tiene activas diversas promociones que incluyen tanto rebajas en euros como reducciones porcentuales. Entre los códigos vigentes destacan:"
+                  - list [ref=e965]:
+                    - listitem [ref=e966]: 5€ de ahorro al elegir un punto de recogida como dirección de entrega.
+                    - listitem [ref=e967]: 10€ de rebaja para quienes realicen su primer pedido a través de la aplicación móvil.
+                    - listitem [ref=e968]: 30€ de bonificación en compras de Amazon Fresh.
+                    - listitem [ref=e969]: 25% en el primer pedido con cuenta Business.
+                  - paragraph [ref=e970]: Conviene recordar que la vigencia de estos cupones es limitada y suele extenderse, por norma general, hasta el cierre del mes en curso.
+              - generic [ref=e971]:
+                - button "¿Qué es el Prime Day de Amazon?" [ref=e972] [cursor=pointer]:
+                  - heading "¿Qué es el Prime Day de Amazon?" [level=3] [ref=e974]
+                  - generic [ref=e976]: expand-more
+                - paragraph [ref=e980]: "El Prime Day es la cita anual que Amazon reserva en exclusiva para quienes cuentan con suscripción Prime. A lo largo de una o dos jornadas —habitualmente 48 horas, aunque ciertas promos pueden arrancar antes o alargarse unos días más— se despliegan miles de ofertas repartidas por todo el catálogo: desde electrónica, decoración y ropa hasta cosméticos, juguetes y mucho más. Se trata de una ocasión perfecta para anticiparte a otros periodos de rebajas, ya que los precios que aparecen durante este evento llegan a batir incluso los registrados en Black Friday o en las campañas navideñas. Eso sí, el acceso está limitado a usuarios con membresía Prime activa, un requisito imprescindible para disfrutar de estas condiciones."
+              - generic [ref=e981]:
+                - button "¿Puedo pagar a plazos mis compras?" [ref=e982] [cursor=pointer]:
+                  - heading "¿Puedo pagar a plazos mis compras?" [level=3] [ref=e984]
+                  - generic [ref=e986]: expand-more
+                - generic [ref=e989]:
+                  - paragraph [ref=e990]: Efectivamente, Amazon pone a tu disposición la posibilidad de fraccionar el pago mediante su programa Compra ahora y paga más tarde, gestionado por Cofidis España, con alternativas pensadas para adaptarse a distintos presupuestos.
+                  - list [ref=e991]:
+                    - listitem [ref=e992]: "Paga en 4: diseñado para importes de entre 60€ y 1.000€, reparte el coste en 4 plazos distribuidos a lo largo de 90 días, con una aprobación prácticamente instantánea."
+                    - listitem [ref=e993]: "Credit Line: orientado a pedidos de 45€ a 3.000€, permite elegir un calendario de devolución de entre 3 y 30 meses, sujeto a la autorización del crédito."
+                  - paragraph [ref=e994]: Ambas fórmulas cubren cualquier sección del catálogo, brindándote la libertad de elegir el ritmo de pago que mejor encaje contigo y materializar tus compras pendientes sin agobios financieros.
+          - generic [ref=e996]:
+            - heading "El resumen de tus descuentos del día en Amazon" [level=2] [ref=e997]
+            - table [ref=e999]:
+              - rowgroup [ref=e1000]:
+                - row "Detalles del descuento Tipo de descuento Fecha de caducidad" [ref=e1001]:
+                  - columnheader "Detalles del descuento" [ref=e1002]
+                  - columnheader "Tipo de descuento" [ref=e1003]
+                  - columnheader "Fecha de caducidad" [ref=e1004]
+              - rowgroup [ref=e1005]:
+                - row "Obtén 5€ de ahorro en tu primer pedido con este código descuento Amazon Cupón 03/06/2026" [ref=e1006]:
+                  - cell "Obtén 5€ de ahorro en tu primer pedido con este código descuento Amazon" [ref=e1007]
+                  - cell "Cupón" [ref=e1008]
+                  - cell "03/06/2026" [ref=e1009]
+                - row "Obtén en tu compra con este código promocional Amazon 10€ en puntos de recogida Cupón 04/01/2027" [ref=e1010]:
+                  - cell "Obtén en tu compra con este código promocional Amazon 10€ en puntos de recogida" [ref=e1011]
+                  - cell "Cupón" [ref=e1012]
+                  - cell "04/01/2027" [ref=e1013]
+                - row "Ahorra un 15% con este código promocional Amazon verificado para la lista de nacimiento Cupón 04/06/2026" [ref=e1014]:
+                  - cell "Ahorra un 15% con este código promocional Amazon verificado para la lista de nacimiento" [ref=e1015]
+                  - cell "Cupón" [ref=e1016]
+                  - cell "04/06/2026" [ref=e1017]
+                - row "Hazte en tu primer pedido con este código promocional Amazon de un 25% Cupón 15/07/2026" [ref=e1018]:
+                  - cell "Hazte en tu primer pedido con este código promocional Amazon de un 25%" [ref=e1019]
+                  - cell "Cupón" [ref=e1020]
+                  - cell "15/07/2026" [ref=e1021]
+                - row "Ahorra en Fresh con este código descuento Amazon 30€, ¡comprobado! Cupón 01/09/2026" [ref=e1022]:
+                  - cell "Ahorra en Fresh con este código descuento Amazon 30€, ¡comprobado!" [ref=e1023]
+                  - cell "Cupón" [ref=e1024]
+                  - cell "01/09/2026" [ref=e1025]
+                - row "Aplica este cupón Amazon de 10€ en tu tarjeta de Apple Cupón 04/06/2026" [ref=e1026]:
+                  - cell "Aplica este cupón Amazon de 10€ en tu tarjeta de Apple" [ref=e1027]
+                  - cell "Cupón" [ref=e1028]
+                  - cell "04/06/2026" [ref=e1029]
+                - row "5€ menos con este cupón descuento Amazon en una selección de Ring Cupón 26/05/2026" [ref=e1030]:
+                  - cell "5€ menos con este cupón descuento Amazon en una selección de Ring" [ref=e1031]
+                  - cell "Cupón" [ref=e1032]
+                  - cell "26/05/2026" [ref=e1033]
+        - generic [ref=e1034]:
+          - generic [ref=e1036]:
+            - heading "Tabla de contenido" [level=2] [ref=e1037]
+            - generic [ref=e1038]:
+              - generic [ref=e1040]:
+                - generic [ref=e1042]: star-outline
+                - link "Nuestro mejor código promocional en Amazon" [ref=e1044] [cursor=pointer]:
+                  - /url: "#best-historical-coupon-theme-c2-main-1"
+              - generic [ref=e1046]:
+                - generic [ref=e1048]: star-outline
+                - link "Descubre cómo canjear un código promocional Amazon" [ref=e1050] [cursor=pointer]:
+                  - /url: "#flexible-content-main-1"
+              - generic [ref=e1052]:
+                - generic [ref=e1054]: star-outline
+                - link "Más información de ahorro en Amazon" [ref=e1056] [cursor=pointer]:
+                  - /url: "#saving-tips-theme-a-c2-main-1"
+              - generic [ref=e1058]:
+                - generic [ref=e1060]: star-outline
+                - link "Más preguntas frecuentes sobre Amazon" [ref=e1062] [cursor=pointer]:
+                  - /url: "#faq-widget-main-1"
+              - generic [ref=e1064]:
+                - generic [ref=e1066]: star-outline
+                - 'link "Amazon: el gigante del comercio online" [ref=e1068] [cursor=pointer]':
+                  - /url: "#default-sidebar-1"
+          - generic [ref=e1070]:
+            - 'heading "Explora otras alternativas: a nuestros usuarios también les gustan estas marcas" [level=2] [ref=e1071]'
+            - generic [ref=e1072]:
+              - link "ASUS" [ref=e1074] [cursor=pointer]:
+                - /url: /cupones/eshop.asus.com
+                - generic [ref=e1076]:
+                  - img [ref=e1078]
+                  - img "ASUS" [ref=e1079]
+              - link "Anycubic" [ref=e1081] [cursor=pointer]:
+                - /url: /cupones/anycubic.com
+                - generic [ref=e1083]:
+                  - img [ref=e1085]
+                  - img "Anycubic" [ref=e1086]
+              - link "Apple" [ref=e1088] [cursor=pointer]:
+                - /url: /cupones/apple.com
+                - generic [ref=e1090]:
+                  - img [ref=e1092]
+                  - img "Apple" [ref=e1093]
+              - link "Canon" [ref=e1095] [cursor=pointer]:
+                - /url: /cupones/store.canon.es
+                - generic [ref=e1097]:
+                  - img [ref=e1099]
+                  - img "Canon" [ref=e1100]
+              - link "Honor" [ref=e1102] [cursor=pointer]:
+                - /url: /cupones/honor.com
+                - generic [ref=e1104]:
+                  - img [ref=e1106]
+                  - img "Honor" [ref=e1107]
+              - link "Movil Planet" [ref=e1109] [cursor=pointer]:
+                - /url: /cupones/movilplanet.eu
+                - generic [ref=e1111]:
+                  - img [ref=e1113]
+                  - img "Movil Planet" [ref=e1114]
+              - link "NordPass" [ref=e1116] [cursor=pointer]:
+                - /url: /cupones/nordpass.com
+                - generic [ref=e1118]:
+                  - img [ref=e1120]
+                  - img "NordPass" [ref=e1121]
+              - link "OnlyMóvil" [ref=e1123] [cursor=pointer]:
+                - /url: /cupones/onlymovil.es
+                - generic [ref=e1125]:
+                  - img [ref=e1127]
+                  - img "OnlyMóvil" [ref=e1128]
+              - link "SONY" [ref=e1130] [cursor=pointer]:
+                - /url: /cupones/sony.es
+                - generic [ref=e1132]:
+                  - img [ref=e1134]
+                  - img "SONY" [ref=e1135]
+              - link "Temu" [ref=e1137] [cursor=pointer]:
+                - /url: /cupones/temu.com
+                - generic [ref=e1139]:
+                  - img [ref=e1141]
+                  - img "Temu" [ref=e1142]
+              - link "Xiaomi" [ref=e1144] [cursor=pointer]:
+                - /url: /cupones/mi.com
+                - generic [ref=e1146]:
+                  - img [ref=e1148]
+                  - img "Xiaomi" [ref=e1149]
+              - link "iMyFone" [ref=e1151] [cursor=pointer]:
+                - /url: /cupones/imyfone.com
+                - generic [ref=e1153]:
+                  - img [ref=e1155]
+                  - img "iMyFone" [ref=e1156]
+          - generic [ref=e1158]:
+            - heading "Top tiendas en las que confiamos y recomendamos" [level=2] [ref=e1159]
+            - generic [ref=e1160]:
+              - link "AliExpress" [ref=e1162] [cursor=pointer]:
+                - /url: /cupones/es.aliexpress.com
+                - generic [ref=e1164]:
+                  - img [ref=e1166]
+                  - img "AliExpress" [ref=e1167]
+              - link "Atida | Mifarma" [ref=e1169] [cursor=pointer]:
+                - /url: /cupones/atida.com
+                - generic [ref=e1171]:
+                  - img [ref=e1173]
+                  - img "Atida | Mifarma" [ref=e1174]
+              - link "Barceló" [ref=e1176] [cursor=pointer]:
+                - /url: /cupones/barcelo.com
+                - generic [ref=e1178]:
+                  - img [ref=e1180]
+                  - img "Barceló" [ref=e1181]
+              - link "Druni" [ref=e1183] [cursor=pointer]:
+                - /url: /cupones/druni.es
+                - generic [ref=e1185]:
+                  - img [ref=e1187]
+                  - img "Druni" [ref=e1188]
+              - link "Dyson" [ref=e1190] [cursor=pointer]:
+                - /url: /cupones/shop.dyson.es
+                - generic [ref=e1192]:
+                  - img [ref=e1194]
+                  - img "Dyson" [ref=e1195]
+              - link "Feu Vert" [ref=e1197] [cursor=pointer]:
+                - /url: /cupones/feuvert.es
+                - generic [ref=e1199]:
+                  - img [ref=e1201]
+                  - img "Feu Vert" [ref=e1202]
+              - link "Groupon" [ref=e1204] [cursor=pointer]:
+                - /url: /cupones/groupon.es
+                - generic [ref=e1206]:
+                  - img [ref=e1208]
+                  - img "Groupon" [ref=e1209]
+              - link "H&M" [ref=e1211] [cursor=pointer]:
+                - /url: /cupones/hm.com
+                - generic [ref=e1213]:
+                  - img [ref=e1215]
+                  - img "H&M" [ref=e1216]
+              - link "HSN" [ref=e1218] [cursor=pointer]:
+                - /url: /cupones/hsnstore.com
+                - generic [ref=e1220]:
+                  - img [ref=e1222]
+                  - img "HSN" [ref=e1223]
+              - link "IKEA" [ref=e1225] [cursor=pointer]:
+                - /url: /cupones/ikea.com
+                - generic [ref=e1227]:
+                  - img [ref=e1229]
+                  - img "IKEA" [ref=e1230]
+              - link "Iberia" [ref=e1232] [cursor=pointer]:
+                - /url: /cupones/iberia.com
+                - generic [ref=e1234]:
+                  - img [ref=e1236]
+                  - img "Iberia" [ref=e1237]
+              - link "LEROY MERLIN" [ref=e1239] [cursor=pointer]:
+                - /url: /cupones/leroymerlin.es
+                - generic [ref=e1241]:
+                  - img [ref=e1243]
+                  - img "LEROY MERLIN" [ref=e1244]
+              - link "MediaMarkt" [ref=e1246] [cursor=pointer]:
+                - /url: /cupones/mediamarkt.es
+                - generic [ref=e1248]:
+                  - img [ref=e1250]
+                  - img "MediaMarkt" [ref=e1251]
+              - link "Miravia" [ref=e1253] [cursor=pointer]:
+                - /url: /cupones/miravia.es
+                - generic [ref=e1255]:
+                  - img [ref=e1257]
+                  - img "Miravia" [ref=e1258]
+              - link "Nike" [ref=e1260] [cursor=pointer]:
+                - /url: /cupones/nike.com
+                - generic [ref=e1262]:
+                  - img [ref=e1264]
+                  - img "Nike" [ref=e1265]
+              - link "Pandora" [ref=e1267] [cursor=pointer]:
+                - /url: /cupones/pandorashop.es
+                - generic [ref=e1269]:
+                  - img [ref=e1271]
+                  - img "Pandora" [ref=e1272]
+              - link "Primor" [ref=e1274] [cursor=pointer]:
+                - /url: /cupones/primor.eu
+                - generic [ref=e1276]:
+                  - img [ref=e1278]
+                  - img "Primor" [ref=e1279]
+              - link "SHEIN" [ref=e1281] [cursor=pointer]:
+                - /url: /cupones/es.shein.com
+                - generic [ref=e1283]:
+                  - img [ref=e1285]
+                  - img "SHEIN" [ref=e1286]
+              - link "Samsung" [ref=e1288] [cursor=pointer]:
+                - /url: /cupones/samsung.com
+                - generic [ref=e1290]:
+                  - img [ref=e1292]
+                  - img "Samsung" [ref=e1293]
+              - link "Trip.com" [ref=e1295] [cursor=pointer]:
+                - /url: /cupones/es.trip.com
+                - generic [ref=e1297]:
+                  - img [ref=e1299]
+                  - img "Trip.com" [ref=e1300]
+              - link "Vueling" [ref=e1302] [cursor=pointer]:
+                - /url: /cupones/vueling.com
+                - generic [ref=e1304]:
+                  - img [ref=e1306]
+                  - img "Vueling" [ref=e1307]
+              - link "Wonderbox" [ref=e1309] [cursor=pointer]:
+                - /url: /cupones/wonderbox.es
+                - generic [ref=e1311]:
+                  - img [ref=e1313]
+                  - img "Wonderbox" [ref=e1314]
+              - link "adidas" [ref=e1316] [cursor=pointer]:
+                - /url: /cupones/adidas.es
+                - generic [ref=e1318]:
+                  - img [ref=e1320]
+                  - img "adidas" [ref=e1321]
+              - link "eBay" [ref=e1323] [cursor=pointer]:
+                - /url: /cupones/ebay.es
+                - generic [ref=e1325]:
+                  - img [ref=e1327]
+                  - img "eBay" [ref=e1328]
+          - generic [ref=e1330]:
+            - 'heading "Amazon: el gigante del comercio online" [level=2] [ref=e1331]'
+            - generic [ref=e1333]: Amazon es una de las compañías más grandes y reconocidas del mundo. Fundada en 1994 por Jeff Bezos, comenzó como una librería online y hoy es un gigante del comercio electrónico, con millones de usuarios que disfrutan de envíos rápidos gracias a Amazon Prime. Además de su tienda, Amazon ofrece servicios como AWS, Prime Video y Alexa, ampliando su presencia en tecnología y entretenimiento. En Chollometro, confiamos en Amazon para conseguir lo que necesitamos de manera rápida y cómoda, aprovechando siempre las mejores promociones.
+          - generic [ref=e1335]:
+            - heading "¿Cómo puedo tener envíos gratis?" [level=2] [ref=e1336]
+            - generic [ref=e1338]: "Amazon pone a tu disposición un amplio abanico de modalidades de entrega para que elijas la que mejor se adapte a tus necesidades: desde la opción Estándar o Económica hasta alternativas más rápidas como Exprés, Mismo día o Premium, pasando por entregas programadas, las ventajas de Amazon Prime e incluso servicios específicos para productos voluminosos o de gran peso. El precio del transporte dependerá del plazo de reparto, las dimensiones del paquete y la dirección de destino. Algunas fórmulas, como la Estándar o la asociada a la suscripción Prime, suelen salir sin coste, mientras que las opciones con plazos más ajustados suelen llevar un recargo adicional."
+          - generic [ref=e1340]:
+            - heading "Hazte con los precios más bajos en Amazon Haul" [level=2] [ref=e1341]
+            - generic [ref=e1343]:
+              - text: Amazon Haul se ha convertido en el rincón ideal para quienes buscan artículos a menos de 20€. Su catálogo de promociones se renueva semanalmente e incluye cupones exclusivos y envíos sin coste en determinados pedidos, facilitando al máximo el ahorro en cada compra.
+              - text: Lo mejor es que concentra en un solo lugar ropa acorde a las últimas tendencias, cosméticos, bisutería y muchos de esos productos que arrasan en redes, permitiéndote acceder a todo lo que está de moda sin que tu bolsillo lo note.
+          - generic [ref=e1345]:
+            - heading "¡Comparte con los demás este código descuento!" [level=2] [ref=e1346]
+            - button "share to facebook" [ref=e1347] [cursor=pointer]:
+              - generic [ref=e1348]: facebook
+            - button "share to twitter" [ref=e1349] [cursor=pointer]:
+              - generic [ref=e1350]: x-twitter
+          - generic [ref=e1352]:
+            - generic [ref=e1353]: "Descuentos comprobados por:"
+            - generic [ref=e1354]:
+              - generic [ref=e1355]:
+                - img "Sara Guarnizo" [ref=e1356]
+                - link "Sara Guarnizo" [ref=e1358] [cursor=pointer]:
+                  - /url: https://www.chollometro.com/equipo
+              - paragraph [ref=e1359]: "Soyeditora en Chollometro y desde hace años mi misión es ayudarte a recortar el precio de cada compra. Me he especializado en rastrear cupones, ofertas y promociones, con un foco especial en moda, belleza y escapadas. Sin embargo, donde realmente disfruto es buceando en Amazon: tecnología, hogar, cosmética, textil… me encanta localizar las rebajas más atractivas, artículos reacondicionados con gran relación calidad-precio y oportunidades escondidas en cada categoría. Y cuando se trata de su sección de supermercado, la combinación de Amazon Prime con entregas ágiles y sin coste convierte el reabastecimiento diario en algo tan sencillo como hacer un par de clics."
+    - generic [ref=e1360]:
+      - generic [ref=e1361]: Chollometro
+      - button "Gestionar cookies" [ref=e1363] [cursor=pointer]:
+        - link "Gestionar cookies" [ref=e1364]:
+          - /url: "#"
+    - generic [ref=e1367]:
+      - generic [ref=e1370]:
+        - generic [ref=e1371]:
+          - generic [ref=e1372]:
+            - paragraph [ref=e1373]:
+              - strong [ref=e1374]: 👋 ¡En Chollometro siempre encontrarás ayuda para ahorrar!
+            - paragraph [ref=e1375]:
+              - text: Más de
+              - strong [ref=e1376]: 3 millones de personas
+              - text: como tú, se han unido ya a nuestra comunidad. Entre todos hemos compartido más de
+              - strong [ref=e1377]: 1 millón ofertas verificadas
+              - text: y publicado en ellas más de
+              - strong [ref=e1378]: 14 millones de comentarios
+              - text: . Juntos compartimos nuestra experiencia, consejos y recomendaciones para nuestras compras.
+          - generic [ref=e1379]:
+            - button "Alberto27u's avatar" [ref=e1381] [cursor=pointer]:
+              - img "Alberto27u's avatar" [ref=e1382]
+            - button "pedro.abarcaadrados's avatar" [ref=e1384] [cursor=pointer]:
+              - img "pedro.abarcaadrados's avatar" [ref=e1385]
+            - button "manuel.jimenez's avatar" [ref=e1387] [cursor=pointer]:
+              - img "manuel.jimenez's avatar" [ref=e1388]
+            - button "KristiancraK's avatar" [ref=e1390] [cursor=pointer]:
+              - img "KristiancraK's avatar" [ref=e1391]
+            - button "varrelo's avatar" [ref=e1393] [cursor=pointer]:
+              - img "varrelo's avatar" [ref=e1394]
+            - button "ivan_garciajiR's avatar" [ref=e1396] [cursor=pointer]:
+              - img "ivan_garciajiR's avatar" [ref=e1397]
+            - button "SaúlLabajo's avatar" [ref=e1399] [cursor=pointer]:
+              - img "SaúlLabajo's avatar" [ref=e1400]
+            - button "Adrian_SanchezMarquez's avatar" [ref=e1402] [cursor=pointer]:
+              - img "Adrian_SanchezMarquez's avatar" [ref=e1403]
+            - button "jonathan.vico's avatar" [ref=e1405] [cursor=pointer]:
+              - img "jonathan.vico's avatar" [ref=e1406]
+            - button "AlbaRoap's avatar" [ref=e1408] [cursor=pointer]:
+              - img "AlbaRoap's avatar" [ref=e1409]
+            - button "Monchi92's avatar" [ref=e1411] [cursor=pointer]:
+              - img "Monchi92's avatar" [ref=e1412]
+            - button "Ling's avatar" [ref=e1414] [cursor=pointer]:
+              - img "Ling's avatar" [ref=e1415]
+        - generic [ref=e1417]:
+          - generic [ref=e1418]: Síguenos
+          - list [ref=e1419]:
+            - listitem [ref=e1420]:
+              - link "whatsapp" [ref=e1421] [cursor=pointer]:
+                - /url: https://whatsapp.com/channel/0029VaCqF23FMqrfTzvmTQ0j
+                - generic [ref=e1422]:
+                  - img
+            - listitem [ref=e1423]:
+              - link "facebook" [ref=e1424] [cursor=pointer]:
+                - /url: https://www.facebook.com/chollometro/
+                - generic [ref=e1425]:
+                  - img
+            - listitem [ref=e1426]:
+              - link "twitter" [ref=e1427] [cursor=pointer]:
+                - /url: https://x.com/chollometro?lang=es
+                - generic [ref=e1428]:
+                  - img
+            - listitem [ref=e1429]:
+              - link "youtube" [ref=e1430] [cursor=pointer]:
+                - /url: https://www.youtube.com/c/Chollometro
+                - generic [ref=e1431]:
+                  - img
+            - listitem [ref=e1432]:
+              - link "instagram" [ref=e1433] [cursor=pointer]:
+                - /url: https://instagram.com/chollometro
+                - generic [ref=e1434]:
+                  - img
+            - listitem [ref=e1435]:
+              - link "linkedin" [ref=e1436] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/pepper.com/
+                - generic [ref=e1437]:
+                  - img
+            - listitem [ref=e1438]:
+              - link "tiktok" [ref=e1439] [cursor=pointer]:
+                - /url: https://www.tiktok.com/@chollometro
+                - generic [ref=e1440]:
+                  - img
+            - listitem [ref=e1441]:
+              - link "rss" [ref=e1442] [cursor=pointer]:
+                - /url: https://www.chollometro.com/rss/nuevos
+                - generic [ref=e1443]:
+                  - img
+      - generic [ref=e1445]:
+        - generic [ref=e1446]:
+          - generic [ref=e1447]: Empresa
+          - list [ref=e1449]:
+            - listitem [ref=e1450]:
+              - link "Nosotros" [ref=e1451] [cursor=pointer]:
+                - /url: https://www.chollometro.com/nosotros
+            - listitem [ref=e1452]:
+              - link "Conoce al equipo" [ref=e1453] [cursor=pointer]:
+                - /url: https://www.chollometro.com/equipo
+            - listitem [ref=e1454]:
+              - link "Empleos" [ref=e1455] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/chollometro/jobs/
+            - listitem [ref=e1456]:
+              - link "Hazte nuestro Partner" [ref=e1457] [cursor=pointer]:
+                - /url: https://b2b.chollometro.com
+            - listitem [ref=e1458]:
+              - link "Contacto" [ref=e1459] [cursor=pointer]:
+                - /url: https://www.chollometro.com/contact
+        - generic [ref=e1460]:
+          - generic [ref=e1461]: Comunidad
+          - list [ref=e1463]:
+            - listitem [ref=e1464]:
+              - link "Cómo funciona Chollometro" [ref=e1465] [cursor=pointer]:
+                - /url: /página/faqs
+            - listitem [ref=e1466]:
+              - link "Normas Comunitarias" [ref=e1467] [cursor=pointer]:
+                - /url: /normas
+            - listitem [ref=e1468]:
+              - link "Sugerencias" [ref=e1469] [cursor=pointer]:
+                - /url: https://www.chollometro.com/opiniones
+            - listitem [ref=e1470]:
+              - link "Club" [ref=e1471] [cursor=pointer]:
+                - /url: https://www.chollometro.com/club
+            - listitem [ref=e1472]:
+              - link "Verificación de cupones" [ref=e1473] [cursor=pointer]:
+                - /url: /cupones/como-trabajamos
+        - generic [ref=e1474]:
+          - generic [ref=e1475]: Legal
+          - list [ref=e1477]:
+            - listitem [ref=e1478]:
+              - link "Política de privacidad" [ref=e1479] [cursor=pointer]:
+                - /url: /página/privacidad
+            - listitem [ref=e1480]:
+              - link "Política sobre cookies" [ref=e1481] [cursor=pointer]:
+                - /url: /página/cookies-policy
+            - listitem [ref=e1482]:
+              - link "Aviso legal y condiciones" [ref=e1483] [cursor=pointer]:
+                - /url: /página/aviso-legal
+            - listitem [ref=e1484]:
+              - link "Reglas de publicación" [ref=e1485] [cursor=pointer]:
+                - /url: /página/reglas
+        - generic [ref=e1486]:
+          - paragraph [ref=e1487]: Descarga nuestra aplicación top valorada
+          - list [ref=e1490]:
+            - listitem [ref=e1491]:
+              - 'button "Chollometro app: chollos y promociones" [ref=e1492] [cursor=pointer]'
+              - generic [ref=e1493]:
+                - generic [ref=e1494]:
+                  - generic [ref=e1495]: 4,7
+                  - generic "4,7 Stars" [ref=e1496]:
+                    - img
+                    - img
+                    - img
+                    - img
+                    - img
+                - generic [ref=e1497]: 8.900+ Valoraciones
+            - listitem [ref=e1498]:
+              - 'button "Chollometro app: chollos y promociones" [ref=e1499] [cursor=pointer]'
+              - generic [ref=e1500]:
+                - generic [ref=e1501]:
+                  - generic [ref=e1502]: 4,6
+                  - generic "4,6 Stars" [ref=e1503]:
+                    - img
+                    - img
+                    - img
+                    - img
+                    - img
+                - generic [ref=e1504]: 60.500+ Valoraciones
+        - generic [ref=e1506]:
+          - generic [ref=e1507]: Descargue nuestra extensión del navegador
+          - generic [ref=e1508]: El asistente de compras de Chollometro busca ofertas y códigos de descuento por ti.
+          - link "Instalar ahora" [ref=e1510] [cursor=pointer]:
+            - /url: https://chromewebstore.google.com/detail/chollometro-info-de-preci/bhojjmbfcfaghghnpghheopdcapjpcak?utm_campaign=web_footer&ext_brand=pepper
+            - generic [ref=e1511]:
+              - generic [ref=e1512]: Instalar ahora
+              - img
+      - generic [ref=e1513]:
+        - button "Chollometro" [ref=e1516] [cursor=pointer]:
+          - generic [ref=e1517]:
+            - generic [ref=e1520]: Chollometro
+            - generic [ref=e1521]:
+              - img
+        - generic [ref=e1523]:
+          - paragraph [ref=e1524]: Tus datos están seguros con nosotros.
+          - list [ref=e1528]:
+            - listitem [ref=e1529]:
+              - generic [ref=e1530]:
+                - img
+              - generic [ref=e1531]: Cifrado SSL de 256 bits
+            - listitem [ref=e1532]:
+              - generic [ref=e1533]:
+                - img
+              - generic [ref=e1534]: De conformidad con el RGPD
+        - generic [ref=e1536]:
+          - paragraph [ref=e1537]:
+            - generic [ref=e1538]: Parte de
+            - link [ref=e1539] [cursor=pointer]:
+              - /url: https://www.atolls.com/
+              - img
+          - paragraph [ref=e1540]: Copyright © 2015-2026 Chollometro. Todos los derechos reservados.
+        - generic [ref=e1541]:
+          - paragraph [ref=e1543]: Chollometro es imparcial - Si visitas o realizas un pedido a través de nuestra web, podríamos recibir una compensación del comerciante. Pero solo la comunidad vota y decide la temperatura de las ofertas, independientemente de cualquier compensación.
+          - paragraph
+  - alert [ref=e1544]

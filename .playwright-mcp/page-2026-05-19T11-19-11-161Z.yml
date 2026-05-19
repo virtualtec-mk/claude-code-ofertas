@@ -1,0 +1,293 @@
+- main [ref=e6]:
+  - list
+  - list
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - generic [ref=e10]:
+        - link "Chollometro" [ref=e12] [cursor=pointer]:
+          - /url: https://www.chollometro.com
+        - generic [ref=e13]:
+          - button "Menú" [ref=e15] [cursor=pointer]:
+            - generic [ref=e17]:
+              - img
+              - generic [ref=e18]: Menú
+          - generic [ref=e21]:
+            - generic:
+              - img
+            - textbox "Buscar..." [ref=e22]
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - button "Crear alerta" [ref=e25] [cursor=pointer]:
+              - generic [ref=e26]:
+                - img
+                - generic [ref=e27]: Crear alerta
+            - button "Regístrate / Inicia sesión" [ref=e28] [cursor=pointer]:
+              - generic [ref=e29]:
+                - img
+                - generic [ref=e30]: Regístrate / Inicia sesión
+          - generic [ref=e32] [cursor=pointer]:
+            - img
+            - generic [ref=e33]: Comparte
+      - img [ref=e36]
+    - generic [ref=e46]:
+      - generic [ref=e48]:
+        - heading "Los chollos los decide la comunidad" [level=1] [ref=e49]
+        - heading "Miles de personas como tú votan y deciden qué es un chollo. ¡Únete a nosotros!" [level=2] [ref=e50]
+      - generic [ref=e53]:
+        - list [ref=e56]:
+          - listitem [ref=e57]:
+            - link "Destacados" [ref=e58] [cursor=pointer]:
+              - /url: https://www.chollometro.com
+              - generic [ref=e59]: Destacados
+          - listitem [ref=e60]:
+            - button "Más votados" [ref=e61] [cursor=pointer]:
+              - generic [ref=e62]: Más votados
+          - listitem [ref=e63]:
+            - link "Subiendo" [ref=e64] [cursor=pointer]:
+              - /url: https://www.chollometro.com/populares
+              - generic [ref=e65]: Subiendo
+          - listitem [ref=e66]:
+            - link "Nuevos" [ref=e67] [cursor=pointer]:
+              - /url: https://www.chollometro.com/nuevos
+              - generic [ref=e68]: Nuevos
+        - generic [ref=e72] [cursor=pointer]:
+          - img
+          - generic [ref=e73]: Filtrar
+    - generic [ref=e81]:
+      - generic [ref=e83]:
+        - article [ref=e84]:
+          - generic [ref=e95] [cursor=pointer]:
+            - strong [ref=e96]:
+              - 'link "Clair Obscur: Expedition 33 (AMAZON)" [ref=e97]':
+                - /url: https://www.chollometro.com/ofertas/clair-obscur-expedition-33-1892537
+            - generic [ref=e105]: "Clair Obscur: Expedition 33 presenta un mundo condenado por un ciclo mortal : cada año, la Pintora marca una edad y quienes la alcanzan desaparecen. La Expedición 33 busca romper esa m…"
+        - article [ref=e112]:
+          - generic [ref=e123] [cursor=pointer]:
+            - strong [ref=e124]:
+              - link "Amazon Kindle Colorsoft (última generación) | pantalla a color y luz cálida ajustable | 16 GB" [ref=e125]:
+                - /url: https://www.chollometro.com/ofertas/amazon-kindle-colorsoft-ultima-generacion-pantalla-a-color-y-luz-calida-ajustable-16-gb-1894423
+            - generic [ref=e133]: Si devolvéis la funda y el cargador sale a 148,01€ gracias @JesulinMoi El Amazon Kindle Colorsoft destaca por su pantalla a color con tinta electrónica , ideal para portadas, cómics e…
+        - article [ref=e140]:
+          - generic [ref=e151] [cursor=pointer]:
+            - strong [ref=e152]:
+              - link "Auriculares QCY H3S ANC ( -56dB ANC, Bluetooth 6.0, HiRes/LDAC, Audio 360º, Hasta 102h. de Autonomía)" [ref=e153]:
+                - /url: https://www.chollometro.com/ofertas/auriculares-qcy-h3s-anc-56db-anc-bluetooth-60-hiresldac-audio-360o-hasta-102h-de-autonomia-1894357
+            - generic [ref=e161]: Los QCY H3S ANC destacan por su cancelación activa de ruido de hasta -56 dB , diseño circumaural ergonómico y doble transductor de 40 mm + 13 mm , ofreciendo sonido más claro y equilib…
+        - article [ref=e168]:
+          - generic [ref=e179] [cursor=pointer]:
+            - strong [ref=e180]:
+              - link "UGREEN FineTrack G Smart Finder para android. Pack de 4" [ref=e181]:
+                - /url: https://www.chollometro.com/ofertas/ugreen-finetrack-g-smart-finder-para-android-pack-de-4-1893491
+            - generic [ref=e189]: Bajada de precio para este pack de 4 localizadores de Ugreen, localizadores que hacen uso de Find Hub para estar localizados. Resulta ideal para carteras, vehículos a motor, maletas, bicis, …
+        - article [ref=e196]:
+          - generic [ref=e207] [cursor=pointer]:
+            - strong [ref=e208]:
+              - link "Bosch - Molinillo de Café, Cuchillas de Acero Inoxidable, Función de Seguridad, 180 W, Recipiente para 75 g de Granos, Eléctrico, Blanco" [ref=e209]:
+                - /url: https://www.chollometro.com/ofertas/bosch-molinillo-de-cafe-cuchillas-de-acero-inoxidable-funcion-de-seguridad-180-w-recipiente-para-75-g-de-granos-electrico-blanco-1894253
+            - generic [ref=e217]: El molinillo de café Bosch de 180 W ofrece una molienda rápida y uniforme para uso doméstico, con cuchillas de acero inoxidable , capacidad de 75 gramos y función de seguridad . Su di…
+        - article [ref=e224]:
+          - generic [ref=e235] [cursor=pointer]:
+            - strong [ref=e236]:
+              - link "7 UP Refresco cero de lima y limón, sin azúcares y sin calorías, pack de 24 latas de 330 ml" [ref=e237]:
+                - /url: https://www.chollometro.com/ofertas/7-up-refresco-cero-de-lima-y-limon-sin-azucares-y-sin-calorias-pack-de-24-latas-de-330-ml-1894281
+            - generic [ref=e245]: Agrégalo como compra recurrente y al tramitar se aplica un descuento de 3,39 euros 7 UP cero lima-limón es un re…
+        - article [ref=e252]:
+          - generic [ref=e263] [cursor=pointer]:
+            - strong [ref=e264]:
+              - link "12X Sharpie rotuladores permanentes" [ref=e265]:
+                - /url: https://www.chollometro.com/ofertas/12x-sharpie-rotuladores-permanentes-1894235
+            - generic [ref=e273]: Este pack de 12 rotuladores permanentes Sharpie ofrece trazos intensos, definidos y de secado rápido sobre múltiples superficies como papel, plástico, metal, madera o vidrio. Su punta…
+        - article [ref=e280]:
+          - generic [ref=e291] [cursor=pointer]:
+            - strong [ref=e292]:
+              - link "SMART TV XIAOMI 32" [ref=e293]:
+                - /url: https://www.chollometro.com/ofertas/smart-tv-xiaomi-32-1894268
+            - generic [ref=e301]: Preciazo para la Xiaomi A 32 2025, con 32", un diseño de marcos ultrafinos y detalles cuidados como su sonido Dolby Audio, con DTS-X y DTS-Virtual:X. Es Smart TV, con Google TV para acceder …
+        - article [ref=e308]:
+          - generic [ref=e309]:
+            - generic [ref=e310]:
+              - generic [ref=e311]:
+                - img
+              - img "¡Alertas en Telegram!" [ref=e313]
+            - generic [ref=e315]:
+              - generic: Telegram
+              - button "button button--type-tertiary button--mode-default button--size-s button--shape-circle button--squareCerrar" [ref=e316] [cursor=pointer]:
+                - img
+            - generic [ref=e317]:
+              - strong [ref=e318]: ¿Quieres avisos GRATIS de los mejores chollos vía Telegram?
+              - generic [ref=e319]:
+                - generic [ref=e320]: Gratis
+                - generic [ref=e323]: Telegram Notificación
+            - generic [ref=e325]:
+              - generic [ref=e329]:
+                - img [ref=e331]
+                - text: Chollometro
+              - link "¡Sí, avísame!" [ref=e334] [cursor=pointer]:
+                - /url: https://t.me/chollometro
+        - article [ref=e335]:
+          - generic [ref=e346] [cursor=pointer]:
+            - strong [ref=e347]:
+              - link "Asus - Répéteur de Signal Wi-Fi RP-N12" [ref=e348]:
+                - /url: https://www.chollometro.com/ofertas/asus-repeteur-de-signal-wi-fi-rp-n12-1885061
+            - generic [ref=e356]: El Asus RP-N12 es un repetidor Wi‑Fi N300 para mejorar la cobertura en redes de 2,4 GHz con hasta 300 Mbps , dos antenas externas , instalación rápida por WPS e indicador LED de señ…
+        - article [ref=e363]:
+          - generic [ref=e374] [cursor=pointer]:
+            - strong [ref=e375]:
+              - link "BIC Gel-ocity Quick Dry Bolígrafos de Gel, punta media (0,7mm) - Morado, Caja de 12 Unidades" [ref=e376]:
+                - /url: https://www.chollometro.com/ofertas/bic-gel-ocity-quick-dry-boligrafos-de-gel-punta-media-07mm-morado-caja-de-12-unidades-1894164
+            - generic [ref=e384]: Los BIC Gel-ocity Quick Dry morados ofrecen punta media de 0,7 mm , tinta gel de secado rápido y un trazo intenso que reduce manchas , ideal también para zurdos . Incorporan agarre i…
+        - article [ref=e391]:
+          - generic [ref=e402] [cursor=pointer]:
+            - strong [ref=e403]:
+              - 'link "TENERIFE CON ENTRADAS A SIAM PARK! Desde 2 noches: Apartamentos 3★ con vistas al mar en entorno natural | Los Realejos mayo/junio/setiem" [ref=e404]':
+                - /url: https://www.chollometro.com/ofertas/tenerife-con-entradas-a-siam-park-desde-2-noches-apartamentos-3-con-vistas-al-mar-en-entorno-natural-los-realejos-mayojuniosetiem-1894010
+            - generic [ref=e412]: Mayo/junio/setiembre Desde 2 noches 66€/persona Estancia en los Apartamentos Playa de Los Roques 3* El alojamiento se sitúa en Los Realejos, en la costa norte de Tenerife, en un entorno…
+        - article [ref=e419]:
+          - generic [ref=e430] [cursor=pointer]:
+            - strong [ref=e431]:
+              - link "Sofá 3 plazas con chaise longue derecha, arcón y asiento relax eléctrico City El Corte Inglés" [ref=e432]:
+                - /url: https://www.chollometro.com/ofertas/sofa-3-plazas-con-chaise-longue-derecha-arcon-y-asiento-relax-electrico-city-el-corte-ingles-1894153
+            - generic [ref=e440]: El sofá de 3 plazas con chaise longue derecha ofrece amplio espacio de descanso y un diseño pensado para el uso diario, con tapizado en microfibra City , asiento relax eléctrico que r…
+        - article [ref=e447]:
+          - generic [ref=e458] [cursor=pointer]:
+            - strong [ref=e459]:
+              - link "Consola Xbox Series S [ Carrefour Rondilla Valladolid ]" [ref=e460]:
+                - /url: https://www.chollometro.com/ofertas/consola-xbox-series-s-carrefour-rondilla-valladolid-1893714
+            - generic [ref=e468]: Xbox Series S por 149€ en Carrefour Rondilla (Valladolid). Muy buen precio para una consola de nueva generación que normalmente ronda los 280-320€. Perfecta para Game Pass, Fortnite, Warzone…
+        - article [ref=e475]:
+          - generic [ref=e486] [cursor=pointer]:
+            - strong [ref=e487]:
+              - link "JACK & JONES Sweat Hood Sudadera con Capucha Jjalliance para Hombre" [ref=e488]:
+                - /url: https://www.chollometro.com/ofertas/jack-jones-sweat-hood-sudadera-con-capucha-jjalliance-para-hombre-1894166
+            - generic [ref=e496]: La JACK & JONES Sweat Hood Jjalliance para hombre es una sudadera de manga larga con capucha , diseño liso y estilo casual para uso diario. Con 60% algodón y 40% poliéster , ofrece…
+        - generic [ref=e504]:
+          - generic [ref=e506]:
+            - img "Newsletter"
+          - generic [ref=e508]:
+            - generic: Newsletter
+            - button "Cerrar" [ref=e509] [cursor=pointer]:
+              - img
+          - generic [ref=e510]:
+            - strong [ref=e511]: ¿No tienes tiempo para estar 24/7 en Chollometro?
+            - generic [ref=e512]: Suscríbete a nuestra Newsletter y no te pierdas el chollo del año.
+          - generic [ref=e514]:
+            - generic [ref=e517]:
+              - img [ref=e519]
+              - text: Chollometro
+            - generic [ref=e522]:
+              - textbox "Tu email" [ref=e523]
+              - generic:
+                - img
+            - button "Suscribirse" [ref=e525] [cursor=pointer]
+        - article [ref=e526]:
+          - generic [ref=e537] [cursor=pointer]:
+            - strong [ref=e538]:
+              - link "¡GOTEMBURGO (SUECIA)! Vuelos DIRECTOS de IDA y VUELTA por solo 38€ (mayo) - Salidas desde Mallorca" [ref=e539]:
+                - /url: https://www.chollometro.com/ofertas/gotemburgo-suecia-vuelos-directos-de-ida-y-vuelta-por-solo-38eur-mayo-salidas-desde-mallorca-1894030
+            - generic [ref=e547]: "¡CHOLLAZO! - Vuelos DIRECTOS a Gotemburgo - Salidas desde Mallorca - Varias fechas en mayo IDA y VUELTA por solo 38€ VUELOS: - Ejemplo del 23 al 29 mayo: https://www.skyscanner.es/tran…"
+        - article [ref=e554]:
+          - generic [ref=e565] [cursor=pointer]:
+            - strong [ref=e566]:
+              - link "Reloj Lorus automático" [ref=e567]:
+                - /url: https://www.chollometro.com/ofertas/reloj-lorus-automatico-1894012
+            - generic [ref=e575]: El reloj Lorus automático destaca por su caja de acero inoxidable dorada , tamaño equilibrado de 42 mm y movimiento automático sin pila . Ofrece esfera blanca sunray con calendario , …
+        - article [ref=e582]:
+          - generic [ref=e593] [cursor=pointer]:
+            - strong [ref=e594]:
+              - link "Xiaomi Compresor de Aire Portátil 2/2D, Inflador de neumáticos 150 PSI con Batería Recargable de 2000mAh" [ref=e595]:
+                - /url: https://www.chollometro.com/ofertas/xiaomi-compresor-de-aire-portatil-22d-inflador-de-neumaticos-150-psi-con-bateria-recargable-de-2000mah-1893984
+            - generic [ref=e603]: El Xiaomi Compresor de Aire Portátil 2/2D es un inflador eléctrico compacto y recargable con batería de 2000 mAh , pantalla digital y apagado automático . Ofrece 3-150 psi con pre…
+        - article [ref=e610]:
+          - generic [ref=e621] [cursor=pointer]:
+            - strong [ref=e622]:
+              - link "Mini PC MLLSE G1 | AMD Ryzen5 5500U | 16GB DDR4 + 512GB SSD | WiFi-5, BT4.2 | Win11 Pro" [ref=e623]:
+                - /url: https://www.chollometro.com/ofertas/mini-pc-mllse-g1-amd-ryzen5-5500u-16gb-ddr4-512gb-ssd-wifi-5-bt42-win11-pro-1893913
+            - generic [ref=e631]: Hacia mucho que no lo veía a un precio de este tipo. MiniPC orientado al bajo consumo (recordad, los Ryzen acabados en U están orientados al bajo consumo y la eficiencia, y los acabados en H…
+        - article [ref=e638]:
+          - generic [ref=e649] [cursor=pointer]:
+            - strong [ref=e650]:
+              - link "Alfombra Diatomita de Piedra para el Baño - Secado Rápido y Ultra Absorbente, Antideslizante, Antibacteriana y Antihongos (varios colores)" [ref=e651]:
+                - /url: https://www.chollometro.com/ofertas/alfombra-diatomita-de-piedra-para-el-bano-secado-rapido-y-ultra-absorbente-antideslizante-antibacteriana-y-antihongos-varios-colores-1894004
+            - generic [ref=e659]: La alfombra de baño de diatomita 60 x 40 cm absorbe el agua al instante y se seca rápido , ayudando a mantener el suelo más seco, sin olores y con menos riesgo de moho . Incluye base anti…
+        - article [ref=e666]:
+          - generic [ref=e677] [cursor=pointer]:
+            - strong [ref=e678]:
+              - link "Rimmel London Scandaleyes Reloaded Máscara de Pestañas, 001 Black, 12 ml" [ref=e679]:
+                - /url: https://www.chollometro.com/ofertas/rimmel-london-scandaleyes-reloaded-mascara-de-pestanas-001-black-12-ml-1894048
+            - generic [ref=e687]: Aplicar cupón de 1'05€ + compra recurrente Descripción del producto ¡La icónica máscara de pestañas de Rimmel ahora es CLEAN y VEGANA! Su fórmula contiene cera naturales de bayas, candel…
+        - article [ref=e694]:
+          - generic [ref=e705] [cursor=pointer]:
+            - strong [ref=e706]:
+              - link "Pala plegable ligera de acero al carbono de 47 cm (18,5 pulgadas), ideal para acampar al aire libre," [ref=e707]:
+                - /url: https://www.chollometro.com/ofertas/pala-plegable-ligera-de-acero-al-carbono-de-47-cm-185-pulgadas-ideal-para-acampar-al-aire-libre-1894007
+            - generic [ref=e715]: "Fina palomares aprueba este chollo. MATERIALES DE PRIMERA CALIDAD: Fabricada en acero de alto contenido en carbono, esta pala de excavación está diseñada para ser resistente y duradera, c…"
+        - article [ref=e722]:
+          - generic [ref=e733] [cursor=pointer]:
+            - strong [ref=e734]:
+              - link "Oneplus watch 2R, Wear OS" [ref=e735]:
+                - /url: https://www.chollometro.com/ofertas/oneplus-watch-2r-wear-os-1893860
+            - generic [ref=e743]: El OnePlus Watch 2R combina Wear OS 4 y RTOS para ofrecer funciones avanzadas y ahorro de energía , con Snapdragon W5 Gen 1 , amplia memoria, Wi‑Fi, Bluetooth, NFC y GPS dual , múltip…
+        - article [ref=e750]:
+          - generic [ref=e761] [cursor=pointer]:
+            - strong [ref=e762]:
+              - link "Lavasecadora AEG 9KG Serie 7000 Negra [LWR7196U4B]" [ref=e763]:
+                - /url: https://www.chollometro.com/ofertas/lavasecadora-aeg-9kg-serie-7000-negra-lwr7196u4b-1874482
+            - generic [ref=e771]: Muy buen precio aplicando los 2 cupones, con envío gratis y puesta en marcha. Secadora AEG Serie 7000 ProSteam de 9 kg en acabado Dark Silver. Es una opción muy práctica para casa porque com…
+        - article [ref=e778]:
+          - generic [ref=e789] [cursor=pointer]:
+            - strong [ref=e790]:
+              - link "Pantene Pro-V Hydra Revitaliza Champú 2x1000ml para Pelo Normal y Seco" [ref=e791]:
+                - /url: https://www.chollometro.com/ofertas/pantene-pro-v-hydra-revitaliza-champu-2x1000ml-para-pelo-normal-y-seco-1893980
+            - generic [ref=e799]: "PELO HIDRATADO Y VISIBLEMENTE SANO: Nuestro champú Hydra Revitaliza limpia suavemente y aporta nutrientes al pelo para que luzca suave y brillante todo el día LA RECARGA DIARIA DE HIDRA…"
+        - article [ref=e806]:
+          - generic [ref=e817] [cursor=pointer]:
+            - strong [ref=e818]:
+              - link "¡18 DÍAS en CAMBOYA! VUELOS + HOTEL + DESAYUNO por solo 522€ (julio) - Salidas desde Málaga" [ref=e819]:
+                - /url: https://www.chollometro.com/ofertas/18-dias-en-camboya-vuelos-hotel-desayunos-por-solo-522eur-julio-salidas-desde-barcelona-1893879
+            - generic [ref=e827]: ¡CHOLLAZO! - Viaje de 18 días / 17 noches a Camboya - Vuelos de Ida y Vuelta - Hotel con desayuno incluido - Varias fechas en julio - Salidas desde Málaga VUELOS + HOTEL + DESAYUNOS por …
+        - article [ref=e834]:
+          - generic [ref=e845] [cursor=pointer]:
+            - strong [ref=e846]:
+              - link "Logitech G G502 Hero Ratón Gaming con Cable, Captor Hero 25K, 25,600 dpi, RGB, Peso Personalizable, 11 Botones Programables- Negro" [ref=e847]:
+                - /url: https://www.chollometro.com/ofertas/logitech-g-g502-hero-raton-gaming-con-cable-captor-hero-25k-25600-dpi-rgb-peso-personalizable-11-botones-programables-negro-1893920
+            - generic [ref=e855]: El Logitech G502 Hero es un ratón gaming con cable que destaca por su sensor HERO 25K de hasta 25.600 DPI , ofreciendo gran precisión sin suavizado, filtrado ni aceleración . Incorpora…
+        - article [ref=e862]:
+          - generic [ref=e873] [cursor=pointer]:
+            - strong [ref=e874]:
+              - link "Mini PC MLLSE G2 Pro (Intel N150, 12GB RAM LPDDR5, 512GB SSD)" [ref=e875]:
+                - /url: https://www.chollometro.com/ofertas/mini-pc-mllse-g2-pro-intel-n150-12gb-ram-lpddr5-512gb-ssd-1893892
+            - generic [ref=e883]: Mini PC compacto pero muy completo, ideal para tareas del día a día, oficina, estudio o como centro multimedia sin ocupar espacio ni hacer ruido. 💻 MLLSE G2 Pro Mini PC ⚙️ Procesador I…
+        - article [ref=e890]:
+          - generic [ref=e901] [cursor=pointer]:
+            - strong [ref=e902]:
+              - link "Xiaomi TV Box S (3ª Generación)" [ref=e903]:
+                - /url: https://www.chollometro.com/ofertas/xiaomi-tv-box-s-3a-generacion-1893635
+            - generic [ref=e911]: "🎬 Cine en Casa 4K Ultra HD: Disfruta de una claridad excepcional con resolución de hasta 4K a 60 FPS. Es totalmente compatible con Dolby Vision® y HDR10+ para que aprecies cada detalle tanto…"
+        - article [ref=e918]:
+          - generic [ref=e929] [cursor=pointer]:
+            - strong [ref=e930]:
+              - link "Tomb Raider IV-VI Remastered Starring Lara Croft - PS5" [ref=e931]:
+                - /url: https://www.chollometro.com/ofertas/tomb-raider-iv-vi-remastered-starring-lara-croft-ps5-1893804
+            - generic [ref=e939]: Tomb Raider IV - VI Remastered Starring Lara Croft para PlayStation 5 que reúne tres de las aventuras más intensas y oscuras de Lara Croft , completamente remasterizadas. Una oportu…
+        - article [ref=e946]:
+          - generic [ref=e957] [cursor=pointer]:
+            - strong [ref=e958]:
+              - link "Finish Ultimate Plus Infinity Shine 73 pastillas [+ Recompensa de 8,60€]" [ref=e959]:
+                - /url: https://www.chollometro.com/ofertas/finish-ultimate-plus-infinity-shine-73-pastillas-recompensa-de-860eur-1893762
+            - generic [ref=e967]: Aplica compra recurrente, con la compra de este producto obtenemos un saldo promocional de 8,60€, contando esta recompensa nos costaría 6.91€ ;) Finish Ultimate Plus Infinity Shine …
+        - insertion [ref=e974]
+      - generic [ref=e977]:
+        - generic [ref=e980]:
+          - img [ref=e982]
+          - img [ref=e985]
+          - img [ref=e988]
+        - generic [ref=e990]:
+          - img [ref=e992]
+          - img [ref=e995]
+          - img [ref=e998]
+          - img [ref=e1001]
+        - generic [ref=e1003]:
+          - img [ref=e1005]
+          - img [ref=e1008]
+          - img [ref=e1011]
+          - img [ref=e1014]

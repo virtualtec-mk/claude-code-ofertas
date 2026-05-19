@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:chollometro.com)",
+      "WebFetch(domain:amazon.es)",
+      "WebFetch(domain:amzn.to)",
+      "WebFetch(domain:es.aliexpress.com)",
+      "WebFetch(domain:aliexpress.com)",
+      "WebFetch(domain:s.click.aliexpress.com)",
+      "WebFetch(domain:t.me)",
+      "WebFetch(domain:telegram.org)",
+      "WebFetch(domain:chz.to)",
+      "Read(**)",
+      "Read(../claude-code-text-agents/guidelines/**)",
+      "Read(../claude-code-text-agents/medios.md)",
+      "Write(watchlists/**)",
+      "Write(historial/**)",
+      "Write(knowledge/**)",
+      "Write(changelog/**)",
+      "Write(../claude-code-text-agents/inbox/**)",
+      "Edit(watchlists/**)"
+    ],
+    "deny": [
+      "Bash(*)",
+      "Write(../claude-code-text-agents/guidelines/**)",
+      "Write(../claude-code-text-agents/drafts/**)"
+    ]
+  }
+}

@@ -1,0 +1,334 @@
+- main [ref=e6]:
+  - list
+  - list
+  - generic [ref=e7]:
+    - banner [ref=e9]:
+      - generic [ref=e11]:
+        - link "Chollometro" [ref=e13] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e14]:
+          - button "Menú" [ref=e16] [cursor=pointer]:
+            - generic [ref=e18]:
+              - img
+              - generic [ref=e19]: Menú
+          - generic [ref=e23]:
+            - generic:
+              - img
+            - textbox "Buscar..." [ref=e24]
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - link "Crear alerta" [ref=e28] [cursor=pointer]:
+              - /url: /alerts/feed
+              - generic [ref=e30]:
+                - generic [ref=e31]:
+                  - img
+                - generic [ref=e32]: Crear alerta
+            - button "Regístrate / Inicia sesión" [ref=e33] [cursor=pointer]:
+              - img
+              - generic [ref=e34]: Regístrate / Inicia sesión
+          - button "Comparte" [ref=e36] [cursor=pointer]:
+            - img
+            - generic [ref=e37]: Comparte
+    - list [ref=e46]:
+      - listitem [ref=e47]:
+        - link "Ofertas" [ref=e48] [cursor=pointer]:
+          - /url: https://www.chollometro.com/search/ofertas?merchant-id=165
+          - generic [ref=e49]: Ofertas
+      - listitem [ref=e50]:
+        - link "Foro de discusión" [ref=e51] [cursor=pointer]:
+          - /url: https://www.chollometro.com/search/temas?merchant-id=165
+          - generic [ref=e52]: Foro de discusión
+    - generic [ref=e55]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - heading "Filtros" [level=2] [ref=e62]
+          - button "Restablecer" [disabled] [ref=e63] [cursor=pointer]:
+            - generic [ref=e64]: Restablecer
+        - generic [ref=e66]:
+          - strong [ref=e68]: Ordenar por
+          - generic [ref=e69]:
+            - combobox [ref=e70] [cursor=pointer]:
+              - option "Más recientes" [selected]
+              - option "Los más populares"
+              - option "Precio más alto"
+              - option "Precio más bajo"
+              - option "Comentado recientemente"
+            - generic [ref=e71]:
+              - generic [ref=e73] [cursor=pointer]: Más recientes
+              - generic [ref=e74]:
+                - img
+        - generic [ref=e75]:
+          - strong [ref=e77]: Ver opciones
+          - list [ref=e78]:
+            - listitem [ref=e79]:
+              - generic [ref=e81]:
+                - checkbox "Ocultar chollos locales" [ref=e82]
+                - generic [ref=e84] [cursor=pointer]:
+                  - img
+                - generic [ref=e85] [cursor=pointer]: Ocultar chollos locales
+            - listitem [ref=e86]:
+              - generic [ref=e88]:
+                - checkbox "Ocultar expirados" [ref=e89]
+                - generic [ref=e91] [cursor=pointer]:
+                  - img
+                - generic [ref=e92] [cursor=pointer]: Ocultar expirados
+        - generic [ref=e93]:
+          - strong [ref=e95]: Tipo de chollo
+          - generic [ref=e96]:
+            - checkbox [checked] [ref=e98]
+            - generic [ref=e100]: Ofertas
+            - generic [ref=e101]: "19075"
+          - generic [ref=e102]:
+            - checkbox [checked] [ref=e104]
+            - generic [ref=e106]: Códigos descuento
+            - generic [ref=e107]: "65"
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - strong [ref=e110]: Precio
+            - generic [ref=e111]: "19.140"
+          - generic [ref=e114]:
+            - generic [ref=e115]:
+              - generic [ref=e116]:
+                - generic [ref=e118]: €
+                - textbox "0" [ref=e119]
+              - generic [ref=e122]:
+                - generic [ref=e124]: €
+                - textbox "6.194" [ref=e125]
+            - generic [ref=e126]:
+              - slider: "0"
+              - slider: "6194"
+        - generic [ref=e129]:
+          - generic [ref=e130]:
+            - strong [ref=e131]: Temperatura
+            - button [ref=e132] [cursor=pointer]:
+              - generic [ref=e133]:
+                - img
+          - generic [ref=e134]:
+            - list [ref=e135]:
+              - listitem [ref=e136]:
+                - generic [ref=e137]:
+                  - generic [ref=e138]:
+                    - radio "Cualquiera" [checked] [ref=e139]
+                    - generic [ref=e141]: Cualquiera
+                  - generic [ref=e142]: "19.140"
+              - listitem [ref=e143]:
+                - generic [ref=e144]:
+                  - generic [ref=e145]:
+                    - radio "20° y en adelante" [ref=e146]
+                    - generic [ref=e148]: 20° y en adelante
+                  - generic [ref=e149]: "18.696"
+              - listitem [ref=e150]:
+                - generic [ref=e151]:
+                  - generic [ref=e152]:
+                    - radio "180° y en adelante" [ref=e153]
+                    - generic [ref=e155]: 180° y en adelante
+                  - generic [ref=e156]: "9.042"
+              - listitem [ref=e157]:
+                - generic [ref=e158]:
+                  - generic [ref=e159]:
+                    - radio "1000° y en adelante" [ref=e160]
+                    - generic [ref=e162]: 1000° y en adelante
+                  - generic [ref=e163]: "1.390"
+            - generic [ref=e164]:
+              - textbox "-792°" [ref=e165]
+              - textbox "27.349°" [ref=e168]
+        - generic [ref=e169]:
+          - strong [ref=e171]: Categoría
+          - generic [ref=e173]:
+            - generic:
+              - img
+            - generic [ref=e176] [cursor=pointer]: Elige una categoría
+        - generic [ref=e177]:
+          - strong [ref=e179]: Intervalo de fechas
+          - generic [ref=e180]:
+            - combobox [ref=e181] [cursor=pointer]:
+              - option "El último año" [selected]
+              - option "Últimos 30 días"
+              - option "Últimos 7 días"
+              - option "Todas"
+            - generic [ref=e182]:
+              - generic [ref=e184] [cursor=pointer]: El último año
+              - generic [ref=e185]:
+                - img
+      - generic [ref=e187]:
+        - generic [ref=e191]: 10.000 chollos
+        - generic [ref=e192]:
+          - article [ref=e193]:
+            - generic [ref=e204] [cursor=pointer]:
+              - strong [ref=e205]:
+                - link "Hasta 16% cashback en AliExpress - Únete al EQUIPO CHOLLOMETRO" [ref=e206]:
+                  - /url: https://www.chollometro.com/cupones/hasta-16-cashback-en-aliexpress-unete-al-equipo-chollometro-1894460
+              - generic [ref=e214]: AliExpress lanza una promoción de cashback en créditos de compra , con la que se puede obtener hasta un 16% de cashback según el nivel de tu equipo y un máximo de 460€ por comprador dur…
+          - article [ref=e221]:
+            - generic [ref=e232] [cursor=pointer]:
+              - strong [ref=e233]:
+                - link "Sony WH-1000XM5 Auriculares inalámbricos" [ref=e234]:
+                  - /url: https://www.chollometro.com/ofertas/sony-wh-1000xm5-1894453
+              - generic [ref=e242]: Espero que sea buena oferta y la podáis aprovechar (y) Cancelación de ruido de referencia gracias a sus 8 micrófonos y doble procesador. Sonido de alta calidad con procesador V1 y soporte …
+          - img [ref=e253]
+          - article [ref=e255]:
+            - generic [ref=e266] [cursor=pointer]:
+              - strong [ref=e267]:
+                - link "XIAOMI REDMI Note 15 Pro 5G 8GB+256GB" [ref=e268]:
+                  - /url: https://www.chollometro.com/ofertas/xiaomi-redmi-note-15-pro-5g-8gb256gb-1894446
+              - generic [ref=e276]: REDMI Note 15 Pro 5G NFC Versión UE 8 GB + 256 GB | 8 GB + 512 GB | 12 GB + 512GB ✨ Puntos destacados 📷 Cámara principal 200 MP 🌄 Cámara ultra gran angular 8 MP 🤳 Cámara frontal 20 MP 🔋 B…
+          - article [ref=e283]:
+            - generic [ref=e294] [cursor=pointer]:
+              - strong [ref=e295]:
+                - link "Google TV Streamer 4K" [ref=e296]:
+                  - /url: https://www.chollometro.com/ofertas/google-tv-streamer-4k-1894394
+              - generic [ref=e304]: Características Google TV Streamer (4K) te ofrece tu contenido favorito de forma rápida, fácil y personalizada. Disfruta de un rendimiento excepcional, una navegación rápida y recomendac…
+          - article [ref=e311]:
+            - strong [ref=e323] [cursor=pointer]:
+              - link "VEVOR compresor de aire 24L (1450W) Envio desde España" [ref=e324]:
+                - /url: https://www.chollometro.com/ofertas/vevor-compresor-de-aire-24l-1450w-envio-desde-espana-1894388
+          - article [ref=e339]:
+            - generic [ref=e350] [cursor=pointer]:
+              - strong [ref=e351]:
+                - link "Lote x24 Coca Cola Sabor Original / Zero, 24x330ml" [ref=e352]:
+                  - /url: https://www.chollometro.com/ofertas/lote-x24-coca-cola-sabor-original-zero-24x330ml-1894368
+              - generic [ref=e360]: EN EL MISMO LINK ESTÁN LAS NORMALES Y LAS ZERO Coca-Cola Sabor Original, es una bebida refrescante con el sabor inconfundible de tu Coca-Cola de siempre desde 1886. Disfrútala en cualquier…
+          - article [ref=e367]:
+            - generic [ref=e378] [cursor=pointer]:
+              - strong [ref=e379]:
+                - link "Auriculares QCY H3S ANC ( -56dB ANC, Bluetooth 6.0, HiRes/LDAC, Audio 360º, Hasta 102h. de Autonomía)" [ref=e380]:
+                  - /url: https://www.chollometro.com/ofertas/auriculares-qcy-h3s-anc-56db-anc-bluetooth-60-hiresldac-audio-360o-hasta-102h-de-autonomia-1894357
+              - generic [ref=e388]: Los QCY H3S ANC destacan por su cancelación activa de ruido de hasta -56 dB , diseño circumaural ergonómico y doble transductor de 40 mm + 13 mm , ofreciendo sonido más claro y equilib…
+          - article [ref=e395]:
+            - generic [ref=e406] [cursor=pointer]:
+              - strong [ref=e407]:
+                - link "6x Würth Limpiador de Frenos Profesional Spray 500 ml – Limpieza Rápida Sin Residuos Para Discos, Tambor y Componentes Mecánicos" [ref=e408]:
+                  - /url: https://www.chollometro.com/ofertas/6x-wurth-limpiador-de-frenos-profesional-spray-500-ml-limpieza-rapida-sin-residuos-para-discos-tambor-y-componentes-mecanicos-1894346
+              - generic [ref=e416]: Spray de limpieza profesional para frenos y componentes mecánicos. Diseñado para eliminar grasa, aceite, polvo de freno y suciedad persistente de forma rápida y eficaz, sin dejar residuos
+          - article [ref=e423]:
+            - generic [ref=e434] [cursor=pointer]:
+              - strong [ref=e435]:
+                - link "Versión global realme Watch 5 (Desde España)" [ref=e436]:
+                  - /url: https://www.chollometro.com/ofertas/version-global-realme-watch-5-desde-espana-1894341
+              - generic [ref=e444]: Versión global realme Watch 5 Smartwatch Brújula y GPS independiente con 5 GNSS Pantalla AMOLED de 1,97 pulgadas Hasta 14 días de duración de la batería IP68 Modelo -------------r…
+          - article [ref=e451]:
+            - generic [ref=e462] [cursor=pointer]:
+              - strong [ref=e463]:
+                - link "Crimson Desert Day One Edition - PS5" [ref=e464]:
+                  - /url: https://www.chollometro.com/ofertas/crimson-desert-day-one-edition-ps5-1894333
+              - generic [ref=e472]: Para pillar el cupón de 5€ hay que meterse desde la app en el enlace y os aparecerá el cupón, lo obtenéis y ya se aplica automáticamente.
+          - article [ref=e479]:
+            - generic [ref=e490] [cursor=pointer]:
+              - strong [ref=e491]:
+                - link "cámara de videovigilancia exterior K20-1, visión nocturna a todo Color (Desde España)" [ref=e492]:
+                  - /url: https://www.chollometro.com/ofertas/camara-de-videovigilancia-exterior-k20-1-vision-nocturna-a-todo-color-desde-espana-1894323
+              - generic [ref=e500]: BoyKeep 3MP 2,4 GHz WiFi exterior seguridad del hogar IP Monitor inteligente cámara de videovigilancia visión nocturna a todo Color
+          - article [ref=e507]:
+            - generic [ref=e518] [cursor=pointer]:
+              - strong [ref=e519]:
+                - link "Cámara inteligente 2K, Wifi 5G/2.4GHz Visión nocturna interior para bebés 360 ° (Desde España)" [ref=e520]:
+                  - /url: https://www.chollometro.com/ofertas/camara-inteligente-2k-wifi-5g24ghz-vision-nocturna-interior-para-bebes-360-desde-espana-1894320
+              - generic [ref=e528]: BoyKeep Cámara inteligente 2K Protección de seguridad Vigilancia Wifi 5G/2.4GHz Visión nocturna interior para bebés 360 ° Audio bidireccional Pan & Tilt K30
+          - article [ref=e535]:
+            - generic [ref=e546] [cursor=pointer]:
+              - strong [ref=e547]:
+                - link "Robot aspirador de ventana, (Desde España)" [ref=e548]:
+                  - /url: https://www.chollometro.com/ofertas/robot-aspirador-de-ventana-desde-espana-1894318
+              - generic [ref=e556]: "Robot aspirador de ventana, Limpiacristales de vidrio eléctrico de trabajo automático, Control remoto para el hogar Parámetros: Voltaje de funcionamiento: 24 V Succión: 5500Pa Potencia n…"
+          - article [ref=e563]:
+            - generic [ref=e574] [cursor=pointer]:
+              - strong [ref=e575]:
+                - link "Baliza emergencia V16 conectada con geolocalizacion DGT 3.0" [ref=e576]:
+                  - /url: https://www.chollometro.com/ofertas/baliza-emergencia-v16-conectada-con-geolocalizacion-dgt-30-1894313
+              - generic [ref=e584]: Baliza emergencia V16 conectada con geolocalizacion DGT 3.0, luz de emergencia homologada, conectada y autorizada por DGT, señal V16 con pilas incluidas, conectividad Telefonica datos hasta …
+          - article [ref=e591]:
+            - generic [ref=e602] [cursor=pointer]:
+              - strong [ref=e603]:
+                - link "Amoudo pantalla 15.6 externa 1920x1080P IPS" [ref=e604]:
+                  - /url: https://www.chollometro.com/ofertas/amoudo-pantalla-156-externa-1920x1080p-ips-1894305
+              - generic [ref=e612]: Pantalla externa 1920x1080p IPS con conexión HDMI, USBC, Soporte VESA. No tactil. 19/05/2026 - Vuelve a estar disponible! Desde el movil se queda a 33,97 euros.
+          - article [ref=e619]:
+            - generic [ref=e630] [cursor=pointer]:
+              - strong [ref=e631]:
+                - link "SMART TV XIAOMI 32" [ref=e632]:
+                  - /url: https://www.chollometro.com/ofertas/smart-tv-xiaomi-32-1894268
+              - generic [ref=e640]: Preciazo para la Xiaomi A 32 2025, con 32", un diseño de marcos ultrafinos y detalles cuidados como su sonido Dolby Audio, con DTS-X y DTS-Virtual:X. Es Smart TV, con Google TV para acceder …
+          - article [ref=e647]:
+            - generic [ref=e658] [cursor=pointer]:
+              - strong [ref=e659]:
+                - link "Igpsport bsc300t 8g" [ref=e660]:
+                  - /url: https://www.chollometro.com/ofertas/igpsport-bsc300t-8g-1894138
+              - generic [ref=e668]: "iGPSPORT BSC300T Ciclocomputador con Pantalla Táctil, Mapa Global a Color, Inalámbrico, Compatible con Bicicletas Eléctricas Características: [Pantalla táctil a color de 2.4\") - Actualizada …"
+          - article [ref=e675]:
+            - generic [ref=e686] [cursor=pointer]:
+              - strong [ref=e687]:
+                - link "Paleta curada Jamones Pinante 4,5-5kg" [ref=e688]:
+                  - /url: https://www.chollometro.com/ofertas/paleta-curada-jamones-pinante-35-4kg-1894113
+              - generic [ref=e696]: Buenas ventas y opiniones. La paleta curada se elabora a partir de cerdos blancos grasos, alimentados con piensos seleccionados para conseguir una carne de la mejor calidad. Nuestras palet…
+          - article [ref=e703]:
+            - generic [ref=e714] [cursor=pointer]:
+              - strong [ref=e715]:
+                - link "Tandorio aviador automático" [ref=e716]:
+                  - /url: https://www.chollometro.com/ofertas/tandorio-aviador-automatico-1894093
+              - generic [ref=e724]: Dejo este reloj aviador para mi gusto un diseño chulo aunque bastante estándar aun precio imbatible solo el movimiento ya vale casi lo que el reloj. La correa no se de que calidad será yo se…
+          - article [ref=e731]:
+            - generic [ref=e742] [cursor=pointer]:
+              - strong [ref=e743]:
+                - link "POCO F8 Pro 5G 12/512GB" [ref=e744]:
+                  - /url: https://www.chollometro.com/ofertas/poco-f8-pro-5g-12512gb-1894080
+              - generic [ref=e752]: POCO F8 Pro 5G Versión Europea 256GB/512GB Snapdragon 8 Elite Pantalla AMOLED 6,59", 120Hz, 50MP OIS, 6210mAh, IP68, WiFi 7, NFC Disponible en todos los colores y versiones. Aplica el cupó…
+          - article [ref=e759]:
+            - generic [ref=e770] [cursor=pointer]:
+              - strong [ref=e771]:
+                - link "OnePlus Watch 3 46mm" [ref=e772]:
+                  - /url: https://www.chollometro.com/ofertas/oneplus-watch-3-46mm-1894071
+              - generic [ref=e780]: Versión Global OnePlus Watch 3 46mm, reloj inteligente OnePlus con pantalla AMOLED de 1.5 pulgadas, 32GB de memoria, Snapdragon W5, Wear OS de Google, IP68 Aplica el cupón para obtener el p…
+          - article [ref=e787]:
+            - generic [ref=e798] [cursor=pointer]:
+              - strong [ref=e799]:
+                - link "Juego PS5 Gris" [ref=e800]:
+                  - /url: https://www.chollometro.com/ofertas/juego-ps5-gris-1894070
+              - generic [ref=e808]: Juego PS5 GRIS Gris es un videojuego de aventura y plataformas desarrollado por el estudio independiente español Nomada Studio y publicado por Devolver Digital para Nintendo Switch, macOS, M…
+          - article [ref=e815]:
+            - generic [ref=e826] [cursor=pointer]:
+              - strong [ref=e827]:
+                - link "KTC H27T7P-2 Monitor Gaming 27\" QHD (2560x1440) IPS Fast, 210Hz (OC), 1ms MPRT, HDR400, 131% sRGB, FreeSync / G-Sync, 400 nits" [ref=e828]:
+                  - /url: https://www.chollometro.com/ofertas/ktc-h27t7p-2-monitor-gaming-27-qhd-2560x1440-ips-fast-210hz-oc-1ms-mprt-hdr400-131-srgb-freesync-g-sync-400-nits-1894008
+              - generic [ref=e836]: "KTC H27T7P-2 Monitor Gaming 27\" QHD (2560x1440) IPS Fast, 210Hz (OC), 1ms MPRT, HDR400, 131% sRGB, FreeSync / G-Sync, 400 nits 🔥 Monitor 2K + 210Hz: equilibrio perfecto entre calidad de im…"
+          - article [ref=e843]:
+            - generic [ref=e854] [cursor=pointer]:
+              - strong [ref=e855]:
+                - link "KTC H27T27 Monitor Gaming 27\" QHD (2560x1440) IPS Fast Panel, 100–120Hz, 1ms GTG, HDR10, 99% sRGB, 16:9. envío desde España" [ref=e856]:
+                  - /url: https://www.chollometro.com/ofertas/ktc-h27t27-monitor-gaming-27-qhd-2560x1440-ips-fast-panel-100-120hz-1ms-gtg-hdr10-99-srgb-169-envio-desde-espana-1893977
+              - generic [ref=e864]: 🖥️ Monitor KTC 27" QHD IPS 100Hz – Ideal para gaming y trabajo Monitor KTC de 27 pulgadas con resolución 2K QHD (2560x1440) y panel IPS CSOT, perfecto tanto para jugar como para trabajar o c…
+          - article [ref=e871]:
+            - generic [ref=e882] [cursor=pointer]:
+              - strong [ref=e883]:
+                - link "Xiaomi Compresor de Aire Portátil 2/2D, Inflador de neumáticos 150 PSI con Batería Recargable de 2000mAh" [ref=e884]:
+                  - /url: https://www.chollometro.com/ofertas/xiaomi-compresor-de-aire-portatil-22d-inflador-de-neumaticos-150-psi-con-bateria-recargable-de-2000mah-1893984
+              - generic [ref=e892]: El Xiaomi Compresor de Aire Portátil 2/2D es un inflador eléctrico compacto y recargable con batería de 2000 mAh , pantalla digital y apagado automático . Ofrece 3-150 psi con pre…
+          - article [ref=e899]:
+            - generic [ref=e910] [cursor=pointer]:
+              - strong [ref=e911]:
+                - link "Nuevo Xiaomi TV Box S 3rd Gen," [ref=e912]:
+                  - /url: https://www.chollometro.com/ofertas/nuevo-xiaomi-tv-box-s-3rd-gen-1893957
+              - generic [ref=e920]: "Estos son los puntos más importantes del dispositivo: Resolución máxima 4K UHD (3840 × 2160) a 60 FPS. Sistema operativo Google TV™, con acceso a apps como Netflix, YouTube, Disney+, Pri…"
+          - article [ref=e927]:
+            - generic [ref=e938] [cursor=pointer]:
+              - strong [ref=e939]:
+                - link "HONOR Pad X8a 11\" 4GB/128GB Versión EU con Batería de 8300mAh" [ref=e940]:
+                  - /url: https://www.chollometro.com/ofertas/honor-pad-x8a-11-4gb128gb-version-eu-con-bateria-de-8300mah-1893954
+              - generic [ref=e948]: La HONOR Pad X8a es una tablet equilibrada y diseñada para ofrecer una experiencia multimedia completa y fluida. Destaca por su generosa pantalla de 11 pulgadas con alta frecuencia de actual…
+          - article [ref=e955]:
+            - generic [ref=e966] [cursor=pointer]:
+              - strong [ref=e967]:
+                - link "Xiaomi TV Box S (3rd Gen) 2+32GB, 4K Ultra HD, Chromecast, Wi-Fi 6, Bluetooth 5.2," [ref=e968]:
+                  - /url: https://www.chollometro.com/ofertas/xiaomi-tv-box-s-3rd-gen-232gb-4k-ultra-hd-chromecast-wi-fi-6-bluetooth-52-1893938
+              - generic [ref=e976]: "Xiaomi TV Box S (3ª generación) versión global Plataforma: CPU: Quad-Core (hasta 2,5 GHz) GPU: brazo G310 V2 RAM: 2GB ROM: 32GB Resolución de salida 4K (3840x2160) Sistema…"
+          - article [ref=e983]:
+            - generic [ref=e994] [cursor=pointer]:
+              - strong [ref=e995]:
+                - link "OnePlus Watch 2R 2024, Pantalla AMOLED de 1.43'', Snapdragon W5 Gen 1+ BES2700 Wear OS WiFi Wear OS de Google GPS" [ref=e996]:
+                  - /url: https://www.chollometro.com/ofertas/oneplus-watch-2r-2024-pantalla-amoled-de-143-snapdragon-w5-gen-1-bes2700-wear-os-wifi-wear-os-de-google-gps-1893925
+              - generic [ref=e1004]: "OnePlus Watch 2R (versión global) Caja: aleación de aluminioCorrea: Correa de silicona + hebilla de acero inoxidableCircunferencia de la muñeca: 140-210 mmCubierta trasera: PlásticoDimensio…"
+          - article [ref=e1011]:
+            - generic [ref=e1022] [cursor=pointer]:
+              - strong [ref=e1023]:
+                - link "Mini PC MLLSE G5 Pro |AMD Ryzen 7 5800H | 16GB RAM+512GB SSD | Wi-Fi 6, BT5.2 | Windows 11" [ref=e1024]:
+                  - /url: https://www.chollometro.com/ofertas/mini-pc-mllse-g5-pro-amd-ryzen-7-5800h-16gb-ram512gb-ssd-wi-fi-6-bt52-windows-11-1893922
+              - generic [ref=e1032]: "Interesante cacharro con potente procesador, para un mini PC. (y) gadgetversus.com/pro…cs/ Para ver como se maneja en juegos: Y para emulación (es distinta marca y modelo, pero mismo ha…"

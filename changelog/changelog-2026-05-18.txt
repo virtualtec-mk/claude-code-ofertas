@@ -1,0 +1,33 @@
+====================================================
+CHANGELOG — 18/05/2026
+====================================================
+
+[setup] Bootstrap del proyecto claude-code-localizador-ofertas.
+        Implementadas Fases 1, 2 y 3 del plan
+        docs/plans/2026-05-18-001-feat-localizador-ofertas-plan.md
+        (Fase 0 scout en vivo NO ejecutada: se opera con supuestos
+        documentados en knowledge/notas-degradacion.md, pendientes de
+        validar en la primera ejecución real).
+
+        Archivos creados en este repo:
+          - CLAUDE.md
+          - README.md
+          - docs/instalacion.txt
+          - .claude/settings.json
+          - .claude/agents/aggregator-scraper.md
+          - .claude/agents/offer-enricher.md
+          - .claude/skills/buscar-ofertas/SKILL.md
+          - knowledge/notas-degradacion.md
+          - watchlists/WATCHLIST-auriculares-anc-md.md
+          - watchlists/WATCHLIST-pequeno-electrodomestico-larazon.md
+          - changelog/changelog-2026-05-18.txt  (este archivo)
+
+        Cambios en ../claude-code-text-agents/ (hermano):
+          - Creado inbox/.gitkeep
+          - settings.json ampliado con
+              Read(inbox/**), Write(inbox/**), Edit(inbox/**)
+
+        Pendiente (fuera de scope de este repo, Fase 4 del plan):
+          - PR-companion a text-agents para que /crear-articulo liste
+            items de inbox/ al inicio y salte product-researcher cuando
+            el redactor elige uno (ficha ya disponible).

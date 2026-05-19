@@ -1,0 +1,83 @@
+====================================================
+CHANGELOG — 19/05/2026
+====================================================
+
+[Activación de fuentes Telegram]
+
+Se promueven los canales @hispachollos y @chollazos de fuentes
+alternativas (reserva) a fuentes activas en MVP. Ahora el orquestador
+puede tirar de tres fuentes en paralelo: Chollometro + dos canales de
+Telegram.
+
+Motivación: ampliar cobertura de descubrimiento sin esperar a un fallo
+de Chollometro. Los canales aportan volumen extra y a veces ofertas
+únicas que tardan más en llegar al agregador clásico.
+
+Archivos nuevos:
+  - fuentes.md
+      Tabla maestra de agregadores activos (3 entradas).
+  - .claude/agents/telegram-scraper.md
+      Subagente con WebFetch sobre https://t.me/s/<canal>, resuelve
+      shorteners chz.to, filtra por anunciante (amazon/aliexpress),
+      devuelve mismo schema que aggregator-scraper.
+  - changelog/changelog-2026-05-19.txt (este archivo).
+
+Archivos modificados:
+  - CLAUDE.md
+      * Convención de carpetas: añadidos fuentes.md y telegram-scraper.md.
+      * Política de scraping: ya no es "solo Chollometro". Añadida
+        regla de dedupe entre fuentes (gana la candidata con más datos;
+        empates a Chollometro).
+      * Tabla de capas: nueva fila para telegram-scraper (WebFetch).
+  - .claude/settings.json
+      Añadidos permisos WebFetch para t.me, telegram.org y chz.to.
+  - .claude/skills/buscar-ofertas/SKILL.md
+      * Estado de sesión: añadido FUENTES.
+      * Paso 1.d nuevo: selección de fuentes (default todas).
+      * Paso 2 reescrito en tres subpasos: lanzar scrapers en paralelo,
+        manejo de degradación parcial, dedupe por url_canonica.
+      * Paso 4: muestra fuentes_origen por candidata.
+      * Paso 6: historial y changelog registran qué fuentes se usaron.
+  - knowledge/notas-degradacion.md
+      Sección "Fuentes alternativas" recortada: solo queda
+      Compradicción como reserva.
+
+Pendientes derivados (NO incluidos):
+  - Paginación ?page=N en Chollometro sigue sin verificarse (MVP usa
+    solo página 1, no urge).
+  - PR-companion a claude-code-text-agents para que /crear-articulo
+    consuma inbox/ (Fase 4 del plan original, fuera de scope).
+
+---
+
+[Refinado tras test en vivo de chz.to]
+
+Verificada la cadena real de redirects desde Telegram. WebFetch NO
+sigue redirects cross-host automáticamente: el subagente tiene que
+encadenar llamadas (hasta 3 hops por shortener).
+
+Cadenas observadas:
+  - Amazon:     chz.to → amzn.to → amazon.es/dp/<ASIN>
+  - AliExpress: chz.to → s.click.aliexpress.com → aliexpress.com/item/<ID>.html
+
+DESVIACIÓN: AliExpress aterriza en aliexpress.com GLOBAL, no en
+es.aliexpress.com. Decisión de producto: aceptar el dominio global
+como tienda equivalente (aliexpress-global). El producto es el mismo y
+AliExpress geolocaliza al usuario español. Si los redactores prefieren
+URL con .es explícito, se puede añadir un paso de canonicalización
+posterior, pero hoy se entrega tal cual.
+
+Archivos modificados en este refinado:
+  - .claude/settings.json
+      Añadidos permisos WebFetch para amzn.to, aliexpress.com y
+      s.click.aliexpress.com.
+  - .claude/agents/telegram-scraper.md
+      Paso 3 reescrito como cadena multi-hop explícita. Acepta
+      aliexpress.com global como tienda válida. Coste estimado anotado
+      (~45 WebFetches por canal con LIMITE=15).
+  - CLAUDE.md
+      Política de tiendas finales reescrita: añadida aliexpress-global
+      como tienda aceptada.
+  - fuentes.md
+      Notas Telegram actualizadas con la cadena real y la equivalencia
+      aliexpress-global ↔ aliexpress-es.
