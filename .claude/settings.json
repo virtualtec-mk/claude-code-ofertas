@@ -10,10 +10,13 @@
       "Edit(drafts/**)",
       "Write(guidelines/**)",
       "Edit(guidelines/**)",
-      "Read(**)"
+      "Read(inbox/**)",
+      "Write(inbox/**)",
+      "Edit(inbox/**)",
+      "Read(**)",
+      "Bash(git pull --ff-only)",
+      "Bash(git pull --ff-only:*)"
     ],
-    "deny": [
-      "Bash(*)"
-    ]
+    "deny": []
   }
 }

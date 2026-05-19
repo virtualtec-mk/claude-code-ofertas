@@ -22,6 +22,52 @@ Parsea `$ARGUMENTS` al inicio:
 
 ---
 
+## PASO 0 — Sincronizar con el repositorio
+
+Antes de cualquier otra cosa, asegúrate de que el redactor está trabajando con la última versión del sistema (agentes, guidelines, frases vetadas).
+
+1. Ejecuta en la raíz del proyecto:
+
+   ```
+   git pull --ff-only
+   ```
+
+2. Interpreta el resultado:
+
+   - **Pull con cambios nuevos** (output incluye `Updating ...` o lista de archivos): muestra al redactor un aviso breve:
+     ```
+     ✓ Sistema actualizado con los últimos cambios del repositorio.
+     ```
+     Y continúa al Paso 1.
+
+   - **Ya estaba al día** (output `Already up to date.`): muestra una sola línea discreta:
+     ```
+     ✓ Sistema al día.
+     ```
+     Y continúa al Paso 1.
+
+   - **Pull falla** (sin conexión, conflicto con cambios locales sin commitear, fast-forward imposible, etc.): **no abortes automáticamente**. Muestra el error real al redactor y pregunta:
+     ```
+     ⚠️ No he podido actualizar el sistema desde el repositorio.
+
+     Motivo: {primera línea relevante del error de git}
+
+     Puedo continuar con la versión local que tienes ahora mismo, pero
+     podría no incluir las últimas mejoras de agentes o guidelines.
+
+     ¿Quieres continuar igualmente? (sí / no)
+     ```
+     - Si responde **sí**: continúa al Paso 1.
+     - Si responde **no**: detén el flujo aquí con el mensaje:
+       ```
+       Flujo detenido. Resuelve el problema de sincronización y vuelve a
+       lanzar /crear-articulo cuando quieras.
+       ```
+
+3. Nunca hagas `git push`, `git reset` ni ninguna otra operación de escritura sobre el repo desde este skill. Solo `pull --ff-only` de lectura/avance rápido.
+
+---
+
 ## PASO 1 — Determinar el medio destino
 
 Si `MEDIO` no se proporcionó como argumento:
