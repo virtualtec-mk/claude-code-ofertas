@@ -1,8 +1,8 @@
 ---
 medio: larazon
-version: 2.5
+version: 2.6
 ultima_actualizacion: 19/05/2026
-origen: importado desde GPT personalizado (v1) + paleta de recetas (v2) + ajuste de mapa (v2.1) + voz real y autores (v2.2) + voz humana, estructura de intro, patrón H2, FAQ opcional y sin negritas markdown (v2.3) + estructura base mínima inviolable: titular + subtítulo + introducción + H2 + 3 párrafos (v2.4) + 2-3 H2 adicionales obligatorios en mono-producto y longitud subida a 600-900 palabras (v2.5)
+origen: importado desde GPT personalizado (v1) + paleta de recetas (v2) + ajuste de mapa (v2.1) + voz real y autores (v2.2) + voz humana, estructura de intro, patrón H2, FAQ opcional y sin negritas markdown (v2.3) + estructura base mínima inviolable: titular + subtítulo + introducción + H2 + 3 párrafos (v2.4) + 2-3 H2 adicionales obligatorios en mono-producto y longitud subida a 600-900 palabras (v2.5) + refuerzos anti-IA tras draft eclipse Efekol: subtítulo no enumerativo, momento-cultural con ancla concreta, prohibición patrón "X no sirve. Ni Y. Ni Z.", literalidad de ranking, FAQ con sustancia y cierre sin frase-comodín (v2.6)
 autores:
   - nombre: Marina Ros
     perfil: multi-producto, categorías de moda y hogar, liquidaciones
@@ -154,6 +154,15 @@ Proporcionado en el INPUT (pausa B del flujo). Reprodúcelo **exactamente** como
 
 > Importante: el subtítulo **no lleva `[[H2: ...]]`** ni ningún heading. Es texto plano que el CMS renderizará como bajada visual.
 
+**Prohibido el subtítulo de enumeración.** Una lista de specs unidas con comas y una "y" al final no es un subtítulo; es ficha técnica disfrazada. Un subtítulo tiene que aportar **un solo dato fuerte** o **un solo gesto editorial**, no acumular tres atributos:
+
+- ❌ *"Certificación EN ISO 12312-2, pack de tres unidades y disponibles hoy en Amazon."*
+- ❌ *"Resistente al agua, batería de 12 horas y compatible con iOS y Android."*
+- ✅ *"La única certificación que importa para mirar el sol y la tienen homologada."* (dato fuerte + gesto)
+- ✅ *"Llegan en 48 horas con Prime y el pack de tres se queda muy por debajo del de uno solo."* (insider concreto)
+
+Test: si el subtítulo solo se sostiene gracias a la conjunción "y" que une tres atributos, está mal escrito. Hay que reescribirlo eligiendo **un** ángulo.
+
 ### 3. Introducción (1 párrafo, sin heading)
 - **60-90 palabras.** Lectura rápida en móvil.
 - **Arranque tipo:** *"Seamos claros…"*, *"Con este frío…"*, *"Si estás montando…"*, *"Hay días en los que…"*, *"A estas alturas de la temporada…"*. Ajusta según el producto y la estación.
@@ -224,6 +233,10 @@ Cuándo usarla: ángulo `recomendacion-personal` o cuando la marca es el argumen
 
 **`momento-cultural`** — Conexión con temporada, evento o tendencia que justifica el momento de compra.
 Cuándo usarla: ángulo `tendencia`. Estacional, viral, cultural.
+**Regla de ejecución (anti-genérico):** el momento cultural no se escribe diciendo "es un evento importante", "no se repite en mucho tiempo" o "tres meses pasan rápido". Hay que aportar al menos **un ancla concreta**: fecha exacta, hora, lugar de máxima visibilidad o intensidad, antecedente histórico verificable, dato de mercado del evento anterior comparable. Sin ese ancla, la receta no está cumplida.
+
+- ❌ *"Es un fenómeno que no se va a repetir en mucho tiempo, y la forma de verlo sin riesgo pasa por unas gafas con el filtro adecuado."* (frase-comodín)
+- ✅ *"El último eclipse solar total visible en España fue en 1905 y dejó casos documentados de quemaduras de retina porque la gente miró con cristales ahumados. El del 12 de agosto de 2026 cruza la península de Galicia a Baleares pasadas las 19:30, con dos minutos largos de totalidad."* (anclas concretas: fecha histórica, antecedente, geografía, hora)
 
 **`truco-de-experto-integrado`** — Esto **no es una sección propia**. Es una indicación: integra un consejo práctico dentro de cualquier otra receta, sin etiquetarlo como "truco" o "consejo".
 Cuándo usarla: siempre que el producto tenga un detalle útil que el lector no descubriría solo.
@@ -343,6 +356,28 @@ Si la respuesta es sí, la frase es genérica y hay que reescribirla con un dato
 - ✅ *"El SensiFit envuelve el pie sin apretar, así que a las dos horas de caminata no aparecen los puntos de presión típicos."*
 
 Aplicar este test es **obligatorio** antes de entregar el draft. El editor-in-chief lo aplica de nuevo en su pasada final.
+
+---
+
+### Patrones específicos vetados en La Razón (refuerzo v2.6)
+
+Estos moldes se detectaron en drafts reales y son **rechazo automático** en la pasada del editor-in-chief, además de los patrones transversales de `knowledge/frases-vetadas.md`:
+
+1. **Subtítulo de enumeración** (tres specs unidas con comas y "y"). Ver bloque "2. Subtítulo" más arriba.
+
+2. **Patrón "X no sirve. Ni A, ni B, ni C."** como apertura. Es el clásico fórmula-IA de contradicción + cadena de descartes. Reescribir como afirmación directa con el dato técnico que explica por qué (norma, certificación, requisito concreto).
+
+3. **Specs en prosa sin masticar.** Volcar 100% UV + 100% IR + 99,9999% luz visible en una frase enumerativa es ficha técnica disfrazada. Hay que dar **una** imagen mental por spec o agrupar las tres en una consecuencia única (ej. *"el filtro es tan opaco que en una habitación iluminada con las gafas puestas no se ve nada, solo el sol queda visible"*).
+
+4. **Ranking sobrevendido.** Un n.º 2 en una categoría amplia de Amazon no es "el más comprado" ni "el rey de". Literalidad obligatoria. Ver bloque correspondiente en `knowledge/frases-vetadas.md`.
+
+5. **Prueba social comodín.** "En Amazon se mueven bien", "los comentarios apuntan en la misma dirección", "los primeros compradores les dan una valoración muy alta" → frases reutilizables en cualquier artículo. Reescribir con un detalle del patrón de comentarios o un dato verificable de la ficha.
+
+6. **Cierre "tiene mucho sentido cerrar hoy" y variantes.** La frase preferida *"tiene mucho sentido"* del medio solo se usa **una vez** y referida a un dato concreto, nunca como fórmula de cierre genérica. Como último párrafo del artículo está vetada salvo que vaya acompañada de un dato físico del producto o un detalle del momento.
+
+7. **FAQ tipo manual.** Si las respuestas empiezan por "Sí." o "No." sin contexto, la FAQ está mal calibrada. Una FAQ útil incluye matiz, por qué o cómo; si no hay matiz, mejor integrar la duda como frase suelta en otra receta del cuerpo libre.
+
+8. **`momento-cultural` sin ancla.** Si la receta `momento-cultural` aparece en el frontmatter, el cuerpo tiene que incluir al menos una de estas anclas: fecha exacta, hora, lugar/geografía concreta, antecedente histórico verificable, dato de mercado del evento anterior comparable. Ver definición de la receta más arriba.
 
 ---
 

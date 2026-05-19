@@ -144,6 +144,51 @@ Estos no son frases sueltas: son **moldes** que la IA produce sin pensar y que d
 - "Para quien {perfil}, encaja bastante bien" (cuando viene como cierre genérico)
 - "Un aviso útil antes de {acción}" / "Una pista útil antes de..."
 
+### Enumeraciones disfrazadas de frase (anti-subtítulo y anti-spec-dump)
+
+Una lista de specs unidas con comas y una "y" final no es una frase: es una enumeración. Si el subtítulo, la introducción o el cierre de párrafo encajan en este molde, se reescriben.
+
+- ❌ *"Certificación EN ISO 12312-2, pack de tres unidades y disponibles hoy en Amazon."* (subtítulo)
+- ❌ *"Bloquean el 100% de la radiación ultravioleta, el 100% de la infrarroja y el 99,9999% de la luz visible. El material es cartón, la talla es única y sirven para adultos y niños."* (specs en prosa sin masticar)
+- ✅ Cualquier reformulación que introduzca: imagen mental, consecuencia concreta, gesto del usuario, dato comparable, o juicio del redactor.
+
+Test: si quitas el sujeto y el resultado es una ficha de Amazon resumida, está mal escrita. La spec sola no es una frase periodística.
+
+### Patrón "X no sirve. Ni Y. Ni Z. Ni W."
+
+Fórmula muy reconocible en redacción IA. La frase contradictoria de entrada se rompe en una cadena enumerativa de descartes. Suena a anuncio de tele de los 90 y delata generación automática.
+
+- ❌ *"Las gafas solares normales no sirven. Ni las de marca, ni las de mil filtros UV, ni las que llevas todos los veranos a la playa."*
+- ❌ *"No vale cualquier mochila. Ni las de senderismo, ni las urbanas, ni las que te regalaron en una feria."*
+- ✅ Sustituye por afirmación directa con el dato que explica por qué: *"Para mirar el sol durante un eclipse hace falta una certificación concreta (EN ISO 12312-2). Sin ese sello, da igual el filtro UV que ponga en la pegatina: no protege la retina."*
+
+### Frases-comodín de prueba social y de cierre
+
+- "En Amazon se mueven bien." / "En Amazon vuelan."
+- "Los primeros compradores les dan una valoración muy alta y los comentarios apuntan en la misma dirección."
+- "Los comentarios apuntan en la misma dirección."
+- "Es un fenómeno que no se va a repetir en mucho tiempo."
+- "A este precio y con esta certificación, X es una compra que tiene mucho sentido cerrar hoy."
+- "Tiene mucho sentido cerrar hoy." (variante de cierre)
+- "Es una compra que tiene mucho sentido."
+- "X y por eso tiene sentido."
+
+Todas son frases-comodín: podrían cerrar cualquier artículo de cualquier producto. Reescribir con un dato verificable, un detalle físico del producto, o un escenario concreto del uso.
+
+### Sobre el ranking de Amazon: literalidad obligatoria
+
+Un producto en posición n.º 2 de "gafas protectoras" **no es** "el más comprado", "el rey de la categoría" ni "las gafas que arrasan en Amazon". Categoría amplia + posición ≠ liderazgo absoluto. El editor-in-chief verifica que cualquier afirmación de liderazgo está respaldada literalmente por la ficha.
+
+- ❌ *"Las gafas de eclipse más compradas de Amazon"* (cuando la ficha dice "n.º 2 en gafas protectoras", categoría que incluye soldadores, esquí, química).
+- ✅ *"Un modelo que está en el top de gafas de protección ocular en Amazon"*.
+- ✅ *"Entre las más vendidas en su categoría"* (si la categoría es la específica del producto).
+
+### FAQ tipo manual de instrucciones
+
+La receta `faq-corta` no es licencia para escribir un manual. Tres preguntas planas con tres respuestas mecánicas suenan a chatbot. Si las dudas son tan obvias que la respuesta cabe en una línea sin contexto, mejor integrarlas como matiz dentro de un párrafo del cuerpo libre. La FAQ se justifica solo cuando las preguntas son lo bastante específicas como para que un comprador potencial las busque literalmente en Google.
+
+Pista de control: si las respuestas empiezan por "Sí." o "No.", probablemente la FAQ está mal calibrada. Una respuesta útil incluye el por qué, el cómo o el matiz, no solo la confirmación.
+
 ### Reglas prácticas para el writer y el editor-in-chief
 
 1. **Si la frase se puede aplicar igual a otro producto cambiándole el nombre, está mal escrita.** Una buena frase sobre el Salomon X Ultra Pioneer no debería poder reutilizarse tal cual para una camiseta Adidas. Especificidad o reescritura.
