@@ -1,0 +1,35 @@
+============================================================
+INTEGRACION RADAR_EDITORIAL
+============================================================
+
+Fecha: 19/05/2026
+
+Objetivo:
+  /buscar-ofertas consulta radar_editorial como fuente principal. Este
+  repo no mantiene una base local de ofertas ni hace scraping directo
+  como fallback automatico.
+
+Variables necesarias:
+  RADAR_BASE_URL
+  RADAR_AGENT_API_TOKEN
+
+Endpoint:
+  GET {RADAR_BASE_URL}/api/editorial/offers/
+
+Cabecera:
+  Authorization: Bearer {RADAR_AGENT_API_TOKEN}
+
+Parametros habituales:
+  store=amazon|aliexpress
+  q=texto de watchlist o afinado
+  limit=25
+  sort=score
+
+Respuesta esperada:
+  items: candidatas normalizadas con product_url, url origen, precios,
+         tienda, score, category y campos incompletos.
+  meta: filtros aplicados, conteos, quality y diagnostics.
+
+Regla operativa:
+  Si items viene vacio, guardar diagnostico y mejorar el radar. No
+  llamar automaticamente a Chollometro o Telegram desde este repo.

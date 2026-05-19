@@ -1,8 +1,8 @@
 # Fuentes activas
 
-Tabla maestra de agregadores de los que descubrimos ofertas. El orquestador `buscar-ofertas` lee este archivo para saber qué scrapers están vivos y a qué subagente delegar.
+Tabla maestra de fuentes de descubrimiento. El orquestador `buscar-ofertas` usa `radar_editorial` como fuente principal y deja los scrapers directos como reserva manual/diagnostica.
 
-Si añades una fuente nueva, edita aquí Y crea/actualiza el subagente correspondiente. Si una fuente cae, márcala como `inactiva: true` antes de borrar nada — así el historial sigue siendo legible.
+Si anades una fuente nueva, edita aqui y crea/actualiza el subagente correspondiente. Si una fuente cae, marcala como `inactiva: true` antes de borrar nada para que el historial siga siendo legible.
 
 ---
 
@@ -10,30 +10,30 @@ Si añades una fuente nueva, edita aquí Y crea/actualiza el subagente correspon
 
 | slug | tipo | URL base | anunciantes cubiertos | subagente | inactiva |
 |---|---|---|---|---|---|
-| `chollometro` | web (Playwright) | `https://www.chollometro.com/search/ofertas?merchant-id={ID}` | amazon (173), aliexpress (165) | `aggregator-scraper` | false |
-| `telegram-hispachollos` | bridge web Telegram (WebFetch) | `https://t.me/s/hispachollos` | amazon, aliexpress (mezclados) | `telegram-scraper` | false |
-| `telegram-chollazos` | bridge web Telegram (WebFetch) | `https://t.me/s/chollazos` | amazon, aliexpress (mezclados) | `telegram-scraper` | false |
+| `radar_editorial` | API JSON autenticada | `/api/editorial/offers/` en Railway | amazon, aliexpress | `radar-catalog-client` | false |
+| `chollometro` | web (Playwright) | `https://www.chollometro.com/search/ofertas?merchant-id={ID}` | amazon (173), aliexpress (165) | `aggregator-scraper` | true |
+| `telegram-hispachollos` | bridge web Telegram (WebFetch) | `https://t.me/s/hispachollos` | amazon, aliexpress | `telegram-scraper` | true |
+| `telegram-chollazos` | bridge web Telegram (WebFetch) | `https://t.me/s/chollazos` | amazon, aliexpress | `telegram-scraper` | true |
 
 ---
 
 ## Notas por fuente
 
+### radar_editorial
+- Fuente principal. Centraliza ingesta, normalizacion, score, calidad de fuentes y diagnosticos.
+- Requiere configurar `RADAR_BASE_URL` y `RADAR_AGENT_API_TOKEN` para el subagente `radar-catalog-client`.
+- Si una consulta devuelve cero resultados o campos incompletos, se registra como mejora del radar. No se compensa con scraping local automatico.
+
 ### chollometro
-- Único filtro nativo por anunciante: parámetro `merchant-id` (Amazon=173, AliExpress=165).
-- Selectores y mecánica del redirect: ver `knowledge/notas-degradacion.md` (scout 19/05/2026).
-- Volumen por carga: 20-30 items por página.
+- Reserva manual/diagnostica. No se invoca en el flujo normal de `/buscar-ofertas`.
+- Mantiene el conocimiento validado el 19/05/2026 para investigar cambios de maquetacion o cobertura.
 
 ### telegram-hispachollos / telegram-chollazos
-- No hay filtro nativo por anunciante en el bridge. El subagente clasifica post a post resolviendo el shortener.
-- Todos los enlaces salen con shortener **`chz.to/<slug>`**. La cadena tiene hasta 3 saltos y WebFetch NO sigue cross-host automáticamente — el subagente encadena llamadas:
-  - Amazon: `chz.to` → `amzn.to` → `amazon.es/dp/<ASIN>`.
-  - AliExpress: `chz.to` → `s.click.aliexpress.com` → `aliexpress.com/item/<ID>.html` (dominio GLOBAL, no `es.`; se acepta como `aliexpress-global` por equivalencia funcional para el redactor español).
-- Volumen por carga: 15-20 posts recientes. Coste: ~45 WebFetches por canal.
-- Precio visible en el texto del post (formato variable: "Precio oferta: 9,41€", "SOLO 119€", etc.). Lo parsea el subagente.
+- Reserva manual/diagnostica. No se invocan en el flujo normal de `/buscar-ofertas`.
+- Siguen documentados porque pueden servir para auditar si el radar esta perdiendo cobertura de canales semilla.
 
 ---
 
 ## Fuentes descartadas
 
-- **Compradicción**: candidata si Chollometro endurece anti-bot o cambia el patrón de URLs. No activada.
-- **Telegram @chollazoses, @ofertasinformaticas, etc.**: solapamiento alto con las dos ya activas; no se añaden hasta que el uso real demuestre que aportan cobertura única.
+- **Compradiccion**: candidata si el radar incorpora nuevas semillas, pero no se activa desde este repo.

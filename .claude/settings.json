@@ -10,6 +10,7 @@
       "WebFetch(domain:t.me)",
       "WebFetch(domain:telegram.org)",
       "WebFetch(domain:chz.to)",
+      "WebFetch(domain:*.up.railway.app)",
       "Read(**)",
       "Read(../claude-code-text-agents/guidelines/**)",
       "Read(../claude-code-text-agents/medios.md)",
@@ -17,6 +18,7 @@
       "Write(historial/**)",
       "Write(knowledge/**)",
       "Write(changelog/**)",
+      "Write(docs/qa/**)",
       "Write(../claude-code-text-agents/inbox/**)",
       "Edit(watchlists/**)"
     ],

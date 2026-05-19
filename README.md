@@ -74,3 +74,9 @@ Detalles en [`docs/instalacion.txt`](docs/instalacion.txt).
 - No mantiene base de datos ni panel web. Todo es markdown local.
 - No deduplica contra el historial en MVP (volumen bajo no lo justifica).
 - No reintenta scraping automáticamente cuando Cloudflare bloquea.
+
+## Cambio operativo 19/05/2026
+
+`radar_editorial` es ahora la fuente principal de descubrimiento. Este repo conserva la capa conversacional, el filtrado editorial, la validacion humana, el enriquecimiento final y el handoff a la inbox.
+
+Si el radar devuelve cero resultados o datos incompletos, `/buscar-ofertas` guarda diagnostico para mejorar el radar. No lanza Chollometro o Telegram como fallback automatico.

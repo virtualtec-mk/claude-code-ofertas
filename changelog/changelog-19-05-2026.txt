@@ -1,0 +1,7 @@
+====================================================
+CHANGELOG — 19/05/2026
+====================================================
+
+[16:18] Planificado el cambio de arquitectura para que /buscar-ofertas use radar_editorial como fuente principal de ofertas. Si no encuentra resultados, el flujo debe generar diagnóstico y priorizar mejoras en radar_editorial, no scraping local directo.
+[16:32] Creado plan de implementación en docs/plans/2026-05-19-001-feat-radar-editorial-fuente-principal-plan.md. Incluye endpoint JSON autenticado en radar_editorial, cliente local, cambio de /buscar-ofertas y auditoría de fuentes semilla.
+[17:20] Implementado flujo radar_editorial como fuente principal: cliente radar-catalog-client, /buscar-ofertas sin fallback automatico, docs de integracion y UAT.

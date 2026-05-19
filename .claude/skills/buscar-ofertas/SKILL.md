@@ -1,432 +1,180 @@
 ---
 name: buscar-ofertas
-description: Orquesta el flujo completo de descubrimiento, filtrado editorial y enriquecimiento de ofertas para un medio español. Coordina aggregator-scraper (Chollometro) y offer-enricher (Amazon/AliExpress España), aplica el guideline del medio destino para filtrar editorialmente, deja que el redactor valide candidata a candidata, y escribe las validadas en la inbox de claude-code-text-agents lista para que /crear-articulo las consuma sin re-scrapear.
+description: Orquesta el flujo de ofertas usando radar_editorial como fuente principal, filtra editorialmente con guidelines/watchlists, valida candidata a candidata y envia las fichas enriquecidas a la inbox de claude-code-text-agents.
 argument-hint: [medio] [anunciante] [watchlist-slug]
 disable-model-invocation: true
 ---
 
 # Skill: buscar-ofertas
 
-Eres el orquestador único de este proyecto. Tu trabajo es coordinar dos subagentes (`aggregator-scraper` y `offer-enricher`), aplicar el filtrado editorial inline (eres tú quien lee guidelines), mantener al redactor informado y pausar candidata a candidata para que decida.
+Eres el orquestador unico de este proyecto. Tu fuente principal de descubrimiento es `radar_editorial`, consumido mediante el subagente `radar-catalog-client`. Los scrapers directos (`aggregator-scraper` y `telegram-scraper`) quedan como herramientas manuales/diagnosticas y no se invocan automaticamente.
 
-**Mantén el estado** durante toda la sesión: `MEDIO`, `ANUNCIANTE`, `WATCHLIST`, `AFINADO`, `FUENTES`, `CANDIDATAS`, `VALIDADAS`, `RECHAZADAS`, `SALTADAS`, `RUTA_HERMANO`, `RUTA_HISTORIAL`.
+Mantén el estado durante toda la sesion: `MEDIO`, `ANUNCIANTE`, `WATCHLIST`, `AFINADO`, `CANDIDATAS_BRUTAS`, `CANDIDATAS_FILTRADAS`, `VALIDADAS`, `RECHAZADAS`, `SALTADAS`, `DIAGNOSTICOS_RADAR`, `RUTA_HERMANO`, `RUTA_HISTORIAL`.
 
-## Parámetros de entrada
+## Parametros de entrada
 
-`$ARGUMENTS` admite hasta tres tokens separados por espacio, todos opcionales:
+`$ARGUMENTS` admite hasta tres tokens separados por espacio:
 
-- `MEDIO`: slug del medio (ej. `mundodeportivo`).
+- `MEDIO`: slug del medio.
 - `ANUNCIANTE`: `amazon` o `aliexpress`.
-- `WATCHLIST_SLUG`: nombre de un archivo en `watchlists/` sin el prefijo `WATCHLIST-` y sin `.md` (ej. `auriculares-anc-md`).
+- `WATCHLIST_SLUG`: archivo en `watchlists/` sin `WATCHLIST-` ni `.md`.
 
-Cualquier token que falte se pregunta interactivamente en el Paso 1.
+Pregunta interactivamente cualquier valor que falte.
 
 ## Constantes
 
 - `RUTA_HERMANO = "../claude-code-text-agents"`
 - `RUTA_INBOX = "../claude-code-text-agents/inbox"`
 - `RUTA_GUIDELINES = "../claude-code-text-agents/guidelines"`
-- `LIMITE_CANDIDATAS_SCRAPING = 25`
-- `LIMITE_CANDIDATAS_TRAS_FILTRO = 12` (presenta como mucho 12 al redactor; si tras filtrar quedan más, ordena por mejor encaje editorial y trunca)
+- `LIMITE_CANDIDATAS_RADAR = 25`
+- `LIMITE_CANDIDATAS_TRAS_FILTRO = 12`
+- `FUENTE_DESCUBRIMIENTO = "radar_editorial"`
 
----
+## PASO 0 - Verificar hermano y configuracion
 
-## PASO 0 — Verificar hermano
+Comprueba que existe `../claude-code-text-agents/` y que contiene `guidelines/GUIDELINE-*.md`. Si falta, muestra `GuidelineMissingError` o error de ruta claro y detén el flujo.
 
-Antes de nada, comprueba que existe `../claude-code-text-agents/` y que contiene `guidelines/` con al menos un `GUIDELINE-*.md`.
+Si `../claude-code-text-agents/inbox/` no existe, crea `../claude-code-text-agents/inbox/.gitkeep`.
 
-Si no existe la carpeta hermana:
+Verifica que el operador tiene configurados los datos del radar que usara `radar-catalog-client`:
 
-```
-⚠️ No encuentro el proyecto hermano en ../claude-code-text-agents/.
+- `RADAR_BASE_URL`
+- `RADAR_AGENT_API_TOKEN`
 
-Este proyecto necesita claude-code-text-agents clonado al lado para leer
-guidelines y escribir la inbox. Revisa la ubicación y vuelve a lanzar.
+Si faltan, detén el flujo con `RadarConfigError`. No lo confundas con falta de ofertas.
 
-Si tu hermano vive en otra ruta, edita CLAUDE.md y .claude/settings.json.
-```
+## PASO 1 - Resolver MEDIO, ANUNCIANTE y WATCHLIST
 
-Para el flujo. **No continúes.**
+Resuelve `MEDIO` listando `GUIDELINE-*.md` si no se proporciono. Verifica que existe `GUIDELINE-{MEDIO}.md`.
 
-Si la carpeta `../claude-code-text-agents/inbox/` no existe todavía, crea el archivo `../claude-code-text-agents/inbox/.gitkeep` para inicializarla.
+Resuelve `ANUNCIANTE`; solo se aceptan `amazon` y `aliexpress`.
 
----
+Lista `watchlists/WATCHLIST-*.md`. Si el redactor elige una, lee su contenido completo como `WATCHLIST_DATA`. Si elige ninguna, pide una descripcion libre de busqueda y guardala como `WATCHLIST_DATA`.
 
-## PASO 1 — Resolver MEDIO, ANUNCIANTE y WATCHLIST (interactivo)
+Pide afinado opcional para esta sesion y guardalo como `AFINADO` sin modificar la watchlist.
 
-### 1.a — MEDIO
+## PASO 2 - Consultar radar_editorial
 
-Si `MEDIO` no se proporcionó como argumento:
+Invoca `radar-catalog-client` con:
 
-1. Lista los archivos `GUIDELINE-*.md` en `RUTA_GUIDELINES`.
-2. Extrae el slug de cada uno (parte entre `GUIDELINE-` y `.md`).
-3. Muestra:
+```text
+Consulta radar_editorial para:
+- ANUNCIANTE: {ANUNCIANTE}
+- QUERY: resumen de WATCHLIST_DATA + AFINADO
+- LIMITE: LIMITE_CANDIDATAS_RADAR
 
-```
-Medios disponibles:
-  1. {slug-1}
-  2. {slug-2}
-  ...
-
-¿Para qué medio buscamos hoy? (número o nombre)
+Devuelve candidatas normalizadas y conserva diagnostics/meta del radar.
 ```
 
-4. Espera respuesta y asigna `MEDIO`.
+Guarda la salida como `RESULTADO_RADAR`.
 
-Tras tener `MEDIO`, verifica que existe `../claude-code-text-agents/guidelines/GUIDELINE-{MEDIO}.md`. Si no existe:
+Si llega `RadarConfigError` o `RadarUnavailableError`, informa al redactor y detén el flujo. No invoques scrapers locales.
 
-```
-⚠️ GuidelineMissingError: El medio '{MEDIO}' no tiene guideline en text-agents. Crea primero la guideline allí con `/crear-guideline` y vuelve a lanzar.
-```
+Si `RESULTADO_RADAR.total == 0`, genera diagnostico accionable:
 
-**DETENER el flujo.** No continuar.
+- Resume `diagnostics` y `meta.quality` del radar.
+- Explica que la mejora debe hacerse en `radar_editorial` o sus fuentes semilla.
+- Escribe un archivo `historial/YYYY-MM-DD-diagnostico-radar-{n}.md` con `medio`, `anunciante`, `watchlist`, `afinado`, filtros y diagnostics.
+- Añade linea en `changelog/changelog-YYYY-MM-DD.txt`.
+- Detén el flujo sin llamar a `aggregator-scraper` ni `telegram-scraper`.
 
-### 1.b — ANUNCIANTE
+Si hay items, normalizalos como `CANDIDATAS_BRUTAS`. Cada candidata conserva:
 
-Si `ANUNCIANTE` no se proporcionó:
+- `fuente: radar_editorial`
+- `radar_offer_id`
+- `url_origen`
+- `product_url`
+- `campos_incompletos`
+- `fuente_original`
 
-```
-¿Qué anunciante?
-  1. amazon       (Amazon España)
-  2. aliexpress   (AliExpress España)
-```
+## PASO 3 - Filtrado editorial inline
 
-Espera respuesta. Solo se aceptan esos dos valores en MVP.
+Lee completo `../claude-code-text-agents/guidelines/GUIDELINE-{MEDIO}.md`. Ten presentes `WATCHLIST_DATA` y `AFINADO`.
 
-### 1.c — WATCHLIST y afinado
+Para cada candidata del radar evalua:
 
-Lista los archivos en `watchlists/` con patrón `WATCHLIST-*.md`. Por cada uno, lee el frontmatter y muestra `name` + `medio_sugerido` + `anunciante`.
+- Encaje con tono y tematica del medio.
+- Encaje con watchlist/afinado.
+- Descuento aparente y calidad de datos.
+- Si `product_url` falta, marcala como incompleta y no la presentes como validacion directa salvo que no haya opciones completas.
 
-```
-Watchlists disponibles:
-  1. auriculares-anc-md       (mundodeportivo / amazon)
-  2. zapatillas-running-larazon  (larazon / amazon)
-  ...
-  0. ninguna / describir libre
+Etiqueta cada candidata:
 
-¿Qué watchlist uso? (número, 0 para ninguna, o el slug directo)
-```
+- `encaja`
+- `dudosa`
+- `fuera`
 
-- Si elige una, lee su contenido completo y guárdalo como `WATCHLIST_DATA`.
-- Si elige `0`, pide: *"Describe brevemente qué tipo de oferta buscas (categorías, marcas, rangos de precio):"*. Guarda la respuesta como `WATCHLIST_DATA` (texto libre).
+Ordena primero `encaja`, luego `dudosa`, priorizando datos completos y mejor score. Trunca a `LIMITE_CANDIDATAS_TRAS_FILTRO`.
 
-Luego, en cualquiera de los dos casos, ofrece afinado conversacional:
+Si no queda ninguna, muestra hasta 5 candidatas brutas como "fuera del foco editorial" y registra el motivo en historial al cerrar.
 
-```
-¿Quieres afinar la búsqueda para esta sesión? (ej. "hoy solo Sony y Bose", "máx 80€", "nada de productos blancos"). Enter para omitir.
-```
+## PASO 4 - Validacion interactiva candidata a candidata
 
-Guarda la respuesta como `AFINADO` (puede ser vacío). **No modifica el archivo de watchlist**, solo afecta a esta sesión.
+Pausa por cada candidata. Muestra:
 
-### 1.d — FUENTES
-
-Lee `fuentes.md` y extrae los slugs de las fuentes con `inactiva: false`. En MVP son tres: `chollometro`, `telegram-hispachollos`, `telegram-chollazos`.
-
-Pregunta:
-
-```
-¿De qué fuentes tiro hoy?
-  1. Todas (recomendado)
-  2. Solo Chollometro
-  3. Solo Telegram (hispachollos + chollazos)
-  4. Elegir a mano
-```
-
-- Opción 1 (default si Enter): `FUENTES = [chollometro, telegram-hispachollos, telegram-chollazos]`.
-- Opción 2: `FUENTES = [chollometro]`.
-- Opción 3: `FUENTES = [telegram-hispachollos, telegram-chollazos]`.
-- Opción 4: muestra la lista numerada y permite seleccionar varias separadas por coma (ej. `1,3`).
-
----
-
-## PASO 2 — Invocar scrapers y unificar candidatas
-
-### 2.a — Lanzar scrapers en paralelo
-
-Por cada fuente en `FUENTES`, invoca el subagente correspondiente. Lánzalos **en paralelo** (un solo mensaje con varias invocaciones de Agent) — son independientes.
-
-Mapeo fuente → subagente:
-
-- `chollometro` → `aggregator-scraper` con `ANUNCIANTE` y `LIMITE = LIMITE_CANDIDATAS_SCRAPING`.
-- `telegram-hispachollos` → `telegram-scraper` con `CANAL = hispachollos`, `ANUNCIANTE` y `LIMITE = 15`.
-- `telegram-chollazos` → `telegram-scraper` con `CANAL = chollazos`, `ANUNCIANTE` y `LIMITE = 15`.
-
-Instrucción genérica a cada subagente (adapta al schema de cada uno; ambos comparten formato de salida):
-
-```
-Scrapea {fuente} filtrado por el anunciante: {ANUNCIANTE}.
-Límite: {N} candidatas.
-Devuelve YAML estructurado según tu schema, con la URL canónica de la
-tienda final ya resuelta. Solo dominios amazon.es o es.aliexpress.com.
-Si bloqueo/timeout, devuelve parcial con degraded: true y motivo_degradacion.
-No reintentes.
-```
-
-Guarda los outputs como `RESULTADOS_POR_FUENTE` (mapa fuente → output del scraper).
-
-### 2.b — Manejo de degradación parcial
-
-Por cada fuente cuyo output venga con `degraded: true`, NO bloquees al resto. Acumula los avisos.
-
-Al terminar las invocaciones, si hay alguna fuente degradada:
-
-```
-⚠️ AggregatorBlockedError parcial:
-  - {fuente_1}: {N1} candidatas antes del bloqueo ({motivo_1})
-  - {fuente_2}: ok ({N2} candidatas)
-  ...
-
-¿Continúo con todo lo recogido o aborto?
-  C) Continúo con las {N_total} candidatas combinadas
-  A) Aborto la sesión
-```
-
-Si TODAS las fuentes están degradadas y la suma de candidatas es 0 → aborta automáticamente con mensaje claro, no preguntes.
-
-### 2.c — Unificar y deduplicar
-
-Une todas las listas en `CANDIDATAS_BRUTAS`. Aplica dedupe por `url_canonica`:
-
-1. Normaliza la `url_canonica` antes de comparar: minúsculas, sin trailing slash, sin query string excepto para AliExpress (donde el ID está en el path).
-2. Si dos o más candidatas comparten `url_canonica` normalizada, fusiónalas en una única:
-   - **Prevalece** la candidata con `precio_anterior` no nulo. Si empatan, prevalece la de Chollometro (tiene % descuento más fiable).
-   - El campo `fuentes_origen` de la candidata fusionada es la lista de todas las fuentes donde apareció (ej. `[chollometro, telegram-hispachollos]`).
-3. Las candidatas únicas conservan su `fuentes_origen` como lista de un elemento.
-
-Resultado: `CANDIDATAS_BRUTAS` es una lista limpia con un item por producto, anotando en `fuentes_origen` dónde apareció.
-
-### 2.d — Lista vacía tras unificar
-
-Si tras dedupe `CANDIDATAS_BRUTAS` está vacía (no degradado pero 0 items útiles), avisa al redactor y pregunta si cambia de anunciante/fuentes o aborta. No sigas sin candidatas.
-
----
-
-## PASO 3 — Filtrado editorial inline
-
-**Lo hace el orquestador, no un subagente.** Es razonamiento puro sobre archivos ya cargados.
-
-1. Lee `../claude-code-text-agents/guidelines/GUIDELINE-{MEDIO}.md` completo.
-2. Ten también presente `WATCHLIST_DATA` y `AFINADO`.
-3. Para cada candidata en `CANDIDATAS_BRUTAS`, evalúa:
-   - ¿Encaja con el tono y la temática del medio según la guideline?
-   - ¿Cumple los criterios de la watchlist (keywords, marcas, precio_min/max si aplican)?
-   - ¿Respeta el afinado de la sesión?
-   - ¿El descuento aparente justifica un artículo (no es un precio normal disfrazado)?
-4. Asigna a cada candidata una de estas etiquetas:
-   - `encaja` — entra al filtro final.
-   - `dudosa` — encaje débil pero defendible.
-   - `fuera` — no encaja con el medio o la watchlist.
-5. Ordena: primero `encaja` (por relevancia editorial subjetiva), luego `dudosa`. Las `fuera` se descartan **salvo** que el conjunto `encaja + dudosa` esté vacío (ver fallback abajo).
-6. Trunca a `LIMITE_CANDIDATAS_TRAS_FILTRO`.
-
-Guarda como `CANDIDATAS_FILTRADAS`, donde cada item lleva todos los campos del scraper + un campo `justificacion` (1 línea explicando por qué entra).
-
-### Fallback: 0 candidatas tras filtro
-
-Si `CANDIDATAS_FILTRADAS` queda vacía, presenta las primeras 5 de `CANDIDATAS_BRUTAS` marcadas explícitamente como "fuera del foco editorial" y avisa al redactor:
-
-```
-ℹ️ Ninguna de las {N} candidatas brutas encaja con el foco editorial de {MEDIO} ni con tu watchlist/afinado. Te muestro las 5 primeras igualmente por si quieres revisarlas. Trátalas como fuera de foco.
-```
-
-Luego sigue al Paso 4 con esas 5.
-
----
-
-## PASO 4 — Validación interactiva candidata a candidata
-
-**Pausa obligatoria por candidata.** No proceses la siguiente sin respuesta del redactor.
-
-Para cada candidata en `CANDIDATAS_FILTRADAS`:
-
-Muestra:
-
-```
+```text
 [{i}/{total}] {titulo}
-  Precio: {precio_actual}   (antes {precio_anterior} · -{descuento_pct}%)
+  Precio: {precio_actual} (antes {precio_anterior} - {descuento_pct}%)
   Tienda: {tienda}
-  URL:    {url_canonica}
-  Fuentes: {fuentes_origen ej. "chollometro + telegram-hispachollos"}
+  Fuente: radar_editorial / {fuente_original}
+  Radar ID: {radar_offer_id}
+  URL origen: {url_origen}
+  Producto: {product_url o "incompleta"}
+  Calidad: {campos_incompletos}
   Encaje editorial: {justificacion}
 
-¿Qué hago?
-  V) Validar — enriquecer y mandar a la inbox
-  R) Rechazar — opcionalmente dime el motivo
-  S) Saltar (no la valido pero no la marco como rechazada)
-  Q) Cerrar la sesión aquí
+¿Que hago?
+  V) Validar - enriquecer y mandar a la inbox
+  R) Rechazar - opcionalmente dime el motivo
+  S) Saltar
+  Q) Cerrar la sesion aqui
 ```
 
-Espera respuesta. Acciones:
+Si falta `product_url`, no llames a `offer-enricher`; ofrece rechazar, saltar o cerrar y registra `product_url_missing` como diagnostico.
 
-- **V**: salta al Paso 5 para esta candidata. Cuando termine, vuelve aquí con la siguiente.
-- **R**: pide `"¿Motivo? (Enter para omitir)"`. Añade a `RECHAZADAS` con `{url, titulo, motivo}` y pasa a la siguiente.
-- **S**: añade a `SALTADAS` con `{url, titulo}` y pasa a la siguiente.
-- **Q**: deja de presentar candidatas. Las pendientes no se añaden a nada. Salta al Paso 6.
+## PASO 5 - Enriquecer candidata validada
 
-Cuando se agoten las candidatas, ofrece guardar la búsqueda afinada como watchlist:
+Solo tras `V` y con `product_url` presente, invoca `offer-enricher` con la URL de producto. Fusiona su ficha con metadatos del radar y escribe:
 
-```
-¿Guardo "{descripcion-afinado}" como nueva watchlist en watchlists/? (s/n)
-```
+`../claude-code-text-agents/inbox/{DD-MM-YYYY}-{slug-producto}.md`
 
-Si sí, propon un slug en kebab-case (máx 60 chars), pide confirmación o renombrado, y escribe `watchlists/WATCHLIST-{slug}.md` con el frontmatter mínimo (`name`, `medio_sugerido`, `anunciante`, y un cuerpo con el `AFINADO` literal en una sección "Notas").
+El frontmatter visible debe incluir:
 
----
-
-## PASO 5 — Enriquecer una candidata validada
-
-Invoca `offer-enricher` con:
-
-```
-Enriquece esta URL: {url_canonica}
-
-Devuelve la ficha con el schema espejado de product-researcher: frontmatter
-YAML con nombre, marca, modelo, asin, ean, url_origen, tienda, fuente,
-fecha_extraccion; y secciones Precio, Descripción corta, Especificaciones
-clave, Reseñas.
-
-Si la tienda bloquea, lanza StoreBlockedError exactamente como
-especifica tu prompt y espera a que el redactor pegue los datos a mano
-(marcando fuente: manual).
-```
-
-Guarda como `FICHA_ENRIQUECIDA`.
-
-### Si llega `StoreBlockedError`
-
-Reproduce el mensaje del subagente al redactor tal cual y espera datos manuales. Una vez recibidos, el subagente debe haberlos estructurado y devuelto la ficha con `fuente: manual`.
-
-### Escribir a la inbox
-
-1. Calcula `SLUG_PRODUCTO`: del título, en kebab-case, sin acentos, máximo 60 caracteres.
-2. Calcula `FECHA_HOY` en formato `DD-MM-YYYY`.
-3. Calcula `FECHA_HUMANA` en formato `DD/MM/YYYY` para frontmatter visible.
-4. Ruta: `../claude-code-text-agents/inbox/{FECHA_HOY}-{SLUG_PRODUCTO}.md`.
-5. Si esa ruta ya existe, añade sufijo `-2`, `-3`... hasta encontrar una libre (sin lógica de dedupe real en MVP, solo evitar sobrescribir).
-
-Construye el contenido **fusionando** la ficha del enricher con metadatos del flujo:
-
-```markdown
----
+```yaml
 medio: {MEDIO}
 anunciante: {ANUNCIANTE}
-url_producto: {url_canonica}
+fuente_descubrimiento: radar_editorial
+radar_offer_id: {radar_offer_id}
+url_origen: {url_origen}
+url_producto: {product_url}
 titulo: "{titulo}"
-precio_actual: {precio_actual_normalizado}
+precio_actual: {precio_actual}
 descuento_pct: {descuento_pct}
-vendedor: "{marca_o_amazon}"
-fecha_validacion: {FECHA_HUMANA}
-nota_redactor: "{nota_si_la_dejó, vacío si no}"
+fecha_validacion: {DD/MM/YYYY}
 fuente_enriquecimiento: {automatica-playwright | manual}
----
-
-# Ficha enriquecida
-
-{contenido completo de FICHA_ENRIQUECIDA — el bloque interno con su
-propio frontmatter y las secciones Precio, Descripción corta,
-Especificaciones clave, Reseñas, tal como lo devolvió offer-enricher}
 ```
 
-Escribe el archivo. Añade a `VALIDADAS` con `{url, titulo, ruta_inbox}`.
+Añade a `VALIDADAS` la ruta de inbox.
 
-Antes de pasar a la siguiente candidata del Paso 4, confirma brevemente al redactor:
+## PASO 6 - Cierre de sesion
 
-```
-✅ Ficha guardada en {ruta_inbox}
-```
+Escribe `historial/{YYYY-MM-DD}-sesion-{n}.md` con:
 
----
+- `fuente_descubrimiento: radar_editorial`
+- `diagnosticos_radar`
+- candidatas validadas, rechazadas y saltadas
+- `radar_offer_id`, `url_origen`, `product_url` y campos incompletos cuando existan
 
-## PASO 6 — Cierre de sesión
+Añade linea en `changelog/changelog-YYYY-MM-DD.txt` con conteos y ruta de historial.
 
-Cuando se agoten las candidatas o el redactor cierre con `Q`:
+Pregunta si se guarda el afinado como nueva watchlist solo cuando haya habido una sesion con candidatas.
 
-### 6.a — Escribir historial
+## Reglas generales
 
-Calcula `RUTA_HISTORIAL`:
-
-1. Hoy en `YYYY-MM-DD`.
-2. Numera la sesión: si ya existen `historial/{HOY}-sesion-1.md`, `...-sesion-2.md`, etc., usa el siguiente N.
-3. Ruta final: `historial/{HOY}-sesion-{N}.md`.
-
-Contenido:
-
-```markdown
----
-fecha: {FECHA_HUMANA}
-medio: {MEDIO}
-anunciante: {ANUNCIANTE}
-fuentes: [{FUENTES separadas por coma}]
-watchlist: {WATCHLIST_SLUG_o_"ninguna"}
-afinado: "{AFINADO}"
-total_brutas: {N}
-total_filtradas: {M}
-total_validadas: {len(VALIDADAS)}
-total_rechazadas: {len(RECHAZADAS)}
-total_saltadas: {len(SALTADAS)}
----
-
-## Validadas
-{por cada item: - {url_canonica} — {titulo} — {precio_actual}}
-{si vacío: "(ninguna)"}
-
-## Rechazadas
-{por cada item: - {url_canonica} — {motivo si lo dejó}}
-{si vacío: "(ninguna)"}
-
-## Saltadas
-{por cada item: - {url_canonica}}
-{si vacío: "(ninguna)"}
-```
-
-### 6.b — Línea en changelog
-
-Calcula `changelog/changelog-{YYYY-MM-DD}.txt`. Si no existe el archivo del día, créalo con cabecera:
-
-```
-====================================================
-CHANGELOG — DD/MM/YYYY
-====================================================
-```
-
-Añade una línea (append):
-
-```
-[HH:MM] /buscar-ofertas {MEDIO} {ANUNCIANTE} [fuentes: {FUENTES}] → {V} validadas, {R} rechazadas, {S} saltadas. Historial: {RUTA_HISTORIAL}
-```
-
-### 6.c — Resumen al redactor
-
-```
-## Sesión cerrada
-
-Medio:        {MEDIO}
-Anunciante:   {ANUNCIANTE}
-Fuentes:      {FUENTES separadas por coma}
-Watchlist:    {WATCHLIST_SLUG_o_"ninguna"}
-Afinado:      "{AFINADO}"
-
-Validadas:    {len(VALIDADAS)}
-Rechazadas:   {len(RECHAZADAS)}
-Saltadas:     {len(SALTADAS)}
-
-Historial:    {RUTA_HISTORIAL}
-Inbox del hermano: ../claude-code-text-agents/inbox/
-
-Las fichas validadas están listas para que /crear-articulo las consuma en
-claude-code-text-agents sin re-scrapear.
-```
-
----
-
-## Reglas de comportamiento general
-
-- **Eres el único que lee guidelines y watchlists.** Los subagentes no las tocan.
-- **Eres el único que escribe a la inbox.** El enricher devuelve la ficha; tú la fusionas con metadatos y la guardas.
-- **No saltes la pausa interactiva del Paso 4.** Cada candidata exige una respuesta del redactor.
-- **No reintentes** los subagentes cuando devuelven error. Aplica el manejo de error definido y deja decidir al redactor.
-- **Mantén el estado** entre pasos.
-- **Si Playwright MCP no está disponible**, el `aggregator-scraper` te lo dirá en el output. Comunícalo al redactor sin traceback y para limpio.
-- **Texto al redactor siempre en español**, ortografía correcta, fechas `DD/MM/YYYY` en lo visible, `YYYY-MM-DD` solo en nombres de archivo.
-- **Números** en formato español: `1.299,00 €`.
-- **Convención de slugs**: kebab-case, sin acentos, sin caracteres especiales, máx 60 chars.
+- No hay fallback automatico a scrapers locales.
+- El orquestador es el unico que lee guidelines y watchlists.
+- El orquestador es el unico que escribe a la inbox.
+- Cada candidata exige pausa interactiva.
+- Texto al redactor siempre en espanol, con fechas visibles `DD/MM/YYYY`.
+- Numeros en formato espanol.
+- Si el radar no cubre una intencion, el resultado correcto es diagnostico persistido para mejorar `radar_editorial`.
