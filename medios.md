@@ -18,6 +18,7 @@ Si detectas que la tabla está desincronizada con los archivos de `/guidelines/`
 |---|---|---|---|---|---|---|
 | `mundodeportivo` | deportes | cercano-experto / enérgico | 450-500 (1 prod.) / 600-800 (3-10 prod.) | Lo gestiona el CMS | — | ✅ activa |
 | `larazon` | generalista / consumo y estilo de vida | cercano-directo / autoridad tranquila | 400-600 (oferta simple) / 1.500-2.000 (análisis) | Texto propio (ver guideline) | 19/05/2026 | ✅ activa |
+| `abc` | generalista / Favorito (consumo, tecnología, motor, hogar) | conversacional con chispa / experto + amigo de chollos | 500-700 (oferta única) / 800-1.200 (recopilatorio) / 600-900 (longtail-marca) | Lo gestiona el CMS | 19/05/2026 | ✅ activa (v1.1, calibrada con 18 ejemplos publicados) |
 
 ---
 
