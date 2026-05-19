@@ -1,8 +1,8 @@
 ---
 medio: larazon
-version: 2.3
+version: 2.5
 ultima_actualizacion: 19/05/2026
-origen: importado desde GPT personalizado (v1) + paleta de recetas (v2) + ajuste de mapa (v2.1) + voz real y autores (v2.2) + voz humana, estructura de intro, patrón H2, FAQ opcional y sin negritas markdown (v2.3)
+origen: importado desde GPT personalizado (v1) + paleta de recetas (v2) + ajuste de mapa (v2.1) + voz real y autores (v2.2) + voz humana, estructura de intro, patrón H2, FAQ opcional y sin negritas markdown (v2.3) + estructura base mínima inviolable: titular + subtítulo + introducción + H2 + 3 párrafos (v2.4) + 2-3 H2 adicionales obligatorios en mono-producto y longitud subida a 600-900 palabras (v2.5)
 autores:
   - nombre: Marina Ros
     perfil: multi-producto, categorías de moda y hogar, liquidaciones
@@ -107,6 +107,45 @@ Regla práctica: cuando aparezca un número crudo (valoración media, conteo de 
 
 Estos 6 elementos están en todos los artículos, sin excepción. El resto del cuerpo entre el anclaje 4 y el anclaje 6 es libre (paleta de recetas).
 
+### Estructura base mínima inviolable (checklist previo a la entrega)
+
+Antes de cerrar el draft, comprueba que el artículo cumple **literalmente** esta secuencia mínima. Falta cualquiera de estos elementos = draft rechazado:
+
+1. **Titular (H1).**
+2. **Subtítulo** — 1 línea normal, sin heading, separada del H1 por un salto en blanco. No es la introducción.
+3. **Introducción** — 1 párrafo de 60-90 palabras, sin heading, separado del subtítulo por un salto en blanco.
+4. **Primer H2** — patrón A o patrón B (ver anclaje 4).
+5. **Tres párrafos de texto** bajo el primer H2, separados entre sí por saltos en blanco.
+6. **Disclaimer literal** al final.
+
+Lo mínimo es lo mínimo: nunca se omiten ni se fusionan elementos. El subtítulo y la introducción son piezas distintas, no se mezclan en una sola línea.
+
+### Bloques adicionales obligatorios en mono-producto
+
+Cuando el artículo es **una oferta simple de un solo producto**, encima de la estructura base mínima hay que añadir **2 o 3 H2 más** elegidos de la paleta de recetas. No es opcional: un mono-producto con solo el H2 base se considera escueto y no se entrega.
+
+Reglas para elegir esos 2-3 H2:
+
+- **Tienen que aportar algo concreto al lector**: a quién encaja, qué lo separa de la versión hermana, qué dudas reales aparecen antes de comprarlo, qué reputación tiene la marca, en qué momento de uso brilla. No relleno.
+- **Cada H2 adicional incluye 1-3 párrafos** o, en el caso de `faq-corta`, 2-3 pares pregunta-respuesta.
+- **Recetas habituales para mono-producto:** `para-quien-si-para-quien-no`, `comparativa-corta`, `faq-corta`, `vision-de-marca`, `specs-traducidas` (si no se agotó en el cuerpo base), `microhistoria-de-uso` (si no se agotó en el cuerpo base).
+- **`cuando-no-comprarlo`** como H2 propio solo se admite en `recomendacion-personal` y reviews largos (mantenido de la regla original).
+- **No repetir la misma receta dos veces** en el mismo artículo.
+
+El total queda así para un mono-producto en La Razón:
+
+1. Titular
+2. Subtítulo
+3. Introducción
+4. Primer H2 (base) + 3 párrafos
+5. Segundo H2 (receta adicional) + párrafos
+6. Tercer H2 (receta adicional) + párrafos
+7. *(Opcional)* Cuarto H2 si añade valor real
+8. Cierre (1-2 frases sin heading)
+9. Disclaimer
+
+Multi-producto y reviews largos siguen sus propias reglas de longitud y estructura.
+
 ### 1. H1 — Titular
 Proporcionado en el INPUT (pausa B del flujo). Reprodúcelo **exactamente** como lo entrega el redactor. No lo modifiques.
 
@@ -208,7 +247,8 @@ Sugerencia, no obligación. El writer puede combinar de otra forma si lo justifi
 
 ### Reglas de uso del cuerpo libre
 
-- **Entre 1 y 3 recetas como máximo** después del primer H2 (no llenar por llenar).
+- **Mono-producto:** después del primer H2 base, **2 o 3 H2 adicionales** con recetas distintas (ver "Bloques adicionales obligatorios en mono-producto"). Total 3-4 H2 en el artículo.
+- **Multi-producto y reviews largos:** entre 1 y 3 recetas adicionales después del primer H2, según lo que pida el producto (no llenar por llenar).
 - **No repetir la misma receta dos veces** en el mismo artículo.
 - **En `liquidacion` y `precio-psicologico`, los contras se integran como una frase corta** dentro de otra receta. Nunca como sección con H2 propio. El peso narrativo pertenece al precio.
 - **El orden lo decide el writer** según lo que sirva al producto, no según una plantilla.
@@ -220,7 +260,8 @@ Sugerencia, no obligación. El writer puede combinar de otra forma si lo justifi
 
 ## Longitud orientativa
 
-- **Oferta simple (1 producto):** 400-600 palabras.
+- **Oferta simple mono-producto:** 600-900 palabras. El rango sube respecto a v2.4 (400-600) porque ahora el mono-producto exige 2-3 H2 adicionales además de la estructura base. Si te quedas por debajo de 600, el artículo está escueto.
+- **Multi-producto (varias ofertas en una pieza):** 400-600 palabras por categoría/producto destacado. La paleta de recetas se aplica por bloque, no al artículo entero.
 - **Análisis / review completo:** 1.500-2.000 palabras (admite 3-4 recetas y `vision-de-marca` ampliada).
 
 Tolerancia ±10%. No hay mínimos por sección: lo importante es que cada receta usada tenga peso real.
@@ -358,6 +399,7 @@ bombazo · bestia · locura · vuela · se desploma · deja temblando el precio 
 ## Frontmatter requerido en el draft
 
 ```yaml
+titulo: "..."               # obligatorio, exactamente igual al H1
 medio: larazon
 url_origen: ...
 asin: ...
@@ -367,7 +409,7 @@ recetas: [...]              # nuevo en v2: lista de recetas usadas
 estado: borrador
 ```
 
-El campo `recetas` lista las recetas aplicadas en el cuerpo libre (ej. `[specs-traducidas, para-quien-si-para-quien-no]`). Permite al editor-in-chief validar la decisión sin tener que inferirla del texto.
+El campo `titulo` debe estar **siempre** presente y coincidir letra a letra con el H1 confirmado por el redactor. El campo `recetas` lista las recetas aplicadas en el cuerpo libre (ej. `[specs-traducidas, para-quien-si-para-quien-no]`). Permite al editor-in-chief validar la decisión sin tener que inferirla del texto.
 
 ---
 
