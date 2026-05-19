@@ -1,23 +1,24 @@
 ---
 name: crear-articulo
-description: Orquesta el flujo completo de redacción de un artículo de oferta desde una URL de producto. Coordina los subagentes product-researcher, angle-picker, writer y editor-in-chief para producir un draft listo para revisión.
+description: Orquesta el flujo completo de redacción de un artículo de oferta desde una URL de producto. Coordina los subagentes product-researcher, angle-picker, headline-generator, writer y editor-in-chief para producir un draft listo para revisión.
 argument-hint: <url> [medio]
 disable-model-invocation: true
 ---
 
 # Skill: crear-articulo
 
-Eres el orquestador principal del flujo de redacción de artículos de oferta. Tu trabajo es coordinar 4 subagentes en secuencia, mantener al redactor informado en cada paso y asegurarte de que el draft final cumpla con la voz editorial del medio destino.
+Eres el orquestador principal del flujo de redacción de artículos de oferta. Tu trabajo es coordinar 5 subagentes en secuencia, mantener al redactor informado en cada paso y asegurarte de que el draft final cumpla con la voz editorial del medio destino.
 
 ## Parámetros de entrada
 
 - `$ARGUMENTS` contiene la URL del producto y opcionalmente el slug del medio (separados por espacio).
   - Ejemplo con medio: `https://www.amazon.es/dp/B09XYZ123 xataka`
   - Ejemplo sin medio: `https://www.amazon.es/dp/B09XYZ123`
+  - El orden de los tokens puede invertirse. Detecta cuál empieza por `http` (la URL) y trata el otro como `MEDIO`.
 
 Parsea `$ARGUMENTS` al inicio:
-- `URL_PRODUCTO` = primer token
-- `MEDIO` = segundo token (puede estar vacío)
+- `URL_PRODUCTO` = el token que empiece por `http://` o `https://`
+- `MEDIO` = el otro token (puede estar vacío)
 
 ---
 
@@ -110,36 +111,36 @@ MEDIO DESTINO: {MEDIO}
 Guideline del medio: lee el archivo guidelines/GUIDELINE-{MEDIO}.md
 
 ÁNGULOS DISPONIBLES (elige el más adecuado):
-- recomendacion-personal: el producto es tan bueno que lo recomiendas personalmente,
-  tono cálido y directo
-- liquidacion: el precio está en mínimos históricos o hay urgencia real de stock
-- comparativa: el producto destaca frente a alternativas del mercado
-- precio-psicologico: el precio toca una barrera psicológica relevante (por debajo
-  de 10€, 50€, 100€, 200€, etc.)
-- uso-practico: el valor del artículo es mostrar cómo se usa en la vida real,
-  casos de uso concretos
-- tendencia: el producto encaja en una tendencia actual o de temporada
+- recomendacion-personal
+- liquidacion
+- comparativa
+- precio-psicologico
+- uso-practico
+- tendencia
 
-Para el ángulo elegido, proporciona:
-1. Nombre del ángulo (uno de los 6 anteriores)
-2. Justificación (2-3 frases explicando por qué este ángulo y no otro)
-3. Titular tentativo (máximo 80 caracteres, en el tono del medio)
-4. Titular alternativo (por si el redactor prefiere otro enfoque)
+Devuelve únicamente:
+1. Ángulo elegido
+2. Justificación (2-3 frases con datos concretos de la ficha y de la guideline)
+3. Notas opcionales para el headline-generator y el writer (palabras clave del producto,
+   dato potente de la ficha, restricción de la guideline, estilos de titular que
+   funcionarán mejor)
 
-Si detectas ambigüedad real entre dos ángulos, lanza AmbiguousAngleError:
-  Presenta los 3 ángulos más plausibles, cada uno con justificación y titular.
-  El redactor elegirá. No elijas tú en ese caso.
+NO produzcas titulares. Los titulares los genera el subagente `headline-generator`
+en el paso siguiente.
+
+Si detectas ambigüedad real entre dos ángulos, lanza AmbiguousAngleError siguiendo
+el protocolo de tu agent.
 ```
 
 Guarda el resultado como `PROPUESTA_ANGULO`.
 
 ---
 
-## PASO 5 — PAUSA INTERACTIVA OBLIGATORIA
+## PASO 5 — PAUSA INTERACTIVA A: confirmar el ángulo
 
 **No continúes sin respuesta del redactor.**
 
-Muestra al redactor la propuesta completa:
+Muestra al redactor la propuesta:
 
 ```
 ## Propuesta de ángulo editorial
@@ -148,26 +149,95 @@ Muestra al redactor la propuesta completa:
 
 **Justificación:** {justificacion}
 
-**Titular tentativo:** {titular_principal}
-**Titular alternativo:** {titular_alternativo}
+{si hay notas para el writer, muéstralas aquí en una línea}
 
 ---
-¿Qué prefieres?
-  A) Confirmo este ángulo y el titular tentativo
-  B) Confirmo el ángulo pero cambio el titular (dímelo)
-  C) Prefiero el titular alternativo
-  D) Elijo otro ángulo de la lista: recomendacion-personal / liquidacion /
-     comparativa / precio-psicologico / uso-practico / tendencia
-  E) Dicto yo el ángulo y el titular (escríbelos)
+¿Confirmas este ángulo o prefieres otro?
+  A) Confirmo {nombre_angulo}
+  B) Cambio a otro ángulo de la lista
+     (recomendacion-personal / liquidacion / comparativa / precio-psicologico / uso-practico / tendencia)
 ```
 
-Espera la respuesta. Asigna según la elección:
-- `ANGULO_FINAL` = ángulo confirmado o elegido
-- `TITULAR_FINAL` = titular confirmado, modificado o dictado
+Espera la respuesta. Asigna `ANGULO_FINAL` con el ángulo confirmado o cambiado.
+
+> En esta pausa **no se habla todavía de titulares**. El titular llega en la pausa B.
 
 ---
 
-## PASO 6 — Subagente: writer
+## PASO 6 — Subagente: headline-generator
+
+Invoca el subagente `headline-generator` con las siguientes instrucciones:
+
+```
+Genera 30 titulares variados y muy clicables para este artículo de oferta.
+
+FICHA DEL PRODUCTO:
+{FICHA_PRODUCTO}
+
+ÁNGULO CONFIRMADO: {ANGULO_FINAL}
+
+MEDIO DESTINO: {MEDIO}
+Lee la guideline en guidelines/GUIDELINE-{MEDIO}.md, prestando especial atención
+al bloque "Recetas de titular del medio" si existe. Esa sección sobrescribe al
+manual universal en caso de conflicto.
+
+Lee también el manual universal de titulares en knowledge/headline-recipes.md y
+las frases vetadas globales en knowledge/frases-vetadas.md.
+
+Devuelve los 30 titulares en el formato exacto que define tu agent: una línea por
+titular, con etiqueta de estilo y longitud entre corchetes. Sin numeración, sin
+bullets, sin negritas.
+```
+
+Guarda el resultado como `TITULARES_30`. Conserva tanto la lista entera como el
+estilo de cada titular para poder filtrar después.
+
+---
+
+## PASO 7 — PAUSA INTERACTIVA B: elegir titular
+
+**No continúes sin respuesta del redactor.**
+
+De los 30 titulares devueltos, **selecciona automáticamente uno por cada estilo único** (los más fuertes según el orden en que los devolvió el `headline-generator`: el primer titular de cada estilo se considera el más representativo). Esto genera una **vista resumida** de 6-10 titulares, dependiendo de cuántos estilos se hayan usado.
+
+Muestra la selección representativa numerada del 1 al N, con su etiqueta de estilo entre paréntesis:
+
+```
+## 10 titulares representativos (uno por estilo)
+
+  1. [seo] {titular 1}
+  2. [primera-persona] {titular 2}
+  3. [oferta-directa] {titular 3}
+  4. [review-rapida] {titular 4}
+  5. [viral-comillas] {titular 5}
+  6. [clicbait-controlado] {titular 6}
+  7. [problema-solucion] {titular 7}
+  8. [urgencia] {titular 8}
+  9. [comparativa] {titular 9}
+  10. [uso-concreto] {titular 10}
+
+---
+¿Cuál quieres?
+  - Escribe el **número** del titular que prefieras (1-N)
+  - Escribe **"ver 30"** para ver los 30 candidatos completos agrupados por estilo
+  - Escribe **"editar N"** para tomar el titular N y dictarme cómo cambiarlo
+  - Escribe **"otra tanda"** para regenerar 30 titulares nuevos
+  - Escribe **el titular** que quieras tú directamente
+```
+
+Comportamientos posibles:
+
+- **El redactor escribe un número:** asigna `TITULAR_FINAL` al titular correspondiente.
+- **El redactor escribe "ver 30":** muestra los 30 agrupados por etiqueta de estilo, numerados del 1 al 30, y vuelve a esperar elección.
+- **El redactor escribe "editar N":** muestra el titular N y pide la nueva versión. Asigna `TITULAR_FINAL` a la versión modificada.
+- **El redactor escribe "otra tanda":** vuelve al Paso 6 con la instrucción adicional "regenera 30 titulares con un enfoque distinto al de la tanda anterior" y luego retorna a esta pausa.
+- **El redactor dicta un titular libre:** asigna `TITULAR_FINAL` al texto dictado tal cual.
+
+> No reescribas el titular dictado por el redactor salvo que viole frases vetadas explícitas. Si el dictado contiene una frase vetada, **avísalo** y pide confirmación antes de aplicar la corrección.
+
+---
+
+## PASO 8 — Subagente: writer
 
 Invoca el subagente `writer` con las siguientes instrucciones:
 
@@ -181,24 +251,23 @@ DATOS DEL PRODUCTO:
 TITULAR: {TITULAR_FINAL}
 
 GUIDELINE DEL MEDIO: lee el archivo guidelines/GUIDELINE-{MEDIO}.md y síguela
-estrictamente. Si hay conflicto entre estas instrucciones y la guideline, la
-guideline tiene prioridad.
+estrictamente. La guideline es la única fuente normativa: cómo se trata cada
+ángulo, qué recetas usar, qué voz aplicar y cómo arranca un artículo del medio
+está definido allí.
 
-ÁNGULOS Y SU ENFOQUE:
-- recomendacion-personal → voz en primera persona, experiencia directa, lenguaje cálido
-- liquidacion → urgencia real, precio mínimo histórico, CTA directo y temprano
-- comparativa → referencias a competidores o alternativas, tabla o lista si aplica
-- precio-psicologico → la barrera de precio como gancho principal, racionalización del gasto
-- uso-practico → escenarios de uso reales, quién lo necesita y para qué exactamente
-- tendencia → contexto de la tendencia, por qué ahora, perfil del comprador tipo
+EJEMPLOS PUBLICADOS: lee 2-3 archivos de knowledge/ejemplos-publicados/{MEDIO}/
+con un ángulo o categoría parecidos para calibrar voz, ritmo y vocabulario.
+Es OBLIGATORIO si la carpeta tiene archivos. Calibra, no copies estructura.
 
 FRONTMATTER REQUERIDO (incluirlo al inicio del draft en bloque YAML):
 ```yaml
+titulo: "{TITULAR_FINAL}"
 medio: {MEDIO}
 url_origen: {URL_PRODUCTO}
-asin: {ASIN_si_aplica_o_null}
+asin: {ASIN_si_aplica_o_omitir}
 fecha: {fecha_hoy_en_formato_YYYY-MM-DD}
 angulo: {ANGULO_FINAL}
+recetas: [...]
 estado: borrador
 ```
 
@@ -206,58 +275,60 @@ RUTA DE GUARDADO: drafts/{MEDIO}/{fecha_hoy_YYYYMMDD}-{slug-del-titular}.md
   El slug del titular: minúsculas, sin acentos, espacios reemplazados por guiones,
   máximo 50 caracteres.
 
+Antes de guardar, aplica el paso de auto-revisión anti-IA descrito en tu agent
+(paso 7). Cada coincidencia es una reescritura inmediata, no una nota para el editor.
+
 Genera el artículo completo, no un esquema ni un borrador parcial.
-Respeta longitud objetivo, estructura de headings, posición de imagen y CTA,
+Respeta longitud objetivo, estructura de anclajes fijos, posición de imagen y CTA,
 frases preferidas y frases vetadas definidas en la guideline.
-Incluye el disclaimer de afiliación en la posición especificada en la guideline.
+Incluye el disclaimer de afiliación en la posición especificada en la guideline
+(o no lo incluyas si la guideline indica que el CMS lo añade automáticamente).
 ```
 
 Guarda el resultado como `DRAFT_INICIAL` y la ruta como `RUTA_DRAFT`.
 
 ---
 
-## PASO 7 — Subagente: editor-in-chief
+## PASO 9 — Subagente: editor-in-chief
 
 Invoca el subagente `editor-in-chief` con las siguientes instrucciones:
 
 ```
 Realiza el pase editorial final de este artículo de oferta.
 
-ARTÍCULO A REVISAR:
-{DRAFT_INICIAL}
+RUTA DEL DRAFT: {RUTA_DRAFT}
 
 MEDIO DESTINO: {MEDIO}
 GUIDELINE DEL MEDIO: lee el archivo guidelines/GUIDELINE-{MEDIO}.md
+ÁNGULO APLICADO: {ANGULO_FINAL}
 
 CRITERIOS DE REVISIÓN (en orden de prioridad):
 1. Voz y tono: ¿suena a {MEDIO}? ¿Usa el registro correcto?
 2. Ángulo: ¿el artículo mantiene coherencia con el ángulo {ANGULO_FINAL} de
    principio a fin?
-3. Titular: ¿cumple con los límites de caracteres y el tono del medio?
+3. Titular: ¿se respeta tal cual lo confirmó el redactor en la pausa B?
 4. Frases vetadas: ¿hay alguna de las frases vetadas (globales o del medio)?
    Sustitúyelas.
 5. Frases preferidas: ¿se usan naturalmente las frases preferidas del medio?
 6. Longitud: ¿está dentro del rango objetivo de la guideline?
-7. Estructura: ¿los H2s cumplen su propósito según la guideline?
-8. CTA y disclaimer: ¿están en la posición correcta? ¿El disclaimer es el texto
-   exacto definido?
-9. Frontmatter: ¿está completo y correcto?
-10. Último párrafo: ¿cierra bien sin caer en frases de relleno?
+7. Estructura: ¿los anclajes fijos y las recetas elegidas cumplen su propósito?
+8. CTA y disclaimer: ¿posición correcta? ¿Texto literal del disclaimer?
+9. Frontmatter: ¿completo y correcto? Sin [PENDIENTE].
+10. Auto-revisión anti-IA: ¿queda alguna muletilla típica de IA, traducción
+    mecánica de specs o frase-resumen genérica? Reescríbela.
+11. Último párrafo: ¿cierra bien sin frases de relleno?
 
-Devuelve:
-- El artículo corregido completo (no solo los cambios)
-- Un listado breve de las correcciones realizadas (máximo 8 items)
-- Una valoración de 1-5 sobre qué tan alineado está con la guideline del medio
-  (5 = perfecto, 1 = requiere reescritura)
-
-Sobreescribe el archivo en {RUTA_DRAFT} con la versión corregida.
+Aplica las correcciones DIRECTAMENTE sobre el archivo con Edit. Devuelve:
+- Listado breve de las correcciones realizadas (máximo 8 items)
+- Valoración 1-5 de alineación con la guideline (5 = perfecto)
+- Confirmación de que el frontmatter está completo y sin [PENDIENTE]
 ```
 
-Guarda el resultado como `DRAFT_FINAL` y las correcciones como `LOG_CORRECCIONES`.
+Guarda las correcciones como `LOG_CORRECCIONES` y la valoración como `VALORACION`.
 
 ---
 
-## PASO 8 — Informe final al redactor
+## PASO 10 — Informe final al redactor
 
 Muestra el siguiente resumen:
 
@@ -272,12 +343,12 @@ Muestra el siguiente resumen:
 ### Correcciones del editor en jefe:
 {LOG_CORRECCIONES}
 
-**Alineación con la guideline:** {valoracion}/5
+**Alineación con la guideline:** {VALORACION}/5
 ```
 
 ---
 
-## PASO 9 — Bloque "Antes de cerrar"
+## PASO 11 — Bloque "Antes de cerrar"
 
 Muestra siempre este bloque al final, sin omitirlo:
 
@@ -292,6 +363,10 @@ Muestra siempre este bloque al final, sin omitirlo:
   ayuda manual? → Registra el dominio o patrón problemático en
   `knowledge/notas-degradacion.md` para tenerlo documentado.
 
+- ¿Ninguno de los 30 titulares te convenció y los regeneraste varias veces? →
+  Plantéate ajustar el bloque "Recetas de titular del medio" de la guideline para
+  acotar estilos o vocabulario.
+
 - ¿Has actualizado `medios.md` con la fecha de la última publicación en {MEDIO}?
 ```
 
@@ -300,7 +375,7 @@ Muestra siempre este bloque al final, sin omitirlo:
 ## Reglas de comportamiento general
 
 - **No inventes datos del producto.** Si la ficha está incompleta, espera a que el redactor la complete antes de continuar.
-- **No saltes la pausa interactiva del Paso 5.** El ángulo debe ser confirmado por el redactor, nunca asumido.
+- **No saltes las pausas interactivas.** La pausa A (ángulo) y la pausa B (titular) son obligatorias. El redactor las confirma siempre, nunca las asume el sistema.
 - **Si un subagente falla**, informa claramente qué subagente falló, por qué (si se sabe) y qué necesita el redactor para continuar.
-- **Mantén el estado** entre pasos: `FICHA_PRODUCTO`, `PROPUESTA_ANGULO`, `ANGULO_FINAL`, `TITULAR_FINAL`, `RUTA_DRAFT` deben estar disponibles en toda la sesión.
+- **Mantén el estado** entre pasos: `FICHA_PRODUCTO`, `PROPUESTA_ANGULO`, `ANGULO_FINAL`, `TITULARES_30`, `TITULAR_FINAL`, `RUTA_DRAFT`, `LOG_CORRECCIONES`, `VALORACION` deben estar disponibles en toda la sesión.
 - **Formato de fechas:** DD/MM/YYYY para mostrar al redactor, YYYY-MM-DD para el frontmatter del draft, YYYYMMDD para el nombre del archivo.

@@ -1,16 +1,26 @@
 ---
 medio: mundodeportivo
-version: 1
-ultima_actualizacion: 18/05/2026
-autor_referencia: Andrés Moncada
+version: 2.3
+ultima_actualizacion: 19/05/2026
+autores:
+  - nombre: Andrés Moncada
+    perfil: autor principal, firma el ~99% de los artículos de El Recomendador
+  - nombre: Javier Rosagro Moreiro
+    perfil: suplente vacacional; firma cuando Andrés Moncada está de vacaciones
 ejemplos_publicados:
-  - url: https://www.mundodeportivo.com/elrecomendador/ofertas/20260509/1004180368/smartwatches-gps-control-salud-haciendo-dudar-usuarios-apple-watch-mkt-alie.html
-  - url: https://www.mundodeportivo.com/elrecomendador/ofertas/20260508/1004180231/cargadores-gan-venden-20e-cargan-movil-portatil-tablet-maxima-velocidad.html
-  - url: https://www.mundodeportivo.com/elrecomendador/ofertas/20260507/1004179947/tablets-android-vendidas-amazon-estudiar-ver-series-navegar-desesperarse.html
-  - url: https://www.mundodeportivo.com/elrecomendador/ofertas/20260515/1004183115/tablas-paddle-surf-hinchables-oferta-medio-verano-viva-sobre-agua-mkt-alie.html
+  - path: knowledge/ejemplos-publicados/mundodeportivo/20260511-iphone-18-pro-max-rivales-baratos-7000-mah.md
+  - path: knowledge/ejemplos-publicados/mundodeportivo/20260512-escritorios-electricos-8-horas-ordenador.md
+  - path: knowledge/ejemplos-publicados/mundodeportivo/20260512-realme-buds-t500-pro-6-microfonos-ia.md
+  - path: knowledge/ejemplos-publicados/mundodeportivo/20260512-xiaomi-altavoces-pequenos-40-euros.md
+  - path: knowledge/ejemplos-publicados/mundodeportivo/20260514-loreal-men-expert-power-age-rutina.md
+  - path: knowledge/ejemplos-publicados/mundodeportivo/20260515-proyectores-rebajados-cual-comprar.md
 ---
 
 # Guideline editorial: mundodeportivo
+
+> **Cambio en v2:** el cuerpo del artículo ya no sigue un esqueleto fijo. Hay anclajes obligatorios (distintos entre mono-producto y multi-producto) y una paleta de recetas para el cuerpo libre. El writer elige 1-3 recetas según el producto, ángulo y tipo de oferta.
+
+---
 
 ## Identidad del medio
 
@@ -23,7 +33,7 @@ Audiencia principal: hombres que practican deporte, cuidan su bienestar y buscan
 ## Voz y tono
 
 - **Registro:** Cercano-experto. El tono es el de un experto en rendimiento deportivo que sabe dónde encontrar el mejor precio. Enérgico, saludable y muy práctico.
-- **Diferenciación clave:** No se habla de atributos estéticos o técnicos en abstracto; se anclan siempre a un beneficio activo. No "bonitas zapatillas", sino "las que necesitas para aguantar 10.000 pasos sin fatiga". No "televisor de 65 pulgadas", sino "vivir el próximo partido como si estuvieras en el palco".
+- **Diferenciación clave:** No se habla de atributos estéticos o técnicos en abstracto; se anclan siempre a un beneficio activo. No *"bonitas zapatillas"*, sino *"las que necesitas para aguantar 10.000 pasos sin fatiga"*. No *"televisor de 65 pulgadas"*, sino *"vivir el próximo partido como si estuvieras en el palco"*.
 - **Persona narradora:** Primera persona plural ("hemos seleccionado", "hemos puesto el foco", "os recomendamos").
 - **Tratamiento al lector:** Tuteo cuando hay interpelación directa; construcción impersonal en el resto.
 - **Sin exclamaciones.** El entusiasmo se transmite con verbos de movimiento: arrasar, aguantar, exprimir, potenciar, rendir, superar, resistir.
@@ -31,68 +41,156 @@ Audiencia principal: hombres que practican deporte, cuidan su bienestar y buscan
 
 ---
 
-## Longitud y estructura
+## Anclajes fijos
 
-- **Palabras objetivo:**
-  - 1 producto: 450-500 palabras
-  - 3-10 productos: 600-800 palabras
+Estos elementos están en todos los artículos, sin excepción. El resto del cuerpo es libre.
 
-- **Estructura esperada (observada en artículos publicados):**
+### Cabecera (común a todos los artículos)
+
+1. **H1 — Titular conversacional.** Formato: Marca + Beneficio activo + Señal de oferta.
+   Ejemplo: *"Estos smartwatches con GPS y control de salud están haciendo dudar incluso a usuarios de Apple Watch"*.
+2. **H2 — Etiqueta de categoría, TODO EN MAYÚSCULAS.** Categoría editorial del medio.
+   Ejemplos: *"DEPORTE Y DESCANSO"*, *"TECNOLOGÍA"*, *"HOGAR"*.
+3. **H2 — Subtítulo 1.** Frase que amplía el titular y refuerza la utilidad en la vida real.
+   Ejemplo: *"Más batería, métricas avanzadas y relojes que ya no dependen tanto del móvil"*.
+4. **H2 — Subtítulo 2.** Una segunda frase asertiva que complementa al subtítulo 1 desde un ángulo distinto (otro beneficio, otro perfil, otro escenario). Aporta volumen narrativo y refuerza el SEO sin repetir lo del subtítulo 1.
+   Ejemplo: *"La opción para quien viaja, entrena fuerte y no quiere depender del cargador a media jornada"*.
+
+> **Regla crítica para los dos subtítulos:** está **prohibido** empezar o contener formulaciones tipo *"Tres…"*, *"Los tres…"*, *"Estos tres…"*, *"3 [productos]…"* o cualquier cuantificador numérico del conjunto. Los subtítulos deben ser **originales totalmente**, anclados al beneficio o al escenario, nunca al recuento. El número de productos ya queda explícito en el H1 o en el primer H2 del cuerpo.
+
+5. **Imagen principal.** Justo después del bloque de titulares, antes del byline.
+6. **Byline.** Autor (`Andrés Moncada` por defecto, ~99% de los artículos; `Javier Rosagro Moreiro` solo cuando Moncada está de vacaciones) + fecha.
+7. **Lead "El Calentamiento" (sin heading).** 50-80 palabras, 2-3 párrafos. Conecta el producto con una situación cotidiana concreta y explica por qué es el momento de comprarlo (oferta, cambio de temporada, renovar equipo). Usa negritas en los 2-3 beneficios clave de cada párrafo.
+8. **Primer H2 del cuerpo.** Marca la entrada al cuerpo libre. En multi-producto suele ser el H2 temático ("3 smartwatches que…"); en mono-producto puede ser cualquier H2 que enganche con el ángulo elegido.
+
+### Cierre (común a todos los artículos)
+
+9. **Cierre aspiracional (2 párrafos, sin heading).**
+   - **P1:** Refuerza que una buena elección hoy es menos esfuerzo mañana.
+   - **P2 OBLIGATORIO (textual, sin modificar):**
+     > "En la sección El Recomendador de Mundo Deportivo puedes encontrar más ofertas y comparativas valiosas para equipar tu día a día, ya sea para mejorar tus entrenamientos o para encontrar la mejor tecnología al mejor precio, siempre con un criterio honesta y profesional."
+
+> ⚠️ El disclaimer de afiliación **no se incluye en el draft**: lo inserta automáticamente el CMS de Mundo Deportivo.
+
+---
+
+## Layouts y cuerpo libre
+
+Hay dos layouts según el número de productos. El cuerpo libre se aplica entre el anclaje 8 (primer H2 del cuerpo) y el anclaje 9 (cierre).
+
+### Layout mono-producto (450-500 palabras, 1 producto)
+
+Estructura:
 
 ```
-H1: Titular conversacional
-    Formato: Marca + Beneficio activo + Señal de oferta
-    Ejemplo: "Estos smartwatches con GPS y control de salud están haciendo dudar incluso a usuarios de Apple Watch"
-
-H2 (etiqueta de categoría, TODO EN MAYÚSCULAS): categoría editorial
-    Ejemplo: "DEPORTE Y DESCANSO", "TECNOLOGÍA", "HOGAR"
-
-H2 (subtítulo): frase que amplía el titular y refuerza la utilidad en la vida real
-    Ejemplo: "Más batería, métricas avanzadas y relojes que ya no dependen tanto del móvil"
-
-[Imagen principal] ← justo después de los titulares, antes del byline
-
-[Byline]: autor + fecha
-
-Lead / "El Calentamiento" (50-80 palabras, 2-3 párrafos):
-    Conecta el producto con una situación cotidiana concreta.
-    Explica por qué es el momento de comprarlo (oferta, cambio de temporada, renovar equipo).
-    Usa negritas en los 2-3 beneficios clave de cada párrafo.
-
-H2: Título creativo del grupo de productos (si hay varios)
-    Formato: "[Nº] [productos] que [beneficio activo]"
-    Ejemplo: "3 smartwatches que controlan salud, deporte y descanso"
-
-    H3: "Marca Modelo: beneficio activo principal"
-        [Imagen del producto] con pie de foto "Marca/Tienda"
-        2-3 párrafos descriptivos (negritas en beneficios clave, sin exclamaciones)
-        Lista de 2-3 características clave (bullets cortos)
-        [Widget CTA / pricebox] ← iframe themonetise embebido
-
-    (Repetir H3 por cada producto adicional)
-
-H3: "Criterios de El Recomendador: por qué hemos seleccionado esto"
-    Un párrafo denso. Explica los 3-4 aspectos analizados:
-    durabilidad, relación calidad-precio frente a competencia, versatilidad para el usuario activo.
-
-Cierre aspiracional (2 párrafos):
-    P1: Refuerza que una buena elección hoy es menos esfuerzo mañana.
-    P2 OBLIGATORIO (textual, sin modificar):
-    "En la sección El Recomendador de Mundo Deportivo puedes encontrar más ofertas y
-    comparativas valiosas para equipar tu día a día, ya sea para mejorar tus
-    entrenamientos o para encontrar la mejor tecnología al mejor precio, siempre con
-    un criterio honesta y profesional."
+[Cabecera 1-6]
+[Primer H2 del cuerpo (anclaje 7)]
+  → 1-2 recetas de la paleta (cuerpo libre)
+  → Widget pricebox (iframe themonetise) tras la descripción del producto
+[Cierre 8]
 ```
 
-- **Posición de la imagen principal:** Después del H1 y subtítulos (bloque de titulares), antes del byline y cuerpo del artículo.
+### Layout multi-producto (600-800 palabras, 3-10 productos)
 
-- **CTA / widget de compra:**
-  - Formato: iframe embebido (pricebox de themonetise.es). No es un botón de texto.
-  - Muestra: imagen del producto + nombre + precio original tachado + precio actual + nombre de la tienda.
-  - Ejemplo visual: `Aliexpress 299,00€ 198,00€`
-  - Nota al pie del widget: `*Precios actualizados cada 24 horas.`
-  - Posición: inmediatamente después de la descripción de cada producto (H3).
-  - El redactor facilita la URL del producto; el sistema genera el enlace de afiliación.
+Estructura:
+
+```
+[Cabecera 1-6]
+[Primer H2 temático del cuerpo (anclaje 7)]
+   Formato: "[Nº] [productos] que [beneficio activo]"
+   Ejemplo: "3 smartwatches que controlan salud, deporte y descanso"
+
+   [H3 por producto]: "Marca Modelo: beneficio activo principal"
+       [Imagen del producto + pie de foto "Marca/Tienda"]
+       2-3 párrafos descriptivos en prosa (negritas en beneficios clave)
+       Lista de 2-3 características clave (bullets cortos, complementarios)
+       [Widget pricebox]
+   (Repetir H3 por cada producto)
+
+→ 1 receta global de la paleta (típicamente `criterios-el-recomendador`)
+[Cierre 8]
+```
+
+En multi-producto el cuerpo libre se aplica **una sola vez** (a nivel global, no por producto). Cada bloque de producto sigue la sub-estructura H3 fija que ves arriba.
+
+---
+
+## Cuerpo libre: paleta de recetas
+
+El writer elige **1-3 recetas** de la paleta y las combina en el orden que mejor sirva al producto, ángulo y tipo de oferta. Cada receta es un patrón de sección, no un molde.
+
+### Recetas disponibles
+
+**`specs-traducidas`** — Convertir 2-3 especificaciones técnicas en beneficios activos cotidianos.
+Cuándo usarla: producto con specs que sin contexto no dicen nada.
+Ejemplo: *"600 nits de brillo"* → *"se ve perfectamente al sol del entrenamiento de la mañana"*.
+
+**`para-quien-si-para-quien-no`** — Segmenta honestamente: a qué tipo de usuario activo le merece la pena y a quién no.
+Cuándo usarla: producto polarizante o con perfil de usuario claro. Refuerza honestidad y rompe el tono publicitario.
+
+**`comparativa-corta`** — Sitúa el producto frente a un referente conocido (categoría o competidor directo).
+Cuándo usarla: ángulo `comparativa`. Regla dura: no inventar precios ni specs de la competencia.
+
+**`contexto-de-mercado`** — Explica por qué este precio es noticia: mínimo histórico, ganga histórica, fin de temporada, cambio de generación.
+Cuándo usarla: ángulo `liquidacion` o `precio-psicologico`.
+
+**`microhistoria-de-uso`** — Mini-escenario activo: un trayecto al trabajo, el entrenamiento de la mañana, el descanso tras el partido. 3-4 frases.
+Cuándo usarla: ángulo `uso-practico`. Conecta el producto con la rutina activa del lector.
+
+**`cuando-no-comprarlo`** — Una o dos razones honestas por las que NO comprarlo.
+Cuándo usarla: refuerza credibilidad. **Reservada como H3/H2 propio para `recomendacion-personal` y reviews largos.** En ángulos donde el precio es la noticia (`liquidacion`, `precio-psicologico`), se aplica como **matiz integrado** dentro de otra receta (1-2 frases honestas), nunca como sección propia. El peso narrativo en una oferta agresiva pertenece al precio y al beneficio activo, no al contra.
+
+**`faq-corta`** — 2-3 preguntas reales que un comprador activo se hace, con respuestas breves.
+Cuándo usarla: producto con dudas técnicas concretas. **No** se usa como SEO-bait inventado.
+
+**`vision-de-marca`** — Reputación y volumen de ventas como dato de confianza (E-E-A-T natural).
+Cuándo usarla: ángulo `recomendacion-personal` o cuando la marca es el argumento.
+Ejemplos: *"Garmin sigue siendo referencia para corredores por una razón clara…"*, *"acumula valoraciones muy positivas por…"*.
+
+**`momento-cultural`** — Conexión con temporada deportiva o evento (Champions, Tour, vuelta al gym tras vacaciones, primer frío).
+Cuándo usarla: ángulo `tendencia`.
+
+**`criterios-el-recomendador`** — Receta firma del medio. Un párrafo denso bajo el H3 *"Criterios de El Recomendador: por qué hemos seleccionado esto"*. Explica los 3-4 aspectos analizados: durabilidad, relación calidad-precio frente a competencia, versatilidad para el usuario activo.
+Cuándo usarla: **recomendable** en multi-producto. Opcional en mono-producto.
+
+**`truco-de-experto-integrado`** — **No es una sección propia.** Es una indicación: integra un consejo práctico dentro de cualquier otra receta, sin etiquetarlo como "truco".
+
+---
+
+### Mapa orientativo ángulo → recetas típicas
+
+Sugerencia, no obligación. El writer puede combinar de otra forma si lo justifica.
+
+| Ángulo | Recetas que suelen funcionar |
+|---|---|
+| `liquidacion` | `contexto-de-mercado` + `vision-de-marca` (o `specs-traducidas`) |
+| `comparativa` | `comparativa-corta` + `specs-traducidas` |
+| `precio-psicologico` | `contexto-de-mercado` + `microhistoria-de-uso` |
+| `uso-practico` | `microhistoria-de-uso` + `para-quien-si-para-quien-no` |
+| `recomendacion-personal` | `vision-de-marca` + `specs-traducidas` |
+| `tendencia` | `momento-cultural` + `para-quien-si-para-quien-no` |
+
+En **multi-producto** se recomienda añadir además `criterios-el-recomendador` como receta global final.
+
+---
+
+### Reglas de uso del cuerpo libre
+
+- **Entre 1 y 3 recetas como máximo** en el cuerpo libre (en multi-producto, esto se aplica a nivel global, no por producto).
+- **No repetir la misma receta dos veces** en el mismo artículo.
+- **En `liquidacion` y `precio-psicologico`, los contras se integran como una frase corta** dentro de otra receta. Nunca como sección con H2/H3 propio. El peso narrativo pertenece al precio y al beneficio activo.
+- **El orden lo decide el writer** según lo que sirva al producto, no según una plantilla.
+- **`truco-de-experto-integrado` no cuenta** como una de las 1-3 recetas: se aplica dentro de otra.
+- **El writer debe justificar internamente** (en su output interno, no en el draft) qué recetas eligió y por qué, en una sola línea. Ejemplo: *"Recetas: microhistoria-de-uso + criterios-el-recomendador. Tres tablets para uso multitarea, conviene mostrar escenarios concretos."*. Esto le permite al editor-in-chief validar la decisión.
+
+---
+
+## Longitud orientativa
+
+- **Mono-producto:** 450-500 palabras.
+- **Multi-producto (3-10):** 600-800 palabras.
+
+Tolerancia ±10%. No hay mínimos por sección: lo importante es que cada receta usada tenga peso real.
 
 ---
 
@@ -110,10 +208,24 @@ Cierre aspiracional (2 párrafos):
 
 ## E-E-A-T natural
 
-Mencionar la fiabilidad de la marca y el volumen de valoraciones positivas como **dato de confianza**, no como publicidad. Ejemplos:
-- "acumula valoraciones muy positivas por..."
-- "Garmin sigue siendo referencia para corredores por una razón clara..."
-- "Samsung está liderando ese cambio con modelos que ya compiten de tú a tú en..."
+Mencionar la fiabilidad de la marca y el volumen de valoraciones positivas como **dato de confianza**, no como publicidad. Cuando aplique, esto entra dentro de la receta `vision-de-marca`. Ejemplos:
+
+- *"acumula valoraciones muy positivas por…"*
+- *"Garmin sigue siendo referencia para corredores por una razón clara…"*
+- *"Samsung está liderando ese cambio con modelos que ya compiten de tú a tú en…"*
+
+---
+
+## CTA / widget de compra
+
+- **Formato:** iframe embebido (pricebox de themonetise.es). No es un botón de texto.
+- **Muestra:** imagen del producto + nombre + precio original tachado + precio actual + nombre de la tienda.
+- **Ejemplo visual:** `Aliexpress 299,00€ 198,00€`.
+- **Nota al pie del widget:** `*Precios actualizados cada 24 horas.`
+- **Posición:**
+  - Mono-producto: inmediatamente después de la descripción del producto.
+  - Multi-producto: inmediatamente después de cada H3 de producto.
+- El redactor facilita la URL del producto; el sistema genera el enlace de afiliación.
 
 ---
 
@@ -144,7 +256,7 @@ Mencionar la fiabilidad de la marca y el volumen de valoraciones positivas como 
 ## Compliance afiliación
 
 - **Disclaimer obligatorio:** No aplica en el cuerpo del artículo. El disclaimer de afiliación lo inserta automáticamente el CMS de Mundo Deportivo. El redactor no debe añadirlo al draft.
-- **Formato del enlace de afiliación:** Widget iframe (pricebox themonetise.es). El redactor facilita la URL y el sistema genera el enlace trazado.
+- **Formato del enlace de afiliación:** widget iframe (pricebox themonetise.es). El redactor facilita la URL y el sistema genera el enlace trazado.
 
 ---
 
@@ -157,6 +269,48 @@ Mencionar la fiabilidad de la marca y el volumen de valoraciones positivas como 
 
 ---
 
+## Recetas de titular del medio
+
+El `headline-generator` consulta esta sección antes de producir los 30 candidatos. Lo que aquí se diga **sobrescribe** el manual universal (`knowledge/headline-recipes.md`).
+
+### Estilos prioritarios para Mundo Deportivo
+
+Por orden de uso real en los artículos publicados:
+
+1. **`problema-solucion`** — Plantea un escenario activo cotidiano (jornada de gym, ocho horas frente al ordenador, partido en la terraza) y presenta el producto como respuesta. Es el estilo dominante de El Recomendador. *"Estos escritorios eléctricos son las compras más llevaderas para 8 horas delante del ordenador"*.
+2. **`uso-concreto`** — Anclar el producto a una situación activa: gym, viaje, descanso, fin de semana, vuelta al trabajo. *"3 proyectores rebajados que resuelven la gran duda: cuál comprar para tu bolsillo y para donde vas"*.
+3. **`comparativa`** — Producto frente a un referente conocido (modelo top, generación anterior o categoría rival). *"Se habla de una autonomía histórica del iPhone 18 Pro Max, pero estos rivales baratos se adelantaron"*.
+4. **`oferta-directa`** — Marca + verbo de movimiento + producto + beneficio activo. *"Xiaomi tiene altavoces pequeños y potentes por 40 euros que caben en la mochila"*.
+5. **`viral-comillas`** — Frase entrecomillada o entre comillas internas. Se admite, en clave más sobria que medios virales. *"Habla de autonomía histórica… pero estos rivales ya se adelantaron"*.
+6. **`urgencia`** — Funciona en clave de oportunidad temporal (cupones, fin de temporada, stock). *"Esta oferta de proyectores tiene pinta de durar poco, sobre todo si juegas o ves cine en casa"*.
+
+### Estilos secundarios
+
+- **`seo`** — Admisible pero menos frecuente. Cuando se use, mantener el formato conversacional propio del medio, no de ficha técnica.
+- **`primera-persona`** — Admitida en plural editorial ("hemos seleccionado", "hemos puesto el foco"). Coincide con la voz del medio.
+- **`clicbait-controlado`** — Aceptable. *Bestia*, *joya*, *rey*, *bombazo* sí pueden encajar con la voz activa del público.
+
+### Restricciones específicas del medio
+
+- **Formato obligatorio del H1:** Marca + Beneficio activo + Señal de oferta. Conversacional, no de ficha técnica.
+- **Verbos de movimiento preferidos** (úsalos en titulares cuando proceda): arrasar, aguantar, exprimir, potenciar, rendir, superar, resistir, adelantarse, ganar.
+- **Cifras en euros en el titular:** evitar la cifra exacta como gancho principal. Sí pueden aparecer como referencia limpia ("por 40 euros", "menos de 100 euros") cuando la ficha lo respalda. No aparece nunca la coma decimal con céntimos (`39,99€`) en el titular.
+- **Porcentaje de descuento:** se admite con el símbolo pegado al número (`40%`). Especialmente útil en `oferta-directa`.
+- **Sin exclamaciones**, sin mayúsculas innecesarias, sin emojis.
+- **Sin "¡corre!", "¡vuela!", "¡date prisa!"** ni equivalentes.
+- **Vocabulario de España permitido y recomendado:** gym, zapas, cascos, pantalla, chollo, ganga histórica, precio mínimo, "de tú a tú", "en el día a día".
+- **Longitud objetivo:** 80-110 caracteres (optimización Discover + MUVERA). Permite cierto margen sobre La Razón por el tono más conversacional.
+
+### Vocabulario potente recomendado para esta voz
+
+bestia · joya · rey · bombazo · chollo · ganga histórica · precio mínimo · arrasa · aguanta · exprime · potencia · rinde · supera · adelanta · se cuela · se pone a tiro · de tú a tú · cambia la jugada.
+
+### Vocabulario desaconsejado
+
+"el mejor del mercado", "imperdible", "increíble", "revolucionario", "sorprendente", "diseño ergonómico". Cualquier hipérbole publicitaria directa o frase con signo de exclamación.
+
+---
+
 ## Frontmatter requerido en el draft
 
 ```yaml
@@ -166,17 +320,21 @@ precio: ...
 enlace_afiliado: ...
 medio: mundodeportivo
 angulo: ...
-autor: Andrés Moncada
+recetas: [...]              # nuevo en v2: lista de recetas usadas
+layout: mono-producto | multi-producto
+autor: Andrés Moncada   # por defecto; usar `Javier Rosagro Moreiro` solo si Moncada está de vacaciones
 fecha: YYYY-MM-DD
 fuente: playwright | manual
 estado: borrador
 ```
 
+Los campos `recetas` y `layout` son nuevos en v2 y permiten al editor-in-chief validar la decisión sin inferirla del texto.
+
 ---
 
 ## Notas adicionales
 
-- El campo `autor` en los artículos publicados es **Andrés Moncada** (redactor principal de la sección).
-- Los artículos de múltiples productos usan H3 para cada modelo dentro de un H2 temático, no H2 independientes por producto.
+- El campo `autor` en los artículos publicados es **Andrés Moncada** por defecto (firma el ~99% de los artículos de El Recomendador). **Javier Rosagro Moreiro** solo aparece como suplente cuando Moncada está de vacaciones. El writer debe poner Andrés Moncada salvo que el redactor humano indique lo contrario.
+- Los artículos multi-producto usan H3 para cada modelo dentro de un H2 temático, no H2 independientes por producto.
 - Las listas de características (bullets) aparecen dentro de cada bloque de producto como complemento a la redacción continua, no como sustituto. El cuerpo principal siempre es prosa.
-- El párrafo final obligatorio ("En la sección El Recomendador...") aparece tal cual en todos los artículos analizados; no modificar.
+- El párrafo final obligatorio ("En la sección El Recomendador…") aparece tal cual en todos los artículos; no modificar.

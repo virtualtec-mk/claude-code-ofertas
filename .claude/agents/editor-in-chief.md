@@ -58,14 +58,28 @@ Si no hay guideline, el rango aceptable es 630-990 palabras (tolerancia del ±10
 
 ---
 
-#### 2. Estructura de headings correcta según guideline
+#### 2. Anclajes fijos presentes + cuerpo libre coherente con las recetas declaradas
 
-Compara la estructura de headings del draft (H1, H2, H3) con la estructura definida en la guideline.
+La guideline define dos cosas distintas que se validan por separado:
 
-- Los headings deben coincidir en jerarquía y orden con los de la guideline
-- Los títulos exactos de los headings pueden variar en función del producto, pero la jerarquía y el número de secciones debe ser fiel
-- Si falta un heading requerido: añádelo con contenido mínimo coherente
-- Si hay un heading que no debería estar: evalúa si su contenido puede integrarse en otro heading existente antes de eliminarlo
+**(a) Anclajes fijos del medio**
+Son los elementos que están en todos los artículos del medio, siempre y en orden (titular, bajada, introducción, primer H2 del cuerpo, cierre, disclaimer, párrafos obligatorios literales si los hay). Verifica que:
+- Todos los anclajes fijos están presentes.
+- Están en el orden que indica la guideline.
+- Los textos literales obligatorios (ej. en mundodeportivo el párrafo final "En la sección El Recomendador…") aparecen tal cual, sin modificaciones.
+
+Si falta un anclaje fijo: añádelo con contenido mínimo coherente. Si un literal obligatorio está modificado: restáuralo al texto exacto.
+
+**(b) Cuerpo libre — coherencia con `recetas` del frontmatter**
+El cuerpo libre del artículo está entre el primer H2 y el cierre. La guideline define una paleta de recetas; el writer elige 1-3 y las declara en el campo `recetas` del frontmatter. Verifica que:
+- El campo `recetas` está presente, contiene entre 1 y 3 entradas, y todas pertenecen a la paleta de la guideline.
+- Cada receta declarada se identifica razonablemente en el cuerpo (no se exige una marca explícita: vale si el contenido aplica el patrón de esa receta).
+- No hay secciones gigantes que correspondan a recetas no declaradas (señal de que el writer improvisó sin actualizar el frontmatter).
+- `truco-de-experto-integrado` **no debe** aparecer en `recetas` (no es una receta independiente).
+
+Si una receta declarada no se aplica realmente en el cuerpo: marca como ⚠️ y elimina la entrada del frontmatter o pide al redactor que reinvoque al writer. Si una receta aplicada no está declarada: añádela al frontmatter.
+
+**No valides** orden, número, ni títulos exactos de los H2 del cuerpo libre. Esa libertad de composición es deliberada (v2): dos artículos del mismo medio pueden tener formas distintas.
 
 ---
 
@@ -121,6 +135,8 @@ Verifica que el frontmatter YAML contiene exactamente estos campos con valores v
 | `asin` | Solo si aplica | 10 caracteres alfanuméricos |
 | `fecha` | Sí | YYYY-MM-DD |
 | `angulo` | Sí | uno de los 6 ángulos en kebab-case |
+| `recetas` | Sí | lista YAML de 1-3 recetas en kebab-case, todas presentes en la paleta de la guideline |
+| `layout` | Solo si la guideline distingue layouts | `mono-producto` o `multi-producto` |
 | `estado` | Sí | Debe ser exactamente `borrador` |
 
 Correcciones:

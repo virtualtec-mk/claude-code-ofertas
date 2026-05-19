@@ -17,7 +17,7 @@ Si detectas que la tabla está desincronizada con los archivos de `/guidelines/`
 | Medio | Tipo | Tono | Longitud | Disclaimer afiliación | Última publicación | Estado guideline |
 |---|---|---|---|---|---|---|
 | `mundodeportivo` | deportes | cercano-experto / enérgico | 450-500 (1 prod.) / 600-800 (3-10 prod.) | Lo gestiona el CMS | — | ✅ activa |
-| `larazon` | generalista / consumo y estilo de vida | cercano-directo / autoridad tranquila | 400-600 (oferta simple) / 1.500-2.000 (análisis) | Texto propio (ver guideline) | — | ⚠️ borrador (importada de GPT) |
+| `larazon` | generalista / consumo y estilo de vida | cercano-directo / autoridad tranquila | 400-600 (oferta simple) / 1.500-2.000 (análisis) | Texto propio (ver guideline) | 19/05/2026 | ✅ activa |
 
 ---
 
