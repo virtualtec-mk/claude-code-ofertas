@@ -1,0 +1,47 @@
+============================================================
+CONFIGURACION LOCAL DE RADAR_EDITORIAL
+============================================================
+
+Fecha: 19/05/2026
+
+Objetivo:
+  Permitir que cualquier redactor use /buscar-ofertas desde local sin
+  guardar credenciales reales en GitHub.
+
+Pasos:
+
+1. Actualiza el repositorio:
+
+   git pull
+
+2. Copia el archivo de ejemplo:
+
+   copy .env.example .env
+
+3. Abre .env y sustituye:
+
+   RADAR_AGENT_API_TOKEN=pon-aqui-el-token-real
+
+   por el token compartido del equipo.
+
+4. Comprueba que la URL queda asi:
+
+   RADAR_BASE_URL=https://web-production-6fbc3.up.railway.app/
+
+5. En PowerShell, antes de lanzar la skill, carga las variables:
+
+   Get-Content .env | ForEach-Object {
+     if ($_ -match '^\s*([^#][^=]+)=(.*)$') {
+       [Environment]::SetEnvironmentVariable($matches[1].Trim(), $matches[2].Trim(), 'Process')
+     }
+   }
+
+6. Ejecuta:
+
+   /buscar-ofertas
+
+Notas de seguridad:
+  - .env esta ignorado por Git y no debe subirse.
+  - .env.example si se sube, pero solo contiene nombres de variables y
+    valores no sensibles.
+  - Si un token real se sube por error, hay que rotarlo en radar_editorial.

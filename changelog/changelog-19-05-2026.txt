@@ -6,3 +6,5 @@ CHANGELOG — 19/05/2026
 [16:32] Creado plan de implementación en docs/plans/2026-05-19-001-feat-radar-editorial-fuente-principal-plan.md. Incluye endpoint JSON autenticado en radar_editorial, cliente local, cambio de /buscar-ofertas y auditoría de fuentes semilla.
 [17:20] Implementado flujo radar_editorial como fuente principal: cliente radar-catalog-client, /buscar-ofertas sin fallback automatico, docs de integracion y UAT.
 [17:45] Subido a GitHub commit 60fa58e: https://github.com/virtualtec-mk/claude-code-ofertas/commit/60fa58e
+[17:58] Ejecutada busqueda de ofertas de moviles AliExpress con radar_editorial. Seleccionadas 5 candidatas y registrado historial en historial/2026-05-19-sesion-1.md.
+[18:05] Aniadida configuracion local segura para radar_editorial: .env.example sin secretos reales y guia docs/configuracion-local-radar.txt para redactores.

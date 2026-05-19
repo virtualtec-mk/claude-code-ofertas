@@ -63,8 +63,20 @@ Sin argumentos. La skill te pregunta interactivamente medio, anunciante y watchl
 - **Claude Code** instalado.
 - **Plugin Playwright MCP** activo (ya requerido por el proyecto hermano).
 - **`claude-code-text-agents` clonado en `../claude-code-text-agents/`** con guidelines.
+- **Variables de entorno de `radar_editorial`** configuradas en local.
 
 Detalles en [`docs/instalacion.txt`](docs/instalacion.txt).
+
+### Configuracion local de `radar_editorial`
+
+El flujo `/buscar-ofertas` necesita estas variables:
+
+```text
+RADAR_BASE_URL
+RADAR_AGENT_API_TOKEN
+```
+
+Copia `.env.example` como `.env`, rellena el token real y carga esas variables en tu terminal antes de ejecutar la skill. El archivo `.env` no se sube a GitHub. Guia paso a paso en [`docs/configuracion-local-radar.txt`](docs/configuracion-local-radar.txt).
 
 ---
 

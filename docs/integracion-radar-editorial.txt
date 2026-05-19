@@ -13,6 +13,11 @@ Variables necesarias:
   RADAR_BASE_URL
   RADAR_AGENT_API_TOKEN
 
+Configuracion local:
+  Copiar .env.example como .env y rellenar RADAR_AGENT_API_TOKEN con el
+  token compartido del equipo. El archivo .env no se sube a GitHub.
+  Ver docs/configuracion-local-radar.txt.
+
 Endpoint:
   GET {RADAR_BASE_URL}/api/editorial/offers/
 
