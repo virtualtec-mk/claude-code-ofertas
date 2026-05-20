@@ -22,7 +22,7 @@
       "Write(../claude-code-text-agents/inbox/**)",
       "Edit(watchlists/**)"
     ],
-    "deny": [
+    "allow": [
       "Bash(*)",
       "Write(../claude-code-text-agents/guidelines/**)",
       "Write(../claude-code-text-agents/drafts/**)"
