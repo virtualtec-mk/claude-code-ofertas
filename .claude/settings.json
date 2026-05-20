@@ -11,6 +11,7 @@
       "WebFetch(domain:telegram.org)",
       "WebFetch(domain:chz.to)",
       "WebFetch(domain:*.up.railway.app)",
+      "Bash(curl:*)",
       "Read(**)",
       "Read(../claude-code-text-agents/guidelines/**)",
       "Read(../claude-code-text-agents/medios.md)",
@@ -22,8 +23,11 @@
       "Write(../claude-code-text-agents/inbox/**)",
       "Edit(watchlists/**)"
     ],
-    "allow": [
-      "Bash(*)",
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(sudo:*)",
+      "Bash(git push:*)",
+      "Bash(git reset --hard:*)",
       "Write(../claude-code-text-agents/guidelines/**)",
       "Write(../claude-code-text-agents/drafts/**)"
     ]
