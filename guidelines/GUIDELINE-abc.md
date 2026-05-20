@@ -33,6 +33,8 @@ ejemplos_publicados:
 
 # Guideline editorial: abc
 
+> **Lectura obligatoria previa:** antes que esta guideline, leer `knowledge/manifiesto-editorial.md`. Es el documento fundacional del proyecto. Esta guideline define el **cómo** de ABC (voz, recetas, frases preferidas y vetadas); el manifiesto define el **para qué** (ayudar al lector a decidir qué comprar, cuándo y si merece la pena). Cuando entren en tensión, manda el manifiesto.
+
 > **Sobre esta guideline (v1.0):** primera versión del medio, generada a partir del prompt del GPT personalizado "ABC Favorito". Cuando haya 3-5 artículos publicados en producción, descárgalos a `knowledge/ejemplos-publicados/abc/` para calibrar voz real y refinar esta guideline.
 
 ---
@@ -285,6 +287,20 @@ Si la respuesta es sí, la frase es genérica de IA y hay que reescribirla con u
 - ✅ *"La pantalla pasa de 600 a 800 nits respecto al modelo del año pasado; en una terraza al mediodía, eso es la diferencia entre ver bien y no ver nada."*
 
 Aplicar este test es obligatorio antes de entregar el draft. El editor-in-chief lo aplica de nuevo en su pasada final.
+
+---
+
+### Patrones específicos vetados en ABC (refuerzo transversal)
+
+Estos moldes son **rechazo automático** en la pasada del editor-in-chief, además de los patrones transversales de `knowledge/frases-vetadas.md`:
+
+1. **Catálogo de oferta-precio-stock-valoraciones.** ABC tiene voz prescriptiva y aspiracional: un artículo no es la traducción de la ficha de Amazon. Si un bloque de producto solo dice "precio actual, PVP, descuento, mínimo de 30 días, stock, valoraciones, estrellas y ranking", está mal redactado. Cada bloque lleva **60-70% de descripción editorial del producto** (qué es, qué herencia técnica trae, para qué encaja, qué lo distingue de los modelos vecinos) y **20-30% de marco de oferta o precio**. Que el ángulo sea `liquidacion` no es excepción: el precio es la **noticia** que justifica publicar hoy; el artículo cuenta los productos. Ver regla transversal en `knowledge/frases-vetadas.md` → sección "Catálogo de oferta-precio-stock-valoraciones".
+
+2. **Meta-análisis de reseñas expuesto al lector.** Las valoraciones, el número de reseñas, las estrellas y el "patrón de comentarios" son **insumo interno** del writer para construir su criterio: no aparecen en el cuerpo. ABC prefiere afirmar el insight como juicio editorial directo ("la diadema aguanta una jornada de oficina") y nunca como ("según las reseñas, la diadema es cómoda"). Ver regla transversal en `knowledge/frases-vetadas.md` → sección "Meta-análisis de reseñas expuesto al lector".
+
+3. **Naming marca + modelo.** Cuando un heading o el cuerpo nombra marca y modelo de un producto reconocible, **siempre van juntos y en ese orden: primero la marca, después el modelo** ("Auriculares Sony WH-1000XM5", no "Auriculares WH-1000XM5 Sony"). Nunca se intercala texto ni se pospone la marca al modelo. Ver regla transversal en `knowledge/naming-productos.md`.
+
+4. **Jerga de ficha de Amazon.** Prohibido en cuerpo: `colorway` (decir "color" o "combinación de color"), `variante` como sinónimo de color, `SKU`, `ASIN`, `ref.`. Prohibido transcribir literal nombres internos de variantes de Amazon en inglés ("Navy White Red", "Ftwwhite Optimumblue Gum"): se traducen a descripciones cromáticas en español natural. Prohibida la meta-narrativa del proceso ("cuando se escribe este artículo", "en el momento de la consulta"). Ver regla transversal en `knowledge/frases-vetadas.md` → "Jerga de ficha de Amazon y meta-narrativa del proceso".
 
 ---
 

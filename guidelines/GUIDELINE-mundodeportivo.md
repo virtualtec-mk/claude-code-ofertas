@@ -18,6 +18,8 @@ ejemplos_publicados:
 
 # Guideline editorial: mundodeportivo
 
+> **Lectura obligatoria previa:** antes que esta guideline, leer `knowledge/manifiesto-editorial.md`. Es el documento fundacional del proyecto. Esta guideline define el **cómo** de Mundo Deportivo (voz, anclajes, recetas, frases preferidas y vetadas); el manifiesto define el **para qué** (ayudar al lector a decidir qué comprar, cuándo y si merece la pena). Cuando entren en tensión, manda el manifiesto.
+
 > **Cambio en v2:** el cuerpo del artículo ya no sigue un esqueleto fijo. Hay anclajes obligatorios (distintos entre mono-producto y multi-producto) y una paleta de recetas para el cuerpo libre. El writer elige 1-3 recetas según el producto, ángulo y tipo de oferta.
 
 ---
@@ -301,6 +303,20 @@ Si la respuesta es sí, la frase es genérica de IA y hay que reescribirla con u
 - ✅ *"La suela amortiguada absorbe el impacto de los primeros 5.000 pasos y por eso aguanta una jornada completa de gym + recados."*
 
 Aplicar este test es obligatorio antes de entregar el draft. El editor-in-chief lo aplica de nuevo en su pasada final.
+
+---
+
+### Patrones específicos vetados en Mundo Deportivo (refuerzo transversal)
+
+Estos moldes son **rechazo automático** en la pasada del editor-in-chief, además de los patrones transversales de `knowledge/frases-vetadas.md`:
+
+1. **Catálogo de oferta-precio-stock-valoraciones.** Mundo Deportivo escribe sobre el rendimiento y el uso real del producto: un bloque no puede ser la traducción de la ficha. Si solo dice "precio actual, PVP, descuento, mínimo de 30 días, stock, valoraciones, estrellas y ranking", está mal redactado. Cada bloque lleva **60-70% de descripción editorial del producto** (qué hace por el deportista, cómo se comporta en su uso típico, qué tecnología real aporta, qué lo distingue de los rivales del lote) y **20-30% de marco de oferta o precio**. Que el ángulo sea `liquidacion` o `descuento-real` no es excepción: el precio justifica publicar **hoy**, el artículo cuenta el producto. Ver regla transversal en `knowledge/frases-vetadas.md` → sección "Catálogo de oferta-precio-stock-valoraciones".
+
+2. **Meta-análisis de reseñas expuesto al lector.** Las valoraciones, el número de reseñas, las estrellas y el "patrón de comentarios" son **insumo interno** del writer para construir criterio: no aparecen en el cuerpo. Mundo Deportivo afirma el insight como juicio editorial directo ("la suela aguanta diez kilómetros sobre asfalto sin perder agarre") y nunca como ("según las reseñas, la suela aguanta bien"). Ver regla transversal en `knowledge/frases-vetadas.md` → sección "Meta-análisis de reseñas expuesto al lector".
+
+3. **Naming marca + modelo.** Cuando un heading o el cuerpo nombra marca y modelo de un producto reconocible, **siempre van juntos y en ese orden: primero la marca, después el modelo** ("Zapatillas Asics Gel-Kayano", no "Zapatillas Gel-Kayano Asics"). Nunca se intercala texto ni se pospone la marca al modelo. Ver regla transversal en `knowledge/naming-productos.md`.
+
+4. **Jerga de ficha de Amazon.** Prohibido en cuerpo: `colorway` (decir "color" o "combinación de color"), `variante` como sinónimo de color, `SKU`, `ASIN`, `ref.`. Prohibido transcribir literal nombres internos de variantes de Amazon en inglés ("Navy White Red", "Black Volt"): se traducen a descripciones cromáticas en español natural. Prohibida la meta-narrativa del proceso ("cuando se escribe este artículo", "en el momento de la consulta"). Ver regla transversal en `knowledge/frases-vetadas.md` → "Jerga de ficha de Amazon y meta-narrativa del proceso".
 
 ---
 

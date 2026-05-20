@@ -47,11 +47,13 @@ Lee en este orden:
    - Formato del disclaimer de afiliación y su posición
    - Cualquier instrucción especial del medio
 
-2. `knowledge/frases-vetadas.md` — lista de frases prohibidas globales. Memorízalas antes de escribir.
+2. **`knowledge/manifiesto-editorial.md` — DOCUMENTO FUNDACIONAL.** Léelo antes que cualquier otra cosa. Define el **para qué** escribimos: ayudar al lector a decidir qué comprar, cuándo comprarlo y si realmente merece la pena. Cualquier guideline de medio (voz, recetas, longitud) es el **cómo**, pero el manifiesto manda en caso de conflicto. La pregunta que toda pieza debe responder: *"¿Esta compra merece la pena para el lector, ahora mismo, y por qué?"*. Si no responde a eso, está incompleta.
 
-3. `knowledge/naming-productos.md` — regla transversal sobre cómo nombrar productos en H2/H3 y cuerpo. Léela antes de planificar headings. Patrón: `[tipo de producto] [característica] [marca, si aporta]`, no `[marca] [tipo de producto]`.
+3. `knowledge/frases-vetadas.md` — lista de frases prohibidas globales. Memorízalas antes de escribir. Presta especial atención a las secciones "Catálogo de oferta-precio-stock-valoraciones" y "Meta-análisis de reseñas expuesto al lector".
 
-4. Ejemplos publicados en `knowledge/ejemplos-publicados/{medio}/` (si existen) — lee 1-3 artículos para calibrar el tono real. Si no existen, trabaja solo con la guideline.
+4. `knowledge/naming-productos.md` — regla transversal sobre cómo nombrar productos en H2/H3 y cuerpo. Léela antes de planificar headings. Cuando la marca es reconocible, marca + modelo van **juntos y en ese orden** ("Zapatillas Reebok Glide", nunca "Zapatillas Glide Reebok").
+
+5. Ejemplos publicados en `knowledge/ejemplos-publicados/{medio}/` (si existen) — lee 1-3 artículos para calibrar el tono real. Si no existen, trabaja solo con la guideline.
 
 ### Paso 2: Planificar el artículo
 

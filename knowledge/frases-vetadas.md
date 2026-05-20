@@ -752,6 +752,116 @@ Mismo criterio que las palabras comodín: aceptables con moderación, sospechoso
 
 ---
 
+## P-bis. Jerga de ficha de Amazon y meta-narrativa del proceso
+
+Patrones que delatan que el texto se redactó pegando datos de la página de producto en lugar de describirlos en español natural. Prohibidos en todos los medios.
+
+### Anglicismos y jerga de ficha
+- "colorway" → en español se dice **"color"**, **"combinación de color"**, **"versión en..."**, **"acabado..."**, **"paleta..."**.
+- "variante" usada como sinónimo de color de un mismo modelo → describe el color en lenguaje natural ("la versión en blanco con detalles azules") en lugar de "la variante Ftwwhite Optimumblue".
+- "SKU", "ASIN", "ref.", "modelo nº" dentro del cuerpo → estos códigos van en el frontmatter, nunca en la prosa.
+- "stock", "ratio", "rating", "feedback", "bestseller" sin necesidad → traducir o reescribir.
+
+### Volcado literal de nombres de variantes Amazon
+Los nombres de variante que aparecen en la ficha de Amazon (mezcla de inglés, mayúsculas internas, palabras concatenadas) **nunca se transcriben tal cual** en el cuerpo del artículo. Se traducen a una descripción cromática humana.
+
+❌ Mal:
+- "La variante Ftwwhite Optimumblue Gum"
+- "El colorway Navy White Red"
+- "La paleta Grit Green/Trek Grey/Chalk"
+- "Disponible en Washed Black Dark Fog Moon"
+- "El acabado Earthy Green Golden Haze White"
+
+✅ Bien:
+- "La versión en blanco con detalles azules y suela de color goma"
+- "La combinación de azul marino, blanco y rojo"
+- "La paleta de verde militar con gris piedra y blanco roto"
+- "La opción en negro lavado con grises difuminados"
+- "El acabado verde tierra con tonos dorados y blanco"
+
+> **Regla del traductor cromático:** si la variante de Amazon viene en inglés o como cadena pegada, el writer la traduce a español natural antes de meterla en el texto. El lector no debe ver nunca el nombre interno de Amazon.
+
+### Meta-narrativa del proceso de escritura
+Frases que rompen la cuarta pared y delatan que el texto se generó en un momento concreto. Prohibidas siempre: hacen que el artículo suene a snapshot técnico, no a redacción periodística.
+
+- "cuando se escribe este artículo"
+- "en el momento de redactar este artículo"
+- "en el momento de la consulta"
+- "según la última verificación"
+- "a fecha de hoy" *(salvo que el medio lo permita expresamente y el dato sea verdaderamente datado)*
+- "al momento de publicar"
+- "en el momento de la extracción"
+- "tras la última revisión"
+
+> **Antídoto:** si el dato es volátil (stock, precio, oferta flash), se redacta de forma factual sin referencia al proceso. "Quedan apenas cinco pares disponibles en Amazon" es correcto. "Tiene cinco unidades en stock cuando se escribe este artículo" es ficha técnica con timestamp.
+
+### Catálogo de oferta-precio-stock-valoraciones (artículo sin sustancia editorial)
+
+Este patrón es transversal a todos los medios. La oferta, el precio, el stock, el porcentaje de descuento, las valoraciones y el ranking son **datos para el writer**, no para el lector. Sirven para que el writer entienda qué tiene delante y decida tono, ángulo y orden narrativo. Pero **un artículo no es ese vaciado de datos**; un artículo cuenta el producto.
+
+Si el lector terminase la pieza sabiendo solo el precio, el descuento, las unidades en stock y el número de reseñas, **el writer ha fallado**. Cada bloque de producto debe tener sustancia editorial sobre el producto en sí: qué es, de dónde viene, a qué evoca, para qué tipo de uso encaja, qué sensación da, qué lo distingue de los modelos vecinos, qué época viste, qué silueta dibuja.
+
+❌ Mal (bloque catálogo, sin sustancia):
+> "La Campio XT está al 65% de descuento, queda en cinco unidades y tiene un PVP de 90 euros. La oferta flash la deja por debajo de 32 euros. Cuatro estrellas y cuarto sobre cinco. Tallaje pequeño."
+
+✅ Bien (bloque editorial con la oferta como **un** elemento, no **el** elemento):
+> "La Campio XT es la Reebok que no aspira al podio del retro y por eso encaja en zapateros llenos: silueta limpia, suela de caucho clásica y un acabado en blanco con guiños azules que aguanta tanto vaqueros como pantalón cargo. Calza pequeña, así que conviene subir un número. El precio juega ahora a su favor: la rebaja la sitúa en territorio de zapatilla de uso diario sin pensárselo dos veces."
+
+> **Pesos sugeridos por bloque de producto:**
+> - 60-70%: descripción editorial del producto (estética, época, materiales sensoriales, uso, perfil de comprador, lo que lo distingue del resto del lote).
+> - 20-30%: marco de la oferta (precio relativo, contexto del descuento, urgencia factual si la hay).
+> - 0-10%: especificaciones tangibles solo si suman (tallaje, paleta de color descrita en humano, longevidad esperada).
+>
+> Si tu bloque está al revés (60% oferta-precio + 20% specs + 20% descripción), reescríbelo.
+
+> **Prohibido construir un bloque entero alrededor de números crudos**: precio actual + PVP + descuento % + mínimo de 30 días + nº de reseñas + estrellas + ranking. Esos siete datos son la ficha; el artículo es otra cosa.
+
+> **El ángulo `liquidacion` no es excepción.** Que la pieza tenga ángulo de liquidación significa que el precio es la **noticia** que justifica publicar hoy, no que cada párrafo gire en torno al precio. La oferta se establece una vez en la introducción y se cierra en el veredicto; en medio, el writer cuenta los productos.
+
+### Meta-análisis de reseñas expuesto al lector
+
+Las reseñas, valoraciones y comentarios de los compradores son **insumo interno** para que el writer calibre el producto: forman su criterio. Pero el writer **no expone el análisis** ni el conteo. Las observaciones derivadas de las reseñas se entregan al lector como juicio editorial directo, no como cita de la fuente.
+
+❌ Mal (meta-análisis expuesto):
+- "Con solo 18 valoraciones publicadas hasta ahora, el volumen de reseñas es bajo, pero el patrón de las primeras es positivo."
+- "Tiene miles de compradores con valoración muy alta."
+- "Las primeras reseñas son positivas y el patrón de comentarios es consistente."
+- "Hay un aviso que se repite en las reseñas con bastante consistencia: el tallaje es pequeño."
+- "El argumento no es la trayectoria ni el volumen de reseñas."
+- "Cuenta con cientos de opiniones que avalan su calidad."
+- "Los usuarios destacan especialmente la comodidad."
+- "Según las opiniones publicadas, el ajuste es preciso."
+- "Las valoraciones se concentran en la franja alta de la escala."
+
+✅ Bien (juicio editorial directo, insight ya digerido):
+- "La Classic Nylon 89 todavía está estrenando catálogo en España."
+- "Lleva meses asentada entre los modelos más vendidos de zapatillas casual de hombre."
+- "La silueta es de las que se reconocen a dos metros y el precio aleja cualquier debate antes de empezarlo."
+- "La Campio XT calza pequeña. Si la talla habitual es el 42, mejor subir al 43."
+- "Aquí el argumento es otro: la escasez."
+
+> **Principio:** las reseñas son para el writer; el juicio es para el lector. Nunca aparecen en el texto el número de valoraciones, las palabras "reseñas", "valoraciones", "opiniones de compradores", "patrón de comentarios", "según los usuarios", "los compradores destacan" ni similares. Si el dato de las reseñas es lo bastante sólido como para defenderlo, el writer lo afirma en su propia voz; si no lo es, lo omite.
+
+> **Excepciones puntuales:** un medio puede admitir mención explícita de reseñas en un módulo concreto con receta declarada (por ejemplo, "Lo que dicen quienes ya la usan" como H2 con función específica). Si la guideline del medio no lo declara, no se usa.
+
+### Volcado de specs sin traducción
+Datos crudos de la ficha que el writer debe convertir en información útil para el lector, no copiar tal cual.
+
+❌ Mal:
+- "Material exterior: sintético"
+- "Altura de eje: Ankle"
+- "Material de la suela: caucho"
+- "Departamento: Unisex adulto"
+- "Tallas disponibles: 34 EU a 47/48 EU"
+
+✅ Bien:
+- "tobillo bajo de corte casual"
+- "suela de caucho con buen agarre"
+- "es unisex"
+- "cubre tallas del 34 al 47"
+
+---
+
 ## Q. Sospechosas en tecnología
 
 - "La inteligencia artificial está transformando…"

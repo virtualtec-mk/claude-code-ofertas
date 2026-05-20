@@ -54,6 +54,20 @@ Los archivos dentro de `/drafts/` y `/guidelines/` son los únicos que el sistem
 
 ---
 
+## Manifiesto editorial (lectura obligatoria para todos los agentes)
+
+Antes de cualquier guideline de medio o regla táctica, todo agente que redacte, edite o decida ángulo lee `knowledge/manifiesto-editorial.md`. Es el documento fundacional del proyecto: fija el **para qué** escribimos. Las guidelines de medio definen el **cómo** (voz, registro, recetas). Cuando entren en tensión, el manifiesto manda.
+
+Resumen del manifiesto en una frase: **no estamos escribiendo artículos para vender productos; estamos escribiendo piezas editoriales que ayudan a comprar mejor**. La afiliación entra después; primero, la confianza.
+
+Cada artículo debe responder a:
+
+> ¿Esta compra merece la pena para el lector, ahora mismo, y por qué?
+
+Si la pieza no responde a eso, está incompleta.
+
+---
+
 ## Reglas operativas
 
 ### Datos del producto

@@ -20,6 +20,8 @@ ejemplos_publicados:
 
 # Guideline editorial: larazon
 
+> **Lectura obligatoria previa:** antes que esta guideline, leer `knowledge/manifiesto-editorial.md`. Es el documento fundacional del proyecto. Esta guideline define el **cómo** de La Razón (voz, anclajes, recetas, frases preferidas y vetadas); el manifiesto define el **para qué** (ayudar al lector a decidir qué comprar, cuándo y si merece la pena). Cuando entren en tensión, manda el manifiesto.
+
 > **Cambio en v2:** el cuerpo del artículo ya no sigue un esqueleto fijo. Hay 5 anclajes obligatorios y una paleta de recetas para el cuerpo libre. El writer elige 1-3 recetas según el producto, ángulo y tipo de oferta.
 
 ---
@@ -424,13 +426,19 @@ Estos moldes se detectaron en drafts reales y son **rechazo automático** en la 
 
 4. **Ranking sobrevendido.** Un n.º 2 en una categoría amplia de Amazon no es "el más comprado" ni "el rey de". Literalidad obligatoria. Ver bloque correspondiente en `knowledge/frases-vetadas.md`.
 
-5. **Prueba social comodín.** "En Amazon se mueven bien", "los comentarios apuntan en la misma dirección", "los primeros compradores les dan una valoración muy alta" → frases reutilizables en cualquier artículo. Reescribir con un detalle del patrón de comentarios o un dato verificable de la ficha.
+5. **Prueba social comodín.** "En Amazon se mueven bien", "los comentarios apuntan en la misma dirección", "los primeros compradores les dan una valoración muy alta" → frases reutilizables en cualquier artículo. Reescribir como **juicio editorial directo** del writer, anclado en un dato físico del producto o en un escenario concreto de uso. El número de reseñas, las estrellas y el "patrón de comentarios" **no se exponen al lector**: son insumo interno del writer (ver regla transversal en `knowledge/frases-vetadas.md`, sección "Meta-análisis de reseñas expuesto al lector").
 
 6. **Cierre "tiene mucho sentido cerrar hoy" y variantes.** La frase preferida *"tiene mucho sentido"* del medio solo se usa **una vez** y referida a un dato concreto, nunca como fórmula de cierre genérica. Como último párrafo del artículo está vetada salvo que vaya acompañada de un dato físico del producto o un detalle del momento.
 
 7. **FAQ tipo manual.** Si las respuestas empiezan por "Sí." o "No." sin contexto, la FAQ está mal calibrada. Una FAQ útil incluye matiz, por qué o cómo; si no hay matiz, mejor integrar la duda como frase suelta en otra receta del cuerpo libre.
 
 8. **`momento-cultural` sin ancla.** Si la receta `momento-cultural` aparece en el frontmatter, el cuerpo tiene que incluir al menos una de estas anclas: fecha exacta, hora, lugar/geografía concreta, antecedente histórico verificable, dato de mercado del evento anterior comparable. Ver definición de la receta más arriba.
+
+9. **Catálogo de oferta-precio-stock-valoraciones.** Un bloque de producto no es un vaciado de la ficha de Amazon. Si el bloque solo dice "precio actual, PVP, descuento, mínimo de 30 días, stock, valoraciones, estrellas y ranking" sin contar **qué es el producto**, está mal redactado. Cada bloque debe llevar como mínimo el **60-70% de descripción editorial del producto** (estética, época, materiales contados en humano, uso, perfil de comprador, lo que lo distingue de los modelos vecinos) y como máximo el **20-30% de marco de oferta**. Que el ángulo sea `liquidacion` no es licencia para vaciar la ficha: el precio justifica publicar **hoy**, pero el artículo cuenta los productos. Ver regla transversal completa en `knowledge/frases-vetadas.md` → sección "Catálogo de oferta-precio-stock-valoraciones".
+
+10. **Naming marca + modelo.** Cuando un heading o el cuerpo nombra marca y modelo de un producto reconocible, **siempre van juntos y en ese orden: primero la marca, después el modelo** ("Zapatillas Reebok Glide", no "Zapatillas Glide Reebok"). Si delante hay un tipo de producto genérico, va antes que la marca. Nunca se intercala texto entre marca y modelo ni se pospone la marca al modelo. Ver regla transversal completa en `knowledge/naming-productos.md`.
+
+11. **Jerga de ficha de Amazon.** Prohibido en cuerpo: `colorway` (decir "color" o "combinación de color"), `variante` (como sinónimo de color), `SKU`, `ASIN`, `ref.`. Prohibido transcribir literal nombres internos de variantes de Amazon ("Ftwwhite Optimumblue Gum", "Navy White Red", "Grit Green/Trek Grey/Chalk"); se traducen a descripciones cromáticas humanas ("la versión en blanco con detalles azules y suela de color goma"). Prohibida la meta-narrativa del proceso ("cuando se escribe este artículo", "en el momento de la consulta", "según la última verificación"). Ver regla transversal en `knowledge/frases-vetadas.md` → "Jerga de ficha de Amazon y meta-narrativa del proceso".
 
 ---
 

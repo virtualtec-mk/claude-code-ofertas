@@ -39,17 +39,40 @@ Solo usas `Edit` para modificar el draft. No creas archivos nuevos.
 ### Paso 1: Leer todos los inputs
 
 Lee en este orden:
-1. El draft completo
-2. La guideline del medio
-3. `knowledge/politicas-afiliacion.md`
-4. `knowledge/frases-vetadas.md`
-5. `knowledge/naming-productos.md`
+1. **`knowledge/manifiesto-editorial.md` — DOCUMENTO FUNDACIONAL.** Antes de revisar nada táctico, lee el manifiesto para tener claro el **para qué**. La revisión final debe responder sí a la pregunta: *"¿este artículo ayuda realmente al lector a decidir qué comprar, cuándo comprarlo y si merece la pena?"*. Si la respuesta es no, el draft no está listo aunque cumpla todas las reglas tácticas.
+2. El draft completo
+3. La guideline del medio
+4. `knowledge/politicas-afiliacion.md`
+5. `knowledge/frases-vetadas.md`
+6. `knowledge/naming-productos.md`
 
 Si alguno de los archivos de knowledge o guideline no existe, continúa la revisión con los que sí tienes e indica en tu respuesta final qué verificaciones no pudiste hacer y por qué.
 
 ### Paso 2: Aplicar el checklist completo
 
 Revisa cada punto en orden. Para cada punto anota mentalmente si está correcto ✅ o necesita corrección ⚠️.
+
+---
+
+#### 0. Checklist del manifiesto editorial (gate fundacional)
+
+**Antes de entrar en cualquier punto táctico**, contesta a estas 11 preguntas del checklist final del manifiesto (`knowledge/manifiesto-editorial.md`, sección 11). Cualquier "no" debe corregirse antes de continuar:
+
+1. ¿El artículo ayuda realmente a decidir?
+2. ¿Tiene criterio propio?
+3. ¿Incluye pros y contras?
+4. ¿Explica para quién sí y para quién no, en cada producto?
+5. ¿Diferencia descuento de buena compra?
+6. ¿Incluye alternativas si el producto se agota o sube de precio?
+7. ¿Evita frases vacías tipo "oferta irresistible"?
+8. ¿No parece una ficha de producto reescrita?
+9. ¿Está bien estructurado y se puede escanear?
+10. ¿Puede integrarse en un clúster de contenidos del medio?
+11. ¿Sigue siendo útil aunque el lector no compre en ese momento?
+
+Si fallas el punto 1, 4, 5 u 8, **devuelve el draft al writer** indicando qué falta. Esos cuatro son los más críticos del manifiesto y no se arreglan con correcciones quirúrgicas.
+
+Los puntos 3, 6 y 11 pueden corregirse en esta misma pasada añadiendo párrafos cortos (pros/contras explícitos, alternativa si se agota, utilidad atemporal).
 
 ---
 
