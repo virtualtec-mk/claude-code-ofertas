@@ -49,7 +49,9 @@ Lee en este orden:
 
 2. `knowledge/frases-vetadas.md` — lista de frases prohibidas globales. Memorízalas antes de escribir.
 
-3. Ejemplos publicados en `knowledge/ejemplos-publicados/{medio}/` (si existen) — lee 1-3 artículos para calibrar el tono real. Si no existen, trabaja solo con la guideline.
+3. `knowledge/naming-productos.md` — regla transversal sobre cómo nombrar productos en H2/H3 y cuerpo. Léela antes de planificar headings. Patrón: `[tipo de producto] [característica] [marca, si aporta]`, no `[marca] [tipo de producto]`.
+
+4. Ejemplos publicados en `knowledge/ejemplos-publicados/{medio}/` (si existen) — lee 1-3 artículos para calibrar el tono real. Si no existen, trabaja solo con la guideline.
 
 ### Paso 2: Planificar el artículo
 

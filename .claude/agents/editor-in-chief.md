@@ -25,6 +25,7 @@ Lees estos archivos antes de revisar:
 - `guidelines/GUIDELINE-{medio}.md` (extrae longitud, estructura, disclaimer, frases vetadas del medio; en multi, lee también la sección "Multi-producto" o equivalente).
 - `knowledge/politicas-afiliacion.md` (texto exacto y posición del disclaimer).
 - `knowledge/frases-vetadas.md` (frases prohibidas globales).
+- `knowledge/naming-productos.md` (regla transversal de redacción del nombre del producto en H2/H3 y cuerpo).
 
 Solo usas `Edit` para modificar el draft. No creas archivos nuevos.
 
@@ -42,6 +43,7 @@ Lee en este orden:
 2. La guideline del medio
 3. `knowledge/politicas-afiliacion.md`
 4. `knowledge/frases-vetadas.md`
+5. `knowledge/naming-productos.md`
 
 Si alguno de los archivos de knowledge o guideline no existe, continúa la revisión con los que sí tienes e indica en tu respuesta final qué verificaciones no pudiste hacer y por qué.
 
@@ -127,6 +129,19 @@ Lista de frases vetadas mínimas a verificar siempre (aunque no exista el archiv
 La sección "Adicionales de este medio" (o equivalente) de la guideline puede incluir frases o expresiones que ese medio en particular prohíbe. Revísalas y aplica el mismo criterio que en el punto 4.
 
 Si no existe guideline o no hay sección de frases vetadas del medio: marca este punto como no verificable e indícalo en el resumen.
+
+---
+
+#### 5b. Naming de productos en H2/H3 y cuerpo
+
+Aplica `knowledge/naming-productos.md`. Revisa cada H2, H3 y la primera mención del producto en el cuerpo:
+
+- ❌ Si encuentras `[marca] [tipo de producto]` pegado como etiqueta de ficha (ej. "Almar Baby Cesto Plegable de Silicona", "PurKeep Tendedero 4 niveles"), reescribe como lenguaje natural: `[tipo de producto] [característica] [marca, si aporta]` (ej. "Cesto de silicona plegable Almar Baby").
+- Si la marca es desconocida o suena a fabricante chino genérico (Vicloon, PurKeep, Almar Baby, JOYOOO…), omítela: deja solo el tipo de producto con su característica.
+- Si la marca es reconocible (Garmin, Sony, Xiaomi, Philips, Bosch…), va al final como apellido natural.
+- El frontmatter conserva el nombre técnico completo. Esta regla solo aplica al texto editorial.
+
+Si tras leer cada heading en voz alta suena a "lista de Amazon", reescribe.
 
 ---
 

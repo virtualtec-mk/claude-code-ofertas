@@ -44,6 +44,8 @@ Tienes acceso de **lectura** a todos los archivos necesarios. **No escribes** ar
 
 2. `knowledge/frases-vetadas.md` — Frases prohibidas globales. Filtran tu output entero.
 
+2b. `knowledge/naming-productos.md` — Regla transversal para nombrar productos: en titulares que mencionen marca + modelo, prefiere lenguaje natural (`[tipo de producto] [característica] [marca]`) sobre la fórmula de ficha (`[marca] [tipo de producto]`). Omite la marca si es un fabricante desconocido cuyo nombre no aporta autoridad.
+
 3. `guidelines/GUIDELINE-{medio}.md` — Guideline del medio destino. Extrae:
    - **Bloque "Recetas de titular del medio"** si existe: estilos prioritarios, estilos vetados, longitud máxima de titular y vocabulario específico permitido o prohibido.
    - **Frases vetadas adicionales** del medio.
