@@ -1,7 +1,7 @@
 ---
 medio: mundodeportivo
-version: 2.3
-ultima_actualizacion: 19/05/2026
+version: 2.4
+ultima_actualizacion: 20/05/2026
 autores:
   - nombre: Andrés Moncada
     perfil: autor principal, firma el ~99% de los artículos de El Recomendador
@@ -112,6 +112,40 @@ Estructura:
 ```
 
 En multi-producto el cuerpo libre se aplica **una sola vez** (a nivel global, no por producto). Cada bloque de producto sigue la sub-estructura H3 fija que ves arriba.
+
+---
+
+## Formatos multi-producto admitidos
+
+Cuando el orquestador active `TIPO_ARTICULO=multi`, presenta esta lista al redactor en el sub-paso 2.5.1. Todos los formatos en Mundo Deportivo se renderizan con `layout: multi-producto` (H2 temático global + H3 por producto).
+
+| `FORMATO_GUIA` | Encaje en El Recomendador | Hilo conductor típico |
+|---|---|---|
+| `comparativa` | 2-3 productos del mismo tipo. Se enfrentan por el mismo eje de beneficio activo. | "Cuál aguanta mejor 8 horas frente al ordenador / un fin de semana de trail". |
+| `recopilatorio` | 3-7 ofertas de la misma tienda o categoría, con hilo activo. Estilo dominante del medio. | "Estas X compras llevaderas para…". |
+| `top-n` | 3-5 mejores de una categoría con un eje claro (autonomía, calidad-precio, gama). | "Los 5 smartwatches que ya juegan de tú a tú con Apple Watch". |
+| `por-presupuesto` | 2-4 productos por franjas. Hilo: "dónde está el escalón que sí compensa". | "Proyectores a 200, 400 y 600 euros: cuándo merece la pena subir de gama". |
+| `por-uso` | 2-4 productos por escenario activo (gym, vuelta al trabajo, descanso, partido). | "Auriculares para gym, viaje y descanso tras el partido". |
+
+> `longtail-marca` **no se admite** en Mundo Deportivo. La voz del medio es de selección editorial, no de catálogo de marca; si llega una petición de ese formato, redirígelo a `top-n` o `recopilatorio`.
+
+### Mapeo `FORMATO_GUIA` → estructura interna
+
+Todos los formatos comparten la misma estructura base de `layout: multi-producto` (H2 temático global + N H3 de producto + receta global de cierre típicamente `criterios-el-recomendador`). Lo que cambia es el **patrón del H2 temático** y la receta global:
+
+| Formato | H2 temático global | Receta global típica |
+|---|---|---|
+| `comparativa` | "[N] [productos] que [eje de comparación]" o "Cuál ganaría: [A] frente a [B]" | `comparativa-corta` |
+| `recopilatorio` | "[N] [productos] que [beneficio activo común]" | `criterios-el-recomendador` |
+| `top-n` | "Los [N] mejores [categoría] para [perfil activo]" | `criterios-el-recomendador` |
+| `por-presupuesto` | "[N] [productos] a [precio 1], [precio 2] y [precio 3]" | `contexto-de-mercado` |
+| `por-uso` | "[N] [productos] para [uso A], [uso B] y [uso C]" | `para-quien-si-para-quien-no` |
+
+El orden de los H3 por producto sigue el orden indicado por el angle-picker o, por defecto, el orden en que llegaron las fichas.
+
+### Refresco de la regla de subtítulos en multi
+
+Recuerda la regla crítica de cabecera: **los dos subtítulos NO pueden empezar ni contener cuantificadores numéricos del conjunto** ("Tres…", "Los 3…"). El número del lote vive en el H1 y en el primer H2 del cuerpo, **nunca** en los subtítulos.
 
 ---
 
@@ -336,16 +370,23 @@ bajada: ...
 precio: ...
 enlace_afiliado: ...
 medio: mundodeportivo
+url_origen: ...                                 # URL del producto principal / primero del lote
+url_secundarias:                                 # solo en multi: resto de URLs en orden
+  - ...
 angulo: ...
-recetas: [...]              # nuevo en v2: lista de recetas usadas
+tipo_articulo: mono | multi
+formato_guia: ...                                # solo en multi: comparativa | recopilatorio | top-n | por-presupuesto | por-uso
+n_productos: ...                                 # solo en multi: entero >= 2
+hilo_conductor: "..."                            # solo en multi: hilo conductor confirmado por el redactor
+recetas: [...]                                   # nuevo en v2: lista de recetas usadas
 layout: mono-producto | multi-producto
-autor: Andrés Moncada   # por defecto; usar `Javier Rosagro Moreiro` solo si Moncada está de vacaciones
+autor: Andrés Moncada                            # por defecto; usar `Javier Rosagro Moreiro` solo si Moncada está de vacaciones
 fecha: YYYY-MM-DD
 fuente: playwright | manual
 estado: borrador
 ```
 
-Los campos `recetas` y `layout` son nuevos en v2 y permiten al editor-in-chief validar la decisión sin inferirla del texto.
+Los campos `tipo_articulo`, `formato_guia`, `n_productos`, `hilo_conductor` y `url_secundarias` son nuevos en v2.4 (soporte multi-producto). `recetas` y `layout` siguen como en v2.
 
 ---
 

@@ -14,11 +14,11 @@ Si detectas que la tabla está desincronizada con los archivos de `/guidelines/`
 
 ## Medios registrados
 
-| Medio | Tipo | Tono | Longitud | Disclaimer afiliación | Última publicación | Estado guideline |
-|---|---|---|---|---|---|---|
-| `mundodeportivo` | deportes | cercano-experto / enérgico | 450-500 (1 prod.) / 600-800 (3-10 prod.) | Lo gestiona el CMS | — | ✅ activa |
-| `larazon` | generalista / consumo y estilo de vida | cercano-directo / autoridad tranquila | 400-600 (oferta simple) / 1.500-2.000 (análisis) | Texto propio (ver guideline) | 19/05/2026 | ✅ activa |
-| `abc` | generalista / Favorito (consumo, tecnología, motor, hogar) | conversacional con chispa / experto + amigo de chollos | 500-700 (oferta única) / 800-1.200 (recopilatorio) / 600-900 (longtail-marca) | Lo gestiona el CMS | 19/05/2026 | ✅ activa (v1.1, calibrada con 18 ejemplos publicados) |
+| Medio | Tipo | Tono | Longitud | Formatos multi admitidos | Disclaimer afiliación | Última publicación | Estado guideline |
+|---|---|---|---|---|---|---|---|
+| `mundodeportivo` | deportes | cercano-experto / enérgico | 450-500 (mono) / 600-800 (multi 3-10 prod.) | comparativa · recopilatorio · top-n · por-presupuesto · por-uso | Lo gestiona el CMS | — | ✅ activa (v2.4) |
+| `larazon` | generalista / consumo y estilo de vida | cercano-directo / autoridad tranquila | 600-900 (mono) / 1.000-2.200 (multi) / 1.500-2.000 (análisis) | comparativa · recopilatorio · top-n · por-presupuesto · por-uso | Texto propio (ver guideline) | 19/05/2026 | ✅ activa (v2.7) |
+| `abc` | generalista / Favorito (consumo, tecnología, motor, hogar) | conversacional con chispa / experto + amigo de chollos | 500-700 (oferta única) / 800-1.200 (recopilatorio) / 600-900 (longtail-marca) | comparativa · recopilatorio · top-n · por-presupuesto · por-uso · longtail-marca | Lo gestiona el CMS | 19/05/2026 | ✅ activa (v1.2) |
 
 ---
 
@@ -30,6 +30,7 @@ Si detectas que la tabla está desincronizada con los archivos de `/guidelines/`
 | **Tipo** | Categoría editorial del medio | `tecnología`, `lifestyle`, `gaming`, `motor`, `hogar`, `generalista` |
 | **Tono** | Registro de escritura predominante | `divulgativo`, `informal`, `técnico`, `aspiracional`, `directo` |
 | **Longitud** | Extensión objetivo del artículo | ej. `300-500 palabras`, `500-800 palabras` |
+| **Formatos multi admitidos** | Slugs de `FORMATO_GUIA` que la guideline del medio acepta para guías multi-producto | ej. `comparativa · recopilatorio · top-n`. Subconjunto de: `comparativa`, `recopilatorio`, `top-n`, `por-presupuesto`, `por-uso`, `longtail-marca` |
 | **Disclaimer afiliación** | Texto o referencia al aviso legal que usa ese medio | ej. `"Este artículo contiene enlaces de afiliación"` o `ver guideline` |
 | **Última publicación** | Fecha del último artículo generado para ese medio | Formato DD/MM/YYYY |
 | **Estado guideline** | Si la guideline está lista para producción | `activa`, `borrador`, `pendiente-revisión` |

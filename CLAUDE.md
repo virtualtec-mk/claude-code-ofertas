@@ -5,11 +5,21 @@
 El redactor es un profesional de contenidos sin perfil técnico que trabaja desde la app de escritorio de Claude Code. Su flujo de trabajo habitual es:
 
 1. Abrir el proyecto en Claude Code.
-2. Pegar la URL del producto (Amazon o AliExpress).
+2. Pegar **una o varias URLs** de producto (Amazon o AliExpress).
 3. Elegir el medio de destino.
-4. Recibir el artículo en markdown listo para pegar en el CMS.
+4. Si pegó varias URLs, decidir si quiere **una sola guía multi-producto** o **N artículos separados**.
+5. Recibir el artículo (o la guía) en markdown listo para pegar en el CMS.
 
 El sistema hace todo el trabajo de investigación, selección editorial y redacción de forma invisible. El redactor solo interviene cuando el sistema lo solicita explícitamente.
+
+### Dos modos de artículo
+
+| `TIPO_ARTICULO` | Cuándo se activa | Resultado |
+|---|---|---|
+| `mono` | 1 URL pegada. Sin pregunta extra. | 1 artículo mono-producto. |
+| `multi` | 2+ URLs y el redactor confirma "una sola guía". | 1 guía multi-producto (comparativa, recopilatorio, top-N, por presupuesto, por uso o longtail de marca). |
+
+El modo multi-producto se activa siempre con confirmación explícita del redactor en la pausa 2.5; nunca se infiere a partir del medio ni del patrón de las URLs.
 
 ---
 
@@ -66,22 +76,32 @@ Todo el contenido generado va en español. Los nombres de variables, slugs y cam
 
 ## Arquitectura: regla de capas entre subagentes
 
-Cada subagente opera con un conjunto de fuentes bien definido. Ninguno accede a más información de la que necesita para su tarea.
+Cada subagente opera con un conjunto de fuentes bien definido. Ninguno accede a más información de la que necesita para su tarea. La regla de capas es **idéntica en modo mono y en modo multi**; lo que cambia es la cardinalidad de la entrada (1 ficha → N fichas) y dos variables transversales nuevas: `TIPO_ARTICULO` y, en multi, `FORMATO_GUIA`.
 
 ```
 product-researcher  →  URL + Playwright MCP (fallback manual)
                         NO lee guideline ni ejemplos publicados.
                         Produce: ficha estructurada (nombre, precio, características, URL canónica).
+                        Modo multi: el orquestador lo invoca N veces en paralelo, una por URL.
 
-angle-picker        →  ficha del producto + GUIDELINE del medio
+angle-picker        →  ficha(s) + GUIDELINE del medio + TIPO_ARTICULO [+ FORMATO_GUIA en multi]
                         Solo metadatos editoriales: tono, restricciones, ángulos permitidos.
-                        Produce: ángulo seleccionado + justificación editorial (1-2 frases).
+                        Produce mono: ángulo seleccionado + justificación editorial (1-2 frases).
+                        Produce multi: ángulo GLOBAL + HILO_CONDUCTOR + justificación + notas.
 
-writer              →  ficha + ángulo + GUIDELINE + ejemplos publicados del medio
+headline-generator  →  ficha(s) + ángulo + GUIDELINE + manual universal de titulares
+                        En multi recibe además FORMATO_GUIA y HILO_CONDUCTOR.
+                        Produce: 30 titulares con etiqueta de estilo y longitud.
+
+writer              →  ficha(s) + ángulo + titular + GUIDELINE + ejemplos publicados del medio
+                        En multi recibe además FORMATO_GUIA y HILO_CONDUCTOR.
                         Acceso completo de lectura. Sin acceso a escribir en guidelines.
-                        Produce: borrador en markdown con frontmatter completo.
+                        Produce: borrador en markdown con frontmatter completo (incluye
+                        tipo_articulo, formato_guia, n_productos, hilo_conductor en multi).
 
 editor-in-chief     →  borrador + GUIDELINE + frases-vetadas + política de afiliación
+                        Lee tipo_articulo del frontmatter para aplicar el checklist mono (11 pts)
+                        o el checklist mono + multi (16 pts).
                         No reescribe desde cero; corrige, ajusta tono y valida compliance.
                         Produce: versión final lista para CMS o lista de correcciones numeradas.
 ```
@@ -141,6 +161,23 @@ El flujo solo continúa con la elección explícita del redactor.
 | `tendencia` | El producto encaja con un momento cultural, estacional o viral concreto. |
 
 El guideline de cada medio puede restringir o priorizar ángulos. El `angle-picker` consulta esa restricción antes de proponer.
+
+---
+
+## Formatos de guía multi-producto
+
+Cuando `TIPO_ARTICULO=multi`, el redactor elige uno de estos formatos en el sub-paso 2.5.1 (solo se le muestran los que admite la guideline del medio):
+
+| Slug | Cuándo elegirlo |
+|---|---|
+| `comparativa` | 2-N productos del mismo tipo enfrentados ("X frente a Y"). |
+| `recopilatorio` | N ofertas con hilo común (tienda, categoría, momento). |
+| `top-n` | Ranking de los mejores N en una categoría. |
+| `por-presupuesto` | N productos organizados por franjas de precio. |
+| `por-uso` | N productos organizados por casos de uso o perfiles. |
+| `longtail-marca` | Catálogo destacado de una marca. |
+
+Cada guideline mapea estos slugs a sus convenciones internas (`layout: multi-producto` en Mundo Deportivo y La Razón; `modo: recopilatorio` / `modo: longtail-marca` en ABC). Si un formato no aparece en la guideline del medio, el orquestador no lo presenta como opción.
 
 ---
 

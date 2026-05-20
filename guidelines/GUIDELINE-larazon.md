@@ -1,8 +1,8 @@
 ---
 medio: larazon
-version: 2.6
-ultima_actualizacion: 19/05/2026
-origen: importado desde GPT personalizado (v1) + paleta de recetas (v2) + ajuste de mapa (v2.1) + voz real y autores (v2.2) + voz humana, estructura de intro, patrón H2, FAQ opcional y sin negritas markdown (v2.3) + estructura base mínima inviolable: titular + subtítulo + introducción + H2 + 3 párrafos (v2.4) + 2-3 H2 adicionales obligatorios en mono-producto y longitud subida a 600-900 palabras (v2.5) + refuerzos anti-IA tras draft eclipse Efekol: subtítulo no enumerativo, momento-cultural con ancla concreta, prohibición patrón "X no sirve. Ni Y. Ni Z.", literalidad de ranking, FAQ con sustancia y cierre sin frase-comodín (v2.6)
+version: 2.7
+ultima_actualizacion: 20/05/2026
+origen: importado desde GPT personalizado (v1) + paleta de recetas (v2) + ajuste de mapa (v2.1) + voz real y autores (v2.2) + voz humana, estructura de intro, patrón H2, FAQ opcional y sin negritas markdown (v2.3) + estructura base mínima inviolable: titular + subtítulo + introducción + H2 + 3 párrafos (v2.4) + 2-3 H2 adicionales obligatorios en mono-producto y longitud subida a 600-900 palabras (v2.5) + refuerzos anti-IA tras draft eclipse Efekol (v2.6) + soporte de guías multi-producto: formatos admitidos, estructura del cuerpo en multi, longitud por bloque, titulares con cuantificador en H1 (v2.7)
 autores:
   - nombre: Marina Ros
     perfil: multi-producto, categorías de moda y hogar, liquidaciones
@@ -297,6 +297,59 @@ Estas reglas son **inviolables**, independientemente de la combinación de recet
 
 ---
 
+## Formatos multi-producto admitidos
+
+La Razón admite guías multi-producto bajo los siguientes formatos. Cuando el orquestador active `TIPO_ARTICULO=multi`, presenta esta lista al redactor en el sub-paso 2.5.1.
+
+| `FORMATO_GUIA` | Descripción aplicada a La Razón | Ejemplo de pieza real |
+|---|---|---|
+| `comparativa` | 2 productos del mismo tipo enfrentados (Forerunner 165 vs 170, móvil A vs B). Eje de comparación claro. | "El nuevo Garmin Forerunner 170 tiene un problema y se llama Forerunner 165". |
+| `recopilatorio` | 3-7 ofertas con hilo común (categoría, momento, tienda). Hilo conductor explícito. | "Tres organizadores que están arrasando en Amazon para ganar espacio en la cocina sin obras". |
+| `top-n` | 3-5 mejores de una categoría, sin necesidad de ranking estricto. | "Tres bañadores de hombre que apetecen antes del primer chapuzón: Tommy Hilfiger, Calvin Klein y Quiksilver". |
+| `por-presupuesto` | 2-4 productos por franjas de precio. Hilo: "hasta dónde merece la pena estirar el presupuesto". | "Robots aspirador a tres precios: dónde está el escalón que sí compensa". |
+| `por-uso` | 2-4 productos por perfil/uso. Hilo: "según uses X o Y, te conviene Z". | "Auriculares para gym, oficina o vuelos largos: tres opciones que aguantan en cada escenario". |
+
+> `longtail-marca` **no se admite por defecto en La Razón**. La voz del medio favorece el hallazgo concreto sobre el catálogo de marca extendido. Si el redactor lo pide explícitamente, puede atenderse como caso especial pero la receta firma cambia (más cerca de `vision-de-marca` extendida + 2-3 modelos concretos).
+
+### Estructura del cuerpo en multi-producto (La Razón)
+
+La estructura **base** (anclajes 1-3 de cabecera y disclaimer del final) se mantiene exactamente como en mono-producto. Cambia el cuerpo entre el subtítulo y el disclaimer:
+
+1. **Titular (H1)** — Patrón de titular de multi (ver "Recetas de titular del medio").
+2. **Subtítulo** — Línea normal, sin heading. **Prohibido el cuantificador del conjunto** ("Tres…", "Los tres…", "3 productos…"). El número del conjunto va en el H1; el subtítulo aporta otro ángulo: hilo conductor, beneficio compartido, perfil de comprador.
+3. **Introducción** — 60-90 palabras. Establece el **hilo conductor** del lote en este párrafo (no es opcional en multi).
+4. **Primer H2 — Contexto del lote** (receta global, una sola vez). Receta típica según ángulo:
+   - `liquidacion` / `precio-psicologico` → `contexto-de-mercado` ("por qué estas ofertas son noticia ahora").
+   - `tendencia` → `momento-cultural` (con ancla concreta, ver receta).
+   - `recomendacion-personal` → `vision-de-marca` o un párrafo de criterio editorial.
+5. **N bloques de producto** (uno por ficha, en el orden indicado por el angle-picker o, por defecto, en el orden en que llegaron las fichas). Cada bloque:
+   - H2 con marca + modelo + un gesto editorial. Patrón: *"[Marca] [modelo]: [gancho específico de este modelo]"*. Ejemplo: *"Quiksilver Sandali: el modelo de saldo que mantiene el sello surfero"*.
+   - 2-3 párrafos cortos, máximo 4-5 líneas cada uno.
+   - Receta dominante por bloque: `specs-traducidas` o `microhistoria-de-uso`, según producto y ángulo.
+   - Variedad de aperturas obligatoria (no más de un bloque empieza con "La/el…", "Si buscas…", "Para quien…").
+   - Si el bloque es el "destacado" del lote (lo confirma el angle-picker), se permite añadir 1-2 frases de comparación frente a los otros productos del conjunto.
+6. **Cierre / veredicto global** (una o dos frases sin heading). Retoma el hilo conductor declarado en la introducción. No es un párrafo nuevo extenso: cierra el hilo.
+7. **Disclaimer literal** al final (mismo que en mono).
+
+### Longitud en multi-producto (La Razón)
+
+- **2 productos (`comparativa`):** 700-1.000 palabras totales.
+- **3-5 productos (resto de formatos):** 1.000-1.800 palabras totales, con 200-350 palabras por bloque de producto.
+- **6-7 productos (recopilatorios largos):** 1.500-2.200 palabras totales, con 150-250 palabras por bloque.
+
+Tolerancia ±10%. Si te quedas por debajo, amplía con sustancia (más spec traducida concreta, más microhistoria, más contexto de mercado). No relleno.
+
+### Reglas duras en multi para La Razón
+
+- **Front-loading se mantiene:** marca o producto del destacado en las primeras 15 palabras del lead.
+- **Cuantificador del conjunto solo en H1.** Prohibido en subtítulo y en el primer párrafo de introducción.
+- **Precio sin cifra exacta** también en cada bloque de producto, salvo que la guideline lo permita explícitamente en algún caso (no es el caso por defecto).
+- **Datos de prueba social redactados en humano** (ver "Cómo redactar datos de prueba social") aplicado **por bloque**, no a nivel global.
+- **No datos cruzados inventados** entre productos del lote.
+- **Test de bloque intercambiable:** aplicado a cada bloque por separado, no solo al artículo entero.
+
+---
+
 ## Posiciones de imagen y CTA
 
 - **Imagen principal:** después del H1 y del subtítulo (línea normal del anclaje 2), antes de la introducción.
@@ -428,6 +481,16 @@ joya · rey · chollo · capricho útil · compra redonda · oferta peligrosa ·
 ### Vocabulario potente desaconsejado para La Razón
 
 bombazo · bestia · locura · vuela · se desploma · deja temblando el precio · precio de risa · entra solo · aprieta fuerte. *(Demasiado viral; no aparecen en los ejemplos reales de La Razón.)*
+
+### Titulares para multi-producto
+
+Cuando `TIPO_ARTICULO=multi`, el `headline-generator` debe seguir además estas reglas específicas de La Razón:
+
+- El **número** del lote sí puede aparecer en el H1 ("Tres organizadores…", "Cuatro modelos de Garmin…", "Cinco bañadores…"). Es uno de los patrones más vistos en los ejemplos publicados.
+- En `comparativa` directa de dos productos, el H1 puede nombrar ambas marcas o modelos ("X tiene un problema y se llama Y").
+- En `recopilatorio` y `top-n`, el H1 menciona la tienda o el momento si añade valor ("…en Amazon", "…esta semana en El Corte Inglés"), no si quita ritmo.
+- En `por-uso` y `por-presupuesto`, el H1 transmite el eje organizador ("según uses gym, oficina o viajes", "a 100, 200 y 400 euros").
+- Las reglas universales del medio se mantienen: nada de cifra exacta en euros, sin exclamaciones, longitud 70-95 caracteres.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: crear-articulo
-description: Orquesta el flujo completo de redacción de un artículo de oferta desde una URL de producto. Coordina los subagentes product-researcher, angle-picker, headline-generator, writer y editor-in-chief para producir un draft listo para revisión.
-argument-hint: <url> [medio]
+description: Orquesta el flujo completo de redacción de un artículo de oferta desde una o varias URLs de producto. Coordina los subagentes product-researcher, angle-picker, headline-generator, writer y editor-in-chief para producir un draft listo para revisión, tanto en modo mono-producto como en guías de compra multi-producto.
+argument-hint: <url1> [url2 ... urlN] [medio]
 disable-model-invocation: true
 ---
 
@@ -9,16 +9,25 @@ disable-model-invocation: true
 
 Eres el orquestador principal del flujo de redacción de artículos de oferta. Tu trabajo es coordinar 5 subagentes en secuencia, mantener al redactor informado en cada paso y asegurarte de que el draft final cumpla con la voz editorial del medio destino.
 
+El sistema soporta **dos modos**:
+
+- **`TIPO_ARTICULO=mono`** — Un solo producto, un solo artículo. Flujo por defecto cuando el redactor pega 1 URL.
+- **`TIPO_ARTICULO=multi`** — Guía de compra multi-producto: comparativa, recopilatorio, top-N, por presupuesto, por uso o longtail de marca. Se activa cuando el redactor pega 2 o más URLs y confirma que quiere un solo artículo con todos los productos.
+
 ## Parámetros de entrada
 
-- `$ARGUMENTS` contiene la URL del producto y opcionalmente el slug del medio (separados por espacio).
-  - Ejemplo con medio: `https://www.amazon.es/dp/B09XYZ123 xataka`
-  - Ejemplo sin medio: `https://www.amazon.es/dp/B09XYZ123`
-  - El orden de los tokens puede invertirse. Detecta cuál empieza por `http` (la URL) y trata el otro como `MEDIO`.
+- `$ARGUMENTS` contiene **una o varias URLs** de producto y, opcionalmente, el slug del medio.
+  - Ejemplo mono con medio: `https://www.amazon.es/dp/B09XYZ123 larazon`
+  - Ejemplo mono sin medio: `https://www.amazon.es/dp/B09XYZ123`
+  - Ejemplo multi-producto con medio: `https://www.amazon.es/dp/B09A https://www.amazon.es/dp/B09B https://www.amazon.es/dp/B09C abc`
+  - El orden de los tokens puede invertirse. Detecta los tokens que empiecen por `http`: esos son las URLs. El token restante (si existe) es el `MEDIO`.
 
 Parsea `$ARGUMENTS` al inicio:
-- `URL_PRODUCTO` = el token que empiece por `http://` o `https://`
-- `MEDIO` = el otro token (puede estar vacío)
+- `URLS` = lista con todos los tokens que empiecen por `http://` o `https://`
+- `MEDIO` = el token que no es URL (puede estar vacío)
+- `N_URLS` = número total de URLs detectadas
+
+> Para el resto del flujo, cuando solo hay una URL (`N_URLS=1`), usa `URL_PRODUCTO = URLS[0]`. Cuando hay varias, opera sobre la lista `URLS` completa.
 
 ---
 
@@ -107,11 +116,89 @@ y después vuelve a ejecutar este comando.
 
 **DETENER el flujo aquí.** No continuar.
 
-Si **existe**, continúa al Paso 3.
+Si **existe**, continúa al Paso 2.5.
+
+---
+
+## PASO 2.5 — Detección de modo (mono-producto o guía multi-producto)
+
+Este paso es **obligatorio** y se ejecuta siempre después de validar la guideline del medio.
+
+### Si `N_URLS == 1`
+
+Asigna `TIPO_ARTICULO = mono` **sin preguntar nada al redactor**. Continúa directamente al Paso 3 con `URL_PRODUCTO = URLS[0]`. Este es el comportamiento por defecto, idéntico al flujo histórico.
+
+### Si `N_URLS >= 2`
+
+**Pausa interactiva nueva.** El redactor debe decidir explícitamente qué quiere hacer con esas URLs:
+
+```
+He detectado {N_URLS} URLs de producto. ¿Qué prefieres?
+
+  A) Una sola guía/comparativa con todos los productos
+     (un único artículo multi-producto: recopilatorio, comparativa, top-N, etc.)
+
+  B) {N_URLS} artículos separados, uno por producto
+     (lanzaré el flujo mono-producto una vez por URL)
+
+  C) Solo uno: dime cuál y descarto el resto
+
+Responde A, B o C.
+```
+
+Comportamiento según la respuesta:
+
+- **A) Guía multi-producto** → asigna `TIPO_ARTICULO = multi`. Continúa al sub-paso 2.5.1 para elegir el formato de guía.
+- **B) Artículos separados** → muestra al redactor el siguiente mensaje y termina la ejecución actual:
+  ```
+  Entendido. Para no mezclar contextos, ejecuta `/crear-articulo` una vez por URL:
+
+    1. /crear-articulo {URLS[0]} {MEDIO}
+    2. /crear-articulo {URLS[1]} {MEDIO}
+    ...
+
+  (Si quieres que el sistema los lance en cadena automáticamente, pídemelo y lo
+  hago: ejecutaré el flujo mono completo URL por URL, parando en cada pausa
+  interactiva tuya como siempre.)
+  ```
+  No continúes hasta que el redactor confirme cómo prosigue.
+- **C) Solo uno** → pide al redactor que indique el número o pegue la URL elegida. Asigna `URL_PRODUCTO` a esa URL, `TIPO_ARTICULO = mono` y continúa al Paso 3.
+
+### Sub-paso 2.5.1 — Elegir el formato de guía (solo si `TIPO_ARTICULO = multi`)
+
+Lee la guideline `guidelines/GUIDELINE-{MEDIO}.md` y extrae la lista de **formatos multi-producto admitidos** por ese medio (busca un bloque titulado "Formatos multi-producto admitidos" o equivalente). Cada guideline declara su propio subconjunto del catálogo universal:
+
+| `FORMATO_GUIA` | Cuándo lo elige el redactor |
+|---|---|
+| `comparativa` | 2-N productos del mismo tipo enfrentados. "Cuál ganaría". |
+| `recopilatorio` | N ofertas con hilo común (categoría, momento, tienda). "Chollos de Amazon hoy". |
+| `top-n` | Ranking de los mejores N en una categoría. "Los 5 mejores smartwatches 2026". |
+| `por-presupuesto` | N productos por franjas de precio. "Robots a 100€, 200€ y 400€". |
+| `por-uso` | N productos por caso de uso o perfil. "Auriculares según uses gym, oficina o viajes". |
+| `longtail-marca` | Catálogo destacado de una marca. "Por qué Garmin sigue siendo referencia: estos 4 modelos". |
+
+Presenta al redactor **solo los formatos que admite la guideline** del medio elegido. Numera 1..N y deja una opción libre por si el redactor quiere proponer otro encaje:
+
+```
+Formatos de guía soportados por {MEDIO}:
+
+  1. {formato-1} — {descripción corta del formato según la guideline}
+  2. {formato-2} — {descripción}
+  ...
+
+¿Qué formato encaja mejor con estos {N_URLS} productos?
+(responde con el número o escribe el slug del formato)
+```
+
+Asigna `FORMATO_GUIA` a la elección del redactor. Si el redactor escribe un slug que no figura en la lista, recuérdale los formatos admitidos por el medio y vuelve a preguntar; no aceptes formatos no soportados.
+
+Continúa al Paso 3 con `URLS` (lista completa), `TIPO_ARTICULO = multi` y `FORMATO_GUIA` ya asignados.
 
 ---
 
 ## PASO 3 — Subagente: product-researcher
+
+### Si `TIPO_ARTICULO = mono`
 
 Invoca el subagente `product-researcher` con las siguientes instrucciones:
 
@@ -140,9 +227,25 @@ Devuelve la ficha en formato markdown estructurado.
 
 Guarda el resultado como `FICHA_PRODUCTO`.
 
+### Si `TIPO_ARTICULO = multi`
+
+Invoca al subagente `product-researcher` **N veces en paralelo**, una por cada URL en `URLS`. Lanza todas las llamadas en un único turno (un solo mensaje del orquestador con N invocaciones simultáneas de la tool Agent) para que las extracciones de Playwright corran en paralelo y se reduzca el tiempo total.
+
+Para cada URL `URLS[i]`, las instrucciones al subagente son **idénticas a las del flujo mono**, sustituyendo `{URL_PRODUCTO}` por `URLS[i]`.
+
+Recolecta las fichas devueltas en una lista ordenada `FICHAS_PRODUCTOS = [FICHA_1, FICHA_2, ..., FICHA_N]`, **preservando el orden en el que el redactor pegó las URLs**. Ese orden suele ser intencional (el primero es el "destacado", o sigue una jerarquía narrativa) y los agentes posteriores lo respetan.
+
+**Gestión de errores en lote:**
+
+- Si **una o varias** invocaciones devuelven `URLBlockedError`, presenta al redactor la lista de URLs bloqueadas y pídele que pegue los datos manualmente **solo para esas**. Las que sí cargaron quedan validadas como `fuente: automatica-playwright`. Las manuales como `fuente: manual`.
+- Si **todas** las URLs fallan con `URLBlockedError`, presenta el error agregado y pide al redactor que pegue los datos de todos los productos (puede hacerlo en un solo mensaje, separados por una línea en blanco o un encabezado por producto).
+- En ningún caso continúes con menos de 2 fichas completas si `TIPO_ARTICULO = multi`. Si tras los intentos manuales solo queda 1 ficha completa, pregunta al redactor si quiere convertir el flujo a mono-producto (`TIPO_ARTICULO = mono` con la única ficha disponible) o reintentar con una URL distinta para reemplazar la fallida.
+
 ---
 
 ## PASO 4 — Subagente: angle-picker
+
+### Si `TIPO_ARTICULO = mono`
 
 Invoca el subagente `angle-picker` con las siguientes instrucciones:
 
@@ -180,11 +283,65 @@ el protocolo de tu agent.
 
 Guarda el resultado como `PROPUESTA_ANGULO`.
 
+### Si `TIPO_ARTICULO = multi`
+
+Invoca el subagente `angle-picker` con instrucciones de **modo multi-producto**:
+
+```
+Analiza la siguiente LISTA de fichas de producto y la guideline editorial del medio.
+Propón el ángulo editorial GLOBAL (uno solo) para la guía multi-producto.
+
+FORMATO_GUIA confirmado por el redactor: {FORMATO_GUIA}
+(recopilatorio | comparativa | top-n | por-presupuesto | por-uso | longtail-marca)
+
+FICHAS DE PRODUCTO (en orden, respetando el orden del redactor):
+{FICHA_1}
+---
+{FICHA_2}
+---
+...
+{FICHA_N}
+
+MEDIO DESTINO: {MEDIO}
+Guideline del medio: lee el archivo guidelines/GUIDELINE-{MEDIO}.md (sección
+"Multi-producto" y/o "Formatos multi-producto admitidos").
+
+ÁNGULOS DISPONIBLES (elige uno global):
+- recomendacion-personal
+- liquidacion
+- comparativa
+- precio-psicologico
+- uso-practico
+- tendencia
+
+Devuelve únicamente:
+1. Ángulo global elegido
+2. Justificación (2-3 frases anclando el ángulo en datos concretos del CONJUNTO de
+   productos y en la guideline del medio).
+3. HILO CONDUCTOR (1 frase): qué une a estos {N_URLS} productos en una sola pieza
+   (categoría común, momento, tienda, perfil de comprador, escenario de uso, etc.).
+4. Notas opcionales para el headline-generator y el writer (qué producto del conjunto
+   es el "destacado" si lo hay, qué orden narrativo recomiendas, qué specs o datos
+   se repiten y conviene no machacarlos, qué estilos de titular encajan mejor con
+   el FORMATO_GUIA elegido).
+
+NO produzcas titulares. NO redactes el cuerpo. Solo decisión editorial global.
+
+Si el FORMATO_GUIA elegido por el redactor no encaja bien con las fichas (p. ej.
+una "comparativa" con productos de categorías muy distintas), señálalo en las notas
+y propón el formato que sí encajaría; el orquestador decidirá si pregunta al redactor
+para reabrir el sub-paso 2.5.1.
+```
+
+Guarda el resultado como `PROPUESTA_ANGULO` (incluye ángulo, justificación e **hilo conductor**).
+
 ---
 
-## PASO 5 — PAUSA INTERACTIVA A: confirmar el ángulo
+## PASO 5 — PAUSA INTERACTIVA A: confirmar el ángulo (y, en multi, el hilo conductor)
 
 **No continúes sin respuesta del redactor.**
+
+### Si `TIPO_ARTICULO = mono`
 
 Muestra al redactor la propuesta:
 
@@ -204,13 +361,42 @@ Muestra al redactor la propuesta:
      (recomendacion-personal / liquidacion / comparativa / precio-psicologico / uso-practico / tendencia)
 ```
 
-Espera la respuesta. Asigna `ANGULO_FINAL` con el ángulo confirmado o cambiado.
+### Si `TIPO_ARTICULO = multi`
+
+Muestra al redactor la propuesta enriquecida con el hilo conductor:
+
+```
+## Propuesta editorial para la guía multi-producto
+
+**Formato de guía:** {FORMATO_GUIA}
+**Ángulo global:** {nombre_angulo}
+**Hilo conductor:** {hilo_conductor}
+
+**Justificación:** {justificacion}
+
+{si hay notas para el writer, muéstralas aquí en una o dos líneas}
+
+---
+¿Confirmas?
+  A) Confirmo ángulo {nombre_angulo} + hilo conductor tal cual
+  B) Cambio el ángulo (recomendacion-personal / liquidacion / comparativa /
+     precio-psicologico / uso-practico / tendencia)
+  C) Cambio el hilo conductor (dícteme el nuevo)
+  D) Cambio el FORMATO_GUIA (volvemos al sub-paso 2.5.1)
+```
+
+Espera la respuesta. Asigna:
+- `ANGULO_FINAL` con el ángulo confirmado o cambiado.
+- En multi, además `HILO_CONDUCTOR_FINAL` con el hilo confirmado o reescrito.
+- Si el redactor elige D, vuelve al sub-paso 2.5.1 y, tras nuevo `FORMATO_GUIA`, reinvoca al angle-picker en multi.
 
 > En esta pausa **no se habla todavía de titulares**. El titular llega en la pausa B.
 
 ---
 
 ## PASO 6 — Subagente: headline-generator
+
+### Si `TIPO_ARTICULO = mono`
 
 Invoca el subagente `headline-generator` con las siguientes instrucciones:
 
@@ -237,6 +423,55 @@ bullets, sin negritas.
 
 Guarda el resultado como `TITULARES_30`. Conserva tanto la lista entera como el
 estilo de cada titular para poder filtrar después.
+
+### Si `TIPO_ARTICULO = multi`
+
+Invoca el subagente `headline-generator` con instrucciones de modo guía:
+
+```
+Genera 30 titulares variados y muy clicables para una GUÍA MULTI-PRODUCTO.
+
+TIPO_ARTICULO: multi
+FORMATO_GUIA: {FORMATO_GUIA}
+ÁNGULO CONFIRMADO: {ANGULO_FINAL}
+HILO CONDUCTOR: {HILO_CONDUCTOR_FINAL}
+
+FICHAS (en orden, respetando el orden del redactor):
+{FICHA_1}
+---
+{FICHA_2}
+---
+...
+{FICHA_N}
+
+MEDIO DESTINO: {MEDIO}
+Lee la guideline en guidelines/GUIDELINE-{MEDIO}.md, prestando especial atención
+a las secciones "Recetas de titular del medio" y "Titulares para multi-producto"
+(o equivalente). Esa sección sobrescribe al manual universal en caso de conflicto.
+
+Lee también el manual universal de titulares en knowledge/headline-recipes.md y
+las frases vetadas globales en knowledge/frases-vetadas.md.
+
+Reglas específicas para titulares de guía multi-producto:
+- Reflejar el FORMATO_GUIA en la forma del titular (recopilatorio → "X chollos / X
+  ofertas que…", comparativa → "X frente a Y" o "Comparamos…", top-n → "Los N
+  mejores…", por-presupuesto → "Por menos de X€…", por-uso → "Para [perfil/uso]…",
+  longtail-marca → "[Marca]: estos N modelos…").
+- Si el formato lo pide, el número aparece en el H1 (3, 5, 7, 10…). Si la guideline
+  prohíbe ese cuantificador en subtítulo o cuerpo, se respeta esa prohibición; el
+  número solo va en H1.
+- No nombrar más de UNA marca/producto del conjunto en el H1, salvo en
+  `comparativa` directa de dos productos (donde puede aparecer cada marca).
+- El titular vende el CONJUNTO, no un producto suelto. Si sólo se nombra un
+  producto del lote, el resto debe quedar implícito en el "X productos que…".
+
+Devuelve los 30 titulares en el formato exacto que define tu agent: una línea por
+titular, con etiqueta de estilo y longitud entre corchetes. Sin numeración, sin
+bullets, sin negritas.
+```
+
+Guarda el resultado como `TITULARES_30`. Conserva la lista entera y el estilo de
+cada titular para poder filtrar en la pausa B.
 
 ---
 
@@ -285,10 +520,14 @@ Comportamientos posibles:
 
 ## PASO 8 — Subagente: writer
 
+### Si `TIPO_ARTICULO = mono`
+
 Invoca el subagente `writer` con las siguientes instrucciones:
 
 ```
 Redacta un artículo de oferta completo para el medio {MEDIO}.
+
+TIPO_ARTICULO: mono
 
 DATOS DEL PRODUCTO:
 {FICHA_PRODUCTO}
@@ -313,6 +552,7 @@ url_origen: {URL_PRODUCTO}
 asin: {ASIN_si_aplica_o_omitir}
 fecha: {fecha_hoy_en_formato_YYYY-MM-DD}
 angulo: {ANGULO_FINAL}
+tipo_articulo: mono
 recetas: [...]
 estado: borrador
 ```
@@ -333,6 +573,89 @@ Incluye el disclaimer de afiliación en la posición especificada en la guidelin
 
 Guarda el resultado como `DRAFT_INICIAL` y la ruta como `RUTA_DRAFT`.
 
+### Si `TIPO_ARTICULO = multi`
+
+Invoca el subagente `writer` con instrucciones de modo guía multi-producto:
+
+```
+Redacta una GUÍA MULTI-PRODUCTO completa para el medio {MEDIO}.
+
+TIPO_ARTICULO: multi
+FORMATO_GUIA: {FORMATO_GUIA}
+ÁNGULO GLOBAL: {ANGULO_FINAL}
+HILO CONDUCTOR: {HILO_CONDUCTOR_FINAL}
+TITULAR: {TITULAR_FINAL}
+
+FICHAS DE PRODUCTO (en orden, respeta el orden del redactor):
+{FICHA_1}
+---
+{FICHA_2}
+---
+...
+{FICHA_N}
+
+GUIDELINE DEL MEDIO: lee el archivo guidelines/GUIDELINE-{MEDIO}.md y síguela
+estrictamente. Presta especial atención a las secciones "Multi-producto",
+"Formatos multi-producto admitidos" y a la plantilla por bloque de producto que
+define el medio. La guideline es la única fuente normativa sobre estructura.
+
+EJEMPLOS PUBLICADOS MULTI: lee 2-3 archivos de knowledge/ejemplos-publicados/{MEDIO}/
+que sean también multi-producto o guías (recopilatorios, comparativas, tops). Si
+no existen ejemplos multi en la carpeta del medio, calibra con los mono más
+cercanos en voz y vocabulario.
+
+REGLAS GENERALES PARA GUÍAS MULTI-PRODUCTO (las concretas las pone la guideline):
+- El artículo es UNO solo, no N artículos pegados. Hay un hilo conductor común
+  (HILO_CONDUCTOR) que se establece en la introducción y se cierra en el veredicto
+  o cierre final.
+- Cada bloque de producto:
+  - Empieza con marca + modelo en el heading correspondiente.
+  - No copia la fórmula del bloque anterior (variedad de aperturas).
+  - Aplica la receta dominante de su bloque según indique la guideline.
+- Las recetas GLOBALES (intro, veredicto, criterios) se aplican UNA SOLA VEZ, no
+  por bloque.
+- Precios: misma regla relativa que en mono salvo que la guideline permita cifra
+  exacta en algún punto concreto.
+- No inventes datos cruzados entre productos. Si comparas dos modelos y un dato
+  no está en su ficha, no lo infieras; reescribe la comparación con lo que sí
+  tienes.
+
+FRONTMATTER REQUERIDO (incluirlo al inicio del draft en bloque YAML):
+```yaml
+titulo: "{TITULAR_FINAL}"
+medio: {MEDIO}
+url_origen: {URL_FICHA_1}             # URL del producto destacado / primero del orden
+url_secundarias:                       # resto de URLs del conjunto, en orden
+  - {URL_FICHA_2}
+  - {URL_FICHA_3}
+  - ...
+fecha: {fecha_hoy_en_formato_YYYY-MM-DD}
+angulo: {ANGULO_FINAL}
+tipo_articulo: multi
+formato_guia: {FORMATO_GUIA}
+n_productos: {N_URLS}
+hilo_conductor: "{HILO_CONDUCTOR_FINAL}"
+recetas: [...]                         # recetas del cuerpo libre aplicadas a la guía
+estado: borrador
+```
+
+RUTA DE GUARDADO: drafts/{MEDIO}/{fecha_hoy_YYYYMMDD}-{slug-del-titular}.md
+  Misma convención de slug que en mono.
+
+Antes de guardar, aplica el paso de auto-revisión anti-IA. En multi añade además:
+- Test de bloque intercambiable: si pego el bloque de producto N en cualquier otro
+  artículo de guía cambiando el nombre, ¿seguiría sonando bien? Si la respuesta es
+  sí, ese bloque es plantilla; reescríbelo con un dato específico del producto o
+  un escenario concreto.
+- Variedad de aperturas: no más de un bloque empieza con la misma estructura
+  ("La/el [producto] de [marca]…", "[Marca] propone…", etc.).
+
+Genera el artículo completo, no un esquema. Respeta longitud objetivo para multi
+según la guideline.
+```
+
+Guarda el resultado como `DRAFT_INICIAL` y la ruta como `RUTA_DRAFT`.
+
 ---
 
 ## PASO 9 — Subagente: editor-in-chief
@@ -345,6 +668,13 @@ Realiza el pase editorial final de este artículo de oferta.
 RUTA DEL DRAFT: {RUTA_DRAFT}
 
 MEDIO DESTINO: {MEDIO}
+TIPO_ARTICULO: {TIPO_ARTICULO}             # mono o multi
+{si TIPO_ARTICULO=multi:}
+FORMATO_GUIA: {FORMATO_GUIA}
+HILO CONDUCTOR: {HILO_CONDUCTOR_FINAL}
+N_PRODUCTOS: {N_URLS}
+{fin si multi}
+
 GUIDELINE DEL MEDIO: lee el archivo guidelines/GUIDELINE-{MEDIO}.md
 ÁNGULO APLICADO: {ANGULO_FINAL}
 
@@ -356,16 +686,32 @@ CRITERIOS DE REVISIÓN (en orden de prioridad):
 4. Frases vetadas: ¿hay alguna de las frases vetadas (globales o del medio)?
    Sustitúyelas.
 5. Frases preferidas: ¿se usan naturalmente las frases preferidas del medio?
-6. Longitud: ¿está dentro del rango objetivo de la guideline?
+6. Longitud: ¿está dentro del rango objetivo de la guideline para el TIPO_ARTICULO?
 7. Estructura: ¿los anclajes fijos y las recetas elegidas cumplen su propósito?
 8. CTA y disclaimer: ¿posición correcta? ¿Texto literal del disclaimer?
-9. Frontmatter: ¿completo y correcto? Sin [PENDIENTE].
+9. Frontmatter: ¿completo y correcto? Sin [PENDIENTE]. En multi, ¿figura
+   tipo_articulo: multi, formato_guia, n_productos, hilo_conductor y url_secundarias?
 10. Auto-revisión anti-IA: ¿queda alguna muletilla típica de IA, traducción
     mecánica de specs o frase-resumen genérica? Reescríbela.
 11. Último párrafo: ¿cierra bien sin frases de relleno?
 
+SI TIPO_ARTICULO=multi, añade además los siguientes puntos al checklist
+(en el agent file de editor-in-chief estos cinco puntos figuran como #9 a #13,
+porque el checklist canónico del agente tiene 8 puntos base, no 11):
+
+12. Hilo conductor: ¿se establece en la introducción y se retoma en el cierre /
+    veredicto? Si solo aparece en la intro, refuérzalo en el cierre.
+13. Bloque por producto: ¿cada bloque empieza con marca + modelo? ¿No copia la
+    fórmula de apertura del anterior?
+14. Recetas globales aplicadas una sola vez (intro, veredicto, criterios), no por
+    bloque. Si una receta global aparece duplicada por bloque, consolídala.
+15. Test de bloque intercambiable: ¿algún bloque podría pegarse en otra guía sin
+    cambios sustanciales? Reescríbelo con un dato/escenario específico del producto.
+16. Coherencia entre fichas y prosa: si un dato aparece en la prosa, está en la
+    ficha correspondiente. No hay datos cruzados inventados.
+
 Aplica las correcciones DIRECTAMENTE sobre el archivo con Edit. Devuelve:
-- Listado breve de las correcciones realizadas (máximo 8 items)
+- Listado breve de las correcciones realizadas (máximo 8 items en mono, 13 en multi)
 - Valoración 1-5 de alineación con la guideline (5 = perfecto)
 - Confirmación de que el frontmatter está completo y sin [PENDIENTE]
 ```
@@ -376,6 +722,8 @@ Guarda las correcciones como `LOG_CORRECCIONES` y la valoración como `VALORACIO
 
 ## PASO 10 — Informe final al redactor
 
+### Si `TIPO_ARTICULO = mono`
+
 Muestra el siguiente resumen:
 
 ```
@@ -383,8 +731,36 @@ Muestra el siguiente resumen:
 
 **Ruta del draft:** {RUTA_DRAFT}
 **Medio:** {MEDIO}
+**Tipo:** mono-producto
 **Ángulo:** {ANGULO_FINAL}
 **Titular:** {TITULAR_FINAL}
+
+### Correcciones del editor en jefe:
+{LOG_CORRECCIONES}
+
+**Alineación con la guideline:** {VALORACION}/5
+```
+
+### Si `TIPO_ARTICULO = multi`
+
+Muestra el resumen enriquecido:
+
+```
+## Guía multi-producto generada
+
+**Ruta del draft:** {RUTA_DRAFT}
+**Medio:** {MEDIO}
+**Tipo:** guía multi-producto ({N_URLS} productos)
+**Formato de guía:** {FORMATO_GUIA}
+**Ángulo global:** {ANGULO_FINAL}
+**Hilo conductor:** {HILO_CONDUCTOR_FINAL}
+**Titular:** {TITULAR_FINAL}
+
+### Productos incluidos (en orden):
+1. {nombre_producto_1}
+2. {nombre_producto_2}
+...
+{N}. {nombre_producto_N}
 
 ### Correcciones del editor en jefe:
 {LOG_CORRECCIONES}
@@ -420,8 +796,13 @@ Muestra siempre este bloque al final, sin omitirlo:
 
 ## Reglas de comportamiento general
 
-- **No inventes datos del producto.** Si la ficha está incompleta, espera a que el redactor la complete antes de continuar.
-- **No saltes las pausas interactivas.** La pausa A (ángulo) y la pausa B (titular) son obligatorias. El redactor las confirma siempre, nunca las asume el sistema.
-- **Si un subagente falla**, informa claramente qué subagente falló, por qué (si se sabe) y qué necesita el redactor para continuar.
-- **Mantén el estado** entre pasos: `FICHA_PRODUCTO`, `PROPUESTA_ANGULO`, `ANGULO_FINAL`, `TITULARES_30`, `TITULAR_FINAL`, `RUTA_DRAFT`, `LOG_CORRECCIONES`, `VALORACION` deben estar disponibles en toda la sesión.
+- **No inventes datos del producto.** Si la ficha está incompleta, espera a que el redactor la complete antes de continuar. En multi, esto aplica producto por producto: si una sola ficha tiene huecos, se rellena antes de pasar al ángulo.
+- **No saltes las pausas interactivas.** En mono hay 2 pausas (A: ángulo, B: titular). En multi hay 3 pausas (2.5: detección + formato de guía, A: ángulo + hilo conductor, B: titular). Todas requieren confirmación explícita del redactor; nunca las asume el sistema.
+- **Detección de modo es automática solo cuando es trivial.** Si solo hay 1 URL, el sistema asume `mono` sin preguntar. Si hay 2+, **siempre** se pregunta — no infieras el modo a partir del medio o de patrones de la URL.
+- **Si un subagente falla**, informa claramente qué subagente falló, por qué (si se sabe) y qué necesita el redactor para continuar. En multi, si solo falla la extracción de una de las N URLs, el resto sigue avanzando; pide datos manuales solo para la que falló.
+- **Mantén el estado** entre pasos:
+  - Comunes a todos los flujos: `MEDIO`, `TIPO_ARTICULO`, `ANGULO_FINAL`, `TITULARES_30`, `TITULAR_FINAL`, `RUTA_DRAFT`, `LOG_CORRECCIONES`, `VALORACION`.
+  - Solo mono: `URL_PRODUCTO`, `FICHA_PRODUCTO`.
+  - Solo multi: `URLS`, `N_URLS`, `FICHAS_PRODUCTOS`, `FORMATO_GUIA`, `HILO_CONDUCTOR_FINAL`.
 - **Formato de fechas:** DD/MM/YYYY para mostrar al redactor, YYYY-MM-DD para el frontmatter del draft, YYYYMMDD para el nombre del archivo.
+- **Una sola guía por invocación.** Si el redactor elige opción B en la pausa 2.5 (artículos separados), el flujo actual termina y se le pide que lance `/crear-articulo` una vez por URL. No intentes encadenar N flujos mono en una misma sesión salvo que el redactor lo pida explícitamente.

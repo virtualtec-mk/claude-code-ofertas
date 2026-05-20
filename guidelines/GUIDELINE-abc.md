@@ -1,8 +1,8 @@
 ---
 medio: abc
-version: 1.1
-ultima_actualizacion: 19/05/2026
-origen: importado desde GPT personalizado "ABC Favorito" (v1.0) + calibración con 18 ejemplos publicados (v1.1)
+version: 1.2
+ultima_actualizacion: 20/05/2026
+origen: importado desde GPT personalizado "ABC Favorito" (v1.0) + calibración con 18 ejemplos publicados (v1.1) + mapeo de FORMATO_GUIA universal a modos internos para soporte multi-producto transversal (v1.2)
 autores:
   - nombre: Benjamín Pelaz
     perfil: declarado como autor por defecto por el redactor. En la muestra descargada de 18 artículos de mayo 2026 no aparece firmando ninguno — verificar si está cubierto temporalmente por otras firmas.
@@ -98,6 +98,36 @@ Una charla fluida sobre las mejores oportunidades de hoy en una tienda concreta 
 Contenido editorial sobre por qué confiar en una marca concreta es una decisión inteligente (y barata) ahora mismo. Foco en trayectoria, valor de marca y oferta agregada del catálogo.
 
 El writer indica el modo en el frontmatter y adapta los anclajes según corresponda.
+
+---
+
+## Formatos multi-producto admitidos
+
+Cuando el orquestador active `TIPO_ARTICULO=multi`, presenta esta lista al redactor en el sub-paso 2.5.1. ABC mapea cada `FORMATO_GUIA` universal a uno de sus tres modos narrativos:
+
+| `FORMATO_GUIA` | `modo` interno | Cuándo lo elige el redactor |
+|---|---|---|
+| `recopilatorio` | `recopilatorio` | 3-7 ofertas con hilo común (categoría, tienda, momento). Estilo dominante del medio. |
+| `comparativa` | `recopilatorio` (con 2-3 productos enfrentados, cada uno en su H3) | "Cuál ganaría: X frente a Y". |
+| `top-n` | `recopilatorio` (con orden de ranking implícito) | "Los 5 mejores smartwatches por menos de 200 €". |
+| `por-presupuesto` | `recopilatorio` (con H3 ordenados por franja de precio) | "Robots aspirador a 150, 250 y 400 euros". |
+| `por-uso` | `recopilatorio` (con H3 por perfil/uso) | "Auriculares según uses gym, oficina o viajes". |
+| `longtail-marca` | `longtail-marca` | "Por qué [Marca] sigue siendo referencia: estos N modelos lo demuestran". |
+
+> El modo `oferta-unica` solo aplica a `TIPO_ARTICULO=mono`. Si llega un input multi-producto, nunca se mapea a `oferta-unica`.
+
+### Reglas comunes a todos los formatos multi en ABC
+
+- Todos comparten la estructura general del modo `recopilatorio` (anclajes 1-7 con H3 por producto), salvo `longtail-marca` que sigue la suya (ver "Modo `longtail-marca`" en "Adaptaciones por modo narrativo" más abajo).
+- El primer H3 de **contexto** se adapta al formato:
+  - `recopilatorio` → contexto de tienda/categoría/momento.
+  - `comparativa` → contexto del eje de comparación.
+  - `top-n` → contexto del criterio de ranking ("qué hemos pesado para elegirlos").
+  - `por-presupuesto` → contexto del rango de precios y de dónde está el escalón que sí compensa.
+  - `por-uso` → contexto del perfil o caso de uso.
+- El último H3 de **veredicto** se mantiene en todos salvo en `longtail-marca`, donde es opcional.
+- El párrafo final obligatorio ("En la sección Favorito de ABC…") aparece igual en todos los formatos.
+- El campo `formato_guia` se añade al frontmatter cuando `tipo_articulo: multi`, junto con `modo`, `n_productos`, `hilo_conductor` y `url_secundarias`.
 
 ---
 
@@ -337,11 +367,15 @@ titulo: "<H1 exacto, máximo 89 caracteres>"
 subtitulo: "<H2 subtítulo con chispa>"
 slug_seo: <slug-seo-corto-con-sufijo-fvt>
 medio: abc
-url_origen: <URL del producto>
-url_secundarias:                     # solo en modo recopilatorio
+url_origen: <URL del producto principal / primero del lote>
+url_secundarias:                     # solo en multi: resto de URLs en orden
   - <URL adicional 1>
   - <URL adicional 2>
 modo: <oferta-unica | recopilatorio | longtail-marca>
+tipo_articulo: mono | multi          # mono cuando modo=oferta-unica, multi en el resto
+formato_guia: <comparativa | recopilatorio | top-n | por-presupuesto | por-uso | longtail-marca>  # solo en multi
+n_productos: <entero >= 2>           # solo en multi
+hilo_conductor: "<frase del hilo>"   # solo en multi
 fecha: YYYY-MM-DD
 angulo: <nombre-del-angulo>
 recetas: [...]
@@ -349,6 +383,8 @@ autor: Benjamín Pelaz                # autor por defecto de Favorito
 fuente: <playwright | manual>
 estado: borrador
 ```
+
+`tipo_articulo`, `formato_guia`, `n_productos` y `hilo_conductor` son nuevos en v1.2 (soporte multi-producto transversal). `modo` se mantiene como el campo nativo del medio que el writer y el editor-in-chief usan para decidir la estructura interna.
 
 ---
 
