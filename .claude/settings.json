@@ -13,14 +13,14 @@
       "WebFetch(domain:*.up.railway.app)",
       "Bash(curl:*)",
       "Read(**)",
-      "Read(../claude-code-text-agents/guidelines/**)",
-      "Read(../claude-code-text-agents/medios.md)",
+      "Read(../claude-code-writer/guidelines/**)",
+      "Read(../claude-code-writer/medios.md)",
       "Write(watchlists/**)",
       "Write(historial/**)",
       "Write(knowledge/**)",
       "Write(changelog/**)",
       "Write(docs/qa/**)",
-      "Write(../claude-code-text-agents/inbox/**)",
+      "Write(../claude-code-writer/inbox/**)",
       "Edit(watchlists/**)"
     ],
     "deny": [
@@ -28,8 +28,8 @@
       "Bash(sudo:*)",
       "Bash(git push:*)",
       "Bash(git reset --hard:*)",
-      "Write(../claude-code-text-agents/guidelines/**)",
-      "Write(../claude-code-text-agents/drafts/**)"
+      "Write(../claude-code-writer/guidelines/**)",
+      "Write(../claude-code-writer/drafts/**)"
     ]
   }
 }
