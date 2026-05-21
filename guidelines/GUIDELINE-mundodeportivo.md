@@ -1,8 +1,8 @@
 ---
 medio: mundodeportivo
-version: 3.0
+version: 3.1
 ultima_actualizacion: 21/05/2026
-notas_version: "v3.0: rediseño alineado con manifiesto v3. Capa de persona-redactora obligatoria. Recetas opcionales. Posición del precio gobernada por knowledge/posicion-precio-por-angulo.md. Test del bloguero como filtro previo del editor."
+notas_version: "v3.0: rediseño alineado con manifiesto v3. Capa de persona-redactora obligatoria. Recetas opcionales. Posición del precio gobernada por knowledge/posicion-precio-por-angulo.md. Test del bloguero como filtro previo del editor. v3.1: lecciones de Xataka y El País Escaparate. H3 telegráfico de beneficio formalizado como variante preferida cuando el bloque no exige narrativa amplia. Máximo 1 H3 narrativo largo por bloque de producto en multi. Recetas `intro-dos-golpes` y `cierre-testimonial-corto` añadidas. Plural editorial intacto (ADN del medio)."
 autores:
   - nombre: Andrés Moncada
     perfil: autor principal, firma el ~99% de los artículos de El Recomendador
@@ -129,6 +129,13 @@ Estructura:
    Ejemplo: "3 smartwatches que controlan salud, deporte y descanso"
 
    [H3 por producto]: "Marca Modelo: beneficio activo principal"
+   (v3.1) Forma del H3 por producto: se admiten dos formatos.
+     1. Narrativo (formato histórico): "Marca Modelo: beneficio activo principal".
+     2. Telegráfico de beneficio (3-7 palabras, calibrado con El País Escaparate):
+        "Marca Modelo: aguanta ocho horas seguidas", "Marca Modelo: 7000 mAh sin engordar".
+     Máximo 1 H3 narrativo largo por artículo en el conjunto de bloques. Si hay 3 productos,
+     uno puede ser narrativo y los otros dos telegráficos. Tres H3 narrativos largos seguidos
+     cantan a ensayo.
        [Imagen del producto + pie de foto "Marca/Tienda"]
        2-3 párrafos descriptivos en prosa (negritas en beneficios clave)
        Lista de 2-3 características clave (bullets cortos, complementarios)
@@ -218,6 +225,11 @@ Cuándo usarla: ángulo `tendencia`.
 Cuándo usarla: **recomendable** en multi-producto. Opcional en mono-producto.
 
 **`truco-de-experto-integrado`** — **No es una sección propia.** Es una indicación: integra un consejo práctico dentro de cualquier otra receta, sin etiquetarlo como "truco".
+
+**`intro-dos-golpes`** (nueva en v3.1) — Reescritura del "Calentamiento" en dos golpes. Párrafo 1: queja activa cotidiana o pregunta retórica anclada al deporte/estilo de vida activo ("Hay días en los que la batería del reloj decide cuándo se acaba el entreno"). Párrafo 2: bisagra y entrada del producto. Calibrada con El País Escaparate adaptado a voz activa.
+Cuándo usarla: encaja en `liquidacion`, `uso-practico` y `precio-psicologico`. Cuota 1 cada 4 artículos del medio: el último publicado de Mundo Deportivo no la repite. Antifraz: si el "¿harto de…?" sirviera para cualquier producto fuera del estilo activo, está mal calibrado.
+
+**`cierre-testimonial-corto`** (nueva en v3.1) — Última frase del cuerpo (antes del párrafo obligatorio de El Recomendador) con la fórmula *"No es para todo el mundo, pero sí para [perfil activo concreto: el que entrena tres días, el que pasa ocho horas en el escritorio, el que viaja con la mochila al hombro]"*. Calibrada con Xataka. Sustituye legítimamente al H2/H3 polarizante, sin abrir sección. Cuota 1 cada 2 artículos del medio. En multi-producto se aplica una sola vez al cierre global, no por bloque.
 
 ---
 

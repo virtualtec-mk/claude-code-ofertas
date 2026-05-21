@@ -1,8 +1,8 @@
 ---
 medio: abc
-version: 1.3
+version: 1.4
 ultima_actualizacion: 21/05/2026
-origen: importado desde GPT personalizado "ABC Favorito" (v1.0) + calibración con 18 ejemplos publicados (v1.1) + mapeo de FORMATO_GUIA universal a modos internos para soporte multi-producto transversal (v1.2) + rediseño v1.3 alineado con manifiesto v3: capa de persona-redactora, recetas opcionales, posición del precio gobernada por knowledge/posicion-precio-por-angulo.md, test del bloguero como filtro previo del editor
+origen: importado desde GPT personalizado "ABC Favorito" (v1.0) + calibración con 18 ejemplos publicados (v1.1) + mapeo de FORMATO_GUIA universal a modos internos para soporte multi-producto transversal (v1.2) + rediseño v1.3 alineado con manifiesto v3: capa de persona-redactora, recetas opcionales, posición del precio gobernada por knowledge/posicion-precio-por-angulo.md, test del bloguero como filtro previo del editor + v1.4: lecciones de Xataka y El País Escaparate. Receta `intro-dos-golpes` y `cierre-testimonial-corto` añadidas. H3 telegráfico de beneficio (3-7 palabras) formalizado como variante preferida del segundo y tercer H3 cuando no exigen narrativa amplia. Máximo 1 H3 narrativo largo por artículo.
 autores:
   - nombre: Benjamín Pelaz
     perfil: declarado como autor por defecto por el redactor. En la muestra descargada de 18 artículos de mayo 2026 no aparece firmando ninguno — verificar si está cubierto temporalmente por otras firmas.
@@ -195,6 +195,7 @@ Patrón habitual observado:
    - En `recopilatorio` y `longtail-marca`: un H3 por cada producto del conjunto.
    - Receta dominante en cada H3 de producto: `specs-traducidas`. Vatios, litros, materiales o megapíxeles traducidos a *"¿qué gano yo con esto?"*.
    - Comparativas integradas cuando ayuden: *"rinde como el modelo de 400€ pero hoy te lo llevas por una fracción"*.
+   - **Forma del H3 (v1.4):** se admiten dos formatos. (1) **H3 narrativo** ("Garmin: la marca que convirtió los relojes deportivos en herramientas casi imprescindibles") y (2) **H3 telegráfico de beneficio**, 3-7 palabras, calibrado con El País Escaparate ("Pantalla AMOLED y autonomía honesta", "Limpieza más potente gracias a la fibra de carbono", "Cuatro días sin tocar el cargador"). **Máximo 1 H3 narrativo largo por artículo**: el primero (contexto de marca o de categoría) puede serlo; los siguientes tiran a telegráfico siempre que sea posible. Tres H3 narrativos seguidos cantan a ensayo de IA.
 
 3. **H3 final — "El veredicto"** (recomendado en oferta-unica y recopilatorio; opcional en longtail-marca).
    Bloque editorial y honesto. Explica por qué este precio es **una anomalía**: stock, guerra de precios, fin de temporada, descatalogación, cambio de generación. Sé directo: *"si necesitas renovar [categoría], es ahora o nunca porque este descuento no es lo habitual"*.
@@ -348,6 +349,8 @@ La columna vertebral de ABC sigue siendo el primer H3 de contexto y el H3 de ver
 | `vision-de-marca` | Modo `longtail-marca` (anclaje 6 modificado) | Receta firma del modo longtail. |
 | `momento-cultural` | Modo `recopilatorio` (anclaje 6 modificado) | Cuando el hilo conductor es estacional o cultural. |
 | `faq-corta` | Antes del cierre (anclaje 8) | Opcional. Solo si el producto suscita dudas reales (tallaje, compatibilidad, plazo). No la fuerces. |
+| `intro-dos-golpes` (v1.4) | Introducción (anclaje 5) | Calibrada con El País Escaparate. Párrafo 1: pregunta retórica o queja cotidiana. Párrafo 2: bisagra que presenta el producto. Cuota 1 cada 4 artículos del medio (es muy reconocible y se gasta rápido). |
+| `cierre-testimonial-corto` (v1.4) | Cierre del H3 final, antes del párrafo de "En la sección Favorito…" | Calibrado con Xataka. Una frase tipo *"No es para todo el mundo, pero sí para [perfil concreto]"*. Sustituto legítimo del H2 polarizante (vetado). Cuota 1 cada 2 artículos del medio. |
 
 ---
 
