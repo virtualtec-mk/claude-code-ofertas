@@ -48,7 +48,7 @@ Este test es el **filtro número uno** del editor-in-chief. Si no lo pasa, el dr
 Síntomas habituales de no pasarlo:
 
 - Suena al mismo redactor neutro para cocina, tech, moda y running.
-- El primer párrafo arranca con datos transaccionales (precio + tienda + descuento) antes de tener voz.
+- El primer párrafo arranca con datos transaccionales (precio + tienda + descuento) antes de tener voz. **Esto es la firma número uno del artículo-panfleto y queda prohibido en todos los medios y todos los ángulos.** Ver el listado completo de aperturas vetadas y cómo abrir en su lugar en `knowledge/frases-vetadas.md`, sección **A.bis Aperturas comerciales prohibidas en artículos de oferta**. El precio y el descuento entran a partir de la segunda frase o segundo párrafo, ya con contexto detrás — nunca como primera línea del cuerpo, ni siquiera en `liquidacion`.
 - Las secciones del cuerpo se reconocen como "receta IA encadenada" (mini-historia → para quién sí/no → FAQ).
 - Frases comodín que servirían para cualquier producto de la categoría.
 - Ausencia total de juicio editorial subjetivo del que escribe.

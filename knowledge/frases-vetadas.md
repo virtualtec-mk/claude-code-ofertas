@@ -266,6 +266,34 @@ Esta sección es **lectura obligatoria** para el writer y el editor-in-chief en 
 
 ---
 
+## A.bis Aperturas comerciales prohibidas en artículos de oferta
+
+Un artículo de oferta **nunca** arranca como un panfleto comercial. La intro tiene que ser **persuasiva, informativa, periodística, de actualidad** — no una ficha de catálogo. El precio y la rebaja son **la noticia**, pero no son **la apertura**: entran integrados después de haber dado contexto, escenario o un giro editorial.
+
+Aperturas vetadas (y sus variantes estructurales):
+
+- "El [producto] aparece esta semana en [tienda] con un X% de rebaja."
+- "El [producto] está rebajado en [tienda] a [precio]."
+- "[Tienda] tiene el [producto] con un X% de descuento."
+- "[Producto] baja a [precio] en [tienda]."
+- "Ahora puedes encontrar el [producto] por [precio] en [tienda]."
+- "El [producto] se queda en [precio] gracias al X% de descuento."
+- "Ya está disponible el [producto] con una rebaja del X%."
+- "Si buscas [categoría], el [producto] está rebajado en [tienda]."
+- Cualquier primera frase del cuerpo cuyo sujeto sea el producto y cuyo predicado sea "está rebajado / tiene un X% de descuento / aparece en oferta / cae a X euros". Es la firma número uno del artículo-panfleto.
+
+**Cómo abrir, en cambio:**
+- Escenario humano concreto de la persona-redactora (un martes a las nueve, el coche cargado para el finde, la maleta de mano abierta encima de la cama).
+- Observación de categoría o mercado (qué está pasando en el segmento, qué se ha movido, qué tendencia explica que esto sea noticia hoy).
+- Dato editorial sorprendente que no sea el precio (curiosidad de gama, contradicción de catálogo, comparación con un referente).
+- Pregunta práctica que el lector se haya hecho de verdad (no retórica IA del tipo "¿alguna vez te has preguntado…?").
+
+El precio y el descuento aparecen en el **segundo** elemento de la intro (segunda frase, segundo párrafo o transición al primer H2), ya con contexto detrás. En `liquidacion` y `precio-psicologico` el precio sigue siendo protagonista del cuerpo, pero la **primera línea** no puede ser un titular de panfleto: tiene que tener voz.
+
+Esta regla aplica a **todos los medios y todos los ángulos**, sin excepción. Es responsabilidad del writer escribir la apertura así desde el primer borrador, y del editor-in-chief devolverlo si la primera frase del cuerpo es una variante de las listadas arriba.
+
+---
+
 ## B. Frases demasiado genéricas
 
 - "Es una herramienta poderosa."
