@@ -1,8 +1,8 @@
 ---
 medio: larazon
-version: 3.0
+version: 3.1
 ultima_actualizacion: 21/05/2026
-origen: importado desde GPT personalizado (v1) + paleta de recetas (v2) + ajuste de mapa (v2.1) + voz real y autores (v2.2) + voz humana, estructura de intro, patrón H2, FAQ opcional y sin negritas markdown (v2.3) + estructura base mínima inviolable: titular + subtítulo + introducción + H2 + 3 párrafos (v2.4) + 2-3 H2 adicionales obligatorios en mono-producto y longitud subida a 600-900 palabras (v2.5) + refuerzos anti-IA tras draft eclipse Efekol (v2.6) + soporte de guías multi-producto: formatos admitidos, estructura del cuerpo en multi, longitud por bloque, titulares con cuantificador en H1 (v2.7) + rediseño v3: capa de persona-redactora, recetas opcionales, anclajes 3 y 4 flexibles según ángulo, posición del precio gobernada por knowledge/posicion-precio-por-angulo.md
+origen: importado desde GPT personalizado (v1) + paleta de recetas (v2) + ajuste de mapa (v2.1) + voz real y autores (v2.2) + voz humana, estructura de intro, patrón H2, FAQ opcional y sin negritas markdown (v2.3) + estructura base mínima inviolable: titular + subtítulo + introducción + H2 + 3 párrafos (v2.4) + 2-3 H2 adicionales obligatorios en mono-producto y longitud subida a 600-900 palabras (v2.5) + refuerzos anti-IA tras draft eclipse Efekol (v2.6) + soporte de guías multi-producto: formatos admitidos, estructura del cuerpo en multi, longitud por bloque, titulares con cuantificador en H1 (v2.7) + rediseño v3: capa de persona-redactora, recetas opcionales, anclajes 3 y 4 flexibles según ángulo, posición del precio gobernada por knowledge/posicion-precio-por-angulo.md + v3.1: veto a apertura "Hay X que…" como muletilla recurrente, veto al placeholder [Widget pricebox] en el draft, veto a H2 reincidente "Para quién encaja y para quién no…", refuerzo de revisión gramatical en expresiones físicas (kilómetros, distancias, tiempos)
 autores:
   - nombre: Marina Ros
     perfil: multi-producto, categorías de moda y hogar, liquidaciones
@@ -49,6 +49,8 @@ Los arranques de los artículos reales siguen tres fórmulas dominantes. Úsalas
 1. **Dicotomía o contradicción cotidiana.** Una frase que contrapone dos realidades del lector y deja al producto resolviendo la tensión.
    - *"Hay móviles que compras para cuidarlos y móviles que compras para que te aguanten a ti."* (review Blackview Fort 5)
    - *"Hay cocinas en las que falta espacio y cocinas en las que sobra el caos."* (multi-producto organizadores)
+
+   > **Cuota dura del arranque "Hay X que…":** este molde se está usando en exceso (varios artículos seguidos del medio han abierto con "Hay corredores que…", "Hay móviles que…", "Hay cocinas que…"). Es una **fórmula con cuota 1**: solo puede aparecer si **el artículo inmediatamente anterior publicado en La Razón no la usó**. Si el último draft del medio abre con "Hay…", este NO repite. El writer comprueba `knowledge/ejemplos-publicados/larazon/` y los drafts más recientes en `drafts/larazon/` antes de elegir este arranque. Si está saturado, opta por el patrón 2 (observación de mercado/hábito) o el patrón 3 (gancho de hallazgo), o por una entrada directa al escenario sin "Hay".
 
 2. **Observación de mercado o de hábito.** Un dato verificable sobre el estado del mercado o sobre un cambio de costumbres, seguido del producto como respuesta.
    - *"La autonomía vuelve a mandar."* (multi-producto baterías 7000 mAh)
@@ -158,7 +160,7 @@ Reglas para esos 2-3 H2:
 - **Cada H2 lleva 1-3 párrafos** o, si hay dudas reales y honestas que el lector se haría, una FAQ corta como uno de los H2.
 - **Las recetas de la paleta son referencia opcional**, no menú a elegir. Si te apoyas en `microhistoria-de-uso` o `specs-traducidas`, decláralas en el frontmatter como referencia. Si no, deja `recetas: []`.
 - **`cuando-no-comprarlo`** como H2 propio solo se admite en `recomendacion-personal` y reviews largos.
-- **`para-quien-si-para-quien-no`** como H2 propio: ver restricción 2.quinque del manifiesto. NO es el cierre por defecto del cuerpo en ofertas; va integrada en 1-2 frases dentro de otra sección salvo que el producto sea genuinamente polarizante.
+- **`para-quien-si-para-quien-no`** como H2 propio: ver restricción 2.quinque del manifiesto y punto 13 de "Patrones específicos vetados en La Razón" (cuota 0 sobre el patrón completo si ya apareció en los últimos 3 artículos publicados). NO es el cierre por defecto del cuerpo en ofertas; va integrada en 1-2 frases dentro de otra sección salvo que el producto sea genuinamente polarizante. Si se admite, el heading debe variar el ángulo, no repetir "Para quién encaja y para quién no…" ni sus calcos.
 - **No repetir el mismo molde dos veces** en el mismo artículo.
 - **No repetir la misma plantilla de cierre entre artículos consecutivos del medio.** Si el último draft publicado de La Razón cerró con un H2 tipo "para qué sí / para qué no" o equivalente, este NO repite el patrón. El cierre del cuerpo lo decide la persona-redactora desde el scratchpad, no un molde recurrente.
 - **Prohibido el H2 que abre dudas sobre la marca o el producto** (variantes: "Lo que no sé de X", "Lo que me preocupa de X", "Antes de comprar, ten en cuenta…" como cajón de pegas). Esa información se trabaja como dato neutro o positivo dentro del cuerpo, no como sección estrella. Ver regla 2.quinque del manifiesto.
@@ -393,7 +395,7 @@ Tolerancia ±10%. Si te quedas por debajo, amplía con sustancia (más spec trad
 - **Widget de pricebox (themonetise.es):** dos veces, en posiciones fijas independientes del cuerpo libre:
   1. Tras el primer párrafo del cuerpo.
   2. Justo antes del disclaimer final.
-  Se implementan como widgets embebidos, no como texto en markdown. El widget lo inserta el redactor en el CMS, no aparece en el draft.
+  Se implementan como widgets embebidos, no como texto en markdown. El widget lo inserta el redactor en el CMS, no aparece en el draft. **Prohibido escribir `[Widget pricebox]`, `[widget]`, `[pricebox]`, `[CTA]` u otros placeholders en el draft markdown.** Ver punto 12 de "Patrones específicos vetados en La Razón".
 
 ---
 
@@ -474,6 +476,16 @@ Estos moldes se detectaron en drafts reales y son **rechazo automático** en la 
 10. **Naming marca + modelo.** Cuando un heading o el cuerpo nombra marca y modelo de un producto reconocible, **siempre van juntos y en ese orden: primero la marca, después el modelo** ("Zapatillas Reebok Glide", no "Zapatillas Glide Reebok"). Si delante hay un tipo de producto genérico, va antes que la marca. Nunca se intercala texto entre marca y modelo ni se pospone la marca al modelo. Ver regla transversal completa en `knowledge/naming-productos.md`.
 
 11. **Jerga de ficha de Amazon.** Prohibido en cuerpo: `colorway` (decir "color" o "combinación de color"), `variante` (como sinónimo de color), `SKU`, `ASIN`, `ref.`. Prohibido transcribir literal nombres internos de variantes de Amazon ("Ftwwhite Optimumblue Gum", "Navy White Red", "Grit Green/Trek Grey/Chalk"); se traducen a descripciones cromáticas humanas ("la versión en blanco con detalles azules y suela de color goma"). Prohibida la meta-narrativa del proceso ("cuando se escribe este artículo", "en el momento de la consulta", "según la última verificación"). Ver regla transversal en `knowledge/frases-vetadas.md` → "Jerga de ficha de Amazon y meta-narrativa del proceso".
+
+12. **Placeholder `[Widget pricebox]` prohibido en el draft.** El widget de pricebox (themonetise.es) lo inserta el redactor manualmente en el CMS en las dos posiciones definidas (tras el primer párrafo del cuerpo y antes del disclaimer). El draft markdown **NO** debe incluir el texto literal `[Widget pricebox]`, ni `[widget]`, ni `[pricebox]`, ni `[CTA]`, ni ningún otro marcador equivalente. Si aparece, el editor-in-chief lo elimina sin reemplazo. El writer no necesita señalizar dónde irá: el redactor lo sabe por la guideline y por la posición canónica.
+
+13. **H2 "Para quién encaja y para quién no…" reincidente.** Este H2 se ha repetido en exceso entre artículos del medio (variantes: "Para quién encaja y para quién no tiene todo el sentido del mundo", "Para qué sí y para qué no", "Para quién es y para quién no"). Aplica regla 2.quinque del manifiesto **con cuota 0 sobre el patrón completo**: NO se admite como heading de un H2 si en los últimos 3 artículos publicados de La Razón ha aparecido un H2 similar (cualquier variante de "Para quién/qué sí, para quién/qué no" o equivalente). Cuando el writer quiera segmentar al lector, lo hace integrado en 1-2 frases dentro de otro H2, o reformula el heading con un ángulo distinto: "El perfil de corredor al que le saca rendimiento real", "Cuándo este reloj es suficiente y cuándo te quedas corto", "Lo que cambia si entrenas tres días o cinco a la semana". Variar el ángulo del heading, no repetir el molde.
+
+14. **Revisión gramatical en expresiones físicas (kilómetros, distancias, tiempos, pesos).** Especial cuidado con construcciones que comparan o miden magnitudes físicas. Errores observados:
+    - ❌ *"la diferencia se nota de kilómetro"* → ✅ *"la diferencia se nota a los pocos kilómetros"* / *"se nota a kilómetros"* (con plural).
+    - ❌ *"aguanta sin parar"* aplicado a un objeto que sí se para (autonomía finita) → ✅ *"aguanta hasta XX horas seguidas"*.
+    - ❌ *"a hora y media de la salida"* (cuando se quiere decir tras hora y media) → ✅ *"hora y media después de empezar"*.
+    Antes de cerrar el draft, el writer y el editor-in-chief releen toda mención a kilómetros, horas, gramos y porcentajes para confirmar que la construcción es gramaticalmente correcta y suena a hablante nativo, no a calco.
 
 ---
 
