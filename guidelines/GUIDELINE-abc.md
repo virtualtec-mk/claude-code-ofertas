@@ -333,12 +333,17 @@ Desde v1.3, **las recetas dejan de ser un menú obligatorio** y pasan a ser **re
 
 La columna vertebral de ABC sigue siendo el primer H3 de contexto y el H3 de veredicto. Lo que cambia es que el contenido dentro de esos H3 nace del scratchpad humano de la persona, no de "elegir una receta de la lista".
 
+> **Persuasión equilibrada (regla 2.quinque del manifiesto):** ABC ya tenía la regla de no abrir H2/H3 propios para `cuando-no-comprarlo` ni para segmentar "para qué sí / para qué no". Se refuerza ahora con dos directrices transversales:
+> - **Prohibido el H2/H3 que abre dudas sobre la marca o el producto** ("Lo que no sé de [marca]", "Lo que me preocupa de [producto]", "Antes de comprar, ten en cuenta…" como cajón de pegas). Si la marca es poco conocida, esa información se trabaja como **dato neutro o positivo dentro del cuerpo** (no como sección estrella). El lector entró para saber si esa compra le encaja, no para que le sembremos sospechas.
+> - **No repetir el mismo molde de cierre entre artículos consecutivos del medio.** El editor-in-chief revisa el último draft publicado de ABC: si cerraba con un H3 tipo "Para quién es / Para quién no" o equivalente, este no lo repite. La estructura de H3 del análisis y del veredicto la decide la persona-redactora según lo que pida este producto en concreto.
+
 | Receta | Encaja en | Cómo se usa |
 |---|---|---|
 | `specs-traducidas` | H2 del análisis (anclaje 6) | Receta dominante. Traduce specs técnicas a beneficio cotidiano en prosa continua. |
 | `comparativa-corta` | H2 del análisis | Integrada en el flujo. *"Rinde como el modelo de 400 € pero hoy te lo llevas por una fracción"*. |
 | `contexto-de-mercado` | H2 del veredicto (anclaje 7) | Receta dominante. Explica por qué el precio es una anomalía. |
 | `cuando-no-comprarlo` | H2 del veredicto | Matiz integrado de 1-2 frases honestas. Nunca H2 propio en ABC. |
+| `para-quien-si-para-quien-no` | H2 del análisis | Integrada en 1-2 frases. Nunca como H2 propio en ABC (regla 2.quinque del manifiesto). |
 | `microhistoria-de-uso` | Introducción (anclaje 5) | El "gancho humano" puede tomar la forma de microhistoria del lector. |
 | `vision-de-marca` | Modo `longtail-marca` (anclaje 6 modificado) | Receta firma del modo longtail. |
 | `momento-cultural` | Modo `recopilatorio` (anclaje 6 modificado) | Cuando el hilo conductor es estacional o cultural. |

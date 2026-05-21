@@ -86,6 +86,35 @@ El precio no siempre va en la introducción. Va donde el ángulo manda. La regla
 
 Esta regla manda sobre cualquier anclaje de guideline que obligue a meter precio en la intro o en el primer H2. Si la guideline de un medio tiene un anclaje que choca con esta regla, prevalece esta regla y se actualiza la guideline.
 
+---
+
+## 2.quinque. Persuasión equilibrada: vender sin mentir, no sabotear sin querer
+
+Estos artículos son **piezas de afiliación**. El objetivo es ayudar a comprar mejor — **no demostrar imparcialidad académica**. La honestidad de los puntos 4, 5 y 6 de este manifiesto está al servicio de la confianza del lector, no de la transparencia exhaustiva. Hay una línea fina entre "advierto con honestidad" y "saboteo la venta sin querer":
+
+- **Honestidad útil** = matizar un punto débil concreto con una frase integrada en el cuerpo, sin alarmismo y sin convertirlo en sección estrella.
+- **Sabotaje involuntario** = abrir un H2 entero a dudas que el lector no se estaba planteando, o blindar el artículo con tantas reservas que la conclusión razonable sea "mejor no compres".
+
+### Reglas prácticas
+
+1. **Las pegas viven integradas, no en H2 propios.** Un "para quién no es" puede aparecer como 1-2 frases dentro de un H2 sobre el uso o el cierre. **No** se monta un H2 dedicado a desincentivar la compra salvo que el ángulo sea explícitamente una review crítica o `recomendacion-personal` larga donde el lector espera ese contraste.
+2. **Prohibido el H2 "lo que no sé / lo que me preocupa de [marca o producto]".** Si la marca es poco conocida, esa información se trabaja como **dato de contexto neutro o positivo** ("marca menos conocida que llega con 4,8/5 y reseñas verificadas"), no como un H2 que siembra dudas. El lector no entró al artículo para que le digamos que tenemos sospechas; entró para saber si esa compra concreta le encaja.
+3. **Calibrar el peso narrativo.** Si el artículo dedica más espacio a advertir que a explicar para qué sirve y por qué encaja ahora, está mal calibrado. Como referencia: las pegas no deberían superar el 15-20% del cuerpo en una oferta. En una review crítica, hasta un 30%.
+4. **Las alternativas no compiten contra el producto.** Mencionar una alternativa es legítimo (Kärcher, Adidas, etc.) cuando el lector la conoce y le ayuda a ubicarse, pero la alternativa se presenta como **mapa de mercado**, no como "si pudieras, comprarías la otra". El protagonista del artículo es el producto que estamos recomendando.
+5. **El cierre no se disculpa.** Un último párrafo del tipo *"si esto no te convence, mira otra cosa"* descarga el artículo de su función. El cierre confirma para quién encaja y por qué tiene sentido ahora, con la honestidad ya repartida en el cuerpo.
+
+### Estructura: variedad obligatoria en los H2 del cuerpo
+
+Los H2 del cuerpo **no pueden repetir plantilla artículo a artículo**. En particular, evitar como reflejo automático:
+
+- "Para qué sí / Para qué no" (o variantes: "Para quién es / Para quién no", "Pros y contras", "Lo bueno y lo malo").
+- "Lo que [marca] hace bien / Lo que [marca] no me convence".
+- "Antes de comprar, ten en cuenta…" como cajón de pegas.
+
+Esas plantillas pueden aparecer **ocasionalmente** cuando encajan con el producto, pero el writer y el editor-in-chief vigilan que no se conviertan en la forma por defecto de cerrar el cuerpo. El criterio del manitas, el techie, el bloguer o cualquier persona-redactora se nota en que **cada artículo organiza sus H2 de forma distinta**, según lo que pida ese producto en concreto, no según un molde.
+
+> **Regla del espejo:** si el último artículo del medio acabó con un H2 tipo "para qué sí / para qué no" o "para quién es / para quién no", el siguiente NO repite ese patrón. El editor-in-chief comprueba el último draft publicado del medio y rechaza la duplicación de molde.
+
 No basta con decir que algo está rebajado. Hay que explicar, en algún punto del artículo:
 
 - Por qué es buena oferta.
@@ -145,6 +174,8 @@ Cada pieza debe incluir advertencias útiles, calibradas al producto. Ejemplos d
 - "Buena compra por debajo de X €, menos interesante si sube."
 
 > **Principio:** la honestidad **no reduce la conversión, la mejora**. Genera confianza. El lector que descubre que advertimos honestamente sobre las pegas vuelve.
+
+> **Importante (ver 2.quinque):** la honestidad va **integrada**, no en H2 dedicados a la duda. Una pega es 1-2 frases dentro de una sección más amplia. Si la pega ocupa una sección entera con su propio título, el artículo deja de ser una recomendación y pasa a ser una advertencia; eso solo encaja en reviews críticas explícitas, no en oferta ni en `uso-practico`.
 
 ---
 
@@ -381,6 +412,7 @@ Si 0a o 0b fallan, el draft vuelve al writer. No se pula un texto que no suena h
 11. ¿Sigue siendo útil aunque el lector no compre en ese momento?
 12. ¿La posición del precio respeta la regla del ángulo? (Ver `knowledge/posicion-precio-por-angulo.md`. En `uso-practico`, `recomendacion-personal` y `tendencia` el precio NO abre intro ni primer H2.)
 13. ¿La voz del medio y la persona-redactora conviven sin atropellarse? (El medio impone el registro y las frases vetadas; la persona aporta el punto de vista. Si una de las dos capas se ha tragado a la otra, recalibrar.)
+14. ¿La persuasión está equilibrada (regla 2.quinque)? ¿Las pegas viven integradas en el cuerpo y no como H2 dedicados? ¿No hay ningún H2 cuyo título siembre dudas sobre la marca o el producto? ¿La estructura de H2 NO repite la plantilla del último artículo publicado del medio?
 
 ---
 

@@ -158,7 +158,10 @@ Reglas para esos 2-3 H2:
 - **Cada H2 lleva 1-3 párrafos** o, si hay dudas reales y honestas que el lector se haría, una FAQ corta como uno de los H2.
 - **Las recetas de la paleta son referencia opcional**, no menú a elegir. Si te apoyas en `microhistoria-de-uso` o `specs-traducidas`, decláralas en el frontmatter como referencia. Si no, deja `recetas: []`.
 - **`cuando-no-comprarlo`** como H2 propio solo se admite en `recomendacion-personal` y reviews largos.
+- **`para-quien-si-para-quien-no`** como H2 propio: ver restricción 2.quinque del manifiesto. NO es el cierre por defecto del cuerpo en ofertas; va integrada en 1-2 frases dentro de otra sección salvo que el producto sea genuinamente polarizante.
 - **No repetir el mismo molde dos veces** en el mismo artículo.
+- **No repetir la misma plantilla de cierre entre artículos consecutivos del medio.** Si el último draft publicado de La Razón cerró con un H2 tipo "para qué sí / para qué no" o equivalente, este NO repite el patrón. El cierre del cuerpo lo decide la persona-redactora desde el scratchpad, no un molde recurrente.
+- **Prohibido el H2 que abre dudas sobre la marca o el producto** (variantes: "Lo que no sé de X", "Lo que me preocupa de X", "Antes de comprar, ten en cuenta…" como cajón de pegas). Esa información se trabaja como dato neutro o positivo dentro del cuerpo, no como sección estrella. Ver regla 2.quinque del manifiesto.
 
 El total queda así para un mono-producto en La Razón:
 
@@ -242,8 +245,7 @@ Cuándo usarla: el producto tiene specs que sin contexto no dicen nada al lector
 Ejemplo de traducción: *"20 L"* → *"espacio de sobra para zapatillas, ropa y neceser sin que la bolsa se deforme"*.
 
 **`para-quien-si-para-quien-no`** — Segmenta honestamente: a quién le merece la pena y a quién no, con 1-2 razones por cada lado.
-Cuándo usarla: el producto es polarizante, nicho, o tiene un perfil de usuario claro.
-Refuerza honestidad transaccional y evita tono publicitario.
+Cuándo usarla: producto polarizante o claramente de nicho. **Uso restringido (regla 2.quinque del manifiesto):** esta receta NO es el cierre por defecto del artículo. No puede aparecer como H2 propio en dos artículos seguidos del medio. En ofertas (`liquidacion`, `precio-psicologico`, `uso-practico`) la segmentación va **integrada en 1-2 frases** dentro de otra sección, no como H2 dedicado. Solo se admite como H2 propio en `recomendacion-personal` larga, en reviews críticas explícitas, o cuando el producto es genuinamente polarizante (uso muy de nicho, contraindicaciones claras).
 
 **`comparativa-corta`** — Sitúa el producto frente a un referente conocido (competidor directo, versión anterior, mismo rango de precio).
 Cuándo usarla: ángulo `comparativa` o cuando el producto compite contra una referencia obvia.
@@ -285,9 +287,11 @@ Sugerencia, no obligación. El writer puede combinar de otra forma si lo justifi
 | `liquidacion` | `contexto-de-mercado` + `vision-de-marca` (o `specs-traducidas`) |
 | `comparativa` | `comparativa-corta` + `specs-traducidas` |
 | `precio-psicologico` | `contexto-de-mercado` + `microhistoria-de-uso` |
-| `uso-practico` | `microhistoria-de-uso` + `para-quien-si-para-quien-no` |
+| `uso-practico` | `microhistoria-de-uso` + `specs-traducidas` (o `truco-de-experto-integrado`) |
 | `recomendacion-personal` | `vision-de-marca` + `specs-traducidas` |
-| `tendencia` | `momento-cultural` + `para-quien-si-para-quien-no` |
+| `tendencia` | `momento-cultural` + `microhistoria-de-uso` |
+
+> **Importante (regla 2.quinque del manifiesto):** las combinaciones de arriba son **orientativas**, no obligatorias. La receta `para-quien-si-para-quien-no` ha salido del mapa por defecto de `uso-practico` y `tendencia` para evitar que el "para qué sí / para qué no" se convierta en el cierre automático de todos los artículos. Si el producto la pide, se usa; si no, se integra en 1-2 frases.
 
 ---
 

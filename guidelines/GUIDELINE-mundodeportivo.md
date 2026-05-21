@@ -190,7 +190,7 @@ Cuándo usarla: producto con specs que sin contexto no dicen nada.
 Ejemplo: *"600 nits de brillo"* → *"se ve perfectamente al sol del entrenamiento de la mañana"*.
 
 **`para-quien-si-para-quien-no`** — Segmenta honestamente: a qué tipo de usuario activo le merece la pena y a quién no.
-Cuándo usarla: producto polarizante o con perfil de usuario claro. Refuerza honestidad y rompe el tono publicitario.
+Cuándo usarla: producto polarizante (corredor amateur vs. élite, gym casero vs. profesional) o con perfil de usuario claramente distinto. **Uso restringido (regla 2.quinque del manifiesto):** no es el cierre por defecto del cuerpo. NO puede aparecer como H2/H3 propio en dos artículos consecutivos del medio. En ofertas o `uso-practico` la segmentación va **integrada en 1-2 frases** dentro de otra receta; solo se admite como sección propia en `recomendacion-personal` larga o reviews críticas.
 
 **`comparativa-corta`** — Sitúa el producto frente a un referente conocido (categoría o competidor directo).
 Cuándo usarla: ángulo `comparativa`. Regla dura: no inventar precios ni specs de la competencia.
@@ -230,11 +230,13 @@ Sugerencia, no obligación. El writer puede combinar de otra forma si lo justifi
 | `liquidacion` | `contexto-de-mercado` + `vision-de-marca` (o `specs-traducidas`) |
 | `comparativa` | `comparativa-corta` + `specs-traducidas` |
 | `precio-psicologico` | `contexto-de-mercado` + `microhistoria-de-uso` |
-| `uso-practico` | `microhistoria-de-uso` + `para-quien-si-para-quien-no` |
+| `uso-practico` | `microhistoria-de-uso` + `specs-traducidas` (o `truco-de-experto-integrado`) |
 | `recomendacion-personal` | `vision-de-marca` + `specs-traducidas` |
-| `tendencia` | `momento-cultural` + `para-quien-si-para-quien-no` |
+| `tendencia` | `momento-cultural` + `microhistoria-de-uso` |
 
 En **multi-producto** se recomienda añadir además `criterios-el-recomendador` como receta global final.
+
+> **Importante (regla 2.quinque del manifiesto):** las combinaciones son orientativas. `para-quien-si-para-quien-no` ha salido del mapa por defecto en `uso-practico` y `tendencia` para evitar que el "para qué sí / para qué no" sea el cierre automático del cuerpo en todos los artículos del medio. Si el producto la pide (perfil de usuario muy distinto entre amateur y élite, contraindicaciones reales), se usa; si no, se integra en 1-2 frases dentro de otra sección. **Prohibido el H2/H3 que abre dudas sobre la marca o el producto** ("Lo que no sé de X", "Lo que me preocupa de X"): esa información va como dato neutro dentro del cuerpo, no como sección estrella. Y la **plantilla de cierre no se repite entre artículos consecutivos del medio**: el editor-in-chief revisa el último draft publicado para evitar el efecto molde.
 
 ---
 
