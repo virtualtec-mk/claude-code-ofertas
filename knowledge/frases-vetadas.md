@@ -890,6 +890,52 @@ Datos crudos de la ficha que el writer debe convertir en información útil para
 
 ---
 
+### Meta-comentario del descuento dirigido al lector
+
+Cuando un descuento marcado en la ficha es flojo o se calcula sobre PVPR, **la honestidad se ejecuta eligiendo el argumento** (precio absoluto vs porcentaje), no explicando metodología. Si el writer escribe un párrafo sobre cómo se calcula el descuento, suena a comparador o a IA defendiéndose de un % inflado, no a redactor humano.
+
+❌ Mal — patrones vetados en cuota 0:
+- "El precio mínimo verificado en los últimos 30 días se mueve algo por encima de los X €, lo que sitúa la bajada actual en unos Y € sobre ese suelo."
+- "El porcentaje marcado en la ficha (40%) se calcula sobre el precio recomendado, no sobre el precio habitual de venta."
+- "La referencia más honesta es ese mínimo de 30 días: la rebaja real sobre lo que ha costado el último mes es menor, pero..."
+- "No es un descuento histórico, pero sí un precio al que la ecuación vale."
+- Cualquier desglose con cifras del mínimo de 30 días y diferencia respecto al precio actual.
+- Frases meta-editoriales autoseñalándose: "el argumento más sólido es", "sin sobreventas del porcentaje", "lo más llamativo no es X, es Y" (cuando se autoseñala como gancho).
+
+✅ Bien:
+- Si el % es flojo, **no se usa**. El cuerpo trabaja con el precio absoluto y una frase corta integrada del tipo: "el descuento marcado se apoya en el precio recomendado; sobre lo habitual del último mes la bajada es más modesta". Una frase. Sin cifras de mínimo histórico. Sin "12-13 € sobre el suelo". Sin auto-elogio de honestidad.
+
+### H2 negativos de mercado (plantilla de IA)
+
+Los headings deben afirmar algo concreto del producto, no describir negativamente el mercado con palabras-tampón ("segmento", "tramo", "abundan").
+
+❌ Mal — patrones vetados como H2/H3:
+- "Un precio donde los 20 cm con visco de esta densidad no abundan."
+- "X que no se ve en este tramo."
+- "No es lo habitual en este segmento."
+- "Pocas veces se encuentra algo así por este precio."
+- "En esta franja de mercado no es lo común."
+
+✅ Bien:
+- H2 afirmativo sobre qué hace el producto, qué soluciona o a quién va dirigido.
+- Si quieres situar el producto en su tramo, usa una frase dentro del cuerpo del H2, no el heading.
+
+### Cierres con logística suelta en párrafos de una línea
+
+Acumular líneas cortas con disponibilidad, medidas, envío y devoluciones al final del artículo lo convierte en cola de ficha técnica, no en cierre editorial.
+
+❌ Mal:
+> "Está disponible en 23 medidas y cuatro grosores, con envío gratuito.
+>
+> Amazon gestiona las devoluciones durante los primeros 30 días."
+
+✅ Bien:
+- La logística mínima va **integrada** en el último párrafo de prosa, no como cola enumerada.
+- Mejor aún: no aparece en el cuerpo. El pricebox/CMS la incluye. El artículo cierra con criterio editorial.
+- Si la guideline del medio exige mencionar envío o devoluciones, una sola frase dentro del último párrafo natural, nunca un párrafo independiente por dato.
+
+---
+
 ## Q. Sospechosas en tecnología
 
 - "La inteligencia artificial está transformando…"

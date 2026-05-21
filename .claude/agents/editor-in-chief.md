@@ -173,6 +173,16 @@ Lista de frases vetadas mínimas a verificar siempre (aunque no exista el archiv
 
 ---
 
+#### 4.bis. Meta-comentario sobre el descuento, H2 negativos y cierre con logística suelta
+
+Tres patrones específicos vetados en cuota 0 (lectura completa en `knowledge/frases-vetadas.md`, sección "Meta-comentario del descuento dirigido al lector" / "H2 negativos de mercado" / "Cierres con logística suelta"):
+
+1. **Meta-comentario del descuento.** Si el draft contiene un párrafo (o frases dispersas) explicando que el porcentaje se calcula sobre PVPR, que el mínimo de 30 días estaba en X € o cuál es "la referencia más honesta": **reescríbelo o elimínalo**. La honestidad se ejecuta eligiendo el argumento (precio absoluto vs %), no enseñando metodología al lector. Como mucho una frase corta integrada; ningún desglose con cifras del mínimo histórico.
+2. **H2 / H3 negativos de mercado.** Vetados los headings tipo "Un precio donde X no abundan", "X que no se ve en este tramo", "No es lo habitual en este segmento". Reescribe el heading en afirmativo sobre un dato concreto del producto.
+3. **Cierre con logística en párrafos sueltos de una línea.** Si el draft termina con dos o más párrafos cortos de una sola frase con disponibilidad, medidas, envío o devoluciones, fusiónalos en una sola frase integrada en el último párrafo natural o elimínalos (lo pone el pricebox del CMS). El artículo debe cerrar con criterio editorial, no con cola de ficha técnica.
+
+---
+
 #### 5. Frases vetadas del medio ausentes
 
 La sección "Adicionales de este medio" (o equivalente) de la guideline puede incluir frases o expresiones que ese medio en particular prohíbe. Revísalas y aplica el mismo criterio que en el punto 4.

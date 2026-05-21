@@ -223,6 +223,12 @@ Antes de invocar `Write`, releé el borrador completo y aplica este filtro. Cada
 
 **Test de posición del precio:** si el ángulo es `uso-practico`, `recomendacion-personal` o `tendencia`, ¿la intro arranca sin cifra de precio o descuento? ¿El primer H2/H3 no abre con claim de precio? Si fallas, reescribe.
 
+**Test de meta-comentario del descuento (cuota 0):** si el draft contiene un párrafo explicando al lector cómo se calcula el porcentaje (PVPR vs mínimo de 30 días), cuál es "la referencia más honesta" o el desglose en euros sobre el mínimo histórico, **bórralo**. La honestidad se ejecuta eligiendo el argumento (precio absoluto vs %), no enseñando metodología. Como mucho una frase corta integrada del tipo "el descuento se apoya en el precio recomendado; sobre lo habitual del último mes la bajada es más modesta". Sin cifras del mínimo histórico. Sin frases auto-elogiosas tipo "la referencia más honesta es", "el argumento más sólido es", "sin sobreventas del porcentaje".
+
+**Test de H2 negativos de mercado (cuota 0):** revisa cada heading. Si alguno sigue el patrón "Un precio donde X no abundan", "X que no se ve en este tramo", "No es lo habitual en este segmento" o usa palabras-tampón ("segmento", "tramo", "abundan") en sentido editorial vacío, reescríbelo en afirmativo sobre un dato concreto del producto.
+
+**Test de cierre con logística suelta:** revisa los últimos párrafos. Si terminan con dos o más párrafos cortos de una sola frase con disponibilidad, medidas, envío gratuito o devoluciones, fusiónalos en una frase integrada al último párrafo natural o elimínalos (lo pone el pricebox del CMS). El cuerpo cierra con criterio editorial, no con cola de ficha técnica.
+
 Cuando hayas reescrito todas las coincidencias, pasa al paso 9.
 
 ### Paso 9: Guardar el draft
