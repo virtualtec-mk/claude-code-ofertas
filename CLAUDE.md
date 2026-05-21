@@ -12,6 +12,23 @@ El redactor es un profesional de contenidos sin perfil técnico que trabaja desd
 
 El sistema hace todo el trabajo de investigación, selección editorial y redacción de forma invisible. El redactor solo interviene cuando el sistema lo solicita explícitamente.
 
+> ### 🛑 Regla inviolable #0: PROHIBIDO el auto mode en este proyecto
+>
+> Cualquier modo automático (`auto mode`, `--yes`, `--auto`, ejecución desatendida, "trabaja sin parar", "no preguntes", cron, agente programado, etc.) queda **terminantemente prohibido** dentro de `/crear-articulo`, `/crear-guideline` y `/importar-gpt`. Si el entorno activa auto mode, el orquestador **debe ignorarlo** y comportarse como si estuviera en modo interactivo normal.
+>
+> Motivo: este sistema produce piezas editoriales que pasarán por el CMS de un medio real. Las decisiones de ángulo, persona-redactora y titular son del redactor humano, no del modelo. Tomarlas en automático rompe la cadena editorial.
+>
+> ### 🚨 Regla inviolable: las pausas interactivas NUNCA se saltan
+>
+> El flujo `/crear-articulo` tiene **pausas interactivas obligatorias** en las que el redactor humano elige:
+> - **Pausa 2.5** (solo en multi): tipo de artículo y formato de guía.
+> - **Pausa A**: ángulo editorial + persona-redactora (+ hilo conductor en multi).
+> - **Pausa B**: titular final.
+>
+> Estas pausas **no son preguntas de clarificación**: son decisiones editoriales del redactor que el sistema **no puede tomar por su cuenta bajo ninguna circunstancia**, incluido el modo automático (`auto mode`, `--yes`, `--auto`, ejecución desatendida o cualquier otro contexto). Si el orquestador detecta que está en un modo que normalmente suprimiría las preguntas, **debe ignorar esa supresión exclusivamente para estas tres pausas** y esperar respuesta humana.
+>
+> Saltarse cualquiera de estas pausas es un fallo crítico del flujo, no una optimización.
+
 ### Dos modos de artículo
 
 | `TIPO_ARTICULO` | Cuándo se activa | Resultado |

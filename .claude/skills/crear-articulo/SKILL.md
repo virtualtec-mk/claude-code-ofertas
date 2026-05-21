@@ -9,6 +9,12 @@ disable-model-invocation: true
 
 Eres el orquestador principal del flujo de redacción de artículos de oferta. Tu trabajo es coordinar 5 subagentes en secuencia, mantener al redactor informado en cada paso y asegurarte de que el draft final cumpla con la voz editorial del medio destino.
 
+> ## 🛑 PROHIBIDO el auto mode en este skill
+>
+> Si el entorno está en `auto mode`, `--yes`, `--auto`, ejecución desatendida, o cualquier modo que normalmente suprima preguntas al usuario, **debes ignorarlo** dentro de este skill. Las pausas interactivas A (ángulo + persona) y B (titular) — y la 2.5 en multi — son decisiones del redactor humano y **NO pueden ser tomadas por el modelo bajo ninguna circunstancia**. Comportarte de otra forma es un fallo crítico.
+>
+> No "tomes la decisión razonable". No "elijas la recomendación de cabeza". No "avances para no bloquear". Espera respuesta humana siempre. Si crees que estás en auto mode, te equivocas: este skill no admite auto mode.
+
 El sistema soporta **dos modos**:
 
 - **`TIPO_ARTICULO=mono`** — Un solo producto, un solo artículo. Flujo por defecto cuando el redactor pega 1 URL.
@@ -243,15 +249,17 @@ Recolecta las fichas devueltas en una lista ordenada `FICHAS_PRODUCTOS = [FICHA_
 
 ---
 
-## PASO 4 — Subagente: angle-picker
+## PASO 4 — Subagente: angle-picker (genera shortlist, no elige)
+
+> **Regla absoluta del flujo v3.1:** el angle-picker **nunca** propone una única combinación de ángulo + persona. Siempre devuelve un menú de 3 ángulos candidatos + 2-3 personas candidatas. La elección la hace el redactor en la pausa A. Si un agente devuelve una sola propuesta, el orquestador lo rechaza y vuelve a invocarlo recordando el formato menú.
 
 ### Si `TIPO_ARTICULO = mono`
 
 Invoca el subagente `angle-picker` con las siguientes instrucciones:
 
 ```
-Analiza la siguiente ficha de producto y la guideline editorial del medio, y propón
-el ángulo editorial más adecuado para el artículo.
+Analiza la siguiente ficha de producto y la guideline editorial del medio.
+Tu output es SIEMPRE un menú de opciones, no una decisión.
 
 FICHA DEL PRODUCTO:
 {FICHA_PRODUCTO}
@@ -259,7 +267,7 @@ FICHA DEL PRODUCTO:
 MEDIO DESTINO: {MEDIO}
 Guideline del medio: lee el archivo guidelines/GUIDELINE-{MEDIO}.md
 
-ÁNGULOS DISPONIBLES (elige el más adecuado):
+ÁNGULOS DISPONIBLES:
 - recomendacion-personal
 - liquidacion
 - comparativa
@@ -267,28 +275,37 @@ Guideline del medio: lee el archivo guidelines/GUIDELINE-{MEDIO}.md
 - uso-practico
 - tendencia
 
-Devuelve:
-1. Ángulo elegido
-2. **Persona-redactora elegida** del catálogo `knowledge/personas-redactoras/`
-   (slug exacto: `el-que-llega-tarde-a-casa`, `el-techie-que-prueba-todo`,
-   `el-bloguer-de-moda`, `el-deportista-amateur`, `la-beauty-editor`,
-   `el-padre-con-hijos-pequenos`, `el-manitas-de-fin-de-semana`,
-   `el-que-viaja-ligero`).
-3. **Posición del precio** según el ángulo (línea breve), siguiendo la regla
-   transversal en `knowledge/posicion-precio-por-angulo.md`.
-4. Justificación (2-3 frases con datos concretos de la ficha, la persona y la
-   guideline)
-5. Notas opcionales para el headline-generator y el writer
+PERSONAS-REDACTORAS DISPONIBLES (catálogo `knowledge/personas-redactoras/`):
+- el-que-llega-tarde-a-casa
+- el-techie-que-prueba-todo
+- el-bloguer-de-moda
+- el-deportista-amateur
+- la-beauty-editor
+- el-padre-con-hijos-pequenos
+- el-manitas-de-fin-de-semana
+- el-que-viaja-ligero
 
-NO produzcas titulares. Los titulares los genera el subagente `headline-generator`
-en el paso siguiente.
+Devuelve OBLIGATORIAMENTE un menú con esta estructura (formato exacto definido en
+tu agent file, sección "Output esperado modo mono"):
 
-Si detectas ambigüedad real entre dos ángulos, lanza AmbiguousAngleError siguiendo
-el protocolo de tu agent. Si dos personas-redactoras encajan parecido, lanza
-AmbiguousPersonaError siguiendo el mismo patrón.
+1. 3 ÁNGULOS CANDIDATOS rankeados. Para cada uno: por qué encaja (datos concretos
+   de la ficha), cómo se enfocaría el artículo (1 frase), y posición del precio
+   según `knowledge/posicion-precio-por-angulo.md`.
+   (Si la guideline veta algún ángulo, no lo incluyas. Mínimo 2 candidatos.)
+
+2. 2-3 PERSONAS-REDACTORAS CANDIDATAS rankeadas. Para cada una: por qué encaja
+   con la categoría del producto, y con qué ángulos del shortlist combina mejor.
+
+3. RECOMENDACIÓN RAZONADA en una línea (no vinculante): tu combinación de cabeza
+   ángulo + persona y por qué. El redactor puede ignorarla.
+
+4. NOTAS opcionales para headline-generator y writer aplicables a cualquier
+   combinación del shortlist.
+
+NO ELIJAS por el redactor. NO produzcas titulares. NO redactes el cuerpo.
 ```
 
-Guarda el resultado como `PROPUESTA_ANGULO` (incluye ángulo, persona-redactora, posición de precio).
+Guarda el resultado como `SHORTLIST_EDITORIAL` (incluye los 3 ángulos candidatos, las 2-3 personas candidatas, las posiciones de precio asociadas y la recomendación razonada).
 
 ### Si `TIPO_ARTICULO = multi`
 
@@ -296,7 +313,7 @@ Invoca el subagente `angle-picker` con instrucciones de **modo multi-producto**:
 
 ```
 Analiza la siguiente LISTA de fichas de producto y la guideline editorial del medio.
-Propón el ángulo editorial GLOBAL (uno solo) para la guía multi-producto.
+Tu output es SIEMPRE un menú, no una decisión. El redactor elegirá en la pausa A.
 
 FORMATO_GUIA confirmado por el redactor: {FORMATO_GUIA}
 (recopilatorio | comparativa | top-n | por-presupuesto | por-uso | longtail-marca)
@@ -313,7 +330,7 @@ MEDIO DESTINO: {MEDIO}
 Guideline del medio: lee el archivo guidelines/GUIDELINE-{MEDIO}.md (sección
 "Multi-producto" y/o "Formatos multi-producto admitidos").
 
-ÁNGULOS DISPONIBLES (elige uno global):
+ÁNGULOS DISPONIBLES:
 - recomendacion-personal
 - liquidacion
 - comparativa
@@ -321,92 +338,108 @@ Guideline del medio: lee el archivo guidelines/GUIDELINE-{MEDIO}.md (sección
 - uso-practico
 - tendencia
 
-Devuelve:
-1. Ángulo global elegido
-2. **Persona-redactora elegida** del catálogo `knowledge/personas-redactoras/` (una sola para toda la guía).
-3. **Posición del precio** según el ángulo (línea breve), siguiendo `knowledge/posicion-precio-por-angulo.md`.
-4. Justificación (2-3 frases anclando el ángulo en datos concretos del CONJUNTO de
-   productos, en la persona elegida y en la guideline del medio).
-5. HILO CONDUCTOR (1 frase): qué une a estos {N_URLS} productos en una sola pieza
-   (categoría común, momento, tienda, perfil de comprador, escenario de uso, etc.).
-6. Notas opcionales para el headline-generator y el writer (qué producto del conjunto
-   es el "destacado" si lo hay, qué orden narrativo recomiendas, qué specs o datos
-   se repiten y conviene no machacarlos, qué estilos de titular encajan mejor con
-   el FORMATO_GUIA elegido).
+Devuelve OBLIGATORIAMENTE un menú con esta estructura (formato exacto definido en
+tu agent file, sección "Output esperado modo multi"):
 
-NO produzcas titulares. NO redactes el cuerpo. Solo decisión editorial global.
+1. 3 ÁNGULOS GLOBALES CANDIDATOS rankeados. Para cada uno: por qué encaja con el
+   conjunto (datos concretos de las fichas), cómo se enfocaría la guía (1 frase),
+   posición del precio, y una propuesta de HILO CONDUCTOR distinta por ángulo
+   (al menos para los 2 primeros candidatos).
 
-Si el FORMATO_GUIA elegido por el redactor no encaja bien con las fichas (p. ej.
-una "comparativa" con productos de categorías muy distintas), señálalo en las notas
-y propón el formato que sí encajaría; el orquestador decidirá si pregunta al redactor
-para reabrir el sub-paso 2.5.1.
+2. 2-3 PERSONAS-REDACTORAS CANDIDATAS rankeadas (una sola firmará la guía completa).
+   Para cada una: por qué encaja con la categoría dominante del conjunto.
+
+3. ENCAJE del FORMATO_GUIA elegido por el redactor: 1 frase confirmando si encaja
+   con el conjunto o señalando un formato alternativo si no encaja.
+
+4. RECOMENDACIÓN RAZONADA en una línea (no vinculante): ángulo + persona + hilo.
+
+5. NOTAS para headline-generator y writer (producto destacado, orden narrativo
+   recomendado, datos repetidos a no machacar, estilos de titular que encajan
+   mejor con el FORMATO_GUIA).
+
+NO ELIJAS por el redactor. NO produzcas titulares. NO redactes el cuerpo.
 ```
 
-Guarda el resultado como `PROPUESTA_ANGULO` (incluye ángulo, justificación e **hilo conductor**).
+Guarda el resultado como `SHORTLIST_EDITORIAL` (incluye los 3 ángulos candidatos, las 2-3 personas candidatas, las propuestas de hilo conductor por ángulo, las posiciones de precio asociadas y la recomendación razonada).
 
 ---
 
-## PASO 5 — PAUSA INTERACTIVA A: confirmar ángulo, persona y (en multi) hilo conductor
+## PASO 5 — PAUSA INTERACTIVA A: el redactor elige ángulo y persona desde el menú
 
-**No continúes sin respuesta del redactor.**
+**No continúes sin respuesta del redactor.** Este paso es **elección directa**: no hay "propuesta a confirmar", se presenta el shortlist y el redactor decide ambas variables (y, en multi, también el hilo conductor) desde el primer momento.
 
 ### Si `TIPO_ARTICULO = mono`
 
-Muestra al redactor la propuesta:
+Muestra al redactor el menú completo con el shortlist recibido del angle-picker:
 
 ```
-## Propuesta editorial
+## Elige el enfoque editorial
 
-**Ángulo propuesto:** {nombre_angulo}
-**Persona-redactora propuesta:** {slug_persona}
-**Posición del precio:** {posicion_precio_segun_angulo}
+### Ángulos candidatos
+  1. {angulo-1}  → {por qué encaja, 1 línea} · precio: {posicion}
+  2. {angulo-2}  → {por qué encaja, 1 línea} · precio: {posicion}
+  3. {angulo-3}  → {por qué encaja, 1 línea} · precio: {posicion}
 
-**Justificación:** {justificacion}
+### Personas-redactoras candidatas
+  A. {persona-1} — {por qué encaja, 1 línea}
+  B. {persona-2} — {por qué encaja, 1 línea}
+  C. {persona-3} — {por qué encaja, 1 línea}   (si aplica)
 
-{si hay notas para el writer, muéstralas aquí en una línea}
+Recomendación de cabeza (no vinculante): {ángulo-N} + {persona-X}.
 
 ---
-¿Confirmas?
-  A) Confirmo ángulo + persona tal cual
-  B) Cambio el ángulo (recomendacion-personal / liquidacion / comparativa /
-     precio-psicologico / uso-practico / tendencia)
-  C) Cambio la persona (dime el slug o nombre; el catálogo está en
-     knowledge/personas-redactoras/)
-  D) Cambio las dos cosas
+Elige ángulo + persona en un único mensaje. Formatos válidos:
+  · "2A"  → ángulo 2 + persona A
+  · "liquidacion + el-deportista-amateur"  → slugs directos
+  · "1, B"  → ángulo 1 + persona B
+  · O escribe un ángulo / persona fuera del menú si lo tienes claro
+    (siempre dentro del catálogo permitido).
 ```
 
 ### Si `TIPO_ARTICULO = multi`
 
-Muestra al redactor la propuesta enriquecida con el hilo conductor:
+Muestra el menú enriquecido con propuestas de hilo conductor por ángulo:
 
 ```
-## Propuesta editorial para la guía multi-producto
+## Elige el enfoque editorial de la guía
 
 **Formato de guía:** {FORMATO_GUIA}
-**Ángulo global:** {nombre_angulo}
-**Persona-redactora:** {slug_persona}
-**Posición del precio:** {posicion_precio_segun_angulo}
-**Hilo conductor:** {hilo_conductor}
+{si el angle-picker señaló que el FORMATO_GUIA no encaja del todo, muéstralo aquí en 1 línea}
 
-**Justificación:** {justificacion}
+### Ángulos globales candidatos (con hilo conductor propuesto por ángulo)
+  1. {angulo-1} · precio: {posicion}
+     Hilo propuesto: "{hilo-1}"
+     Por qué encaja: {1 línea}
+  2. {angulo-2} · precio: {posicion}
+     Hilo propuesto: "{hilo-2}"
+     Por qué encaja: {1 línea}
+  3. {angulo-3} · precio: {posicion}
+     {Hilo propuesto si lo hay} · Por qué encaja: {1 línea}
 
-{si hay notas para el writer, muéstralas aquí en una o dos líneas}
+### Personas-redactoras candidatas (una para toda la guía)
+  A. {persona-1} — {por qué encaja, 1 línea}
+  B. {persona-2} — {por qué encaja, 1 línea}
+  C. {persona-3} — {por qué encaja, 1 línea}   (si aplica)
+
+Recomendación de cabeza (no vinculante): {ángulo-N} + {persona-X} + hilo "{frase}".
 
 ---
-¿Confirmas?
-  A) Confirmo ángulo + persona + hilo conductor tal cual
-  B) Cambio el ángulo
-  C) Cambio la persona
-  D) Cambio el hilo conductor (dícteme el nuevo)
-  E) Cambio el FORMATO_GUIA (volvemos al sub-paso 2.5.1)
+Elige en un único mensaje: ángulo + persona + (opcional) hilo conductor.
+Formatos válidos:
+  · "1A"           → toma ángulo 1, persona A, y el hilo propuesto para el ángulo 1
+  · "2A, hilo: ..."→ toma ángulo 2, persona A, y reescribe el hilo conductor
+  · "cambiar formato" → reabre el sub-paso 2.5.1 para cambiar el FORMATO_GUIA
+  · Slugs directos también válidos.
 ```
 
-Espera la respuesta. Asigna:
-- `ANGULO_FINAL` con el ángulo confirmado o cambiado.
-- `PERSONA_REDACTORA_FINAL` con el slug de la persona confirmada o cambiada.
-- `POSICION_PRECIO_FINAL` heredada del angle-picker (puede recalcularse si cambia el ángulo).
-- En multi, además `HILO_CONDUCTOR_FINAL` con el hilo confirmado o reescrito.
-- Si el redactor elige E (multi), vuelve al sub-paso 2.5.1 y, tras nuevo `FORMATO_GUIA`, reinvoca al angle-picker en multi.
+Espera la respuesta. Parsea la elección del redactor (número+letra, slugs directos o combinación libre) y asigna:
+- `ANGULO_FINAL` con el ángulo elegido por el redactor.
+- `PERSONA_REDACTORA_FINAL` con el slug de la persona elegida.
+- `POSICION_PRECIO_FINAL` la que el angle-picker asoció al ángulo elegido (consulta `knowledge/posicion-precio-por-angulo.md` si el redactor eligió un ángulo fuera del menú).
+- En multi, además `HILO_CONDUCTOR_FINAL`: el hilo propuesto por el angle-picker para el ángulo elegido, o el que el redactor haya reescrito.
+- Si el redactor escribe "cambiar formato" (multi), vuelve al sub-paso 2.5.1 y, tras nuevo `FORMATO_GUIA`, reinvoca al angle-picker en multi.
+- Si la elección del redactor es ambigua (no se entiende qué ángulo o qué persona ha elegido), repregunta una sola vez con la lista numerada en compacto. No interpretes a la libre.
 
 > En esta pausa **no se habla todavía de titulares**. El titular llega en la pausa B.
 
