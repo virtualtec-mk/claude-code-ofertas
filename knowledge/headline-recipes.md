@@ -50,6 +50,26 @@ Si la ficha indica "menos de 250 euros", "al 40%", "más vendido", "mínimo hist
 - "oferta peligrosa"
 - "chollo con pinta de durar poco"
 
+### 2.bis. Equilibrio entre precio absoluto y descuento porcentual
+
+Cuando la ficha tiene precio actual y descuento (ej. 172,72€ con 31% sobre PVPR), **no uses solo el porcentaje en los 30 titulares**. Mezcla:
+
+- **Precio absoluto** ("por menos de 175€", "por debajo de 50€"): genera mayor sensación de oferta cuando la cifra es redonda y baja una barrera psicológica (50€, 100€, 200€).
+- **Porcentaje** ("31% de descuento", "al 40%"): funciona mejor cuando el descuento es alto y el precio absoluto no impresiona por sí solo.
+- **Diferencia absoluta** ("baja 76€ respecto al PVPR", "76€ menos que en el escaparate"): útil en compras grandes donde el "ahorro" comunica mejor que el porcentaje.
+
+**Reparto orientativo en una tanda de 30:** aproximadamente un tercio con cifra absoluta ("por menos de X€"), un tercio con porcentaje ("31%"), un tercio sin cifra explícita (fórmulas seguras o silencio sobre la cifra). Ajusta según el ángulo: `liquidacion` y `precio-psicologico` se apoyan más en cifra; `recomendacion-personal` y `uso-practico` pueden prescindir de ella en mayoría.
+
+> La guideline del medio manda. Si La Razón prohíbe cifra exacta en euros en H1, se respeta esa prohibición y se usa siempre el formato "por menos de X€" o el porcentaje.
+
+### 2.ter. Símbolos pegados al número
+
+- **Moneda pegada al número:** "175€" (no "175 €"). Aplica también a $, £, y resto de monedas.
+- **Porcentaje pegado:** "31%" (no "31 %").
+- **Unidades de medida con espacio:** "70 l", "28 kg", "2.400 W", "144 Hz", "59 × 56 cm". La excepción de pegado es solo para € y %.
+
+Es una regla del sistema, no de la RAE. Aplica en titular, subtítulo, cuerpo, frontmatter y disclaimer, en todos los medios.
+
 ### 3. Clicbait controlado, no humo
 - Sí: *"La joya barata de Xiaomi baja de precio y tiene pinta de volar"*.
 - No: *"Este producto cambia tu vida para siempre"*.
@@ -63,10 +83,46 @@ Varios titulares (no todos) llevan una frase entrecomillada que suena a algo dic
 - *"Casa vigilada sin cables ni obras"*
 - *"Una bestia por menos de 250 euros"*
 
-### 5. Palabras que funcionan (repartidas, sin abusar)
-joya · bestia · bombazo · rey · locura · chollo · capricho útil · compra redonda · oferta peligrosa · carrito rápido · vuela · se desploma · deja temblando el precio · pinta de agotarse · huele a superventas · tirado de precio · precio de risa · se pone a tiro · cuesta mirar otro · entra solo · aprieta fuerte · cambia la jugada.
+### 5. Palabras y giros que funcionan (uso restringido, NO catálogo libre)
 
-> ⚠️ La guideline de cada medio puede vetar parte de este vocabulario. Aplicar siempre el filtro del medio antes del manual.
+Las siguientes expresiones **se pueden usar, pero no son el primer recurso**. Son un kit limitado, no una paleta abierta. La mayoría son fórmulas que la IA reutiliza hasta saturarlas y por eso suenan a plantilla cuando se repiten:
+
+`joya` · `bestia` · `bombazo` · `rey` · `locura` · `chollo` · `capricho útil` · `compra redonda` · `oferta peligrosa` · `carrito rápido` · `vuela` · `se desploma` · `deja temblando el precio` · `pinta de agotarse` · `huele a superventas` · `tirado de precio` · `precio de risa` · `se pone a tiro` · `cuesta mirar otro` · `entra solo` · `aprieta fuerte` · `cambia la jugada` · `con gancho` · `rebaja seria` · `construcción sólida` · `tiene sentido` · `y por eso tiene sentido` · `el precio ya tiene sentido` · `cuesta bastante menos` · `bastante más a tiro` · `de los buenos`.
+
+**Cuota dura: máximo 2 titulares de los 30 pueden contener alguna de estas expresiones.** Si llegas a 3, reescribe. La cuota es global (suma de todas las expresiones, no por palabra individual).
+
+**Antes de usar una de estas expresiones, prueba el sustituto natural.** El sustituto se construye con lenguaje cotidiano y, sobre todo, con un **dato del producto** que sustituye al gancho prefabricado:
+
+| En lugar de… | Mejor… |
+|---|---|
+| "se pone a tiro" | "baja a menos de X euros" / "cuesta menos que…" / cita un precio del manual |
+| "tiene sentido" / "el precio ya tiene sentido" | nombra el dato que lo justifica: *"con limpieza por vapor y 70 litros, a este precio…"* |
+| "construcción sólida" | dato físico real: *"28 kg, doble cristal, bisagras reforzadas"* |
+| "con gancho" | quita el comodín y deja la cifra o la spec hablar |
+| "rebaja seria" | *"31% de descuento"*, *"baja 76 euros"* |
+| "huele a superventas" | dato verificable: *"más de 200 compras el mes pasado"* |
+| "se desploma" / "deja temblando el precio" | *"baja un 31%"* / *"pierde 76 euros respecto al precio recomendado"* |
+
+> ⚠️ La guideline de cada medio puede vetar parte de este vocabulario directamente. Aplicar siempre el filtro del medio antes del manual.
+
+### 5.bis. Muletillas IA en titulares (lista negra dura, cuota 0)
+
+Estas frases hechas delatan al generador automático en cuanto aparecen. Son distintas de las anteriores: no son "uso restringido", son **prohibidas en el output**. Si una aparece, reescribe antes de devolver la tanda.
+
+- "y lo deja en la gama media con gancho" (y variantes: "lo deja en…", "lo coloca en…")
+- "el precio que tiene sentido" / "y por eso tiene sentido" como cierre genérico
+- "construcción sólida" como elogio del producto
+- "rebaja seria" como cierre sin dato
+- "huele a chollo" / "huele a chollo de los buenos"
+- "oferta de las que cuesta ignorar"
+- "una de esas ofertas"
+- "pinta de durar poco" (sin un dato real de unidades o tiempo)
+- "y por eso encaja bastante bien"
+- "y el precio ayuda" como bisagra final
+- "lo pone bastante más a tiro de lo habitual"
+- "tiene pinta de" + cualquier cierre vago
+
+**Pista de detección:** si la frase se puede pegar tal cual en el titular de un horno, una zapatilla y un perfume sin cambiar nada, es muletilla y cae en esta lista.
 
 ### 6. Sin gritar
 - Sin "¡!".
@@ -182,6 +238,119 @@ Reutilizables como punto de partida:
 - `[Producto] vs [rival]: con esta rebaja, la duda ya no está tan clara`
 - `Colas virtuales por [producto] con [característica] y [descuento] que huele a chollo`
 - `El rey de [categoría] vuelve a ponerse a tiro con [característica] y [gancho]`
+
+---
+
+## Patrones sintácticos por categoría (qué construcción funciona / cuál canta)
+
+Cada categoría de producto **suena distinta cuando un humano la titula**. La IA tiende a aplicar las mismas plantillas a todo, por eso un titular de horno acaba sonando igual que uno de zapatillas. Esta matriz es la primera capa de calibración: antes de elegir vocabulario, el `headline-generator` se pregunta *cómo se titula esto en su categoría*.
+
+> No es una jaula. Es un punto de partida. Si la persona-redactora pide otra cosa, manda la persona.
+
+### Electrodomésticos grandes y cocina de equipamiento (hornos, neveras, lavavajillas, vitrocerámicas, robots de cocina, freidoras de aire)
+
+**Patrones que funcionan**
+- Dato físico real como gancho: *"Un horno de 70 litros y 8 funciones que…"*, *"28 kg, doble cristal y limpieza por vapor"*.
+- Situar en tramo de mercado sin nombrarlo de forma estirada: *"Por el precio de un horno básico, este Candy trae convección y limpieza por vapor"*.
+- Comparación con la opción de gama inmediatamente inferior o superior: *"Por 50 euros más que un horno convencional, este encastre añade limpieza Aquactiva"*.
+- Mención de la decisión de compra: *"Cocina nueva y presupuesto justo: este horno Candy resuelve el encastre"*.
+
+**Patrones que cantan a IA**
+- "El horno Candy se pone a tiro" (vocabulario de cazaofertas en producto de decisión a 10 años).
+- "Construcción sólida y precio de derribo" (genérico, vale para cualquier electrodoméstico).
+- "La joya del encastre baja de precio" (clicbait sin dato físico).
+- "Y por eso tiene sentido ahora" como cierre.
+
+### Tecnología (móviles, tablets, portátiles, audio, smartwatches, gaming, monitores)
+
+**Patrones que funcionan**
+- Spec concreta + consecuencia: *"144 Hz y Snapdragon 7+ Gen 3 por menos de 250 euros"*, *"512 GB de SSD y un descuento que vuelve la compra urgente"*.
+- Comparación generacional: *"Esta tablet Xiaomi da más que muchas de gama media de hace un año"*.
+- Caso de uso vinculado al rendimiento: *"Para edición ligera y muchas pestañas, este portátil entra por debajo de 600 euros"*.
+
+**Patrones que cantan a IA**
+- "Una bestia por menos de X" repetido en tres titulares.
+- "Cambia las reglas del juego" (cliché tech).
+- "Potente, versátil y eficiente" como tríada.
+
+### Hogar pequeño y limpieza (robots aspirador, escobas eléctricas, planchas, purificadores, calefactores, ventiladores)
+
+**Patrones que funcionan**
+- Escenario doméstico: *"Aspira y friega solo: el robot que se compra para olvidarte del polvo"*.
+- Comparación con la alternativa lenta: *"Lo que tardas en pasar la escoba lo hace este robot mientras estás trabajando"*.
+- Dato de autonomía / superficie real: *"120 m² y dos horas de batería: este robot cubre un piso entero sin parar"*.
+
+**Patrones que cantan a IA**
+- "El aliado perfecto para tu hogar".
+- "Hace el trabajo por ti" (genérico).
+- "Tu mejor amigo en la limpieza".
+
+### Moda, calzado y complementos
+
+**Patrones que funcionan**
+- Silueta / temporada / material: *"La sneaker que está volviendo este verano"*, *"Cuero auténtico por menos de 80 euros"*.
+- Combinación que dibuja el uso: *"Estas zapatillas blancas se llevan con todo: vaquero, chino y bermuda"*.
+- Mención de marca como autoridad estética: *"Adidas rescata la Samba en color discreto y se va a menos de 70 euros"*.
+
+**Patrones que cantan a IA**
+- "Diseño moderno y elegante" (vacío).
+- "Imprescindible este verano" (tópico).
+- "Para todo tipo de ocasiones".
+
+### Belleza y cuidado personal
+
+**Patrones que funcionan**
+- Ingrediente + efecto cotidiano: *"Niacinamida al 10% en una crema rebajada que ya rondaba viral"*.
+- Rutina concreta: *"Limpia, hidrata y dura: la crema viral por menos de 15 euros"*.
+- Cita real en comillas: *"\"Parece filtro pero no\": la mascarilla que…"*.
+
+**Patrones que cantan a IA**
+- "Tu mejor aliado de belleza".
+- "Resultados visibles desde el primer día" (prohibido por sustancia, además).
+- "Cuida tu piel como nunca antes".
+
+### Deporte (running, fitness, ciclismo, outdoor, smartwatches deportivos)
+
+**Patrones que funcionan**
+- Kilómetros, sensaciones y disciplinas: *"Para rodajes largos sin pensar en el reloj"*, *"Por debajo de 200 euros y con GPS de los serios"*.
+- Comparación entre modelos de la misma marca: *"Forerunner 165 frente al 170: qué cambia y a quién le compensa"*.
+- Caso de uso específico: *"Las zapatillas que cumplen para gimnasio y para volver a casa andando"*.
+
+**Patrones que cantan a IA**
+- "Lleva tu entrenamiento al siguiente nivel".
+- "Para deportistas exigentes" (genérico).
+- "El compañero perfecto para tus rodajes".
+
+### Bricolaje, herramientas y jardín
+
+**Patrones que funcionan**
+- Par de apriete, autonomía, durabilidad: *"18 V, dos baterías y un par de apriete que se nota al primer tornillo"*.
+- Trabajo real: *"Para colgar estanterías un sábado por la mañana, este taladro sobra y rebaja"*.
+- Marca como autoridad técnica: *"Bosch baja su atornillador de batería al precio de uno de bazar"*.
+
+**Patrones que cantan a IA**
+- "Potencia y precisión" como tríada.
+- "Tu mejor herramienta de bricolaje".
+
+### Bebé, infantil y familia
+
+**Patrones que funcionan**
+- Edad concreta + situación: *"Para coche, avión y silla a partir de los 9 kg"*, *"La trona que aguanta de los 6 meses a los 3 años"*.
+- Pega real del padre: *"Por fin un cambiador que no se descose en el bolso del hospital"*.
+
+**Patrones que cantan a IA**
+- "Perfecto para tu pequeño".
+- "Cuida de él como se merece".
+
+### Viajes y equipaje
+
+**Patrones que funcionan**
+- Medidas estrictas + aerolínea: *"Ryanair en cabina sin pagar: esta mochila cumple medidas y baja de 30 euros"*.
+- Peso, ruedas, material: *"Cuatro ruedas, policarbonato y menos de 3 kg: la maleta de cabina que está a tiro"*.
+
+**Patrones que cantan a IA**
+- "Tu compañera ideal de viaje".
+- "Para todos tus destinos".
 
 ---
 

@@ -37,6 +37,7 @@ El redactor confirma o cambia la persona en la **pausa A** del flujo, junto con 
 | [`el-padre-con-hijos-pequenos`](el-padre-con-hijos-pequenos.md) | Bebé, familia, infantil, juguetes, puericultura, sillitas, mochilas porta-bebés. | Sabe lo que es una noche sin dormir y un coche cargado. Habla por edades y situaciones. |
 | [`el-manitas-de-fin-de-semana`](el-manitas-de-fin-de-semana.md) | Bricolaje, jardín, herramientas eléctricas, ferretería, exterior. | Distingue lo que dura de lo que parece. Habla de batería, par de apriete, durabilidad real. |
 | [`el-que-viaja-ligero`](el-que-viaja-ligero.md) | Equipaje, viajes, mochilas, outdoor de viaje, accesorios de vuelo. | Maleta de cabina, vuelos baratos. Habla de medidas estrictas, peso, lo que se rompe. |
+| [`experto-hogar-cocina`](experto-hogar-cocina.md) | Electrodomésticos grandes, cocina de equipamiento, muebles, menaje, decoración, climatización. | Ha equipado su casa varias veces. Mira tramo de mercado, durabilidad y encaje físico. |
 
 > **Cómo ampliar el catálogo.** Si llega un producto que no encaja claramente en ninguna persona, no fuerces. Crea una persona nueva con la misma estructura que las existentes y enlázala aquí. Mejor 12 personas calibradas que 8 estiradas.
 
@@ -44,12 +45,15 @@ El redactor confirma o cambia la persona en la **pausa A** del flujo, junto con 
 
 ## Estructura de cada ficha
 
-Cada persona tiene un archivo `.md` con cinco bloques cortos:
+Cada persona tiene un archivo `.md` con seis bloques cortos:
 
 1. **Quién es.** Una frase humana de identificación.
 2. **Qué le importa.** 4-6 cosas concretas que esa persona valora del producto.
 3. **Cómo habla.** Lenguaje natural propio: vocabulario, expresiones, qué evita.
 4. **Qué le aburre o le saca de quicio.** Antifrases. Lo que esa persona no diría jamás.
 5. **Tres preguntas semilla.** Las que se haría ante un producto de su categoría. El writer las contesta en su scratchpad antes de redactar.
+6. **Cómo titula esta persona.** Lo lee el `headline-generator` (capa 2.5). Incluye: vocabulario propio en titular, 3-4 ejemplos de titular natural firmado por esa persona, antifrases de titular que esa persona nunca usaría.
 
-No es un glosario rígido ni un molde. Es una pauta de **punto de vista** que el writer asume mientras escribe.
+No es un glosario rígido ni un molde. Es una pauta de **punto de vista** que el writer asume mientras escribe, y que el `headline-generator` asume al titular.
+
+> **Estado del bloque 6.** Las personas más usadas tienen ya el bloque "Cómo titula" escrito. Las que aún no lo tienen funcionan con la pauta deducida del resto de su ficha (el `headline-generator` lo hace de forma transparente). Cuando una persona se use por primera vez en un artículo, el redactor (o quien revise el resultado) puede pedir que se escriba el bloque definitivo si los titulares no han salido bien calibrados.

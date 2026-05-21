@@ -458,6 +458,14 @@ FICHA DEL PRODUCTO:
 {FICHA_PRODUCTO}
 
 ÁNGULO CONFIRMADO: {ANGULO_FINAL}
+PERSONA-REDACTORA CONFIRMADA: {PERSONA_REDACTORA_FINAL}
+  ↳ Lee la ficha en knowledge/personas-redactoras/{PERSONA_REDACTORA_FINAL}.md
+    ANTES de generar nada. Si tiene el bloque "Cómo titula esta persona",
+    es lectura obligatoria: define vocabulario propio en titular, ejemplos
+    naturales y antifrases. Si no lo tiene, deduce el tono del resto de la ficha.
+POSICIÓN DEL PRECIO: {POSICION_PRECIO_FINAL}
+  ↳ Si es "no protagonista", evita abrir titulares con cifras o porcentaje.
+    Si es "protagonista", el precio puede aparecer en el H1.
 
 MEDIO DESTINO: {MEDIO}
 Lee la guideline en guidelines/GUIDELINE-{MEDIO}.md, prestando especial atención
@@ -466,6 +474,23 @@ manual universal en caso de conflicto.
 
 Lee también el manual universal de titulares en knowledge/headline-recipes.md y
 las frases vetadas globales en knowledge/frases-vetadas.md.
+
+Refuerzos obligatorios para esta tanda:
+- Aplica la **cuota dura** de vocabulario restringido (sección 5 del manual):
+  máximo 2 titulares de los 30 pueden contener expresiones como "se pone a tiro",
+  "tiene sentido", "con gancho", "construcción sólida", "rebaja seria", "joya",
+  "bestia", "huele a chollo", "se desploma", "vuela", "cuesta bastante menos".
+  Si llegas a 3, reescribe los excedentes con un dato concreto del producto.
+- Aplica la **lista negra dura** (sección 5.bis del manual): muletillas IA
+  prohibidas en cuota 0 ("y lo deja en…", "y por eso tiene sentido", "una de
+  esas ofertas", "tiene pinta de" + cierre vago, "construcción sólida" como
+  elogio, etc.).
+- Consulta la sección "Patrones sintácticos por categoría" del manual y úsala
+  como base de construcción. La categoría de este producto determina qué
+  construcciones funcionan y cuáles cantan a IA.
+- Aplica el filtro de persona del Paso 3.bis de tu agent: los titulares deben
+  sonar específicamente a {PERSONA_REDACTORA_FINAL}, no a una persona genérica
+  de oferta.
 
 Devuelve los 30 titulares en el formato exacto que define tu agent: una línea por
 titular, con etiqueta de estilo y longitud entre corchetes. Sin numeración, sin
@@ -485,6 +510,11 @@ Genera 30 titulares variados y muy clicables para una GUÍA MULTI-PRODUCTO.
 TIPO_ARTICULO: multi
 FORMATO_GUIA: {FORMATO_GUIA}
 ÁNGULO CONFIRMADO: {ANGULO_FINAL}
+PERSONA-REDACTORA CONFIRMADA: {PERSONA_REDACTORA_FINAL}
+  ↳ Lee la ficha en knowledge/personas-redactoras/{PERSONA_REDACTORA_FINAL}.md
+    ANTES de generar nada. Si tiene el bloque "Cómo titula esta persona", es
+    lectura obligatoria. Una sola persona firma toda la guía.
+POSICIÓN DEL PRECIO: {POSICION_PRECIO_FINAL}
 HILO CONDUCTOR: {HILO_CONDUCTOR_FINAL}
 
 FICHAS (en orden, respetando el orden del redactor):
@@ -515,6 +545,13 @@ Reglas específicas para titulares de guía multi-producto:
   `comparativa` directa de dos productos (donde puede aparecer cada marca).
 - El titular vende el CONJUNTO, no un producto suelto. Si sólo se nombra un
   producto del lote, el resto debe quedar implícito en el "X productos que…".
+
+Refuerzos obligatorios para esta tanda (aplican igual que en mono):
+- Cuota dura del vocabulario restringido (sección 5 del manual): máx 2/30.
+- Lista negra dura de muletillas IA (sección 5.bis): cuota 0.
+- Aplica la sección "Patrones sintácticos por categoría" del manual sobre la
+  categoría dominante del conjunto.
+- Los 30 titulares deben sonar específicamente a {PERSONA_REDACTORA_FINAL}.
 
 Devuelve los 30 titulares en el formato exacto que define tu agent: una línea por
 titular, con etiqueta de estilo y longitud entre corchetes. Sin numeración, sin

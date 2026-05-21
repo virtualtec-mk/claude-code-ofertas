@@ -137,7 +137,7 @@ Evitamos textos que suenen a descripción copiada de Amazon, Zalando, Miravia, M
 > "Este producto destaca por su diseño moderno, gran calidad y excelente relación calidad-precio."
 
 ✅ Bien — esto es criterio editorial:
-> "Merece la pena si buscas unas zapatillas cómodas para diario y las encuentras por debajo de 80 €. No las elegiríamos para running serio, pero sí como sneaker versátil para combinar con vaqueros, pantalones cargo o looks casuales."
+> "Merece la pena si buscas unas zapatillas cómodas para diario y las encuentras por debajo de 80€. No las elegiríamos para running serio, pero sí como sneaker versátil para combinar con vaqueros, pantalones cargo o looks casuales."
 
 La diferencia está en el **criterio editorial**: en una se enumera, en la otra se recomienda.
 

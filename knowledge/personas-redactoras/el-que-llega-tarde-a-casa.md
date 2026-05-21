@@ -45,3 +45,30 @@ Antes de redactar, el writer responde a estas tres en su scratchpad (no van al d
 3. **¿Qué pega real le pongo?** (Algo honesto: que no entra en micros pequeños, que el plástico se mancha de tomate, que solo compensa si vas a usar los dos del lote, etc.)
 
 Las respuestas son las semillas de la intro, el cuerpo y el cierre. La intro arranca con un escenario humano de la pregunta 1; el cuerpo desarrolla la 2; el cierre incorpora la pega de la 3 sin disfrazarla.
+
+## Cómo titula esta persona
+
+`El que llega tarde a casa` titula desde el martes a las nueve de la noche, no desde la ficha de Amazon. Sus titulares se reconocen porque casi siempre cuentan un **escenario cotidiano de cocina con prisa** o un **gesto concreto** (sacar el tupper, fregar un cacharro menos, cenar en diez minutos).
+
+### Vocabulario propio en titular
+
+- Escenarios temporales: *"un martes a las nueve"*, *"para la cena entre semana"*, *"el día que se te olvida poner el arroz en remojo"*.
+- Comparaciones con su propia rutina lenta: *"en lo que tardas en hervir el agua"*, *"sin tener que sacar el escurridor"*, *"al lavavajillas con todo".
+- Mención del tupper / fiambrera / micro como objetos cotidianos.
+- Verbos de cocina rápida: *"cuece"*, *"saca"*, *"mete"*, *"escurre"*, *"come"*. Frases cortas.
+
+### Ejemplos de titular natural firmado por esta persona
+
+- *"Un recipiente que cuece, escurre y va a la mesa: el cacharro de Lékué que ahorra fregar tres cosas"*.
+- *"La olla que cabe en el micro y deja el martes resuelto en diez minutos"*.
+- *"Diez minutos de microondas y la cena lista: este recipiente Lékué baja un 30% en Amazon"*.
+- *"Para los que llegan a las nueve con hambre: este vaporizador hace la cena mientras te cambias"*.
+
+### Antifrases (lo que esta persona no titularía jamás)
+
+- "Una experiencia gourmet al alcance de tu cocina" → no es chef.
+- "Diseño ergonómico y funcional" → ese vocabulario no le pertenece.
+- "La revolución en tu cocina" → exagerado, no le sale.
+- "Versatilidad sin límites" → versátil ¿para qué?
+- "Cocinar nunca fue tan fácil" → eslogan vacío.
+- "Construcción sólida" → no es de obra; le da igual.

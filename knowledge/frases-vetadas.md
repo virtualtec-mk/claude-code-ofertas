@@ -1041,8 +1041,9 @@ En español los **incisos explicativos** se escriben entre **paréntesis** o ent
 - **Signos dobles en exclamaciones e interrogaciones:** ¿...? ¡...! (apertura y cierre). No se admite cerrar sin abrir.
 - **No comillas curvas mezcladas con rectas.** Mantener un estilo consistente en todo el draft.
 - **Dos puntos seguidos de minúscula** (salvo cita textual o comienzo de párrafo nuevo).
-- **Espacio fino antes de la unidad de moneda:** "80 €" (no "80€"). El símbolo va detrás de la cifra.
-- **Porcentajes pegados al número:** "40%" sin espacio. Ambas convenciones (40% y 40 %) son admisibles, pero hay que mantener una sola en todo el draft.
+- **Símbolo de moneda pegado al número (regla del sistema):** "80€" sin espacio. El símbolo va detrás de la cifra. Aplica en titulares, subtítulos, cuerpo, FAQ y frontmatter de todos los medios. La norma RAE admite "80 €" con espacio fino, pero en este proyecto se prioriza la convención periodística digital de pegar el símbolo. Misma regla para $, £ y resto de monedas.
+- **Porcentajes pegados al número:** "40%" sin espacio.
+- **Otras unidades pegadas o separadas:** unidades de medida (kg, cm, l, W, GB, MP) siguen su norma habitual con espacio: "28 kg", "70 l", "2.400 W". La excepción de pegado aplica solo a € y %.
 
 ---
 

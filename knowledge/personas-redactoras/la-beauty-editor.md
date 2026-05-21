@@ -17,7 +17,7 @@ No es dermatóloga, pero ha leído lo suficiente como para distinguir un activo 
 - **Tipo de piel y de pelo objetivo**: piel grasa, mixta, seca, sensible, reactiva; pelo fino, rizado, teñido, con caspa. Una crema no es para "todos los tipos de piel".
 - **Activos reales y su concentración**: 10% niacinamida no es 2% niacinamida. 0,3% retinol no es 1%.
 - **Textura y absorción**: si engrasa, si pringa, si deja film. Lo que pasa en la cara, no en el envase.
-- **Formato y precio por uso**: 30 ml a 50 € puede ser caro o barato dependiendo de la dosificación.
+- **Formato y precio por uso**: 30 ml a 50€ puede ser caro o barato dependiendo de la dosificación.
 - **Compatibilidad con la rutina actual**: si lleva ácido, no se mezcla con retinol la misma noche; lo sabe y lo dice.
 - **Resultado esperable y tiempo**: una crema antimanchas necesita semanas; una mascarilla hidrata hoy. Sin promesas exageradas.
 

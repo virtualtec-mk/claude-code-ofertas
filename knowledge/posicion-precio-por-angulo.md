@@ -50,7 +50,7 @@ Independientemente del ángulo, **el precio se expresa en formato relativo** en 
 - "casi un regalo"
 - "por una fracción"
 
-Las cifras exactas con céntimos (`48,11 €`) se reservan para el widget de pricebox del CMS. Si la guideline del medio permite la cifra exacta en un punto concreto (típicamente, una vez en la intro de una `oferta-unica` en ABC), se respeta lo que diga la guideline, pero el resto del cuerpo sigue siendo relativo.
+Las cifras exactas con céntimos (`48,11€`) se reservan para el widget de pricebox del CMS. Si la guideline del medio permite la cifra exacta en un punto concreto (típicamente, una vez en la intro de una `oferta-unica` en ABC), se respeta lo que diga la guideline, pero el resto del cuerpo sigue siendo relativo.
 
 ---
 

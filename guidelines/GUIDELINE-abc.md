@@ -134,7 +134,7 @@ Cuando el orquestador active `TIPO_ARTICULO=multi`, presenta esta lista al redac
 |---|---|---|
 | `recopilatorio` | `recopilatorio` | 3-7 ofertas con hilo común (categoría, tienda, momento). Estilo dominante del medio. |
 | `comparativa` | `recopilatorio` (con 2-3 productos enfrentados, cada uno en su H3) | "Cuál ganaría: X frente a Y". |
-| `top-n` | `recopilatorio` (con orden de ranking implícito) | "Los 5 mejores smartwatches por menos de 200 €". |
+| `top-n` | `recopilatorio` (con orden de ranking implícito) | "Los 5 mejores smartwatches por menos de 200€". |
 | `por-presupuesto` | `recopilatorio` (con H3 ordenados por franja de precio) | "Robots aspirador a 150, 250 y 400 euros". |
 | `por-uso` | `recopilatorio` (con H3 por perfil/uso) | "Auriculares según uses gym, oficina o viajes". |
 | `longtail-marca` | `longtail-marca` | "Por qué [Marca] sigue siendo referencia: estos N modelos lo demuestran". |
@@ -194,7 +194,7 @@ Patrón habitual observado:
    - En `oferta-unica`: 1-3 H3 con detalles del producto, cada uno con un foco distinto (diseño, prestaciones, una función diferencial).
    - En `recopilatorio` y `longtail-marca`: un H3 por cada producto del conjunto.
    - Receta dominante en cada H3 de producto: `specs-traducidas`. Vatios, litros, materiales o megapíxeles traducidos a *"¿qué gano yo con esto?"*.
-   - Comparativas integradas cuando ayuden: *"rinde como el modelo de 400 € pero hoy te lo llevas por una fracción"*.
+   - Comparativas integradas cuando ayuden: *"rinde como el modelo de 400€ pero hoy te lo llevas por una fracción"*.
 
 3. **H3 final — "El veredicto"** (recomendado en oferta-unica y recopilatorio; opcional en longtail-marca).
    Bloque editorial y honesto. Explica por qué este precio es **una anomalía**: stock, guerra de precios, fin de temporada, descatalogación, cambio de generación. Sé directo: *"si necesitas renovar [categoría], es ahora o nunca porque este descuento no es lo habitual"*.
@@ -340,7 +340,7 @@ La columna vertebral de ABC sigue siendo el primer H3 de contexto y el H3 de ver
 | Receta | Encaja en | Cómo se usa |
 |---|---|---|
 | `specs-traducidas` | H2 del análisis (anclaje 6) | Receta dominante. Traduce specs técnicas a beneficio cotidiano en prosa continua. |
-| `comparativa-corta` | H2 del análisis | Integrada en el flujo. *"Rinde como el modelo de 400 € pero hoy te lo llevas por una fracción"*. |
+| `comparativa-corta` | H2 del análisis | Integrada en el flujo. *"Rinde como el modelo de 400€ pero hoy te lo llevas por una fracción"*. |
 | `contexto-de-mercado` | H2 del veredicto (anclaje 7) | Receta dominante. Explica por qué el precio es una anomalía. |
 | `cuando-no-comprarlo` | H2 del veredicto | Matiz integrado de 1-2 frases honestas. Nunca H2 propio en ABC. |
 | `para-quien-si-para-quien-no` | H2 del análisis | Integrada en 1-2 frases. Nunca como H2 propio en ABC (regla 2.quinque del manifiesto). |
