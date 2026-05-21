@@ -1,7 +1,8 @@
 ---
 medio: mundodeportivo
-version: 2.4
-ultima_actualizacion: 20/05/2026
+version: 3.0
+ultima_actualizacion: 21/05/2026
+notas_version: "v3.0: rediseño alineado con manifiesto v3. Capa de persona-redactora obligatoria. Recetas opcionales. Posición del precio gobernada por knowledge/posicion-precio-por-angulo.md. Test del bloguero como filtro previo del editor."
 autores:
   - nombre: Andrés Moncada
     perfil: autor principal, firma el ~99% de los artículos de El Recomendador
@@ -20,7 +21,9 @@ ejemplos_publicados:
 
 > **Lectura obligatoria previa:** antes que esta guideline, leer `knowledge/manifiesto-editorial.md`. Es el documento fundacional del proyecto. Esta guideline define el **cómo** de Mundo Deportivo (voz, anclajes, recetas, frases preferidas y vetadas); el manifiesto define el **para qué** (ayudar al lector a decidir qué comprar, cuándo y si merece la pena). Cuando entren en tensión, manda el manifiesto.
 
-> **Cambio en v2:** el cuerpo del artículo ya no sigue un esqueleto fijo. Hay anclajes obligatorios (distintos entre mono-producto y multi-producto) y una paleta de recetas para el cuerpo libre. El writer elige 1-3 recetas según el producto, ángulo y tipo de oferta.
+> **Cambio en v3 (rediseño):** se introduce la capa de **persona-redactora** (`knowledge/personas-redactoras/`). El Recomendador deja de ser un redactor único neutro; pasa a ser una voz del medio que se combina con una persona-redactora según la categoría del producto. Para productos deportivos (running, gym, ciclismo, trail), la persona natural es `el-deportista-amateur`; para tecnología `el-techie-que-prueba-todo`; para hogar `el-que-llega-tarde-a-casa`; etc. Las **recetas pasan a opcionales**. La **posición del precio** la gobierna `knowledge/posicion-precio-por-angulo.md`. El test del bloguero del manifiesto es el filtro número uno del editor-in-chief.
+
+> **Cambio en v2 (histórico):** el cuerpo del artículo ya no sigue un esqueleto fijo. Hay anclajes obligatorios (distintos entre mono-producto y multi-producto) y una paleta de recetas para el cuerpo libre.
 
 ---
 
@@ -40,6 +43,29 @@ Audiencia principal: hombres que practican deporte, cuidan su bienestar y buscan
 - **Tratamiento al lector:** Tuteo cuando hay interpelación directa; construcción impersonal en el resto.
 - **Sin exclamaciones.** El entusiasmo se transmite con verbos de movimiento: arrasar, aguantar, exprimir, potenciar, rendir, superar, resistir.
 - **Español de España:** gym, zapas, cascos, pantalla, chollo, puesta a punto, ganga histórica, precio mínimo.
+
+### Persona-redactora (capa que se monta sobre la voz del medio)
+
+Desde v3, todo artículo de Mundo Deportivo se redacta combinando **dos capas**:
+
+1. **Voz del medio** (esta guideline) → registro cercano-experto activo, anclajes, frases vetadas, longitud, párrafo final obligatorio.
+2. **Persona-redactora** (`knowledge/personas-redactoras/{slug}.md`) → punto de vista humano según la categoría del producto.
+
+Para productos deportivos (running, gym, ciclismo, trail, outdoor deportivo, zapatillas técnicas, relojes deportivos, ropa técnica), la persona natural es `el-deportista-amateur` y encaja como un guante con la voz del medio. Para tecnología (móviles, audio, smartwatches no deportivos, gaming) la persona es `el-techie-que-prueba-todo`. Para hogar/cocina/electrodomésticos `el-que-llega-tarde-a-casa`. Para infantil `el-padre-con-hijos-pequenos`. Para bricolaje `el-manitas-de-fin-de-semana`. Para viajes `el-que-viaja-ligero`. Para moda/calzado urbano `el-bloguer-de-moda`. Para belleza/cuidado personal `la-beauty-editor`.
+
+La persona da el lenguaje natural y los escenarios (kilómetros, generaciones, combinaciones, etc.); el medio mantiene el registro activo y el anclaje "estilo de vida activo" cuando aplica.
+
+### Posición del precio según el ángulo
+
+Regla transversal definida en `knowledge/posicion-precio-por-angulo.md`. Aplicada a Mundo Deportivo:
+
+| Ángulo | Posición del precio |
+|---|---|
+| `liquidacion`, `precio-psicologico` | Protagonista. La intro (lead "El Calentamiento") y el primer H2 del cuerpo pueden abrir por descuento o por la oportunidad temporal. |
+| `comparativa` | Mención breve en lead. Primer H2 opcionalmente con dato de precio. |
+| `recomendacion-personal`, `uso-practico`, `tendencia` | **No protagonista.** El lead abre por el escenario activo, el problema cotidiano o el momento; el primer H2 del cuerpo abre por el beneficio activo o por el contexto temático, NO por la rebaja. El precio entra integrado en los bloques de producto o en el cierre. |
+
+Esta regla sobrescribe cualquier anclaje que entre en conflicto.
 
 ---
 
@@ -151,9 +177,11 @@ Recuerda la regla crítica de cabecera: **los dos subtítulos NO pueden empezar 
 
 ---
 
-## Cuerpo libre: paleta de recetas
+## Cuerpo libre: paleta de recetas (REFERENCIA OPCIONAL desde v3)
 
-El writer elige **1-3 recetas** de la paleta y las combina en el orden que mejor sirva al producto, ángulo y tipo de oferta. Cada receta es un patrón de sección, no un molde.
+Desde v3, **las recetas dejan de ser un menú obligatorio**. El writer construye el cuerpo desde las tres preguntas semilla de la persona-redactora aplicadas a este producto. Si una receta le ayuda a estructurar una sección, la usa y la declara en `recetas` del frontmatter. Si no, deja `recetas: []`. El editor-in-chief no penaliza la ausencia de recetas si el artículo pasa el test del bloguero.
+
+Cada receta es un patrón de sección, no un molde.
 
 ### Recetas disponibles
 
@@ -390,11 +418,12 @@ url_origen: ...                                 # URL del producto principal / p
 url_secundarias:                                 # solo en multi: resto de URLs en orden
   - ...
 angulo: ...
+persona_redactora: ...                           # nuevo en v3: slug del catálogo knowledge/personas-redactoras/
 tipo_articulo: mono | multi
 formato_guia: ...                                # solo en multi: comparativa | recopilatorio | top-n | por-presupuesto | por-uso
 n_productos: ...                                 # solo en multi: entero >= 2
 hilo_conductor: "..."                            # solo en multi: hilo conductor confirmado por el redactor
-recetas: [...]                                   # nuevo en v2: lista de recetas usadas
+recetas: []                                      # opcional desde v3: vacío si no se apoyó en recetas
 layout: mono-producto | multi-producto
 autor: Andrés Moncada                            # por defecto; usar `Javier Rosagro Moreiro` solo si Moncada está de vacaciones
 fecha: YYYY-MM-DD

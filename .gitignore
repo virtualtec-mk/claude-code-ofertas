@@ -13,3 +13,13 @@ desktop.ini
 # Python
 __pycache__/
 *.pyc
+
+# Capturas y snapshots sueltos en raíz (notas locales del redactor, no versionar)
+/*.jpeg
+/*.jpg
+/*.png
+/snap-*.md
+/snapshot-*.md
+
+# Bandeja de entrada local (URLs pegadas, notas de trabajo)
+inbox/

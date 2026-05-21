@@ -1,8 +1,8 @@
 ---
 medio: abc
-version: 1.2
-ultima_actualizacion: 20/05/2026
-origen: importado desde GPT personalizado "ABC Favorito" (v1.0) + calibración con 18 ejemplos publicados (v1.1) + mapeo de FORMATO_GUIA universal a modos internos para soporte multi-producto transversal (v1.2)
+version: 1.3
+ultima_actualizacion: 21/05/2026
+origen: importado desde GPT personalizado "ABC Favorito" (v1.0) + calibración con 18 ejemplos publicados (v1.1) + mapeo de FORMATO_GUIA universal a modos internos para soporte multi-producto transversal (v1.2) + rediseño v1.3 alineado con manifiesto v3: capa de persona-redactora, recetas opcionales, posición del precio gobernada por knowledge/posicion-precio-por-angulo.md, test del bloguero como filtro previo del editor
 autores:
   - nombre: Benjamín Pelaz
     perfil: declarado como autor por defecto por el redactor. En la muestra descargada de 18 artículos de mayo 2026 no aparece firmando ninguno — verificar si está cubierto temporalmente por otras firmas.
@@ -35,7 +35,7 @@ ejemplos_publicados:
 
 > **Lectura obligatoria previa:** antes que esta guideline, leer `knowledge/manifiesto-editorial.md`. Es el documento fundacional del proyecto. Esta guideline define el **cómo** de ABC (voz, recetas, frases preferidas y vetadas); el manifiesto define el **para qué** (ayudar al lector a decidir qué comprar, cuándo y si merece la pena). Cuando entren en tensión, manda el manifiesto.
 
-> **Sobre esta guideline (v1.0):** primera versión del medio, generada a partir del prompt del GPT personalizado "ABC Favorito". Cuando haya 3-5 artículos publicados en producción, descárgalos a `knowledge/ejemplos-publicados/abc/` para calibrar voz real y refinar esta guideline.
+> **Cambio en v1.3 (rediseño alineado con manifiesto v3):** se introduce la capa de **persona-redactora** (`knowledge/personas-redactoras/`). El "editor de Favorito" deja de ser un único redactor neutro; pasa a ser una voz del medio que se combina con una persona-redactora específica según la categoría del producto (cocina, tech, moda, deporte, belleza, infantil, bricolaje, viajes). Las **recetas dejan de ser un menú obligatorio**, son referencias opcionales. La **posición del precio** la gobierna `knowledge/posicion-precio-por-angulo.md`: en `uso-practico`, `recomendacion-personal` y `tendencia`, el primer H3 del cuerpo NO abre por precio. El test del bloguero del manifiesto es el filtro número uno del editor-in-chief.
 
 ---
 
@@ -59,11 +59,34 @@ Crear un artículo magnético para Google Discover que analice una o varias ofer
 
 - **Registro:** Cercano, conversacional y experto a la vez. Como un amigo entendido contándote un hallazgo en una cafetería.
 - **Recursos permitidos:** Interjecciones puntuales ("oye", "atento"), preguntas retóricas ("¿te ha pasado que…?"), toques de humor o ironía amable. Nunca cinismo.
-- **Persona narradora:**
+- **Persona narradora del medio:**
   - **Oferta única y reviews:** primera persona singular ("he encontrado", "me he topado con") o tercera con voz editorial fuerte. La marca personal del editor se nota.
   - **Recopilatorios:** primera persona plural editorial cuando el conjunto se presenta como selección ("hemos seleccionado") o tercera con verbo activo.
 - **Tratamiento al lector:** Tuteo siempre. *"necesitas"*, *"vas a usar"*, *"te alegra el día"*.
 - **Categoría modula la voz:** tono tecno-curioso para tech, vocabulario de motorista para motor, lenguaje doméstico cercano para hogar. Sin postureo, sin pedantería.
+
+### Persona-redactora (capa que se monta sobre la voz del medio)
+
+Desde v1.3, todo artículo de ABC se redacta combinando **dos capas**:
+
+1. **Voz del medio** (esta guideline) → registro conversacional-experto, anclajes, frases vetadas, longitud, párrafo final obligatorio.
+2. **Persona-redactora** (`knowledge/personas-redactoras/{slug}.md`) → punto de vista humano según la categoría del producto.
+
+La voz del medio aporta la chispa conversacional de "amigo entendido"; la persona aporta el punto de vista experto (el que cocina con prisa habla en martes a las nueve; el techie habla en generaciones y rivales; el bloguer de moda habla en combinaciones y temporadas; etc.).
+
+La persona-redactora **NO sustituye** la primera persona del editor de Favorito: la enriquece. El "yo" del editor sigue ahí, pero ese yo tiene perfil concreto según la categoría. Si una receta o un anclaje de esta guideline choca con la voz natural de la persona, prevalece la persona en lo subjetivo. La guideline manda en lo formal.
+
+### Posición del precio según el ángulo
+
+Regla transversal definida en `knowledge/posicion-precio-por-angulo.md`. Aplicada a ABC:
+
+| Ángulo | Posición del precio |
+|---|---|
+| `liquidacion`, `precio-psicologico` | Protagonista. La intro y el primer H3 abren por precio o descuento. ABC permite cifra exacta UNA vez en intro de `oferta-unica` (regla histórica del medio). |
+| `comparativa` | Mención breve en intro. Primer H3 opcionalmente con precio. |
+| `recomendacion-personal`, `uso-practico`, `tendencia` | **No protagonista.** La intro abre por el "gancho humano" del editor (problema, observación, hallazgo de uso); el primer H3 abre por la marca, la categoría o el escenario, NUNCA por el precio. El precio entra integrado en el cuerpo o en el H3 final del veredicto. La regla histórica de "cifra exacta una vez en intro" solo aplica a `liquidacion` / `precio-psicologico` desde v1.3. |
+
+Esta regla sobrescribe cualquier anclaje que entre en conflicto.
 
 ---
 
@@ -304,9 +327,11 @@ Estos moldes son **rechazo automático** en la pasada del editor-in-chief, adem�
 
 ---
 
-## Cuerpo libre: paleta de recetas
+## Cuerpo libre: paleta de recetas (REFERENCIA OPCIONAL desde v1.3)
 
-El cuerpo de ABC está más prescrito que el de La Razón o Mundo Deportivo (los dos H2 obligatorios del análisis y el veredicto fijan la columna vertebral). Las recetas se aplican **dentro** de esos H2, no como secciones independientes.
+Desde v1.3, **las recetas dejan de ser un menú obligatorio** y pasan a ser **referencias opcionales**. El writer construye el cuerpo desde las tres preguntas semilla de la persona-redactora; si alguna receta le ayuda a estructurar una sección, la usa y la declara en el frontmatter. Si no, deja `recetas: []`.
+
+La columna vertebral de ABC sigue siendo el primer H3 de contexto y el H3 de veredicto. Lo que cambia es que el contenido dentro de esos H3 nace del scratchpad humano de la persona, no de "elegir una receta de la lista".
 
 | Receta | Encaja en | Cómo se usa |
 |---|---|---|
@@ -394,13 +419,14 @@ n_productos: <entero >= 2>           # solo en multi
 hilo_conductor: "<frase del hilo>"   # solo en multi
 fecha: YYYY-MM-DD
 angulo: <nombre-del-angulo>
-recetas: [...]
+persona_redactora: <slug>            # nuevo en v1.3: slug del catálogo knowledge/personas-redactoras/
+recetas: []                          # opcional desde v1.3: vacío si no se apoyó en recetas
 autor: Benjamín Pelaz                # autor por defecto de Favorito
 fuente: <playwright | manual>
 estado: borrador
 ```
 
-`tipo_articulo`, `formato_guia`, `n_productos` y `hilo_conductor` son nuevos en v1.2 (soporte multi-producto transversal). `modo` se mantiene como el campo nativo del medio que el writer y el editor-in-chief usan para decidir la estructura interna.
+`tipo_articulo`, `formato_guia`, `n_productos` y `hilo_conductor` son nuevos en v1.2 (soporte multi-producto transversal). `persona_redactora` es nuevo en v1.3 (capa de persona). `recetas` pasa a opcional en v1.3. `modo` se mantiene como el campo nativo del medio que el writer y el editor-in-chief usan para decidir la estructura interna.
 
 ---
 

@@ -33,6 +33,59 @@ Antes de empezar a escribir, el writer (y antes de cerrar, el editor-in-chief) s
 
 Si el artículo no responde bien a esa pregunta, está incompleto.
 
+---
+
+## 2.bis. El test del bloguero
+
+Por encima de cualquier checklist táctico, anclajes obligatorios o recetas de la guideline, **todo artículo debe pasar este test antes de publicarse**:
+
+> **Lee el artículo en voz alta. ¿Suena a alguien que sabe de la categoría recomendando algo a un amigo en una sobremesa?**
+>
+> Si suena a "estructura + recetas + checklist + IA bien disimulada", está mal escrito aunque cumpla la guideline.
+
+Este test es el **filtro número uno** del editor-in-chief. Si no lo pasa, el draft vuelve al writer; no se pule un texto que no suena a humano experto. Se reescribe.
+
+Síntomas habituales de no pasarlo:
+
+- Suena al mismo redactor neutro para cocina, tech, moda y running.
+- El primer párrafo arranca con datos transaccionales (precio + tienda + descuento) antes de tener voz.
+- Las secciones del cuerpo se reconocen como "receta IA encadenada" (mini-historia → para quién sí/no → FAQ).
+- Frases comodín que servirían para cualquier producto de la categoría.
+- Ausencia total de juicio editorial subjetivo del que escribe.
+
+Pasar el test exige las dos capas que se describen en el punto siguiente: **voz del medio + persona-redactora**.
+
+---
+
+## 2.ter. Voz del medio + persona-redactora: dos capas que se combinan
+
+Cada artículo se redacta desde **dos capas** que conviven y se complementan:
+
+1. **Voz del medio.** Definida en `guidelines/GUIDELINE-{medio}.md`. Fija el registro general (formal/informal), la longitud, los anclajes mínimos, las frases vetadas y preferidas, el disclaimer, las posiciones de imagen y CTA.
+2. **Persona-redactora.** Definida en `knowledge/personas-redactoras/`. Fija el punto de vista humano según la categoría del producto: el que cocina con prisa, el techie que prueba todo, el bloguer de moda, el deportista amateur, la beauty editor, el padre con hijos pequeños, el manitas, el que viaja ligero, etc.
+
+Reparto de mando entre las dos capas:
+
+- **Manda la voz del medio en lo formal:** frases vetadas, disclaimer literal, longitud objetivo, anclajes obligatorios, formato del frontmatter, formato de precio.
+- **Manda la persona-redactora en lo subjetivo:** qué cuenta primero, qué dato del producto le importa, en qué escenario aterriza, qué pega real le pone, con qué vocabulario natural habla.
+
+Si la guideline del medio no contradice nada concreto sobre el punto de vista, la persona-redactora **es la que decide cómo se cuenta el producto**. La voz del medio es el registro general; la persona-redactora es el redactor humano específico que firma esa pieza.
+
+El `angle-picker` propone la persona-redactora junto con el ángulo. El redactor humano la confirma o la cambia en la **pausa A** del flujo. El `writer` la recibe como input y la asume durante la redacción. El `editor-in-chief` valida su coherencia como parte del test del bloguero.
+
+Las personas-redactoras viven en `knowledge/personas-redactoras/` (un archivo por persona, más un README con el catálogo). El catálogo es ampliable: si un producto no encaja en ninguna persona, se crea una nueva con la misma estructura.
+
+---
+
+## 2.quater. Posición del precio según el ángulo
+
+El precio no siempre va en la introducción. Va donde el ángulo manda. La regla canónica vive en `knowledge/posicion-precio-por-angulo.md` y aplica a **todos los medios**:
+
+- En `liquidacion` y `precio-psicologico` (y a menudo en `comparativa`), el precio es protagonista de la intro y del primer H2.
+- En `uso-practico`, `recomendacion-personal` y `tendencia`, **el precio no es protagonista**: la intro abre por el escenario, la utilidad o el momento; el primer H2 abre por el producto o por el contexto; el precio entra integrado en el cuerpo o en el cierre como argumento secundario.
+
+Esta regla manda sobre cualquier anclaje de guideline que obligue a meter precio en la intro o en el primer H2. Si la guideline de un medio tiene un anclaje que choca con esta regla, prevalece esta regla y se actualiza la guideline.
+
 No basta con decir que algo está rebajado. Hay que explicar, en algún punto del artículo:
 
 - Por qué es buena oferta.
@@ -304,7 +357,16 @@ Este paso no lo ejecuta el sistema automáticamente; queda como **decisión edit
 
 ## 11. Checklist final antes de entregar
 
-Antes de cerrar el artículo, el editor-in-chief revisa estas 11 preguntas en orden. Si alguna respuesta es "no", reescribir el bloque correspondiente.
+Antes de cerrar el artículo, el editor-in-chief revisa estas 13 preguntas en orden. Si alguna respuesta es "no", reescribir el bloque correspondiente.
+
+**Test del bloguero (filtro previo, obligatorio):**
+
+0a. ¿El artículo suena a un humano experto en la categoría hablándole a un amigo? ¿O suena a IA bien disimulada con plantilla?
+0b. ¿La persona-redactora declarada en el frontmatter se reconoce en el texto? ¿Habla como esa persona, con su punto de vista y su lenguaje natural?
+
+Si 0a o 0b fallan, el draft vuelve al writer. No se pula un texto que no suena humano: se reescribe.
+
+**Checklist principal:**
 
 1. ¿El artículo ayuda realmente a decidir?
 2. ¿Tiene criterio propio?
@@ -317,6 +379,8 @@ Antes de cerrar el artículo, el editor-in-chief revisa estas 11 preguntas en or
 9. ¿Está bien estructurado y se puede escanear?
 10. ¿Puede integrarse en un clúster de contenidos del medio?
 11. ¿Sigue siendo útil aunque el lector no compre en ese momento?
+12. ¿La posición del precio respeta la regla del ángulo? (Ver `knowledge/posicion-precio-por-angulo.md`. En `uso-practico`, `recomendacion-personal` y `tendencia` el precio NO abre intro ni primer H2.)
+13. ¿La voz del medio y la persona-redactora conviven sin atropellarse? (El medio impone el registro y las frases vetadas; la persona aporta el punto de vista. Si una de las dos capas se ha tragado a la otra, recalibrar.)
 
 ---
 

@@ -1,8 +1,8 @@
 ---
 medio: larazon
-version: 2.7
-ultima_actualizacion: 20/05/2026
-origen: importado desde GPT personalizado (v1) + paleta de recetas (v2) + ajuste de mapa (v2.1) + voz real y autores (v2.2) + voz humana, estructura de intro, patrón H2, FAQ opcional y sin negritas markdown (v2.3) + estructura base mínima inviolable: titular + subtítulo + introducción + H2 + 3 párrafos (v2.4) + 2-3 H2 adicionales obligatorios en mono-producto y longitud subida a 600-900 palabras (v2.5) + refuerzos anti-IA tras draft eclipse Efekol (v2.6) + soporte de guías multi-producto: formatos admitidos, estructura del cuerpo en multi, longitud por bloque, titulares con cuantificador en H1 (v2.7)
+version: 3.0
+ultima_actualizacion: 21/05/2026
+origen: importado desde GPT personalizado (v1) + paleta de recetas (v2) + ajuste de mapa (v2.1) + voz real y autores (v2.2) + voz humana, estructura de intro, patrón H2, FAQ opcional y sin negritas markdown (v2.3) + estructura base mínima inviolable: titular + subtítulo + introducción + H2 + 3 párrafos (v2.4) + 2-3 H2 adicionales obligatorios en mono-producto y longitud subida a 600-900 palabras (v2.5) + refuerzos anti-IA tras draft eclipse Efekol (v2.6) + soporte de guías multi-producto: formatos admitidos, estructura del cuerpo en multi, longitud por bloque, titulares con cuantificador en H1 (v2.7) + rediseño v3: capa de persona-redactora, recetas opcionales, anclajes 3 y 4 flexibles según ángulo, posición del precio gobernada por knowledge/posicion-precio-por-angulo.md
 autores:
   - nombre: Marina Ros
     perfil: multi-producto, categorías de moda y hogar, liquidaciones
@@ -22,7 +22,9 @@ ejemplos_publicados:
 
 > **Lectura obligatoria previa:** antes que esta guideline, leer `knowledge/manifiesto-editorial.md`. Es el documento fundacional del proyecto. Esta guideline define el **cómo** de La Razón (voz, anclajes, recetas, frases preferidas y vetadas); el manifiesto define el **para qué** (ayudar al lector a decidir qué comprar, cuándo y si merece la pena). Cuando entren en tensión, manda el manifiesto.
 
-> **Cambio en v2:** el cuerpo del artículo ya no sigue un esqueleto fijo. Hay 5 anclajes obligatorios y una paleta de recetas para el cuerpo libre. El writer elige 1-3 recetas según el producto, ángulo y tipo de oferta.
+> **Cambio en v3 (rediseño):** se introduce la capa de **persona-redactora** (`knowledge/personas-redactoras/`). El writer ahora escribe con dos capas combinadas: la voz del medio (esta guideline) + la persona-redactora elegida por el angle-picker según la categoría del producto. Las **recetas dejan de ser un menú obligatorio** y pasan a ser referencias opcionales. Los **anclajes 3 (intro) y 4 (primer H2 con patrón A/B de precio) son flexibles según el ángulo**: solo se aplican como están descritos cuando el ángulo hace al precio protagonista. En `uso-practico`, `recomendacion-personal` y `tendencia` se interpretan de forma distinta (ver "Posición del precio según el ángulo" abajo). El test del bloguero del manifiesto es el filtro número uno del editor-in-chief.
+
+> **Cambio en v2 (histórico):** el cuerpo del artículo ya no sigue un esqueleto fijo. Hay 5 anclajes obligatorios y una paleta de recetas para el cuerpo libre.
 
 ---
 
@@ -90,6 +92,29 @@ El objetivo es que, una vez analizada la URL (o URLs) y elegido el titular, el a
 - **Análisis y reviews:** primera persona plural editorial ("Lo hemos probado durante varios días").
 - **Tratamiento al lector:** Tuteo (tú): "necesitas", "quieres", "vayas a usar".
 
+### Persona-redactora (capa que se monta sobre la voz del medio)
+
+Desde v3, todo artículo de La Razón se redacta combinando **dos capas**:
+
+1. **Voz del medio** (esta guideline) → registro, anclajes, frases vetadas, longitud, disclaimer.
+2. **Persona-redactora** (`knowledge/personas-redactoras/{slug}.md`) → punto de vista humano según la categoría del producto: cocina, tech, moda, deporte, belleza, infantil, bricolaje, viajes, etc.
+
+La voz del medio modula el registro (autoridad tranquila, periodismo de servicio); la persona aporta el punto de vista (qué cuenta primero, qué dato le importa, qué pega le pone). El writer recibe la persona en su input y la asume durante la redacción. El editor-in-chief valida coherencia con la persona como parte del test del bloguero.
+
+Si una receta o un anclaje de esta guideline choca con la voz natural de la persona, prevalece la persona en lo subjetivo (qué cuenta, en qué orden, con qué lenguaje). La guideline manda en lo formal (frases vetadas, disclaimer, longitud).
+
+### Posición del precio según el ángulo
+
+Regla transversal definida en `knowledge/posicion-precio-por-angulo.md`. Aplicada a La Razón:
+
+| Ángulo | Posición del precio en intro y primer H2 |
+|---|---|
+| `liquidacion`, `precio-psicologico` | Protagonista. La intro y el primer H2 pueden y suelen abrir por precio/descuento. El anclaje 4 patrón A/B se aplica como está descrito. |
+| `comparativa` | Mención breve en intro. Patrón A/B del primer H2 opcional. |
+| `recomendacion-personal`, `uso-practico`, `tendencia` | **No protagonista.** La intro NO arranca con precio + tienda + descuento. El primer H2 NO usa el patrón A/B de precio: en su lugar, abre por el uso, el escenario, la marca o el momento. El precio entra integrado en el cuerpo o en el cierre. |
+
+Esta regla sobrescribe los anclajes 3 y 4 cuando entran en conflicto.
+
 ### Cómo redactar datos de prueba social (anti-scrapping)
 
 Nunca vuelques valoraciones, número de reseñas o unidades vendidas como cifras crudas tipo *"4,4 / 5 con 368 reseñas"* o *"más de 10.000 ventas"*. Redacta esos datos en humano, integrándolos en la prosa:
@@ -122,17 +147,18 @@ Antes de cerrar el draft, comprueba que el artículo cumple **literalmente** est
 
 Lo mínimo es lo mínimo: nunca se omiten ni se fusionan elementos. El subtítulo y la introducción son piezas distintas, no se mezclan en una sola línea.
 
-### Bloques adicionales obligatorios en mono-producto
+### Bloques adicionales en mono-producto (2-3 H2, contenido guiado por la persona)
 
-Cuando el artículo es **una oferta simple de un solo producto**, encima de la estructura base mínima hay que añadir **2 o 3 H2 más** elegidos de la paleta de recetas. No es opcional: un mono-producto con solo el H2 base se considera escueto y no se entrega.
+Cuando el artículo es **una oferta simple de un solo producto**, encima de la estructura base mínima hay **2 o 3 H2 más** que dan cuerpo al artículo. No es opcional, pero su contenido lo decide la persona-redactora y el ángulo, **no una paleta de recetas a elegir como menú**.
 
-Reglas para elegir esos 2-3 H2:
+Reglas para esos 2-3 H2:
 
-- **Tienen que aportar algo concreto al lector**: a quién encaja, qué lo separa de la versión hermana, qué dudas reales aparecen antes de comprarlo, qué reputación tiene la marca, en qué momento de uso brilla. No relleno.
-- **Cada H2 adicional incluye 1-3 párrafos** o, en el caso de `faq-corta`, 2-3 pares pregunta-respuesta.
-- **Recetas habituales para mono-producto:** `para-quien-si-para-quien-no`, `comparativa-corta`, `faq-corta`, `vision-de-marca`, `specs-traducidas` (si no se agotó en el cuerpo base), `microhistoria-de-uso` (si no se agotó en el cuerpo base).
-- **`cuando-no-comprarlo`** como H2 propio solo se admite en `recomendacion-personal` y reviews largos (mantenido de la regla original).
-- **No repetir la misma receta dos veces** en el mismo artículo.
+- **Cada H2 desarrolla una de las tres respuestas del scratchpad del writer** (las tres preguntas semilla de la persona-redactora aplicadas a este producto). Si el writer ha contestado bien las tres, los H2 salen solos.
+- **Tienen que aportar algo concreto al lector**: a quién encaja, qué problema resuelve, en qué escenario brilla, qué pega tiene, qué reputación tiene la marca. **No relleno, no recetas ensambladas.**
+- **Cada H2 lleva 1-3 párrafos** o, si hay dudas reales y honestas que el lector se haría, una FAQ corta como uno de los H2.
+- **Las recetas de la paleta son referencia opcional**, no menú a elegir. Si te apoyas en `microhistoria-de-uso` o `specs-traducidas`, decláralas en el frontmatter como referencia. Si no, deja `recetas: []`.
+- **`cuando-no-comprarlo`** como H2 propio solo se admite en `recomendacion-personal` y reviews largos.
+- **No repetir el mismo molde dos veces** en el mismo artículo.
 
 El total queda así para un mono-producto en La Razón:
 
@@ -167,24 +193,27 @@ Test: si el subtítulo solo se sostiene gracias a la conjunción "y" que une tre
 
 ### 3. Introducción (1 párrafo, sin heading)
 - **60-90 palabras.** Lectura rápida en móvil.
-- **Arranque tipo:** *"Seamos claros…"*, *"Con este frío…"*, *"Si estás montando…"*, *"Hay días en los que…"*, *"A estas alturas de la temporada…"*. Ajusta según el producto y la estación.
-- **Menciona producto + precio + tienda una sola vez** dentro del párrafo. El precio en formato relativo de la regla universal ("menos de X euros", "rebaja del Y%", "precio mínimo histórico"), nunca con cifra exacta de céntimos.
-- **Deja claro el "por qué ahora"**: precio, descuento, bajada, mínimo histórico, oportunidad temporal. El lector debe entender en el primer párrafo por qué este artículo aparece hoy en su feed.
+- **El arranque depende del ángulo y de la persona-redactora.** No hay una fórmula única.
+  - En `liquidacion` / `precio-psicologico`: el primer párrafo puede arrancar por el precio o por el descuento, porque ese es el ángulo. Patrones tipo *"A estas alturas de la temporada…"*, *"Llega ese momento del año en el que…"*.
+  - En `recomendacion-personal` / `uso-practico` / `tendencia`: el primer párrafo abre **por el escenario humano, la observación, el problema cotidiano o el momento cultural**. NUNCA arranca con cifras de precio + tienda + descuento. La persona-redactora marca el tipo de escenario.
+- **Producto + precio + tienda aparecen UNA sola vez en el artículo**, no obligatoriamente en la intro. Si el ángulo es protagonista de precio, lo más habitual es que aparezcan en la intro o muy cerca. Si es no-protagonista, aparecen integrados en el cuerpo o en el cierre.
+- **El "por qué ahora" se justifica en algún punto del artículo**, no obligatoriamente en la intro. En ángulos no-protagonista de precio, el "por qué ahora" puede ser el cierre del último H2.
 
-### 4. Primer H2 del cuerpo (claim con tienda + descuento/precio)
-Patrón obligatorio. Elige uno de los dos según el tipo de oferta:
+### 4. Primer H2 del cuerpo (claim adaptado al ángulo)
+Tres patrones posibles. Elige según el ángulo y la persona-redactora:
 
-- **Patrón A (con descuento porcentual):** *"El {producto/categoría} más {claim creíble} de {tienda} tiene un {descuento}%"*.
-- **Patrón B (con bajada de precio en formato relativo):** *"Este {producto} en {tienda} por fin baja a {precio relativo} y por eso tiene sentido"*.
+- **Patrón A (con descuento porcentual):** *"El {producto/categoría} más {claim creíble} de {tienda} tiene un {descuento}%"*. — Para `liquidacion`.
+- **Patrón B (con bajada de precio en formato relativo):** *"Este {producto} en {tienda} por fin baja a {precio relativo} y por eso tiene sentido"*. — Para `liquidacion` o `precio-psicologico` cuando la bajada es la noticia.
+- **Patrón C (claim de uso/marca/momento, SIN precio):** *"{Producto/marca} {hace algo concreto/resuelve un problema/encaja con un momento}"*. — **Para `uso-practico`, `recomendacion-personal` y `tendencia`.** El primer H2 abre por la utilidad, la trayectoria de la marca o el momento cultural, no por el precio.
 
-Ejemplos:
-- *"El robot aspirador con autovaciado más completo de Amazon tiene un 35%"*.
-- *"Esta sandalia Quiksilver en Amazon por fin baja a menos de 15 euros y por eso tiene sentido"*.
-- *"La cámara exterior más vendida de Amazon tiene un 40% en el pack de tres unidades"*.
+Ejemplos de patrón C:
+- *"El recipiente Lékué para microondas cocina arroz y pasta sin que la cocina parezca un campo de batalla"* (uso-practico, persona `el-que-llega-tarde-a-casa`).
+- *"Garmin sigue siendo el reloj que aguanta sin parpadear en el bosque cerrado"* (recomendacion-personal, persona `el-deportista-amateur`).
+- *"Las sandalias Quiksilver que vuelven cada verano y aún se encuentran de la temporada pasada"* (tendencia, persona `el-bloguer-de-moda`).
 
-{tienda} se sustituye por la tienda real del producto (Amazon, AliExpress, etc.).
+{tienda} se sustituye por la tienda real del producto cuando el patrón la incluye.
 
-> En **reviews mono-producto largos** este patrón puede flexibilizarse hacia un claim más narrativo (ej. *"Bosch sigue siendo Bosch incluso en este ventilador de saldo"*) siempre que conserve la lógica "marca/producto + dato concreto + por qué importa".
+> En **reviews mono-producto largos** cualquiera de los tres patrones puede flexibilizarse hacia un claim más narrativo siempre que conserve la lógica "marca/producto + dato concreto + por qué importa".
 
 ### 5. Cuerpo libre (entre anclaje 4 y anclaje 6)
 1-3 recetas de la paleta. Ver sección "Cuerpo libre: paleta de recetas".
@@ -200,9 +229,11 @@ Entre el primer H2 (anclaje 4) y el disclaimer (anclaje 6) está el **cuerpo lib
 
 ---
 
-## Cuerpo libre: paleta de recetas
+## Cuerpo libre: paleta de recetas (REFERENCIA OPCIONAL desde v3)
 
-El writer elige **1-3 recetas** de la paleta y las combina en el orden que mejor sirva al producto, ángulo y tipo de oferta. Cada receta es un patrón de sección, no un molde. Una receta puede ser un H2 propio o aparecer integrada en otra.
+Desde v3, **las recetas dejan de ser un menú obligatorio**. El writer construye el artículo desde las tres respuestas del scratchpad de la persona-redactora; las recetas son **patrones de referencia** que puede consultar si le ayudan a estructurar una sección. No está obligado a elegir 3 recetas, ni a declararlas en el frontmatter si no se ha apoyado en ninguna.
+
+Cada receta es un patrón de sección, no un molde. Una receta puede ser un H2 propio o aparecer integrada en otra. Si se usa, va declarada en `recetas` del frontmatter; si no, `recetas: []`.
 
 ### Recetas disponibles
 
@@ -511,11 +542,12 @@ url_origen: ...
 asin: ...
 fecha: YYYY-MM-DD
 angulo: ...
-recetas: [...]              # nuevo en v2: lista de recetas usadas
+persona_redactora: ...      # nuevo en v3: slug del catálogo knowledge/personas-redactoras/
+recetas: []                 # opcional desde v3: vacío si no se apoyó en recetas; si sí, lista las usadas
 estado: borrador
 ```
 
-El campo `titulo` debe estar **siempre** presente y coincidir letra a letra con el H1 confirmado por el redactor. El campo `recetas` lista las recetas aplicadas en el cuerpo libre (ej. `[specs-traducidas, para-quien-si-para-quien-no]`). Permite al editor-in-chief validar la decisión sin tener que inferirla del texto.
+El campo `titulo` debe estar **siempre** presente y coincidir letra a letra con el H1 confirmado por el redactor. El campo `persona_redactora` es **obligatorio** desde v3 (slug del catálogo en `knowledge/personas-redactoras/`). El campo `recetas` es **opcional** desde v3: vacío `[]` si el writer no se apoyó en recetas concretas; o lista de recetas aplicadas (ej. `[specs-traducidas, para-quien-si-para-quien-no]`) si sí se apoyó. Permite al editor-in-chief validar la decisión sin tener que inferirla del texto.
 
 ---
 

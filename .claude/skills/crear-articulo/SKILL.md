@@ -267,21 +267,28 @@ Guideline del medio: lee el archivo guidelines/GUIDELINE-{MEDIO}.md
 - uso-practico
 - tendencia
 
-Devuelve únicamente:
+Devuelve:
 1. Ángulo elegido
-2. Justificación (2-3 frases con datos concretos de la ficha y de la guideline)
-3. Notas opcionales para el headline-generator y el writer (palabras clave del producto,
-   dato potente de la ficha, restricción de la guideline, estilos de titular que
-   funcionarán mejor)
+2. **Persona-redactora elegida** del catálogo `knowledge/personas-redactoras/`
+   (slug exacto: `el-que-llega-tarde-a-casa`, `el-techie-que-prueba-todo`,
+   `el-bloguer-de-moda`, `el-deportista-amateur`, `la-beauty-editor`,
+   `el-padre-con-hijos-pequenos`, `el-manitas-de-fin-de-semana`,
+   `el-que-viaja-ligero`).
+3. **Posición del precio** según el ángulo (línea breve), siguiendo la regla
+   transversal en `knowledge/posicion-precio-por-angulo.md`.
+4. Justificación (2-3 frases con datos concretos de la ficha, la persona y la
+   guideline)
+5. Notas opcionales para el headline-generator y el writer
 
 NO produzcas titulares. Los titulares los genera el subagente `headline-generator`
 en el paso siguiente.
 
 Si detectas ambigüedad real entre dos ángulos, lanza AmbiguousAngleError siguiendo
-el protocolo de tu agent.
+el protocolo de tu agent. Si dos personas-redactoras encajan parecido, lanza
+AmbiguousPersonaError siguiendo el mismo patrón.
 ```
 
-Guarda el resultado como `PROPUESTA_ANGULO`.
+Guarda el resultado como `PROPUESTA_ANGULO` (incluye ángulo, persona-redactora, posición de precio).
 
 ### Si `TIPO_ARTICULO = multi`
 
@@ -314,13 +321,15 @@ Guideline del medio: lee el archivo guidelines/GUIDELINE-{MEDIO}.md (sección
 - uso-practico
 - tendencia
 
-Devuelve únicamente:
+Devuelve:
 1. Ángulo global elegido
-2. Justificación (2-3 frases anclando el ángulo en datos concretos del CONJUNTO de
-   productos y en la guideline del medio).
-3. HILO CONDUCTOR (1 frase): qué une a estos {N_URLS} productos en una sola pieza
+2. **Persona-redactora elegida** del catálogo `knowledge/personas-redactoras/` (una sola para toda la guía).
+3. **Posición del precio** según el ángulo (línea breve), siguiendo `knowledge/posicion-precio-por-angulo.md`.
+4. Justificación (2-3 frases anclando el ángulo en datos concretos del CONJUNTO de
+   productos, en la persona elegida y en la guideline del medio).
+5. HILO CONDUCTOR (1 frase): qué une a estos {N_URLS} productos en una sola pieza
    (categoría común, momento, tienda, perfil de comprador, escenario de uso, etc.).
-4. Notas opcionales para el headline-generator y el writer (qué producto del conjunto
+6. Notas opcionales para el headline-generator y el writer (qué producto del conjunto
    es el "destacado" si lo hay, qué orden narrativo recomiendas, qué specs o datos
    se repiten y conviene no machacarlos, qué estilos de titular encajan mejor con
    el FORMATO_GUIA elegido).
@@ -337,7 +346,7 @@ Guarda el resultado como `PROPUESTA_ANGULO` (incluye ángulo, justificación e *
 
 ---
 
-## PASO 5 — PAUSA INTERACTIVA A: confirmar el ángulo (y, en multi, el hilo conductor)
+## PASO 5 — PAUSA INTERACTIVA A: confirmar ángulo, persona y (en multi) hilo conductor
 
 **No continúes sin respuesta del redactor.**
 
@@ -346,19 +355,24 @@ Guarda el resultado como `PROPUESTA_ANGULO` (incluye ángulo, justificación e *
 Muestra al redactor la propuesta:
 
 ```
-## Propuesta de ángulo editorial
+## Propuesta editorial
 
 **Ángulo propuesto:** {nombre_angulo}
+**Persona-redactora propuesta:** {slug_persona}
+**Posición del precio:** {posicion_precio_segun_angulo}
 
 **Justificación:** {justificacion}
 
 {si hay notas para el writer, muéstralas aquí en una línea}
 
 ---
-¿Confirmas este ángulo o prefieres otro?
-  A) Confirmo {nombre_angulo}
-  B) Cambio a otro ángulo de la lista
-     (recomendacion-personal / liquidacion / comparativa / precio-psicologico / uso-practico / tendencia)
+¿Confirmas?
+  A) Confirmo ángulo + persona tal cual
+  B) Cambio el ángulo (recomendacion-personal / liquidacion / comparativa /
+     precio-psicologico / uso-practico / tendencia)
+  C) Cambio la persona (dime el slug o nombre; el catálogo está en
+     knowledge/personas-redactoras/)
+  D) Cambio las dos cosas
 ```
 
 ### Si `TIPO_ARTICULO = multi`
@@ -370,6 +384,8 @@ Muestra al redactor la propuesta enriquecida con el hilo conductor:
 
 **Formato de guía:** {FORMATO_GUIA}
 **Ángulo global:** {nombre_angulo}
+**Persona-redactora:** {slug_persona}
+**Posición del precio:** {posicion_precio_segun_angulo}
 **Hilo conductor:** {hilo_conductor}
 
 **Justificación:** {justificacion}
@@ -378,17 +394,19 @@ Muestra al redactor la propuesta enriquecida con el hilo conductor:
 
 ---
 ¿Confirmas?
-  A) Confirmo ángulo {nombre_angulo} + hilo conductor tal cual
-  B) Cambio el ángulo (recomendacion-personal / liquidacion / comparativa /
-     precio-psicologico / uso-practico / tendencia)
-  C) Cambio el hilo conductor (dícteme el nuevo)
-  D) Cambio el FORMATO_GUIA (volvemos al sub-paso 2.5.1)
+  A) Confirmo ángulo + persona + hilo conductor tal cual
+  B) Cambio el ángulo
+  C) Cambio la persona
+  D) Cambio el hilo conductor (dícteme el nuevo)
+  E) Cambio el FORMATO_GUIA (volvemos al sub-paso 2.5.1)
 ```
 
 Espera la respuesta. Asigna:
 - `ANGULO_FINAL` con el ángulo confirmado o cambiado.
+- `PERSONA_REDACTORA_FINAL` con el slug de la persona confirmada o cambiada.
+- `POSICION_PRECIO_FINAL` heredada del angle-picker (puede recalcularse si cambia el ángulo).
 - En multi, además `HILO_CONDUCTOR_FINAL` con el hilo confirmado o reescrito.
-- Si el redactor elige D, vuelve al sub-paso 2.5.1 y, tras nuevo `FORMATO_GUIA`, reinvoca al angle-picker en multi.
+- Si el redactor elige E (multi), vuelve al sub-paso 2.5.1 y, tras nuevo `FORMATO_GUIA`, reinvoca al angle-picker en multi.
 
 > En esta pausa **no se habla todavía de titulares**. El titular llega en la pausa B.
 
@@ -533,16 +551,37 @@ DATOS DEL PRODUCTO:
 {FICHA_PRODUCTO}
 
 ÁNGULO EDITORIAL: {ANGULO_FINAL}
+PERSONA-REDACTORA: {PERSONA_REDACTORA_FINAL}
+  ↳ Lee el archivo knowledge/personas-redactoras/{PERSONA_REDACTORA_FINAL}.md
+    ANTES de escribir nada. La persona define el punto de vista, las
+    prioridades y el lenguaje natural del artículo.
+POSICIÓN DEL PRECIO: {POSICION_PRECIO_FINAL}
+  ↳ Regla transversal en knowledge/posicion-precio-por-angulo.md. Si el ángulo
+    es no-protagonista de precio, NO abras la intro ni el primer H2/H3 con
+    cifras de precio o descuento.
+
 TITULAR: {TITULAR_FINAL}
 
-GUIDELINE DEL MEDIO: lee el archivo guidelines/GUIDELINE-{MEDIO}.md y síguela
-estrictamente. La guideline es la única fuente normativa: cómo se trata cada
-ángulo, qué recetas usar, qué voz aplicar y cómo arranca un artículo del medio
-está definido allí.
+MANIFIESTO EDITORIAL: lee knowledge/manifiesto-editorial.md. Atención especial
+a los puntos 2.bis (test del bloguero), 2.ter (voz del medio + persona) y
+2.quater (posición del precio según ángulo). El manifiesto manda sobre
+cualquier guideline si entran en conflicto.
+
+SCRATCHPAD HUMANO OBLIGATORIO (no va al draft): antes de redactar, contesta
+en tu razonamiento interno las tres preguntas semilla de la persona-redactora
+aplicadas a ESTE producto concreto. Las respuestas son las semillas de la
+intro, el cuerpo y el cierre.
+
+GUIDELINE DEL MEDIO: lee guidelines/GUIDELINE-{MEDIO}.md. Define el registro,
+los anclajes mínimos, las frases vetadas/preferidas, longitud y disclaimer.
+La paleta de recetas es REFERENCIA OPCIONAL, no menú obligatorio. Si construyes
+el artículo desde el scratchpad sin apoyarte en recetas, deja el campo
+`recetas: []` vacío.
 
 EJEMPLOS PUBLICADOS: lee 2-3 archivos de knowledge/ejemplos-publicados/{MEDIO}/
-con un ángulo o categoría parecidos para calibrar voz, ritmo y vocabulario.
-Es OBLIGATORIO si la carpeta tiene archivos. Calibra, no copies estructura.
+con un ángulo o categoría parecidos para CALIBRAR voz, ritmo y vocabulario.
+NUNCA copies la estructura. Si tu plan se parece al último draft del medio,
+recalibra desde el scratchpad.
 
 FRONTMATTER REQUERIDO (incluirlo al inicio del draft en bloque YAML):
 ```yaml
@@ -552,8 +591,9 @@ url_origen: {URL_PRODUCTO}
 asin: {ASIN_si_aplica_o_omitir}
 fecha: {fecha_hoy_en_formato_YYYY-MM-DD}
 angulo: {ANGULO_FINAL}
+persona_redactora: {PERSONA_REDACTORA_FINAL}
 tipo_articulo: mono
-recetas: [...]
+recetas: []   # vacío si no te apoyas en recetas; si te apoyas, lista las usadas
 estado: borrador
 ```
 
@@ -583,6 +623,12 @@ Redacta una GUÍA MULTI-PRODUCTO completa para el medio {MEDIO}.
 TIPO_ARTICULO: multi
 FORMATO_GUIA: {FORMATO_GUIA}
 ÁNGULO GLOBAL: {ANGULO_FINAL}
+PERSONA-REDACTORA: {PERSONA_REDACTORA_FINAL}
+  ↳ Lee el archivo knowledge/personas-redactoras/{PERSONA_REDACTORA_FINAL}.md
+    ANTES de escribir nada. Una sola persona para toda la guía.
+POSICIÓN DEL PRECIO: {POSICION_PRECIO_FINAL}
+  ↳ Si el ángulo es no-protagonista de precio, NO abras la intro ni el primer
+    H2/H3 global con cifras. Cada bloque de producto también sigue la regla.
 HILO CONDUCTOR: {HILO_CONDUCTOR_FINAL}
 TITULAR: {TITULAR_FINAL}
 
@@ -631,11 +677,12 @@ url_secundarias:                       # resto de URLs del conjunto, en orden
   - ...
 fecha: {fecha_hoy_en_formato_YYYY-MM-DD}
 angulo: {ANGULO_FINAL}
+persona_redactora: {PERSONA_REDACTORA_FINAL}
 tipo_articulo: multi
 formato_guia: {FORMATO_GUIA}
 n_productos: {N_URLS}
 hilo_conductor: "{HILO_CONDUCTOR_FINAL}"
-recetas: [...]                         # recetas del cuerpo libre aplicadas a la guía
+recetas: []                            # vacío si no te apoyas en recetas; si te apoyas, lista las usadas
 estado: borrador
 ```
 
@@ -677,9 +724,22 @@ N_PRODUCTOS: {N_URLS}
 
 GUIDELINE DEL MEDIO: lee el archivo guidelines/GUIDELINE-{MEDIO}.md
 ÁNGULO APLICADO: {ANGULO_FINAL}
+PERSONA-REDACTORA APLICADA: {PERSONA_REDACTORA_FINAL}
+  ↳ Aplica el filtro previo del test del bloguero comprobando que el texto
+    suena a esa persona, no a IA con plantilla. Si no suena, devuelve el draft
+    al writer en lugar de pulirlo.
+POSICIÓN DEL PRECIO: {POSICION_PRECIO_FINAL}
+  ↳ Si el ángulo es no-protagonista y la intro o el primer H2/H3 abre con
+    precio, reescribe.
 
 CRITERIOS DE REVISIÓN (en orden de prioridad):
-1. Voz y tono: ¿suena a {MEDIO}? ¿Usa el registro correcto?
+0a. TEST DEL BLOGUERO (filtro previo): ¿suena a humano experto de la categoría
+    o a IA con plantilla? Si suena a IA, DEVUELVE el draft al writer.
+0b. COHERENCIA CON LA PERSONA-REDACTORA: ¿el texto se reconoce como
+    {PERSONA_REDACTORA_FINAL}? ¿Habla en sus escenarios, con su vocabulario?
+0c. POSICIÓN DEL PRECIO: si el ángulo es no-protagonista, ¿la intro y el primer
+    H2/H3 no abren con precio? Si fallan, reescribe.
+1. Voz del medio: ¿suena a {MEDIO}? ¿Usa el registro correcto?
 2. Ángulo: ¿el artículo mantiene coherencia con el ángulo {ANGULO_FINAL} de
    principio a fin?
 3. Titular: ¿se respeta tal cual lo confirmó el redactor en la pausa B?
@@ -687,10 +747,12 @@ CRITERIOS DE REVISIÓN (en orden de prioridad):
    Sustitúyelas.
 5. Frases preferidas: ¿se usan naturalmente las frases preferidas del medio?
 6. Longitud: ¿está dentro del rango objetivo de la guideline para el TIPO_ARTICULO?
-7. Estructura: ¿los anclajes fijos y las recetas elegidas cumplen su propósito?
+7. Estructura: ¿los anclajes mínimos del medio están? (Recetas son opcionales
+   en v3: no penalices su ausencia si el artículo pasa el test del bloguero.)
 8. CTA y disclaimer: ¿posición correcta? ¿Texto literal del disclaimer?
-9. Frontmatter: ¿completo y correcto? Sin [PENDIENTE]. En multi, ¿figura
-   tipo_articulo: multi, formato_guia, n_productos, hilo_conductor y url_secundarias?
+9. Frontmatter: ¿completo y correcto? Sin [PENDIENTE]. Incluye
+   `persona_redactora`. En multi, ¿figura tipo_articulo: multi, formato_guia,
+   n_productos, hilo_conductor y url_secundarias?
 10. Auto-revisión anti-IA: ¿queda alguna muletilla típica de IA, traducción
     mecánica de specs o frase-resumen genérica? Reescríbela.
 11. Último párrafo: ¿cierra bien sin frases de relleno?
@@ -733,6 +795,7 @@ Muestra el siguiente resumen:
 **Medio:** {MEDIO}
 **Tipo:** mono-producto
 **Ángulo:** {ANGULO_FINAL}
+**Persona-redactora:** {PERSONA_REDACTORA_FINAL}
 **Titular:** {TITULAR_FINAL}
 
 ### Correcciones del editor en jefe:
@@ -753,6 +816,7 @@ Muestra el resumen enriquecido:
 **Tipo:** guía multi-producto ({N_URLS} productos)
 **Formato de guía:** {FORMATO_GUIA}
 **Ángulo global:** {ANGULO_FINAL}
+**Persona-redactora:** {PERSONA_REDACTORA_FINAL}
 **Hilo conductor:** {HILO_CONDUCTOR_FINAL}
 **Titular:** {TITULAR_FINAL}
 
@@ -801,7 +865,7 @@ Muestra siempre este bloque al final, sin omitirlo:
 - **Detección de modo es automática solo cuando es trivial.** Si solo hay 1 URL, el sistema asume `mono` sin preguntar. Si hay 2+, **siempre** se pregunta — no infieras el modo a partir del medio o de patrones de la URL.
 - **Si un subagente falla**, informa claramente qué subagente falló, por qué (si se sabe) y qué necesita el redactor para continuar. En multi, si solo falla la extracción de una de las N URLs, el resto sigue avanzando; pide datos manuales solo para la que falló.
 - **Mantén el estado** entre pasos:
-  - Comunes a todos los flujos: `MEDIO`, `TIPO_ARTICULO`, `ANGULO_FINAL`, `TITULARES_30`, `TITULAR_FINAL`, `RUTA_DRAFT`, `LOG_CORRECCIONES`, `VALORACION`.
+  - Comunes a todos los flujos: `MEDIO`, `TIPO_ARTICULO`, `ANGULO_FINAL`, `PERSONA_REDACTORA_FINAL`, `POSICION_PRECIO_FINAL`, `TITULARES_30`, `TITULAR_FINAL`, `RUTA_DRAFT`, `LOG_CORRECCIONES`, `VALORACION`.
   - Solo mono: `URL_PRODUCTO`, `FICHA_PRODUCTO`.
   - Solo multi: `URLS`, `N_URLS`, `FICHAS_PRODUCTOS`, `FORMATO_GUIA`, `HILO_CONDUCTOR_FINAL`.
 - **Formato de fechas:** DD/MM/YYYY para mostrar al redactor, YYYY-MM-DD para el frontmatter del draft, YYYYMMDD para el nombre del archivo.
