@@ -98,6 +98,7 @@ Mismo patrón que text-agents (prefijo ⚠️, mensaje literal al redactor, espe
 
 - **`AggregatorBlockedError`** — Chollometro devuelve captcha o `browser_wait_for` agota timeout. El scraper devuelve la lista parcial (si la hay) con `degraded: true`. El orquestador avisa: *"He podido recuperar N candidatas antes del bloqueo. ¿Continúo con esas o aborto?"*. **Sin reintentos automáticos.**
 - **`StoreBlockedError`** — al enriquecer, Amazon/AliExpress bloquea. Misma mecánica que `URLBlockedError` del hermano: el redactor pega la ficha manualmente; la inbox lleva `fuente: manual`.
+- **`StoreMismatchError`** — al enriquecer, el título cargado en la tienda no encaja con `titulo_radar` (matching por tokens de identidad en el Paso 3.5 del `offer-enricher`). El enricher no escribe ficha; el orquestador presenta una pausa con tres opciones: **Saltar** (recomendado, registra diagnóstico), **Rechazar** (con motivo) o **Forzar** (re-invoca al enricher con `force_match: true`; la ficha queda en inbox con `coherencia_titulo: forzada`). Es la red de seguridad contra shortlinks del radar que han rotado al producto equivocado.
 - **`GuidelineMissingError`** — si el medio elegido no tiene guideline en text-agents. Mensaje literal: *"El medio '{medio}' no tiene guideline en text-agents. Crea primero la guideline allí con `/crear-guideline` y vuelve a lanzar."* **Detiene el flujo.**
 
 ---

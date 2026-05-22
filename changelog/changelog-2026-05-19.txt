@@ -81,3 +81,21 @@ Archivos modificados en este refinado:
   - fuentes.md
       Notas Telegram actualizadas con la cadena real y la equivalencia
       aliexpress-global ↔ aliexpress-es.
+=== 19/05/2026 14:57 ===
+- Initial commit → https://github.com/virtualtec-mk/claude-code-ofertas/commit/44acddb02960ce2f37c8262d399762e7ae6e90a3
+
+=== 19/05/2026 14:57 ===
+- Initial commit → https://github.com/virtualtec-mk/claude-code-ofertas/commit/44acddb02960ce2f37c8262d399762e7ae6e90a3
+
+=== 19/05/2026 14:57 ===
+- Excluir snapshots de Playwright del repositorio → https://github.com/virtualtec-mk/claude-code-ofertas/commit/53f21bb8bf6c9c9298e0c510d0495d7db0fb913f
+- Initial commit → https://github.com/virtualtec-mk/claude-code-ofertas/commit/44acddb02960ce2f37c8262d399762e7ae6e90a3
+
+=== 19/05/2026 14:57 ===
+- Excluir snapshots de Playwright del repositorio → https://github.com/virtualtec-mk/claude-code-ofertas/commit/53f21bb8bf6c9c9298e0c510d0495d7db0fb913f
+- Initial commit → https://github.com/virtualtec-mk/claude-code-ofertas/commit/44acddb02960ce2f37c8262d399762e7ae6e90a3
+
+=== 19/05/2026 14:58 ===
+- Excluir snapshots de Playwright del repositorio → https://github.com/virtualtec-mk/claude-code-ofertas/commit/53f21bb8bf6c9c9298e0c510d0495d7db0fb913f
+- Initial commit → https://github.com/virtualtec-mk/claude-code-ofertas/commit/44acddb02960ce2f37c8262d399762e7ae6e90a3
+

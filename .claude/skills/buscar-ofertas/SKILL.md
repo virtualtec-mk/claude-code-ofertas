@@ -134,9 +134,21 @@ Si falta `product_url`, no llames a `offer-enricher`; ofrece rechazar, saltar o 
 
 ## PASO 5 - Enriquecer candidata validada
 
-Solo tras `V` y con `product_url` presente, invoca `offer-enricher` con la URL de producto. Fusiona su ficha con metadatos del radar y escribe:
+Solo tras `V` y con `product_url` presente, invoca `offer-enricher` con este payload:
 
-`../claude-code-text-agents/inbox/{DD-MM-YYYY}-{slug-producto}.md`
+```text
+product_url: {product_url}
+titulo_radar: {titulo}                   # SIEMPRE - el titulo crudo del radar
+asin_esperado: {asin si el radar lo expone limpio, sino omitir}
+```
+
+`asin_esperado` solo se incluye cuando el radar lo expone como campo independiente o la `product_url` ya es la URL canonica con `/dp/{ASIN}` o `item/{ID}.html`. Si no, se omite y el enricher cae al matching por tokens.
+
+Examina la respuesta del enricher:
+
+### 5.a - Ficha completa devuelta
+
+Continua como hasta hoy: fusiona la ficha con metadatos del radar y escribe `../claude-code-text-agents/inbox/{DD-MM-YYYY}-{slug-producto}.md`.
 
 El frontmatter visible debe incluir:
 
@@ -148,24 +160,56 @@ radar_offer_id: {radar_offer_id}
 url_origen: {url_origen}
 url_producto: {product_url}
 titulo: "{titulo}"
+titulo_radar: "{titulo_radar}"
+titulo_tienda: "{titulo_tienda devuelto por el enricher}"
+coherencia_titulo: ok           # ok cuando el matching paso; forzada cuando el operador eligio F
 precio_actual: {precio_actual}
 descuento_pct: {descuento_pct}
 fecha_validacion: {DD/MM/YYYY}
 fuente_enriquecimiento: {automatica-playwright | manual}
 ```
 
-Añade a `VALIDADAS` la ruta de inbox.
+Anade a `VALIDADAS` la ruta de inbox.
+
+### 5.b - StoreBlockedError
+
+Sigue el flujo manual ya existente (el redactor pega los datos, ficha con `fuente_enriquecimiento: manual`). `coherencia_titulo: ok` por defecto (no se ha podido verificar; queda registrado como manual).
+
+### 5.c - StoreMismatchError (nuevo)
+
+No escribas a inbox. Pausa al redactor mostrando exactamente:
+
+```text
+⚠️ Mismatch detectado en {titulo_radar}
+    URL pidio: {titulo_radar}
+    URL cargo: {titulo_tienda}
+    Tokens identidad radar: {tokens_radar}
+    Tokens identidad tienda: {tokens_tienda}
+    Interseccion significativa: {interseccion}
+
+¿Que hago?
+  S) Saltar - registrar como diagnostico y continuar (recomendado)
+  R) Rechazar - con motivo opcional
+  F) Forzar - confio en la URL, enriquecer igualmente
+```
+
+- **`S`** -> anade a `SALTADAS` con `motivo: store_mismatch` y guarda `titulo_radar`, `titulo_tienda`, `tokens_intersect` y `radar_offer_id` como diagnostico. Continua con la siguiente candidata.
+- **`R`** -> anade a `RECHAZADAS` con motivo redactado por el operador (puede ser vacio). Misma carga diagnostica que `S`.
+- **`F`** -> vuelve a invocar `offer-enricher` con el mismo payload mas `force_match: true`. El enricher omite el Paso 3.5 y construye la ficha. Escribe a inbox como en 5.a pero con `coherencia_titulo: forzada` en el frontmatter. Anade a `VALIDADAS`.
+
+En los tres casos, anade el caso a `DIAGNOSTICOS_RADAR` con tipo `store_mismatch` para arrastrarlo al historial y al changelog (PASO 6).
 
 ## PASO 6 - Cierre de sesion
 
 Escribe `historial/{YYYY-MM-DD}-sesion-{n}.md` con:
 
 - `fuente_descubrimiento: radar_editorial`
-- `diagnosticos_radar`
-- candidatas validadas, rechazadas y saltadas
+- `diagnosticos_radar` (incluye los `store_mismatch` con `titulo_radar`, `titulo_tienda`, `tokens_intersect` y `radar_offer_id`)
+- candidatas validadas, rechazadas y saltadas; para cada `SALTADAS`/`RECHAZADAS` por `store_mismatch` anade el motivo y los tokens
+- candidatas validadas con `coherencia_titulo: forzada` se anotan aparte para auditoria
 - `radar_offer_id`, `url_origen`, `product_url` y campos incompletos cuando existan
 
-Añade linea en `changelog/changelog-YYYY-MM-DD.txt` con conteos y ruta de historial.
+Añade linea en `changelog/changelog-YYYY-MM-DD.txt` con conteos y ruta de historial. Si hubo `store_mismatch`, indica el conteo (`mismatches=N`) y cuantos se forzaron (`forzados=M`) como senal para mejorar la ingesta del radar.
 
 Pregunta si se guarda el afinado como nueva watchlist solo cuando haya habido una sesion con candidatas.
 

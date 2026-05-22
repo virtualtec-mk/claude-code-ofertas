@@ -1,0 +1,68 @@
+====================================================
+CHANGELOG — 21/05/2026
+====================================================
+
+[R4 - Validación de coherencia título radar/tienda en offer-enricher]
+
+Tras el UAT del 20/05/2026 (0% de fichas enriquecibles por shortlinks
+del radar rotados al producto equivocado), se implementa la red de
+seguridad R4 del plan
+docs/plans/2026-05-21-001-feat-simplificacion-radar-localizador-plan.md.
+
+El offer-enricher recibe ahora `titulo_radar` como input obligatorio
+(y opcionalmente `asin_esperado` para fast-path cuando R2 esté
+desplegado en radar_editorial). Antes de construir la ficha, ejecuta
+el nuevo Paso 3.5: matching por tokens de identidad entre
+`titulo_radar` y `titulo_tienda`. Si no hay match, devuelve
+`StoreMismatchError` sin escribir nada.
+
+La skill buscar-ofertas captura StoreMismatchError y ofrece al
+operador una pausa interactiva con tres opciones: Saltar (recomendado,
+registra diagnóstico), Rechazar (con motivo) o Forzar (re-invoca con
+`force_match: true`; la ficha queda en inbox con
+`coherencia_titulo: forzada`).
+
+R4 es independiente de R1/R2/R3 (que viven en radar_editorial) y
+puede desplegarse hoy. Es útil incluso antes de R2 porque detecta el
+caso degenerado del UAT.
+
+Archivos modificados:
+  - .claude/agents/offer-enricher.md
+      * description ampliada para mencionar titulo_radar y validación
+        de coherencia.
+      * Nueva sección "Inputs que recibes del orquestador":
+        product_url, titulo_radar (obligatorios), asin_esperado y
+        force_match (opcionales).
+      * Nuevo Paso 3.5 con el algoritmo de matching en dos niveles
+        (fast-path estructural por ASIN/item_id + matching por
+        tokens de identidad) y tabla de 7 casos de prueba.
+      * Nueva sección "Manejo de errores: StoreMismatchError" con
+        mensaje literal y formato de tokens/intersección.
+      * Reglas de comportamiento actualizadas: Paso 3.5 es obligatorio
+        salvo force_match=true; browser_close también en la rama de
+        StoreMismatchError.
+  - .claude/skills/buscar-ofertas/SKILL.md
+      * PASO 5 reestructurado en 5.a/5.b/5.c.
+        - 5.a: ficha completa → frontmatter ahora incluye
+          titulo_radar, titulo_tienda y coherencia_titulo (ok|forzada).
+        - 5.b: StoreBlockedError sin cambios.
+        - 5.c: StoreMismatchError nuevo, con pausa S/R/F y registro en
+          DIAGNOSTICOS_RADAR.
+      * Payload de invocación al enricher: añadidos titulo_radar
+        (obligatorio) y asin_esperado (opcional).
+      * PASO 6: historial recoge tipo store_mismatch con tokens y
+        radar_offer_id; changelog incluye conteo de mismatches y
+        forzados.
+  - CLAUDE.md
+      * Sección "Errores tipados": añadida entrada StoreMismatchError
+        descrita en detalle junto a StoreBlockedError.
+
+Archivos nuevos:
+  - changelog/changelog-2026-05-21.txt (este archivo).
+
+Pendiente derivado (NO incluido aquí):
+  - Verificación manual de R4 en vivo contra el catálogo actual del
+    radar (Fase 3 del plan). Requiere ejecutar /buscar-ofertas y
+    documentar resultados en historial/.
+  - Plan paralelo en radar_editorial para R1/R2/R3 según el contrato
+    cross-repo definido en el plan.
