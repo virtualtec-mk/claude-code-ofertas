@@ -1,9 +1,10 @@
 {
   "permissions": {
     "allow": [
-<<<<<<< HEAD
       "WebFetch(domain:chollometro.com)",
       "WebFetch(domain:amazon.es)",
+      "WebFetch(domain:amazon.com)",
+      "WebFetch(domain:amazon.co.uk)",
       "WebFetch(domain:amzn.to)",
       "WebFetch(domain:es.aliexpress.com)",
       "WebFetch(domain:aliexpress.com)",
@@ -13,39 +14,6 @@
       "WebFetch(domain:chz.to)",
       "WebFetch(domain:*.up.railway.app)",
       "Bash(curl:*)",
-      "Read(**)",
-      "Read(../claude-code-writer/guidelines/**)",
-      "Read(../claude-code-writer/medios.md)",
-      "Write(watchlists/**)",
-      "Write(historial/**)",
-      "Write(knowledge/**)",
-      "Write(changelog/**)",
-      "Write(docs/qa/**)",
-      "Write(../claude-code-writer/inbox/**)",
-      "Edit(watchlists/**)"
-    ],
-    "deny": [
-      "Bash(rm:*)",
-      "Bash(sudo:*)",
-      "Bash(git push:*)",
-      "Bash(git reset --hard:*)",
-      "Write(../claude-code-writer/guidelines/**)",
-      "Write(../claude-code-writer/drafts/**)"
-    ]
-=======
-      "WebFetch(domain:amazon.es)",
-      "WebFetch(domain:amazon.com)",
-      "WebFetch(domain:amazon.co.uk)",
-      "WebFetch(domain:aliexpress.com)",
-      "WebFetch(domain:es.aliexpress.com)",
-      "Write(drafts/**)",
-      "Edit(drafts/**)",
-      "Write(guidelines/**)",
-      "Edit(guidelines/**)",
-      "Read(inbox/**)",
-      "Write(inbox/**)",
-      "Edit(inbox/**)",
-      "Read(**)",
       "Bash(git pull --ff-only)",
       "Bash(git pull --ff-only:*)",
       "Bash(git add:*)",
@@ -56,9 +24,41 @@
       "Bash(git diff:*)",
       "Bash(git log:*)",
       "Bash(git push origin master)",
-      "Bash(git push origin master:*)"
+      "Bash(git push origin master:*)",
+      "Bash(git push origin main)",
+      "Bash(git push origin main:*)",
+      "Bash(.claude/hooks/session-start-pull.sh)",
+      "Read(**)",
+      "Write(watchlists/**)",
+      "Edit(watchlists/**)",
+      "Write(historial/**)",
+      "Write(knowledge/**)",
+      "Write(changelog/**)",
+      "Write(docs/qa/**)",
+      "Write(docs/plans/**)",
+      "Write(docs/brainstorms/**)",
+      "Write(drafts/**)",
+      "Edit(drafts/**)",
+      "Write(guidelines/**)",
+      "Edit(guidelines/**)",
+      "Read(inbox/**)",
+      "Write(inbox/**)",
+      "Edit(inbox/**)"
     ],
-    "deny": []
->>>>>>> writer/master
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(sudo:*)",
+      "Bash(git reset --hard:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          { "type": "command", "command": ".claude/hooks/session-start-pull.sh" }
+        ]
+      }
+    ]
   }
 }
