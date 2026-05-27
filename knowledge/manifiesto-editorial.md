@@ -189,6 +189,47 @@ Aplican al titular, al frontmatter y al cuerpo, sea cual sea el medio y la perso
 
 ---
 
+## 2.octies. Prosa de bloguero, no compresión telegráfica
+
+El draft debe leerse como lo escribiría una persona que está explicándole algo a un amigo en su blog, no como un párrafo comprimido por un modelo de lenguaje que mete tres ideas en una frase con punto y coma.
+
+**Síntoma del fallo (lo que NO queremos):**
+
+> "La Action 6 está en Amazon por poco menos de 380 euros en el Pack Estándar; el descuento marcado se apoya en el precio recomendado, así que sobre lo habitual del último mes la bajada es más modesta. Es un producto reciente sin histórico largo: si prefieres esperar a una campaña, el Prime Day de verano es la siguiente parada lógica."
+
+Eso es prosa-IA: frases largas con punto y coma, elipsis técnicas ("se apoya en", "es la siguiente parada lógica"), conectores secos ("así que", "es un producto reciente sin histórico"), todo demasiado denso. Es correcto pero no suena humano.
+
+**Cómo lo escribiría un bloguero (lo que SÍ queremos):**
+
+> "La Action 6 ya se puede encontrar en Amazon por algo menos de 380 euros en su Pack Estándar. Ojo, eso sí: el descuento que aparece toma como referencia el precio recomendado, así que si lo comparamos con lo que ha costado normalmente durante el último mes, la rebaja real es bastante más discreta.
+>
+> También hay que tener en cuenta que hablamos de un producto muy reciente, así que todavía no tiene un historial de precios demasiado fiable. Si no tienes prisa, quizá tenga sentido esperar a una campaña potente: el Prime Day de verano apunta a ser la próxima gran oportunidad para verla algo más barata."
+
+Las dos versiones dicen lo mismo. Cambian:
+
+- **Frases más cortas** y dos párrafos en lugar de uno apelmazado.
+- **Marcadores de oralidad** que respiran el texto: "Ojo, eso sí", "También hay que tener en cuenta", "Si no tienes prisa", "quizá tenga sentido", "sinceramente". Úsalos sin abusar (1-3 por artículo, no cada párrafo).
+- **Comparaciones explícitas** en lugar de elipsis técnicas: "si lo comparamos con lo que ha costado normalmente durante el último mes" en vez de "sobre lo habitual del último mes".
+- **Verbos cercanos** en lugar de verbos-bisagra: "ya se puede encontrar" mejor que "está en"; "el descuento que aparece toma como referencia" mejor que "se apoya en"; "apunta a ser la próxima gran oportunidad" mejor que "es la siguiente parada lógica".
+- **Concesión y duda** explícitas: "quizá", "sinceramente", "no termina de", "se defiende sola". Reflejan que detrás hay un criterio, no un algoritmo.
+
+**Reglas operativas para el writer:**
+
+1. Si en una frase metes más de **dos ideas** separadas por punto y coma o por dos puntos, **pártela en dos frases o en dos párrafos**. La densidad telegráfica es la huella más fácil de detectar de la prosa IA.
+2. **Evita la elipsis técnica**: "se apoya en", "marca la diferencia", "cambia la ecuación", "abre la puerta a", "es la parada lógica", "no es un dato menor", "marca un antes y un después". Si la usas, la justifica el dato concreto inmediatamente al lado, nunca como cierre suelto.
+3. **Convierte conectores secos en conectores de bloguero** cuando aporten respiración: "así que" → "Ojo, eso sí: ...", "y por eso" → "Y la verdad es que...", "además" → "También hay que tener en cuenta que...", "por otro lado" → "Si lo miras desde el otro lado...". No es obligatorio en cada frase; es obligatorio que el artículo entero tenga **al menos uno o dos** momentos así, sobre todo en intro, en transiciones entre H2 y en el cierre.
+4. **El párrafo del precio nunca es telegráfico**. Es la zona donde más cantan las elipsis técnicas y donde el lector más nota que estás siendo claro o que estás escondiendo cosas. Si dices "el descuento se apoya en el precio recomendado", obligas al lector a traducir; si dices "el descuento que aparece toma como referencia el precio recomendado", se entiende a la primera.
+5. **Lee el párrafo en voz alta**. Si necesitas respirar antes de terminar una frase, esa frase es demasiado larga. Si la entonación cae plana, falta un marcador de oralidad o un giro humano.
+
+**Quién lo aplica:**
+
+- El **writer** ejecuta esta regla en su propia auto-revisión antes de guardar. No es responsabilidad del editor "humanizar" la prosa: el draft sale ya con voz humana o no sale.
+- El **editor-in-chief** la usa como uno de los puntos clave del test del bloguero (sección 2.bis). Si un párrafo es telegráfico, lo reescribe; si todo el draft suena así, lo devuelve al writer en vez de pulir frase a frase.
+
+Esta regla aplica en los **tres medios** (La Razón, ABC, Mundo Deportivo) y a **todas las personas-redactoras**. El registro cambia (más periodístico en ABC, más callejero en Mundo Deportivo, más cercano en La Razón), pero la regla "frases que respiran + conectores humanos + cero elipsis técnica" es universal.
+
+---
+
 ## 2.septies. El draft no lleva placeholders ni negritas markdown
 
 El draft que entrega el sistema se pega tal cual en el CMS del medio. El CMS ya gestiona imagen principal, pies de foto, widgets de precio (pricebox themonetise) y resaltados visuales. Cualquier marcador que el writer escriba en el markdown obliga al redactor a borrarlo a mano. Eso es trabajo añadido y fuente de errores.

@@ -237,6 +237,10 @@ Guarda el resultado como `FICHA_PRODUCTO`.
 
 Invoca al subagente `product-researcher` **N veces en paralelo**, una por cada URL en `URLS`. Lanza todas las llamadas en un único turno (un solo mensaje del orquestador con N invocaciones simultáneas de la tool Agent) para que las extracciones de Playwright corran en paralelo y se reduzca el tiempo total.
 
+> **Sin límite máximo de URLs.** El sistema admite cualquier `N_URLS ≥ 2`, ya sean 3, 8, 15 o más. **Prohibido inventarse un límite** ("no puedo analizar tantos productos a la vez", "demasiadas URLs", "te recomiendo reducir la lista") y prohibido pedirle al redactor que recorte el lote. Si crees que N es alto, lánzalas igualmente en paralelo: el orquestador y Playwright soportan la concurrencia. Si por carga real alguna invocación falla, se gestiona como fallo individual (manual fallback de esa URL), nunca como límite global del flujo.
+
+> **Prohibido deduplicar URLs antes de extraer.** Cada URL del lote se procesa **literalmente** tal como la pegó el redactor. No normalices URLs ni descartes "duplicados aparentes" porque dos URLs parezcan parecidas (mismo slug, mismo dominio, ASIN/itemId visualmente cercanos). En Amazon, dos ASIN distintos pueden compartir slug largo; en AliExpress, los productId son números largos muy similares. Dos URLs solo se consideran realmente la misma cuando, una vez extraídas las fichas, los identificadores reales (ASIN de Amazon o productId de AliExpress) **coinciden exactamente**. Si tras la extracción se confirma una coincidencia real, avisa al redactor con la pareja de URLs implicadas y pídele confirmación antes de descartar una; nunca descartes en silencio.
+
 Para cada URL `URLS[i]`, las instrucciones al subagente son **idénticas a las del flujo mono**, sustituyendo `{URL_PRODUCTO}` por `URLS[i]`.
 
 Recolecta las fichas devueltas en una lista ordenada `FICHAS_PRODUCTOS = [FICHA_1, FICHA_2, ..., FICHA_N]`, **preservando el orden en el que el redactor pegó las URLs**. Ese orden suele ser intencional (el primero es el "destacado", o sigue una jerarquía narrativa) y los agentes posteriores lo respetan.
@@ -931,6 +935,11 @@ Muestra siempre este bloque al final, sin omitirlo:
 ## Reglas de comportamiento general
 
 - **No inventes datos del producto.** Si la ficha está incompleta, espera a que el redactor la complete antes de continuar. En multi, esto aplica producto por producto: si una sola ficha tiene huecos, se rellena antes de pasar al ángulo.
+- **Cero contaminación entre medios.** Cada medio tiene su propia estructura, sus propios anclajes, su propio cierre y su propio disclaimer. El orquestador **NO inyecta convenciones específicas de un medio en el prompt del writer/editor**. La guideline del medio + los agent files (`writer.md`, `editor-in-chief.md`) ya conocen los anclajes correctos. Ejemplos de lo que el orquestador NUNCA debe escribir en el prompt:
+  - "H2 firma obligatorio 'Cómo recomendamos estos productos' al final" → esto es **exclusivo de Mundo Deportivo** (anclaje 8.bis). Larazon cierra con 1-2 frases sin heading. ABC cierra con bloque firma `el-veredicto`.
+  - "Subtítulo con bajada de 30-50 palabras" → cada medio define su subtítulo (Larazon: 1 frase sin heading; ABC: dos frases con dato editorial; MD: ver guideline).
+  - "Disclaimer con texto X" → el texto literal lo define cada guideline. El orquestador solo dice "incluye el disclaimer literal de la guideline" y delega.
+  Regla en una línea: **el orquestador pasa contexto (ficha, ángulo, persona, titular, posición de precio); la estructura la pone la guideline del medio**. Si añades a mano una convención que no consultaste en la guideline correspondiente, estás contaminando un medio con la receta de otro y rompes la diferenciación editorial.
 - **No saltes las pausas interactivas.** En mono hay 2 pausas (A: ángulo, B: titular). En multi hay 3 pausas (2.5: detección + formato de guía, A: ángulo + hilo conductor, B: titular). Todas requieren confirmación explícita del redactor; nunca las asume el sistema.
 - **Detección de modo es automática solo cuando es trivial.** Si solo hay 1 URL, el sistema asume `mono` sin preguntar. Si hay 2+, **siempre** se pregunta — no infieras el modo a partir del medio o de patrones de la URL.
 - **Si un subagente falla**, informa claramente qué subagente falló, por qué (si se sabe) y qué necesita el redactor para continuar. En multi, si solo falla la extracción de una de las N URLs, el resto sigue avanzando; pide datos manuales solo para la que falló.

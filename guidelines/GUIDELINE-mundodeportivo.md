@@ -92,24 +92,30 @@ Estos elementos están en todos los artículos, sin excepción. El resto del cue
    - **REGLA UNIVERSAL (manifiesto 2.bis.bis):** la primera frase del lead **narra, suena a la persona-redactora declarada en el frontmatter, e invita a leer la segunda frase**. Vetado en cuota 0 abrir el lead con "[producto] cae/baja/se rebaja a X euros / un X% en [tienda]" o cualquier variante que comprima producto+precio+tienda+descuento en la primera frase, en cualquier ángulo. El precio y la señal de oferta entran después de la escena.
 8. **Primer H2 del cuerpo.** Marca la entrada al cuerpo libre. En multi-producto suele ser el H2 temático ("3 smartwatches que…"); en mono-producto puede ser cualquier H2 que enganche con el ángulo elegido.
 
-### Bloque firma — "Cómo recomendamos estos productos" (OBLIGATORIO en TODOS los artículos de MD)
+### Bloque firma — "Cómo elegimos en El Recomendador" (OBLIGATORIO en TODOS los artículos de MD)
 
-8.bis. **H2 firma de El Recomendador (anclaje obligatorio mono + multi).** Inmediatamente antes del cierre aspiracional, todo artículo de Mundo Deportivo cierra el cuerpo con un H2 fijo cuyo título es **literal**:
+8.bis. **H2 firma de El Recomendador (anclaje obligatorio mono + multi).** Inmediatamente antes del cierre aspiracional, todo artículo de Mundo Deportivo incorpora un bloque firma donde El Recomendador explica por qué este producto (o esta selección) ha pasado el filtro editorial. Es un anclaje fijo del medio, pero **no es boilerplate**: ni el título ni el cuerpo se copian literalmente entre artículos.
 
-   > `Cómo recomendamos estos productos`
+   **Título del H2:** variable, en sintonía con el artículo. Conserva el ADN "cómo recomendamos / por qué este pasa el filtro / criterios de El Recomendador" pero se redacta en clave del producto, del ángulo y de la voz de la persona-redactora. El lector debe reconocer el bloque firma de un artículo a otro **por su lugar y por su tono**, no por leer un título idéntico. Ejemplos válidos:
 
-   Bajo ese H2, un único párrafo de 50-90 palabras que explica los criterios reales por los que esa selección concreta llega al lector: durabilidad, relación calidad-precio frente a competencia directa, idoneidad para el perfil activo (corredor, gym casero, trail, vida urbana, oficina), y por qué este precio es noticia (mínimo del mes, fin de temporada, cambio de generación, descatalogación). NO es boilerplate copiado entre artículos: el writer adapta los criterios a este producto y a este ángulo concreto. Sí es un H2 de firma del medio que el lector reconoce de un artículo a otro.
+   - "Cómo elegimos en El Recomendador"
+   - "Por qué entran estas zapatillas en El Recomendador"
+   - "El criterio de El Recomendador para esta selección"
+   - "Lo que pesa al recomendar un reloj así"
+   - "Por qué este [producto] entra en nuestra lista"
+
+   **Cuerpo del bloque:** un único párrafo de 50-90 palabras que explica los criterios reales por los que esa pieza concreta llega al lector: durabilidad, relación calidad-precio frente a competencia directa, idoneidad para el perfil activo (corredor, gym casero, trail, vida urbana, oficina), y por qué este precio es noticia (mínimo del mes, fin de temporada, cambio de generación, descatalogación). Adapta los criterios al producto, al ángulo y a la persona-redactora; si la persona es fuerte, el párrafo se firma desde su voz.
 
    - En **mono-producto** se aplica una sola vez, justo antes del cierre aspiracional.
-   - En **multi-producto** sustituye a la receta global `criterios-el-recomendador` (que se mantiene como receta para otros usos pero deja de ser opcional en este punto): el bloque firma es obligatorio bajo este título exacto, una sola vez al cierre del cuerpo.
-   - Si la persona-redactora es muy fuerte, el párrafo se firma desde su voz; lo que NO cambia es el título del H2.
+   - En **multi-producto** sustituye a la receta global `criterios-el-recomendador` (que se mantiene como receta para otros usos pero deja de ser opcional en este punto): el bloque firma es obligatorio una sola vez al cierre del cuerpo.
+   - Test rápido para el editor-in-chief: si el H2 y el párrafo de este bloque podrían pegarse tal cual en cualquier otro artículo de MD sin cambios, el bloque es boilerplate y debe reescribirse.
 
 ### Cierre (común a todos los artículos)
 
 9. **Cierre aspiracional (2 párrafos, sin heading).**
    - **P1:** Refuerza que una buena elección hoy es menos esfuerzo mañana.
    - **P2 OBLIGATORIO (textual, sin modificar):**
-     > "En la sección El Recomendador de Mundo Deportivo puedes encontrar más ofertas y comparativas valiosas para equipar tu día a día, ya sea para mejorar tus entrenamientos o para encontrar la mejor tecnología al mejor precio, siempre con un criterio honesta y profesional."
+     > "En la sección El Recomendador de Mundo Deportivo puedes encontrar más ofertas y comparativas valiosas para equipar tu día a día, ya sea para mejorar tus entrenamientos o para encontrar la mejor tecnología al mejor precio, siempre con un criterio honesto y profesional."
 
 > ⚠️ El disclaimer de afiliación **no se incluye en el draft**: lo inserta automáticamente el CMS de Mundo Deportivo.
 
@@ -296,6 +302,21 @@ Tolerancia ±10%. No hay mínimos por sección: lo importante es que cada receta
   - "ganga histórica"
   - "por debajo de los 100 euros"
 - La cifra exacta solo aparece en el widget CTA.
+- **Prosa de bloguero, no compresión telegráfica.** Esta regla cuelga del manifiesto 2.octies y aplica especialmente al **párrafo del precio** y a las **zonas de matiz** (descuento real, historial, comparativa). En Mundo Deportivo el registro es callejero-deportivo: las frases largas con punto y coma encadenando tres ideas (✗ "está en Amazon por 380€; el descuento se apoya en el PVP, así que sobre lo habitual la bajada es modesta") **se reescriben en dos párrafos con marcadores de oralidad** ("Ojo, eso sí", "Hay que decirlo", "Si no tienes prisa", "la verdad es que", "sinceramente"). Veta elipsis técnica suelta como cierre: "es la parada lógica", "abre la puerta a", "marca un antes y un después", "se apoya en", "marca la diferencia". Si las usas, el dato concreto va inmediatamente al lado.
+
+---
+
+## Cómo tratar productos de AliExpress (reglas para el writer, no apartado del artículo)
+
+AliExpress muestra de forma sistemática "precios anteriores" inflados que no se corresponden con un PVP real, ni del fabricante ni del mercado europeo. Tratar ese precio tachado como referencia engaña al lector y rompe el contrato editorial de El Recomendador. Las siguientes son **reglas de redacción para el writer** cuando el producto procede de `tienda: aliexpress`; **no son una sección obligatoria del artículo** ni un H2 con texto fijo.
+
+1. **Nunca usar el % de descuento del listado como gancho.** El "−60%", "−72%" o similar de AliExpress **no se cita** en titular, subtítulo, intro, H2 ni cuerpo. Tampoco se usa como argumento ("una rebaja brutal", "casi a mitad de precio") apoyado en ese porcentaje. El writer ignora el campo `descuento_base` cuando la fuente es AliExpress.
+
+2. **Comparar contra PVP oficial español (o europeo) donde exista.** Si hay PVP oficial del fabricante verificable en España o Europa (web de marca, catálogo oficial, tienda europea homologada), ese es el precio anterior válido. El descuento y el ahorro se calculan sobre ese PVP, no sobre el tachado de AliExpress. La justificación del precio se apoya en la referencia oficial.
+
+3. **Si no hay PVP oficial europeo, presentar precio absoluto sin claim de descuento.** Cuando no exista referencia europea fiable (marca china sin distribución oficial, OEM, genéricos), el artículo presenta solo el precio actual y argumenta el valor por **prestaciones y categoría**, no por descuento. Fórmulas válidas: "cuesta menos de 50 euros", "está por debajo de la barrera de los 100 euros", "competidores con specs similares no bajan de 80 euros en Amazon". Fórmulas vetadas: "está rebajado un X%", "tiene un descuento brutal", basados únicamente en el tachado de AliExpress.
+
+**Integración en el artículo:** si el contexto del precio AliExpress merece explicación para el lector (por ejemplo, porque la referencia oficial difiere mucho del tachado, o porque no existe PVP comparable), se integra **narrativamente** en el cierre del artículo o en el propio bloque firma de El Recomendador, en una o dos frases que aclaren la referencia. Nunca como H2 propio del estilo "Cómo tratar el precio de AliExpress" ni como listado de reglas dentro del cuerpo. En la práctica, esto suele convertir un ángulo `liquidacion` o `precio-psicologico` en `uso-practico` o `recomendacion-personal` apoyado en precio absoluto. El editor-in-chief audita explícitamente este punto y exige reescritura si detecta % de descuento de AliExpress usado como gancho.
 
 ---
 
