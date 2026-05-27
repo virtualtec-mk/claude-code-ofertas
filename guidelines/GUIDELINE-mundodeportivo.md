@@ -88,8 +88,21 @@ Estos elementos están en todos los artículos, sin excepción. El resto del cue
 
 5. **Imagen principal.** Justo después del bloque de titulares, antes del byline.
 6. **Byline.** Autor (`Andrés Moncada` por defecto, ~99% de los artículos; `Javier Rosagro Moreiro` solo cuando Moncada está de vacaciones) + fecha.
-7. **Lead "El Calentamiento" (sin heading).** 50-80 palabras, 2-3 párrafos. Conecta el producto con una situación cotidiana concreta y explica por qué es el momento de comprarlo (oferta, cambio de temporada, renovar equipo). Usa negritas en los 2-3 beneficios clave de cada párrafo.
+7. **Lead "El Calentamiento" (sin heading).** 50-80 palabras, 2-3 párrafos. Conecta el producto con una situación cotidiana concreta y explica por qué es el momento de comprarlo (oferta, cambio de temporada, renovar equipo). **Sin negritas markdown** (regla universal del manifiesto 2.septies): el énfasis se consigue con el orden de la frase y con verbos de movimiento, no con `**texto**`.
+   - **REGLA UNIVERSAL (manifiesto 2.bis.bis):** la primera frase del lead **narra, suena a la persona-redactora declarada en el frontmatter, e invita a leer la segunda frase**. Vetado en cuota 0 abrir el lead con "[producto] cae/baja/se rebaja a X euros / un X% en [tienda]" o cualquier variante que comprima producto+precio+tienda+descuento en la primera frase, en cualquier ángulo. El precio y la señal de oferta entran después de la escena.
 8. **Primer H2 del cuerpo.** Marca la entrada al cuerpo libre. En multi-producto suele ser el H2 temático ("3 smartwatches que…"); en mono-producto puede ser cualquier H2 que enganche con el ángulo elegido.
+
+### Bloque firma — "Cómo recomendamos estos productos" (OBLIGATORIO en TODOS los artículos de MD)
+
+8.bis. **H2 firma de El Recomendador (anclaje obligatorio mono + multi).** Inmediatamente antes del cierre aspiracional, todo artículo de Mundo Deportivo cierra el cuerpo con un H2 fijo cuyo título es **literal**:
+
+   > `Cómo recomendamos estos productos`
+
+   Bajo ese H2, un único párrafo de 50-90 palabras que explica los criterios reales por los que esa selección concreta llega al lector: durabilidad, relación calidad-precio frente a competencia directa, idoneidad para el perfil activo (corredor, gym casero, trail, vida urbana, oficina), y por qué este precio es noticia (mínimo del mes, fin de temporada, cambio de generación, descatalogación). NO es boilerplate copiado entre artículos: el writer adapta los criterios a este producto y a este ángulo concreto. Sí es un H2 de firma del medio que el lector reconoce de un artículo a otro.
+
+   - En **mono-producto** se aplica una sola vez, justo antes del cierre aspiracional.
+   - En **multi-producto** sustituye a la receta global `criterios-el-recomendador` (que se mantiene como receta para otros usos pero deja de ser opcional en este punto): el bloque firma es obligatorio bajo este título exacto, una sola vez al cierre del cuerpo.
+   - Si la persona-redactora es muy fuerte, el párrafo se firma desde su voz; lo que NO cambia es el título del H2.
 
 ### Cierre (común a todos los artículos)
 
@@ -114,9 +127,11 @@ Estructura:
 [Cabecera 1-6]
 [Primer H2 del cuerpo (anclaje 7)]
   → 1-2 recetas de la paleta (cuerpo libre)
-  → Widget pricebox (iframe themonetise) tras la descripción del producto
-[Cierre 8]
+[H2 firma OBLIGATORIO: "Cómo recomendamos estos productos" (anclaje 8.bis)]
+[Cierre aspiracional (anclaje 9)]
 ```
+
+> El widget de pricebox (iframe themonetise) lo inserta el redactor en el CMS tras la descripción del producto. **El draft no lleva el marcador `[Widget pricebox]`** (manifiesto 2.septies).
 
 ### Layout multi-producto (600-800 palabras, 3-10 productos)
 
@@ -136,15 +151,15 @@ Estructura:
      Máximo 1 H3 narrativo largo por artículo en el conjunto de bloques. Si hay 3 productos,
      uno puede ser narrativo y los otros dos telegráficos. Tres H3 narrativos largos seguidos
      cantan a ensayo.
-       [Imagen del producto + pie de foto "Marca/Tienda"]
-       2-3 párrafos descriptivos en prosa (negritas en beneficios clave)
+       2-3 párrafos descriptivos en prosa (SIN negritas markdown)
        Lista de 2-3 características clave (bullets cortos, complementarios)
-       [Widget pricebox]
    (Repetir H3 por cada producto)
 
-→ 1 receta global de la paleta (típicamente `criterios-el-recomendador`)
-[Cierre 8]
+[H2 firma OBLIGATORIO: "Cómo recomendamos estos productos" (anclaje 8.bis)]
+[Cierre aspiracional (anclaje 9)]
 ```
+
+> En multi-producto, la imagen de cada producto y el widget de pricebox los inserta el redactor en el CMS bajo cada bloque H3. **El draft no lleva `[Imagen del producto…]`, `*Foto: Marca*`, ni `[Widget pricebox]`** (manifiesto 2.septies). El bloque firma `Cómo recomendamos estos productos` sustituye a la receta global `criterios-el-recomendador` como cierre obligatorio del cuerpo.
 
 En multi-producto el cuerpo libre se aplica **una sola vez** (a nivel global, no por producto). Cada bloque de producto sigue la sub-estructura H3 fija que ves arriba.
 
@@ -359,6 +374,8 @@ Estos moldes son **rechazo automático** en la pasada del editor-in-chief, adem�
 3. **Naming marca + modelo.** Cuando un heading o el cuerpo nombra marca y modelo de un producto reconocible, **siempre van juntos y en ese orden: primero la marca, después el modelo** ("Zapatillas Asics Gel-Kayano", no "Zapatillas Gel-Kayano Asics"). Nunca se intercala texto ni se pospone la marca al modelo. Ver regla transversal en `knowledge/naming-productos.md`.
 
 4. **Jerga de ficha de Amazon.** Prohibido en cuerpo: `colorway` (decir "color" o "combinación de color"), `variante` como sinónimo de color, `SKU`, `ASIN`, `ref.`. Prohibido transcribir literal nombres internos de variantes de Amazon en inglés ("Navy White Red", "Black Volt"): se traducen a descripciones cromáticas en español natural. Prohibida la meta-narrativa del proceso ("cuando se escribe este artículo", "en el momento de la consulta"). Ver regla transversal en `knowledge/frases-vetadas.md` → "Jerga de ficha de Amazon y meta-narrativa del proceso".
+
+5. **Placeholders y negritas markdown en el draft (manifiesto 2.septies).** Vetado en cuota 0: `![Imagen principal](...)`, `![Imagen del producto](...)`, cualquier sintaxis markdown de imagen, `[Widget pricebox]`, `[widget]`, `[pricebox]`, `[CTA]`, `[iframe]`, `*Foto: Marca*`, `*Foto: Amazon*`, `*Pie: …*`, y `**texto en negrita**` (énfasis con asteriscos dobles). El CMS de Mundo Deportivo coloca imagen principal, pies de foto y widget pricebox por anclaje y plantilla, no por marcador en el markdown. El énfasis se consigue con orden de la frase y verbos de movimiento, no con negritas. Si aparece cualquiera de estos elementos en el draft, el editor-in-chief los elimina sin reemplazo.
 
 ---
 

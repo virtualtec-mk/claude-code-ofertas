@@ -70,6 +70,24 @@ Si alguna de las dos preguntas falla, **devuelve el draft al writer**. No pules 
 
 Solo si pasa el test del bloguero, continúa con el resto del checklist.
 
+#### 0a.bis Filtro de apertura narrativa (manifiesto 2.bis.bis)
+
+Lee únicamente el **primer párrafo del cuerpo**, en voz alta. Aplica los tres tests, todos obligatorios:
+
+1. **¿Narra?** ¿Empieza por una escena, una observación de categoría con criterio, una pregunta del lector experimentado, una anécdota mínima o un dato editorial contextual? O por el contrario, ¿comprime "[producto] cae/baja/se rebaja a X euros / un X% en [tienda]" en la primera frase?
+2. **¿Suena a la persona-redactora declarada en el frontmatter?** ¿Aparecen sus escenarios, su vocabulario, sus referencias (kilómetros, gym, garaje, vestuario, rutina, encimera, etc.)? ¿O la intro serviría igual firmada por cualquier otra persona del catálogo?
+3. **¿Invita a leer la segunda frase?** ¿La primera frase deja algo abierto, o ya cierra el dato comercial y vuelve la lectura prescindible?
+
+**Si falla cualquiera de los tres, DEVUELVE el draft al writer.** No reescribas tú la intro pieza por pieza: instruye al writer a regenerar el primer párrafo desde el scratchpad de la persona-redactora. Esta es una de las pocas correcciones que **no se hacen con Edit** desde editor-in-chief, porque pulir una apertura plana suele dejarla algo menos plana pero igual de no-narrativa. Se reescribe entera o se queda mal.
+
+Vetadas explícitamente en cualquier ángulo, incluido `precio-psicologico` y `liquidacion`:
+
+- "[Producto] cae/baja a menos de X euros en [tienda]. Para quien…"
+- "[Producto] está rebajado en [tienda] al X%"
+- "[Producto] se queda a / por X euros y…" como primera frase del cuerpo
+- "Hay [productos] que…" como primera frase del cuerpo
+- Cierres artificiales de apertura tipo "la pregunta se acaba aquí", "ya no hay excusa", "no es de esas ofertas"
+
 #### 0b. Posición del precio según el ángulo
 
 Comprueba contra `knowledge/posicion-precio-por-angulo.md`:
@@ -126,6 +144,9 @@ Son los elementos que están en todos los artículos del medio, siempre y en ord
 
 Si falta un anclaje fijo: añádelo con contenido mínimo coherente. Si un literal obligatorio está modificado: restáuralo al texto exacto.
 
+**Anclajes firma del medio (refuerzo):** algunos medios tienen bloques firma que el CMS no añade y el writer puede olvidar. Si la guideline lo declara obligatorio, el editor lo añade con un párrafo de 50-90 palabras adaptado al producto y al ángulo (no boilerplate). Casos vigentes:
+- **Mundo Deportivo (anclaje 8.bis):** H2 literal `Cómo recomendamos estos productos`, justo antes del cierre aspiracional, en mono y multi. Si no aparece, se añade.
+
 **(b) Cuerpo libre — coherencia con `recetas` del frontmatter (CAMPO OPCIONAL)**
 Desde la v3 del sistema, **`recetas` es un campo opcional**. El writer puede construir el artículo desde las tres preguntas semilla de la persona-redactora sin apoyarse en ninguna receta concreta; en ese caso el campo aparece vacío (`recetas: []`) u omitido. Las recetas dejaron de ser un menú obligatorio para evitar que los artículos suenen a ensamblaje de patrones.
 
@@ -180,6 +201,21 @@ Tres patrones específicos vetados en cuota 0 (lectura completa en `knowledge/fr
 1. **Meta-comentario del descuento.** Si el draft contiene un párrafo (o frases dispersas) explicando que el porcentaje se calcula sobre PVPR, que el mínimo de 30 días estaba en X € o cuál es "la referencia más honesta": **reescríbelo o elimínalo**. La honestidad se ejecuta eligiendo el argumento (precio absoluto vs %), no enseñando metodología al lector. Como mucho una frase corta integrada; ningún desglose con cifras del mínimo histórico.
 2. **H2 / H3 negativos de mercado.** Vetados los headings tipo "Un precio donde X no abundan", "X que no se ve en este tramo", "No es lo habitual en este segmento". Reescribe el heading en afirmativo sobre un dato concreto del producto.
 3. **Cierre con logística en párrafos sueltos de una línea.** Si el draft termina con dos o más párrafos cortos de una sola frase con disponibilidad, medidas, envío o devoluciones, fusiónalos en una sola frase integrada en el último párrafo natural o elimínalos (lo pone el pricebox del CMS). El artículo debe cerrar con criterio editorial, no con cola de ficha técnica.
+
+---
+
+#### 4.ter. Placeholders y negritas markdown (cuota 0, regla universal — manifiesto 2.septies)
+
+Vetado en cuota 0 en TODOS los medios. Busca y **elimina sin reemplazo** los siguientes patrones:
+
+- `![Imagen principal](...)`, `![Imagen del producto](...)` y cualquier sintaxis markdown de imagen (`![alt](url)`). El CMS coloca la imagen por anclaje, no por marcador en el draft.
+- `[Widget pricebox]`, `[widget]`, `[pricebox]`, `[CTA]`, `[iframe]`, `[Insertar widget…]` o cualquier marcador equivalente del widget de compra. El widget lo inserta el redactor en el CMS según la guideline.
+- `*Foto: Marca*`, `*Foto: Amazon*`, `*Imagen: …*`, `*Pie: …*` y cualquier pie de foto suelto. El pie lo añade el CMS junto a la imagen.
+- `**texto en negrita**` y `__texto en negrita__` (énfasis con asteriscos dobles). La negrita markdown no se usa en ningún medio: ni para SEO, ni para escaneo visual, ni para énfasis. Si al quitar la negrita la frase pierde fuerza, reescríbela con orden + vocabulario; no la dejes negritada.
+
+Excepción única: cursivas simples `*texto*` están permitidas SOLO para citas literales o nombres de obras, no para énfasis decorativo (lo dice el manifiesto 2.septies). Si una cursiva está sosteniendo un énfasis de marketing, también se elimina.
+
+Registro en el log de correcciones: si encuentras varios placeholders/negritas, regístralos agregados como **un único ítem** ("eliminados N placeholders/negritas residuales"), no uno por uno.
 
 ---
 

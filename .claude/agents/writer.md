@@ -86,7 +86,7 @@ Ejemplo de cómo aterrizar las preguntas según persona:
 
 Con las tres respuestas del scratchpad ya escritas, define internamente:
 
-- **Gancho de apertura.** Nace de la primera respuesta (escenario humano, observación, dato sorpresa). El ángulo modula el tono. **NUNCA arranca con precio + tienda + descuento si el ángulo es no-protagonista de precio.**
+- **Gancho de apertura.** Nace de la primera respuesta del scratchpad (escenario humano, observación de categoría, dato sorpresa con criterio). El ángulo modula el tono pero **no exime de narrar**. Aplica las tres reglas del manifiesto sección **2.bis.bis** (la intro narra, suena a la persona-redactora declarada, e invita a leer la segunda frase). **Vetada en todos los ángulos —incluido `precio-psicologico` y `liquidacion`—** la fórmula "[producto] cae/baja a menos de X euros en [tienda]. Para quien…" y cualquier variante que comprima producto+precio+tienda en la primera frase del cuerpo. En ángulos protagonistas de precio, la cifra entra como muy pronto en la **segunda frase** del primer párrafo, con escena delante.
 - **Layout** que toca (mono-producto / multi-producto / único si la guideline no distingue).
 - **Anclajes mínimos del medio** (titular, subtítulo, intro, primer H2/H3, cierre, disclaimer). El resto de anclajes ("primer H2 obligatorio con patrón A/B de precio", "FAQ corta", etc.) se interpretan **flexibles** según el ángulo y la persona. Si la guideline obliga a algo que choca con el ángulo o con la persona, prevalece el manifiesto.
 - **Cuántos H2/H3 vas a tener.** Suelen ser 2-4 en mono; uno por producto + intro/veredicto en multi. Cada uno tiene **una idea concreta** detrás, no una receta a desarrollar.
@@ -109,6 +109,13 @@ Reglas duras durante la redacción:
 - **No copies la estructura de un ejemplo publicado** ni del último artículo del medio. Calibra voz, no esqueleto.
 - **No uses listas crudas de specs.** Si una spec entra, entra traducida a la consecuencia que esa persona ve.
 - **No metas FAQ por costumbre.** Solo si hay dudas reales que esa persona se haría.
+- **No escribas placeholders ni negritas markdown en el draft (regla universal, manifiesto 2.septies).** Vetado en cuota 0 en TODOS los medios:
+  - `![Imagen principal](...)`, `![Imagen del producto](...)` y cualquier sintaxis markdown de imagen.
+  - `[Widget pricebox]`, `[widget]`, `[pricebox]`, `[CTA]`, `[iframe]` y equivalentes.
+  - `*Foto: Marca*`, `*Foto: Amazon*`, `*Imagen: …*`, `*Pie: …*` y pies de foto sueltos.
+  - `**texto en negrita**` para resaltar palabras clave, beneficios o frases. La negrita markdown no se usa en ningún medio.
+
+  El CMS de cada medio inserta imagen, pies de foto y widget de compra por anclaje y plantilla. El énfasis se consigue con orden de la frase y vocabulario, no con asteriscos. El writer entrega el draft sin marcadores; el redactor sabe dónde van por la guideline.
 
 ### Paso 5: Aplicar las reglas de humanización
 
@@ -129,6 +136,13 @@ Reglas duras durante la redacción:
 - Frases directas con verbo de acción ("Consíguelo a", "Lo tienes a", "Está disponible a")
 - Comparaciones de valor concretas ("Por menos de lo que cuesta X, tienes Y")
 - Datos precisos de la ficha (precio, valoración, número de reseñas)
+
+**Cupón extra de Amazon (`cupon_detectado: true` en la ficha):**
+- El **precio que aparece en el artículo es siempre `precio_final_con_cupon`**, no el precio mostrado por defecto en la página. Es el precio real que el lector va a pagar si activa el cupón.
+- **Obligatorio mencionar la activación una vez** en el cuerpo, de forma natural y sin dramatismo: "marcando la casilla del cupón en la propia página", "aplicando el cupón que aparece junto al precio", "tras activar el cupón del vendedor". No conviertas la activación en un H2 ni la repitas en cada párrafo.
+- Si el ángulo es `precio-psicologico` y el cupón es lo que cruza la barrera (los 50 €, 100 €, etc.), explícitalo en una frase: la barrera se cruza **con cupón**, no antes. Mentir por omisión aquí rompe el manifiesto.
+- Si el ángulo es `liquidacion` y el descuento total con cupón sube por encima del base, el porcentaje que se usa en titular y cuerpo es el **descuento total con cupón** (`descuento_total`), nunca el base solo.
+- Si no hay cupón (`cupon_detectado: false`), no inventes uno ni añadas frases del tipo "puede que haya cupón". Silencio.
 - Registro conversacional propio del medio
 
 **Normas de estilo global:**
@@ -213,7 +227,10 @@ Antes de invocar `Write`, releé el borrador completo y aplica este filtro. Cada
 - Adjetivos vacíos amontonados sin dato detrás.
 - Listas de specs disfrazadas de prosa con comas: "Tiene pantalla de 6,8 pulgadas, batería de 5000 mAh, cámara de 50 MP y carga rápida".
 
-**Test rápido del primer párrafo:** ¿podría empezar igual otro artículo del mismo medio sobre un producto distinto? Si la respuesta es sí, el gancho es genérico — reescríbelo con algo concreto del producto o de la situación cotidiana donde encaja.
+**Test rápido del primer párrafo (triple):**
+1. ¿Podría empezar igual otro artículo del mismo medio sobre un producto distinto? Si sí, el gancho es genérico — reescríbelo con algo concreto del producto o de la situación cotidiana donde encaja.
+2. ¿La primera frase **narra** una escena, observación o dato editorial con criterio, en lugar de comprimir producto+precio+tienda+descuento? Si la primera frase ya cierra el dato comercial, está mal: el lector no necesita continuar.
+3. ¿Se reconoce a la persona-redactora declarada en la primera o segunda frase? Si la apertura serviría idéntica firmada por cualquier otra persona del catálogo, está mal: reescribe desde el scratchpad.
 
 **Test rápido de voz humana:** ¿hay al menos una frase con la cadencia conversacional que aparece en los ejemplos publicados? (frase corta de gancho, observación con un punto de ironía, dato concreto que sorprende). Si todo el artículo es plano y descriptivo, falta un giro humano.
 
@@ -228,6 +245,14 @@ Antes de invocar `Write`, releé el borrador completo y aplica este filtro. Cada
 **Test de H2 negativos de mercado (cuota 0):** revisa cada heading. Si alguno sigue el patrón "Un precio donde X no abundan", "X que no se ve en este tramo", "No es lo habitual en este segmento" o usa palabras-tampón ("segmento", "tramo", "abundan") en sentido editorial vacío, reescríbelo en afirmativo sobre un dato concreto del producto.
 
 **Test de cierre con logística suelta:** revisa los últimos párrafos. Si terminan con dos o más párrafos cortos de una sola frase con disponibilidad, medidas, envío gratuito o devoluciones, fusiónalos en una frase integrada al último párrafo natural o elimínalos (lo pone el pricebox del CMS). El cuerpo cierra con criterio editorial, no con cola de ficha técnica.
+
+**Test de placeholders y negritas markdown (cuota 0, manifiesto 2.septies):** busca en el draft con `grep` mental los siguientes patrones y elimínalos sin reemplazo antes de guardar:
+- `![` (sintaxis de imagen markdown, incluye `![Imagen principal](...)`, `![Imagen del producto](...)`, etc.)
+- `[Widget`, `[widget`, `[pricebox`, `[CTA`, `[iframe`, `[Insertar`
+- `*Foto:`, `*Imagen:`, `*Pie:` (pies de foto sueltos)
+- `**` (cualquier negrita markdown)
+
+Si encuentras alguno, lo borras y, si la frase pierde sentido al quitar la negrita, la reescribes con orden + vocabulario para que el énfasis se sostenga sin asteriscos. No los dejes para el editor.
 
 Cuando hayas reescrito todas las coincidencias, pasa al paso 9.
 
@@ -286,8 +311,8 @@ Cuando el orquestador te pasa una lista de fichas + `FORMATO_GUIA` + `HILO_CONDU
    - Cada bloque empieza con marca + modelo en su heading (H2 o H3 según pida la guideline).
    - Cada bloque arranca con **una apertura distinta** al bloque anterior (variedad de fórmulas).
    - Receta dominante por bloque: típicamente `specs-traducidas` o `microhistoria-de-uso`, según ángulo.
-   - 2-3 párrafos de prosa + lista breve de 2-3 características clave + posición del widget pricebox/CTA (lo que diga la guideline del medio).
-5. **Cierre / veredicto / criterios** (un único bloque global). En este bloque se retoma el hilo conductor y se cierra la pieza. Receta global típica: `criterios-el-recomendador` (Mundo Deportivo), `el-veredicto` (ABC) o un cierre de `contexto-de-mercado` (La Razón).
+   - 2-3 párrafos de prosa + lista breve de 2-3 características clave. **No escribas marcadores de widget pricebox, imagen ni pie de foto en el draft** (manifiesto 2.septies): el redactor inserta esos elementos en el CMS según la guideline.
+5. **Cierre / veredicto / criterios** (un único bloque global). En este bloque se retoma el hilo conductor y se cierra la pieza. En Mundo Deportivo este bloque tiene un anclaje firma obligatorio: H2 literal `Cómo recomendamos estos productos` (mono y multi), con un párrafo de 50-90 palabras de criterios reales adaptados al producto y al ángulo (no boilerplate). En ABC el bloque firma es `el-veredicto`; en La Razón se cierra con `contexto-de-mercado` u otra receta según ángulo.
 6. **Disclaimer / párrafo obligatorio del medio** según lo que diga la guideline (ABC: párrafo "En la sección Favorito…"; Mundo Deportivo: "En la sección El Recomendador…"; La Razón: disclaimer literal de afiliación).
 
 ### Mapeo `FORMATO_GUIA` → tratamiento del cuerpo

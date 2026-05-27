@@ -57,6 +57,35 @@ Pasar el test exige las dos capas que se describen en el punto siguiente: **voz 
 
 ---
 
+## 2.bis.bis. La apertura del cuerpo: narración con voz, no anuncio
+
+El primer párrafo del cuerpo (la "intro") es el filtro más visible del artículo. Si suena a anuncio o a teaser comercial, el resto del texto ya no remonta. La intro **tiene que cumplir las tres cosas a la vez**, no una de ellas:
+
+1. **Narra.** Es una micro-escena, una observación de campo, una pregunta concreta que el lector se ha hecho alguna vez, una situación de uso real, un dato editorial con criterio. **No** es una etiqueta de producto + precio + tienda + descuento maquillada en frase.
+2. **Suena a la persona-redactora declarada en el frontmatter.** Si abre el deportista amateur, la intro respira kilómetros, gym, sentadillas, sensación entre series, conversaciones de vestuario. Si abre el manitas, respira garaje, fin de semana, herramienta vieja que ya no aguanta. Si abre la beauty editor, respira rutina, textura, cosmética que ya ha probado. Una intro genérica que serviría para cualquier producto de la categoría **suspende este punto, aunque la persona aparezca en el resto del artículo**.
+3. **Invita a leer.** El lector tiene que querer la segunda frase después de leer la primera. Si la primera frase cierra la idea (tipo "X está rebajado un Y% en Z"), no hay anzuelo: el lector ya tiene la información, no necesita continuar.
+
+### Recetas válidas de apertura
+
+- **Escena concreta** (botiquín de gym, encimera de cocina, mochila a las 7 de la mañana, garaje en sábado, vestuario después del entreno).
+- **Observación de categoría con criterio** ("hay tres cosas que cualquiera que lleve dos años corriendo aprende a mirar antes que el precio…").
+- **Pregunta real del lector experimentado** ("a la hora de comprar X, la duda casi nunca es A o B; es C").
+- **Dato editorial contextual** (algo que la persona-redactora sabe del mercado, del fabricante, del momento, y que ordena el resto del artículo).
+- **Anécdota mínima en primera persona singular o plural** — siempre dentro de lo que permita la voz del medio para la combinación ángulo + persona elegida.
+
+### Aperturas vetadas (cuota 0)
+
+- "[Producto] está rebajado en [tienda] al X%" o cualquier variante que comprima producto + precio + tienda + descuento en la primera frase del cuerpo.
+- "Cae a menos de X euros en [tienda]. Para quien lleva tiempo…" — fórmula camuflada: cierra el dato comercial en la primera frase y abre una segunda frase de relleno que pretende parecer humana sin escena.
+- "Hay [productos] que…" como primera frase. Si se usa en el cuerpo, máximo una vez en todo el artículo (ya regulado en feedback de La Razón).
+- "La pregunta se acaba aquí", "ya no hay excusa", "tiene sentido pagar X", "no es de esas ofertas" como cierre artificial de párrafo de apertura.
+
+> **Regla de validación rápida:** lee la primera frase del cuerpo en voz alta. ¿Suena a alguien empezando a contar algo, o suena a copy de marketplace? Si suena a marketplace, la intro está mal aunque cumpla el resto de la guideline.
+
+El `writer` redacta la intro **desde el scratchpad de la persona-redactora**, no desde la ficha del producto. El `editor-in-chief` aplica el filtro de este punto **antes** que cualquier otro: si la intro no narra con voz, devuelve el draft al writer. No se pule una apertura que sigue siendo un anuncio.
+
+---
+
 ## 2.ter. Voz del medio + persona-redactora: dos capas que se combinan
 
 Cada artículo se redacta desde **dos capas** que conviven y se complementan:
@@ -126,6 +155,55 @@ No basta con decir que algo está rebajado. Hay que explicar, en algún punto de
 - Qué debe hacer el lector si se agota o sube de precio.
 
 No todas estas piezas tienen que aparecer literales como secciones; el writer las integra según el formato y la voz del medio. Pero **el criterio detrás tiene que estar**.
+
+---
+
+## 2.sexies. Voz viva: prohibido el tono neutro de catálogo
+
+Aplica a **todas las personas-redactoras y a todos los medios**, en cualquier categoría (moda, hogar, tech, deporte, belleza, motor, viajes). Es complementario al test del bloguero del punto 2.bis: aquel filtra "suena a humano experto"; este filtra "el texto está vivo y se deja leer".
+
+Un draft puede pasar 2.bis (suena a la persona) y aun así quedar plano, descriptivo, educado, sin ritmo. Eso aquí no vale. **El artículo tiene que sonar a alguien con criterio que disfruta contándolo**, no a redactor neutro de catálogo.
+
+### Cinco mínimos que el draft debe cumplir
+
+1. **Una opinión clara por H2.** No basta describir. Hay que decir si esto encaja o no, si la versión X es mejor que la Y, si la rebaja vale la pena o es maquillaje. Si un H2 solo describe sin tomar posición, está mal.
+2. **Guiños subjetivos pequeños y frecuentes.** *"A mí me gusta más la versión negra, pero la marrón hace más cosas"*, *"yo no las pondría con vestido midi, pero hay quien las defiende"*, *"de las cuatro sartenes que tengo en casa, esta es la que cojo primero"*. Pequeños, en primera persona o en tercera con voz, repartidos por todo el texto. No son decoración: son la firma humana.
+3. **Ritmo variado.** Combinar frases cortas con frases medias. Una frase corta seca después de una descriptiva da musicalidad. Cuatro frases consecutivas del mismo largo cantan a IA. Si releyendo en voz alta el texto suena monótono, sobra algo.
+4. **Traducir specs a consecuencias.** *"Upper sintético no respira"* → *"en julio con calzo cerrado, lo notas en la primera hora"*. *"450 W de potencia"* → *"cuece patatas en menos tiempo del que tarda el café"*. *"Pantalla AMOLED de 6,7''"* → *"se ve bien al sol del verano sin tener que ponerla a tope de brillo"*. Cada característica relevante se acompaña de su escenario o consecuencia real.
+5. **Cierre con voz, no con logística.** El último párrafo deja una opinión final (capricho vs fondo de armario, compra ya vs espera la próxima, encaja a este perfil y no a este otro) o una alternativa concreta si no encaja. Nunca el envío gratis de Amazon, las devoluciones de 30 días o el "merece la pena echar un vistazo" como guinda.
+
+### Reglas duras de lengua (español de España)
+
+Aplican al titular, al frontmatter y al cuerpo, sea cual sea el medio y la persona:
+
+- **Modelos de zapatillas en plural.** *"Las Puma Shuffle Downtown"*, *"las Adidas Samba"*, *"las New Balance 574"*. Nunca *"la Shuffle"*, *"la Samba"*. Las concordancias siguen: *"las que más combinan"*, *"estas zapatillas"*.
+- **Prohibido "sneaker" y "sneakers".** Sustituir por *"zapatillas"*, *"deportivas"*, *"modelo"* o el nombre propio del modelo. Tampoco *"trainers"*.
+- **Anglicismos de catálogo vetados salvo necesidad técnica:** *"outfit"* → *"look"* o *"conjunto"*; *"chunky"* → *"de suela gruesa"* o *"voluminosa"*; *"must-have"* → reformular en castellano. Sí valen *"capsule wardrobe"*, *"fondo de armario"*, *"básico"*, *"smartwatch"*, *"smartphone"*, *"router"*, *"freidora de aire"*, que ya están naturalizados o no tienen alternativa razonable.
+- **Nombres de color de catálogo no se transcriben.** *"Sand Dune / Puma Blanco"* se convierte en *"arena con blanco"* o *"color arena tostada"*. *"Ftwwhite Optimumblue Gum"* se convierte en *"blanco roto con azul y suela de goma color caramelo"*. La regla equivalente aplica a otras categorías: el writer no copia nombres de SKU; los traduce.
+
+### Cómo se aplica
+
+- El `writer` valida los cinco mínimos sobre su propio draft antes de guardar. Si falla alguno, reescribe; no lo deja para el editor.
+- El `editor-in-chief` añade estos cinco mínimos al test del bloguero (paso 0a). Si el draft falla aquí, vuelve al writer; no se pule un texto neutro, se reescribe.
+- Las reglas de lengua se comprueban siempre: si aparece *"sneaker"*, *"la Samba"* o un color SKU sin traducir, el editor las corrige directamente.
+
+---
+
+## 2.septies. El draft no lleva placeholders ni negritas markdown
+
+El draft que entrega el sistema se pega tal cual en el CMS del medio. El CMS ya gestiona imagen principal, pies de foto, widgets de precio (pricebox themonetise) y resaltados visuales. Cualquier marcador que el writer escriba en el markdown obliga al redactor a borrarlo a mano. Eso es trabajo añadido y fuente de errores.
+
+**Vetados en cuota 0 en el draft, en TODOS los medios y en mono y multi:**
+
+1. `![Imagen principal](...)`, `![Imagen del producto](...)`, `![alt](url)`, cualquier sintaxis markdown de imagen. El CMS inserta la imagen donde toca por anclaje, no por marcador en el draft.
+2. `[Widget pricebox]`, `[widget]`, `[pricebox]`, `[CTA]`, `[iframe]`, `[Insertar widget…]` o cualquier marcador equivalente. El widget de pricebox lo coloca el redactor en el CMS según la guideline.
+3. `*Foto: Marca*`, `*Foto: Amazon*`, `*Imagen: …*`, `*Pie: …*` y cualquier pie de foto suelto en markdown. El pie lo añade el CMS junto a la imagen.
+4. `**texto en negrita**` y `__texto en negrita__` para resaltar palabras clave, beneficios o frases. La negrita markdown no se usa en ningún medio: ni para SEO, ni para escaneo visual, ni para énfasis. Las cursivas `*texto*` se reservan para citas literales o nombres de obras, no para énfasis decorativo.
+
+Excepción única: si una guideline define explícitamente un anclaje que requiere markdown (por ejemplo, un disclaimer entre comillas), se sigue esa guideline. La regla por defecto es: cero markup decorativo.
+
+- El `writer` valida estos cuatro vetos sobre su propio draft antes de guardar. Si encuentra alguno, lo elimina en la auto-revisión, no lo deja para el editor.
+- El `editor-in-chief` los elimina sin avisar si aparecen (no genera ítem en el log de correcciones salvo que haya varios; basta con un único ítem agregado "eliminados N placeholders/negritas residuales").
 
 ---
 
@@ -413,6 +491,7 @@ Si 0a o 0b fallan, el draft vuelve al writer. No se pula un texto que no suena h
 12. ¿La posición del precio respeta la regla del ángulo? (Ver `knowledge/posicion-precio-por-angulo.md`. En `uso-practico`, `recomendacion-personal` y `tendencia` el precio NO abre intro ni primer H2.)
 13. ¿La voz del medio y la persona-redactora conviven sin atropellarse? (El medio impone el registro y las frases vetadas; la persona aporta el punto de vista. Si una de las dos capas se ha tragado a la otra, recalibrar.)
 14. ¿La persuasión está equilibrada (regla 2.quinque)? ¿Las pegas viven integradas en el cuerpo y no como H2 dedicados? ¿No hay ningún H2 cuyo título siembre dudas sobre la marca o el producto? ¿La estructura de H2 NO repite la plantilla del último artículo publicado del medio?
+15. ¿La voz está viva (regla 2.sexies)? ¿Hay al menos una opinión clara por H2 y guiños subjetivos repartidos? ¿El ritmo varía o son cuatro frases iguales seguidas? ¿Las specs están traducidas a consecuencias? ¿El cierre cierra con voz y no con logística? ¿Las reglas de lengua se respetan (plural en zapatillas, sin "sneaker", sin "outfit", sin colores SKU sin traducir)?
 
 ---
 

@@ -173,13 +173,14 @@ Proporcionado en el INPUT (pausa B del flujo). Reprodúcelo **exactamente** como
 Una frase con chispa que refuerce el titular y genere **curiosidad inmediata**. Es un H2 real (con formato CMS), no una línea normal. No repite precio ni descuento que ya estén en el H1.
 
 ### 4. Imagen principal
-Justo después del bloque de titulares (H1 + H2 subtítulo), antes de la introducción. El widget de imagen lo gestiona el CMS; en el draft basta con marcar la posición.
+Justo después del bloque de titulares (H1 + H2 subtítulo), antes de la introducción. El widget de imagen lo gestiona el CMS por anclaje. **En el draft no se escribe ningún marcador** (`![Imagen principal](...)`, `*Foto: Marca*`, `*Imagen: …*` o equivalentes están vetados en cuota 0 por el manifiesto 2.septies). El redactor sabe dónde va por la guideline y por la plantilla del CMS.
 
 ### 5. Introducción — El Gancho Humano (sin heading)
 Un párrafo corto (1-3 líneas por subpárrafo), conversacional, que conecta con una necesidad real del lector. No menciona aún la spec del producto, sí presenta la oferta como un "hallazgo".
 
 - Longitud orientativa: 60-100 palabras.
 - Marca o producto aparecen en este primer bloque pero no necesariamente en las primeras 15 palabras: ABC permite gancho humano antes que mención de marca, siempre que la marca aparezca en el segundo subpárrafo del gancho.
+- **REGLA UNIVERSAL (manifiesto 2.bis.bis):** el gancho **narra, suena a la persona-redactora declarada en el frontmatter, e invita a leer la segunda frase**. Vetado en cuota 0 abrir el cuerpo con "[producto] cae/baja/se rebaja a X euros / un X% en [tienda]" o variantes que compriman producto+precio+tienda+descuento en la primera frase, en cualquier ángulo. El precio entra después del gancho humano, no como gancho.
 
 ### 6. Cuerpo: secuencia de H3 (mínimo 3, habitualmente 4-7)
 **El cuerpo de ABC usa H3, no H2.** La calibración con 18 artículos publicados confirma que tras el subtítulo (anclaje 3) y la introducción, los headings internos son siempre H3 (`[[H3: ...]]`). Por debajo de cada H3, prosa continua sin listas crudas.
@@ -325,6 +326,8 @@ Estos moldes son **rechazo automático** en la pasada del editor-in-chief, adem�
 3. **Naming marca + modelo.** Cuando un heading o el cuerpo nombra marca y modelo de un producto reconocible, **siempre van juntos y en ese orden: primero la marca, después el modelo** ("Auriculares Sony WH-1000XM5", no "Auriculares WH-1000XM5 Sony"). Nunca se intercala texto ni se pospone la marca al modelo. Ver regla transversal en `knowledge/naming-productos.md`.
 
 4. **Jerga de ficha de Amazon.** Prohibido en cuerpo: `colorway` (decir "color" o "combinación de color"), `variante` como sinónimo de color, `SKU`, `ASIN`, `ref.`. Prohibido transcribir literal nombres internos de variantes de Amazon en inglés ("Navy White Red", "Ftwwhite Optimumblue Gum"): se traducen a descripciones cromáticas en español natural. Prohibida la meta-narrativa del proceso ("cuando se escribe este artículo", "en el momento de la consulta"). Ver regla transversal en `knowledge/frases-vetadas.md` → "Jerga de ficha de Amazon y meta-narrativa del proceso".
+
+5. **Placeholders y negritas markdown en el draft (manifiesto 2.septies).** Vetado en cuota 0: `![Imagen principal](...)`, `![Imagen del producto](...)`, cualquier sintaxis markdown de imagen, `[Widget pricebox]`, `[widget]`, `[pricebox]`, `[CTA]`, `[iframe]`, `*Foto: Marca*`, `*Foto: Amazon*`, `*Pie: …*`, y `**texto en negrita**` (énfasis con asteriscos dobles). El CMS de ABC inserta imagen, pies de foto y widget de compra por anclaje y plantilla, no por marcador en el markdown. La negrita markdown no se usa: ABC no la necesita para SEO ni para escaneo visual; el énfasis se consigue con orden de la frase y vocabulario potente. Si aparece, el editor-in-chief la elimina sin reemplazo.
 
 ---
 
