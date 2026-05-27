@@ -1,6 +1,7 @@
 {
   "permissions": {
     "allow": [
+<<<<<<< HEAD
       "WebFetch(domain:chollometro.com)",
       "WebFetch(domain:amazon.es)",
       "WebFetch(domain:amzn.to)",
@@ -31,5 +32,33 @@
       "Write(../claude-code-writer/guidelines/**)",
       "Write(../claude-code-writer/drafts/**)"
     ]
+=======
+      "WebFetch(domain:amazon.es)",
+      "WebFetch(domain:amazon.com)",
+      "WebFetch(domain:amazon.co.uk)",
+      "WebFetch(domain:aliexpress.com)",
+      "WebFetch(domain:es.aliexpress.com)",
+      "Write(drafts/**)",
+      "Edit(drafts/**)",
+      "Write(guidelines/**)",
+      "Edit(guidelines/**)",
+      "Read(inbox/**)",
+      "Write(inbox/**)",
+      "Edit(inbox/**)",
+      "Read(**)",
+      "Bash(git pull --ff-only)",
+      "Bash(git pull --ff-only:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git status)",
+      "Bash(git status:*)",
+      "Bash(git diff)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git push origin master)",
+      "Bash(git push origin master:*)"
+    ],
+    "deny": []
+>>>>>>> writer/master
   }
 }

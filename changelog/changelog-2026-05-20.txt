@@ -1,0 +1,89 @@
+=== 20/05/2026 ===
+- feat: soporte transversal de guías multi-producto en `/crear-articulo`.
+  Motivación: hasta ahora, cuando el redactor pegaba varias URLs el sistema asumía
+  que cada una era un artículo independiente y producía N piezas separadas. Esto
+  rompía el flujo cuando lo que el redactor quería era UNA guía de compra
+  (comparativa, recopilatorio, top-N, por presupuesto, por uso, longtail de marca).
+  Las guidelines ya tenían rastros de soporte multi-producto (Mundo Deportivo:
+  `layout: multi-producto`; ABC: `modo: recopilatorio` / `longtail-marca`; La Razón:
+  mención de mono vs multi en longitud), pero no había una ruta limpia en el comando
+  que detectara el escenario, preguntara al redactor y empujara el flujo correcto.
+
+  Decisión de diseño: dos variables transversales nuevas, `TIPO_ARTICULO`
+  (`mono` | `multi`) y, en multi, `FORMATO_GUIA` (catálogo universal de 6 formatos).
+  Cada guideline declara qué subconjunto de formatos admite y los mapea a sus
+  convenciones internas (`layout` en Mundo Deportivo y La Razón; `modo` en ABC).
+  La regla de capas entre subagentes se mantiene intacta; lo que cambia es la
+  cardinalidad de la entrada (1 ficha → N fichas) y las dos variables nuevas que
+  viajan junto a los inputs habituales.
+
+  Cambios:
+    * `.claude/skills/crear-articulo/SKILL.md`: nuevo PASO 2.5 (detección de modo).
+      Si N_URLS=1 → asume mono sin preguntar. Si N_URLS>=2 → pausa interactiva con
+      tres opciones (A: guía única / B: artículos separados / C: solo uno). En A,
+      sub-paso 2.5.1 para elegir FORMATO_GUIA filtrado por lo que admite la
+      guideline del medio. Reescritos los pasos 3 (product-researcher en lote
+      paralelo), 4 (angle-picker multi con hilo conductor), 5 (pausa A enriquecida
+      en multi), 6 (headline-generator multi con plantillas por formato), 8 (writer
+      con frontmatter multi-producto y plantilla por bloque) y 9 (editor-in-chief
+      con checklist multi de puntos 12-16). Paso 10 (informe final) ahora muestra
+      el listado de productos en multi. Reglas de comportamiento general
+      actualizadas con el estado adicional de la sesión en multi.
+    * `.claude/agents/product-researcher.md`: nueva sección "Modo lote
+      (multi-producto)" que documenta la invocación N veces en paralelo, sin
+      compartir contexto entre invocaciones.
+    * `.claude/agents/angle-picker.md`: nuevo bloque "Modo mono vs modo multi" en
+      el rol, ampliación del Paso 2 (analizar fichas en multi a nivel de conjunto)
+      y nuevo bloque "Output esperado en modo multi" con el hilo conductor como
+      pieza obligatoria.
+    * `.claude/agents/headline-generator.md`: nueva sección "Modo multi-producto"
+      con reglas duras (el titular vende el conjunto, no un producto suelto),
+      plantillas recomendadas por FORMATO_GUIA y redistribución de estilos por
+      cuota en multi (primera-persona baja, comparativa y uso-concreto suben).
+    * `.claude/agents/writer.md`: nuevo bloque "Modo multi-producto" con
+      estructura general, mapeo FORMATO_GUIA → tratamiento del cuerpo, reglas
+      duras (variedad de aperturas, sin datos cruzados inventados, recetas
+      globales una sola vez, test de bloque intercambiable), longitud por medio y
+      frontmatter ampliado con tipo_articulo, formato_guia, n_productos,
+      hilo_conductor y url_secundarias.
+    * `.claude/agents/editor-in-chief.md`: nuevo bloque multi con puntos 12-16
+      (hilo conductor en intro+cierre, marca y apertura variada por bloque,
+      recetas globales una sola vez, test de bloque intercambiable, coherencia
+      ficha↔prosa sin datos cruzados). Frontmatter ampliado con los campos nuevos.
+    * `guidelines/GUIDELINE-larazon.md` (v2.6 → v2.7): nueva sección "Formatos
+      multi-producto admitidos" (comparativa, recopilatorio, top-n,
+      por-presupuesto, por-uso; longtail-marca NO se admite por defecto),
+      estructura del cuerpo en multi (5 anclajes adaptados + N bloques de
+      producto), longitud por bloque y reglas duras (cuantificador del conjunto
+      solo en H1, no en subtítulo). Nuevo bloque "Titulares para multi-producto"
+      en la sección de recetas de titular.
+    * `guidelines/GUIDELINE-mundodeportivo.md` (v2.3 → v2.4): nueva sección
+      "Formatos multi-producto admitidos" con mapeo a `layout: multi-producto` y
+      patrón del H2 temático global por formato. `longtail-marca` no se admite.
+      Frontmatter ampliado con tipo_articulo, formato_guia, n_productos,
+      hilo_conductor, url_origen y url_secundarias.
+    * `guidelines/GUIDELINE-abc.md` (v1.1 → v1.2): nueva sección "Formatos
+      multi-producto admitidos" con mapeo de FORMATO_GUIA universal a los modos
+      internos (oferta-unica, recopilatorio, longtail-marca). Frontmatter ampliado
+      con los campos nuevos junto al `modo` nativo del medio.
+    * `CLAUDE.md`: documentada la capacidad multi-producto. Tabla "Dos modos de
+      artículo", arquitectura de capas actualizada con las variables transversales
+      nuevas, nueva sección "Formatos de guía multi-producto" con el catálogo
+      universal.
+    * `README.md`: actualizado el "Cómo funciona" para mencionar varias URLs, la
+      pregunta de bifurcación y los formatos de guía.
+    * `medios.md`: nueva columna "Formatos multi admitidos" con los subconjuntos
+      por medio; longitud actualizada para reflejar los rangos multi por medio.
+    * `docs/plans/2026-05-20-multi-producto-guia-compra.md`: plan completo del
+      cambio con problema, solución, variables nuevas, archivos tocados, tareas y
+      riesgos.
+
+  Impacto para el redactor: pegar varias URLs ahora abre una pausa interactiva.
+  Por defecto, una sola URL sigue funcionando exactamente igual que antes. Las
+  guidelines existentes siguen siendo válidas para mono; en multi se aplica el
+  bloque nuevo de cada guideline.
+
+  Validación: pendiente de probar el flujo completo en multi con un caso real
+  (ej. comparativa 165 vs 170 en La Razón, recopilatorio en Mundo Deportivo,
+  top-N en ABC). El primer artículo multi servirá para recalibrar las longitudes
+  por bloque si los rangos publicados se desvían.

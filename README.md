@@ -1,94 +1,85 @@
-# Localizador de ofertas
+# claude-code-ofertas
 
-Proyecto hermano de `claude-code-text-agents`. **Encuentra ofertas, las filtra contra el guideline del medio y deja la ficha lista para redactar.**
+Repo unificado de **descubrimiento + redacción** de artículos de oferta para Amazon España y AliExpress España. Operable desde Claude Code con cuatro comandos:
 
-Operable desde Claude Code con un solo comando: `/buscar-ofertas`.
+- `/buscar-ofertas` — descubrir, filtrar, validar y enriquecer ofertas → ficha en `inbox/`.
+- `/crear-articulo` — redactar el artículo desde una URL o desde el inbox.
+- `/crear-guideline` — crear o actualizar una guideline editorial por medio.
+- `/importar-gpt` — importar un GPT personalizado al formato guideline.
+
+Antes existía como dos repos separados (`claude-code-ofertas` + `claude-code-writer`). Se fusionaron el 27/05/2026 para usarlos en la misma sesión y simplificar el handoff. Ver [`docs/plans/2026-05-27-merge-ofertas-writer.md`](docs/plans/2026-05-27-merge-ofertas-writer.md).
 
 ---
 
-## Para qué sirve
+## Flujo end-to-end
 
-El cuello de botella en el flujo editorial ya no está en redactar (eso lo cubre el otro proyecto), sino en **encontrar** ofertas que merezcan un artículo. Hoy buscas a mano en Chollometro, descartas duplicados y sopesas si el descuento es real. Este proyecto hace ese trabajo por ti:
-
-1. Tú dices: medio + anunciante + (opcional) watchlist o descripción libre.
-2. El sistema scrapea Chollometro filtrando por el anunciante elegido.
-3. Aplica el guideline editorial del medio y reduce la lista a las que tienen sentido editorial.
-4. Te pasa una por una: validar / rechazar / saltar.
-5. Las validadas se enriquecen (precio histórico, reseñas, especificaciones) y aterrizan en la inbox del proyecto de redacción.
-
-La próxima vez que ejecutes `/crear-articulo` en `claude-code-text-agents`, las fichas estarán ahí, sin re-scrapear.
+1. **Descubrir.** `/buscar-ofertas {medio} {amazon|aliexpress} [watchlist]`. El sistema consulta `radar_editorial`, filtra contra la guideline del medio y te presenta candidatas una a una. Validas con V/R/S/Q.
+2. **Enriquecer.** Cada validada se enriquece automáticamente (precio actual, precio anterior, confianza del descuento, reseñas, specs) y aterriza en `inbox/DD-MM-YYYY-{slug}.md`.
+3. **Redactar.** `/crear-articulo {medio} {filtro}` busca en `inbox/`, o `/crear-articulo {URL} {medio}` va directo a una URL. El writer aplica guideline + persona-redactora y deja el draft en `drafts/{medio}/`.
+4. **Publicar.** Copias el draft al CMS de tu medio.
 
 ---
 
 ## Cómo usarlo
 
 ```
-/buscar-ofertas
+/buscar-ofertas larazon aliexpress xiaomi
+/crear-articulo larazon xiaomi
+/crear-articulo https://www.amazon.es/dp/B0XYZ123 larazon
+/crear-guideline nuevomedio
 ```
 
-Sin argumentos. La skill te pregunta interactivamente medio, anunciante y watchlist. Opcionalmente:
+Detalles de cada skill en `.claude/skills/*/SKILL.md`.
 
-```
-/buscar-ofertas mundodeportivo amazon
-/buscar-ofertas mundodeportivo amazon auriculares-anc-md
-```
+### Auto-pull
 
-### Flujo típico
-
-1. **Pre-vuelo**: te muestra medios disponibles (leídos del proyecto hermano) y watchlists.
-2. **Afinado conversacional**: puedes decir "hoy solo Sony y Bose" sin tocar el archivo de watchlist.
-3. **Scraping**: 15-25 candidatas brutas de Chollometro.
-4. **Filtrado editorial inline**: cada candidata con una línea de justificación contra el guideline.
-5. **Pausa por candidata**: validar / rechazar (con nota libre opcional) / saltar.
-6. **Enriquecimiento**: por cada validada, ficha completa con precio anterior, nivel de confianza del descuento, reseñas.
-7. **Handoff**: ficha en `../claude-code-text-agents/inbox/`.
-8. **Cierre**: historial de la sesión + línea en changelog.
+Al iniciar la sesión, el hook `SessionStart` hace `git pull --ff-only` y avisa si hay cambios. Si no tienes conexión o hay conflictos locales, te lo dice y continúa sin bloquear.
 
 ---
 
-## Estructura
+## Estructura mínima
 
-- `.claude/skills/buscar-ofertas/SKILL.md` — orquestador.
-- `.claude/agents/aggregator-scraper.md` — scraping de Chollometro.
-- `.claude/agents/offer-enricher.md` — enriquecimiento de Amazon/AliExpress.
-- `watchlists/` — listas temáticas editables a mano.
-- `historial/` — una sesión por archivo.
-- `knowledge/notas-degradacion.md` — log de dominios/patrones problemáticos.
-- `changelog/` — bitácora de cambios al proyecto.
+```
+.claude/skills/       ← buscar-ofertas, crear-articulo, crear-guideline, importar-gpt
+.claude/agents/       ← 9 subagentes (4 de descubrimiento + 5 de redacción)
+.claude/hooks/        ← session-start-pull.sh
+guidelines/           ← voz editorial por medio
+watchlists/           ← listas temáticas
+inbox/                ← handoff descubrimiento → redacción
+drafts/{medio}/       ← output del writer
+historial/            ← sesiones de /buscar-ofertas
+knowledge/            ← manifiesto, frases vetadas, personas, ejemplos publicados
+docs/                 ← brainstorms, plans, qa, instalación
+```
+
+Visión completa en [`CLAUDE.md`](CLAUDE.md).
 
 ---
 
 ## Requisitos
 
 - **Claude Code** instalado.
-- **Plugin Playwright MCP** activo (ya requerido por el proyecto hermano).
-- **`claude-code-text-agents` clonado en `../claude-code-text-agents/`** con guidelines.
-- **Variables de entorno de `radar_editorial`** configuradas en local.
+- **Plugin Playwright MCP** activo.
+- **Variables de entorno de `radar_editorial`** en `.env`:
+  ```
+  RADAR_BASE_URL=https://...
+  RADAR_AGENT_API_TOKEN=...
+  ```
+  Copia `.env.example` → `.env` y rellena. El `.env` está en `.gitignore`.
 
-Detalles en [`docs/instalacion.txt`](docs/instalacion.txt).
-
-### Configuracion local de `radar_editorial`
-
-El flujo `/buscar-ofertas` necesita estas variables:
-
-```text
-RADAR_BASE_URL
-RADAR_AGENT_API_TOKEN
-```
-
-Copia `.env.example` como `.env`, rellena el token real y carga esas variables en tu terminal antes de ejecutar la skill. El archivo `.env` no se sube a GitHub. Guia paso a paso en [`docs/configuracion-local-radar.txt`](docs/configuracion-local-radar.txt).
+Guía paso a paso: [`docs/instalacion.txt`](docs/instalacion.txt) y [`docs/configuracion-local-radar.txt`](docs/configuracion-local-radar.txt).
 
 ---
 
-## Qué NO hace este proyecto
+## Qué NO hace
 
-- No redacta artículos (lo hace el hermano).
 - No mantiene base de datos ni panel web. Todo es markdown local.
-- No deduplica contra el historial en MVP (volumen bajo no lo justifica).
+- No deduplica contra el historial en MVP.
 - No reintenta scraping automáticamente cuando Cloudflare bloquea.
+- No publica en el CMS del medio (el draft sale en `drafts/`).
 
-## Cambio operativo 19/05/2026
+---
 
-`radar_editorial` es ahora la fuente principal de descubrimiento. Este repo conserva la capa conversacional, el filtrado editorial, la validacion humana, el enriquecimiento final y el handoff a la inbox.
+## Historial
 
-Si el radar devuelve cero resultados o datos incompletos, `/buscar-ofertas` guarda diagnostico para mejorar el radar. No lanza Chollometro o Telegram como fallback automatico.
+Cambios diarios en `changelog/changelog-YYYY-MM-DD.txt`. Sesiones de `/buscar-ofertas` en `historial/YYYY-MM-DD-sesion-{n}.md`.

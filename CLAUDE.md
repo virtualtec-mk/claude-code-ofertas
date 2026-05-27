@@ -1,123 +1,185 @@
-# claude-code-localizador-ofertas — Instrucciones para Claude
+# claude-code-ofertas — Instrucciones para Claude
 
-Proyecto local operable desde Claude Code que **descubre** ofertas de Amazon España y AliExpress España en Chollometro, las **filtra** con el guideline editorial del medio destino y entrega las validadas como fichas listas en la inbox del proyecto hermano `claude-code-text-agents`.
+Repo unificado que **descubre, valida, enriquece y redacta** artículos de oferta para Amazon España y AliExpress España. Combina dos flujos antes separados:
 
-Este repo se ocupa solo del **descubrimiento + filtrado + enriquecimiento**. La redacción la hace el otro proyecto a partir de la inbox.
+- **`/buscar-ofertas`** — descubrimiento desde `radar_editorial`, filtrado contra la guideline del medio, validación humana y enriquecimiento → ficha en `inbox/`.
+- **`/crear-articulo`** — toma una URL de producto o lee `inbox/`, orquesta los subagentes redactores (product-researcher, angle-picker, headline-generator, writer, editor-in-chief) → draft en `drafts/{medio}/`.
+- **`/crear-guideline`** — crea o actualiza una guideline editorial por medio.
+- **`/importar-gpt`** — importa instrucciones de un GPT personalizado al formato guideline.
+
+Todo vive en la misma sesión de Claude Code. Las rutas son internas (`inbox/`, `guidelines/`, `drafts/`), no relativas a un proyecto hermano.
 
 ---
 
-## Convención de carpetas
+## Estructura de carpetas
 
 ```
-claude-code-localizador-ofertas/
+claude-code-ofertas/
 ├── .claude/
-│   ├── settings.json          ← permisos restrictivos
-│   ├── agents/                ← subagentes con tools restringidos
-│   │   ├── aggregator-scraper.md
-│   │   ├── telegram-scraper.md
-│   │   └── offer-enricher.md
+│   ├── settings.json
+│   ├── hooks/
+│   │   └── session-start-pull.sh    ← auto-pull desde GitHub al arrancar
+│   ├── agents/
+│   │   ├── aggregator-scraper.md    (scraping Chollometro — manual/diagnóstico)
+│   │   ├── telegram-scraper.md      (scraping Telegram — manual/diagnóstico)
+│   │   ├── radar-catalog-client.md  (consulta radar_editorial)
+│   │   ├── offer-enricher.md        (enriquecimiento de tienda)
+│   │   ├── product-researcher.md    (investigación producto para redacción)
+│   │   ├── angle-picker.md          (decisión de ángulo + persona-redactora)
+│   │   ├── headline-generator.md    (titular)
+│   │   ├── writer.md                (redacción del draft)
+│   │   └── editor-in-chief.md       (validación final del draft)
 │   └── skills/
-│       └── buscar-ofertas/SKILL.md   ← orquestador único
-├── fuentes.md                 ← tabla maestra de agregadores activos
-├── watchlists/                ← markdown editables a mano (sin skill propia)
-│   └── WATCHLIST-{slug}.md
-├── historial/                 ← una sesión = un archivo
-│   └── YYYY-MM-DD-sesion-{n}.md
+│       ├── buscar-ofertas/SKILL.md
+│       ├── crear-articulo/SKILL.md
+│       ├── crear-guideline/SKILL.md
+│       └── importar-gpt/SKILL.md
+├── fuentes.md                       ← fuentes de descubrimiento activas
+├── medios.md                        ← slugs canónicos por medio
+├── guidelines/                      ← voz editorial por medio
+│   └── GUIDELINE-{medio}.md
+├── watchlists/                      ← listas temáticas para /buscar-ofertas
+├── inbox/                           ← handoff: fichas validadas en buscar → consumidas en crear
+├── drafts/{medio}/                  ← output del writer
+├── historial/                       ← sesiones de /buscar-ofertas
+├── changelog/
 ├── knowledge/
-│   └── notas-degradacion.md   ← log libre de dominios/patrones problemáticos
+│   ├── manifiesto-editorial.md
+│   ├── frases-vetadas.md
+│   ├── headline-recipes.md
+│   ├── naming-productos.md
+│   ├── politicas-afiliacion.md
+│   ├── posicion-precio-por-angulo.md
+│   ├── notas-degradacion.md
+│   ├── ejemplos-publicados/
+│   └── personas-redactoras/
 ├── docs/
 │   ├── brainstorms/
 │   ├── plans/
-│   └── instalacion.txt
-├── changelog/
-│   └── changelog-YYYY-MM-DD.txt
-├── CLAUDE.md  (este archivo)
+│   ├── qa/
+│   ├── instalacion.txt
+│   ├── configuracion-local-radar.txt
+│   └── integracion-radar-editorial.txt
+├── pruebas/
+├── tasks/
+├── .env.example
+├── .env                             (gitignored)
+├── CLAUDE.md
 └── README.md
 ```
 
 ---
 
-## Proyecto hermano: ubicación y reutilización
+## Convenciones comunes
 
-El proyecto hermano vive en **`../claude-code-text-agents/`**. Todas las rutas relativas a él se calculan desde la raíz de este repo. Si en el futuro el clon vive en otro sitio, edita aquí y en `.claude/settings.json`.
-
-Se **leen** de allí (cero duplicación):
-- `../claude-code-text-agents/guidelines/GUIDELINE-{medio}.md` — voz editorial por medio.
-- `../claude-code-text-agents/medios.md` — slugs canónicos.
-
-Se **escribe** allí:
-- `../claude-code-text-agents/inbox/DD-MM-YYYY-{slug-producto}.md` — ficha validada con frontmatter compatible con `product-researcher` del otro repo.
-
-Se **deniega** explícitamente cualquier escritura en `guidelines/**` o `drafts/**` del hermano.
-
-Si la carpeta `../claude-code-text-agents/` no existe, lanza error claro (no traceback) y para el flujo.
+- **Fechas:** `DD/MM/YYYY` en frontmatter y texto al redactor. `YYYY-MM-DD` solo en nombres de archivo donde la ordenación lex importa.
+- **Números:** estilo español, punto para miles y coma para decimales (`1.299,00 €`).
+- **Idioma:** todo el texto al redactor en español con ortografía y acentos correctos.
+- **Naming de archivos:**
+  - Fichas en `inbox/`: `DD-MM-YYYY-{slug-titulo}.md`.
+  - Watchlists: `WATCHLIST-{slug-kebab}.md`.
+  - Historial: `YYYY-MM-DD-sesion-{n}.md`.
+  - Changelog: `changelog-YYYY-MM-DD.txt`.
+- **Slugs:** kebab-case sin acentos, máx 60 caracteres.
 
 ---
 
-## Política de scraping
+## Dominio: descubrimiento (`/buscar-ofertas`)
 
-- **Fuentes activas en MVP: Chollometro + Telegram (hispachollos, chollazos).** Tabla maestra en `fuentes.md`. Si añades una nueva, edita ese archivo Y crea el subagente correspondiente.
-- **Tiendas finales aceptadas** (todo lo demás se descarta):
-  - `amazon.es` → `tienda = amazon-es`.
-  - `es.aliexpress.com` → `tienda = aliexpress-es`.
-  - `aliexpress.com` (global, sin `es.`) → `tienda = aliexpress-global`. Se acepta como equivalente funcional porque el producto es el mismo `item/<ID>.html` y AliExpress geolocaliza al usuario español. Es el dominio al que aterrizan los redirects desde Telegram/`s.click.aliexpress.com`.
-  - Descartadas: `amazon.com`, `amazon.co.uk`, `miravia.es`, `banggood.com`, etc.
-- **Dedupe entre fuentes**: el orquestador deduplica por `url_canonica` tras unificar las listas de los scrapers (la misma ficha de Amazon puede aparecer en Chollometro y en uno o los dos canales de Telegram). Gana la candidata con más datos (precio anterior, % descuento) — si empatan, prevalece Chollometro.
-- **Cloudflare delante de Chollometro.** WebFetch directo devuelve 403. Hay que ir con Playwright MCP (modo headed, lo gestiona el plugin).
-- **Banner de cookies** en el primer acceso de la sesión: aceptarlo antes de scrapear.
-- **`browser_wait_for` con timeout máximo 10 segundos.** Sin reintentos automáticos.
-- **Throttling**: separar 1-2 s entre acciones para no levantar rate-limit.
-- **Redirect de afiliación**: el botón "Ir a la oferta" pasa por un redirect. La URL canónica de tienda se resuelve siguiendo la navegación (`browser_evaluate("() => location.href")` o `browser_network_requests`), no extrayendo el `href` directo.
-- **Selectores por accessibility tree** (rol + nombre accesible), nunca por CSS.
-- **Sin Bash.** El sistema lo deniega globalmente.
+### Política de fuentes
 
-Cualquier dominio o selector que demuestre ser inestable se registra en `knowledge/notas-degradacion.md`.
+- **Fuente principal MVP:** `radar_editorial` (vía subagente `radar-catalog-client`).
+- **Fuentes de respaldo manual/diagnóstico:** Chollometro (`aggregator-scraper`) y canales Telegram hispachollos + chollazos (`telegram-scraper`). NO se invocan automáticamente desde el orquestador.
+- **Tiendas finales aceptadas:** `amazon.es` (`amazon-es`), `es.aliexpress.com` (`aliexpress-es`), `aliexpress.com` (`aliexpress-global`). Resto se descarta.
+- **Cloudflare delante de Chollometro** → Playwright MCP, no WebFetch directo.
 
----
-
-## Regla de capas entre subagentes
-
-Patrón espejo del proyecto hermano: el orquestador (skill) **es el único** que lee guidelines, watchlists y orquesta pausas interactivas. Los subagentes son brazos con tools restringidos.
+### Regla de capas
 
 | Capa | Quién | Tools |
 |---|---|---|
-| Orquestación + filtrado editorial + dedupe | `buscar-ofertas` (skill) | Read, Write, sin Playwright ni WebFetch |
-| Scraping de Chollometro | `aggregator-scraper` | Playwright (navigate, snapshot, wait_for, click, evaluate, network_requests, close) |
-| Scraping de canales Telegram | `telegram-scraper` | WebFetch (sobre `t.me`, `chz.to` y dominios de tienda) |
-| Enriquecimiento de tienda | `offer-enricher` | Playwright (navigate, snapshot, wait_for, take_screenshot, close) |
+| Orquestación + filtrado editorial + pausas | `buscar-ofertas` (skill) | Read, Write |
+| Consulta radar | `radar-catalog-client` | WebFetch |
+| Scraping Chollometro (manual) | `aggregator-scraper` | Playwright |
+| Scraping Telegram (manual) | `telegram-scraper` | WebFetch |
+| Enriquecimiento de tienda | `offer-enricher` | Playwright |
 
-Los subagentes **no se llaman entre sí**. Solo el orquestador los invoca.
+Los subagentes no se llaman entre sí. Solo el orquestador los invoca.
 
-El filtrado editorial vive en el orquestador (es razonamiento puro sobre archivos ya leídos; separarlo como subagente añadiría handoff sin ganancia).
+### Errores tipados
 
----
-
-## Errores tipados
-
-Mismo patrón que text-agents (prefijo ⚠️, mensaje literal al redactor, espera input):
-
-- **`AggregatorBlockedError`** — Chollometro devuelve captcha o `browser_wait_for` agota timeout. El scraper devuelve la lista parcial (si la hay) con `degraded: true`. El orquestador avisa: *"He podido recuperar N candidatas antes del bloqueo. ¿Continúo con esas o aborto?"*. **Sin reintentos automáticos.**
-- **`StoreBlockedError`** — al enriquecer, Amazon/AliExpress bloquea. Misma mecánica que `URLBlockedError` del hermano: el redactor pega la ficha manualmente; la inbox lleva `fuente: manual`.
-- **`StoreMismatchError`** — al enriquecer, el título cargado en la tienda no encaja con `titulo_radar` (matching por tokens de identidad en el Paso 3.5 del `offer-enricher`). El enricher no escribe ficha; el orquestador presenta una pausa con tres opciones: **Saltar** (recomendado, registra diagnóstico), **Rechazar** (con motivo) o **Forzar** (re-invoca al enricher con `force_match: true`; la ficha queda en inbox con `coherencia_titulo: forzada`). Es la red de seguridad contra shortlinks del radar que han rotado al producto equivocado.
-- **`GuidelineMissingError`** — si el medio elegido no tiene guideline en text-agents. Mensaje literal: *"El medio '{medio}' no tiene guideline en text-agents. Crea primero la guideline allí con `/crear-guideline` y vuelve a lanzar."* **Detiene el flujo.**
+- **`AggregatorBlockedError`** — Chollometro bloqueado. Sin reintentos automáticos. El orquestador avisa con candidatas parciales.
+- **`StoreBlockedError`** — Amazon/AliExpress bloquea al enriquecer. La ficha se marca `fuente: manual`.
+- **`StoreMismatchError`** — el título de tienda no encaja con `titulo_radar` (Paso 3.5 del enricher). Pausa interactiva: Saltar / Rechazar / Forzar.
+- **`RadarConfigError`** / **`RadarUnavailableError`** — radar caído o sin token. Detiene el flujo.
+- **`GuidelineMissingError`** — no existe `guidelines/GUIDELINE-{medio}.md`. Mensaje literal: *"El medio '{medio}' no tiene guideline. Crea primero la guideline con `/crear-guideline` y vuelve a lanzar."*
 
 ---
 
-## Convenciones de naming
+## Dominio: redacción (`/crear-articulo`)
 
-- **Drafts en la inbox del hermano:** `DD-MM-YYYY-{slug-titulo}.md`. Slug en kebab-case sin acentos, máx 60 caracteres. Coincide con el patrón de `drafts/` del hermano.
-- **Watchlists:** `WATCHLIST-{slug-kebab}.md` en `watchlists/`.
-- **Historial:** `YYYY-MM-DD-sesion-{n}.md` en `historial/` (numérico para ordenación lexicográfica).
-- **Changelog:** `changelog-YYYY-MM-DD.txt` en `changelog/`.
+### Subagentes en secuencia
 
-**Fechas:**
-- `DD/MM/YYYY` en frontmatter visible al humano y en texto al redactor.
-- `YYYY-MM-DD` solo en nombres de archivo donde la ordenación lex importa.
+1. **`product-researcher`** — extrae ficha de la URL (precio, reseñas, specs).
+2. **`angle-picker`** — propone ángulo + persona-redactora (pausa interactiva A con el redactor humano).
+3. **`headline-generator`** — propone 3 titulares (pausa B).
+4. **`writer`** — escribe el draft completo siguiendo guideline + persona.
+5. **`editor-in-chief`** — valida el draft contra guideline, frases vetadas y test de bloguero.
 
-**Números:** estilo español, punto para miles y coma para decimales (`1.299,00 €`).
+### Inputs admitidos
+
+- **`/crear-articulo <url1> [url2 ...] [medio]`** — modo URL directo (prioritario si hay URLs).
+- **`/crear-articulo [medio] [filtro-inbox]`** — si no hay URLs, se busca en `inbox/`.
+  - Sin filtro → menú completo del inbox.
+  - Con filtro (texto) → fuzzy match en nombres de archivo.
+  - Si match único → continúa automáticamente con `url_producto` del frontmatter.
+  - Si múltiples → menú filtrado.
+
+### Pausas interactivas obligatorias
+
+El skill `/crear-articulo` **NO admite auto mode** en las pausas A (ángulo + persona) y B (titular). Son decisiones humanas. Ver bloque "PROHIBIDO el auto mode" del SKILL.
 
 ---
 
-## Idioma
+## Política de auto-pull
 
-Todo el texto al redactor en **español** con ortografía y acentos correctos. Mensajes de error literales como aparecen en este documento.
+Hook `SessionStart` ejecuta `.claude/hooks/session-start-pull.sh` al arrancar Claude Code en este repo. Hace `git pull --ff-only` y muestra:
+
+- "✓ Sistema al día" si nada cambió.
+- "✓ Sistema actualizado con N commits nuevos" si hubo pull.
+- Advertencia si falló (no bloquea la sesión; el redactor decide).
+
+Trabajamos siempre con la última versión de GitHub. El PASO 0 manual de git pull dentro de `crear-articulo` queda como fallback.
+
+---
+
+## Política de scraping (heredada del localizador)
+
+- `browser_wait_for` con timeout máximo 10 segundos. Sin reintentos automáticos.
+- Throttling: 1-2 s entre acciones.
+- Selectores por accessibility tree (rol + nombre accesible), nunca por CSS.
+- Aceptar banner de cookies en el primer acceso de la sesión.
+- Redirect de afiliación: resolver URL canónica siguiendo navegación, no extrayendo `href` directo.
+- Cualquier dominio o selector inestable se registra en `knowledge/notas-degradacion.md`.
+
+---
+
+## Política editorial (heredada del writer)
+
+- Lectura obligatoria previa a redactar: `knowledge/manifiesto-editorial.md`.
+- Voz del medio en `guidelines/GUIDELINE-{medio}.md`. Personas-redactoras en `knowledge/personas-redactoras/`.
+- Frases vetadas globales en `knowledge/frases-vetadas.md`. El editor-in-chief aplica el test de "frase intercambiable" en todos los medios.
+- Posición del precio según ángulo: `knowledge/posicion-precio-por-angulo.md`.
+- Naming marca + modelo: `knowledge/naming-productos.md`.
+- Headline recipes: `knowledge/headline-recipes.md`.
+- Disclaimer y compliance de afiliación: `knowledge/politicas-afiliacion.md`.
+
+---
+
+## Reglas generales
+
+- **Modo de planificación predeterminado** para tareas no triviales (más de 3 pasos o decisiones de arquitectura). Planes en `docs/plans/YYYY-MM-DD-{nombre}.md`.
+- **Subagentes para tareas paralelas o que ensucian la ventana de contexto.**
+- **Simplicidad primero.** Cambios mínimos, impacto acotado.
+- **Sin pereza.** Causas raíz, no parches.
+- **Orden de carpetas.** Si generas un plan o script temporal, revísalo al final y bórralo si ya no sirve.
+- **Documenta lo que cambies** en `changelog/changelog-YYYY-MM-DD.txt`.

@@ -1,6 +1,6 @@
 ---
 name: buscar-ofertas
-description: Orquesta el flujo de ofertas usando radar_editorial como fuente principal, filtra editorialmente con guidelines/watchlists, valida candidata a candidata y envia las fichas enriquecidas a la inbox de claude-code-text-agents.
+description: Orquesta el flujo de ofertas usando radar_editorial como fuente principal, filtra editorialmente con guidelines/watchlists, valida candidata a candidata y envia las fichas enriquecidas al inbox/ interno para que /crear-articulo las consuma.
 argument-hint: [medio] [anunciante] [watchlist-slug]
 disable-model-invocation: true
 ---
@@ -23,18 +23,17 @@ Pregunta interactivamente cualquier valor que falte.
 
 ## Constantes
 
-- `RUTA_HERMANO = "../claude-code-text-agents"`
-- `RUTA_INBOX = "../claude-code-text-agents/inbox"`
-- `RUTA_GUIDELINES = "../claude-code-text-agents/guidelines"`
+- `RUTA_INBOX = "inbox"`
+- `RUTA_GUIDELINES = "guidelines"`
 - `LIMITE_CANDIDATAS_RADAR = 25`
 - `LIMITE_CANDIDATAS_TRAS_FILTRO = 12`
 - `FUENTE_DESCUBRIMIENTO = "radar_editorial"`
 
-## PASO 0 - Verificar hermano y configuracion
+## PASO 0 - Verificar configuracion
 
-Comprueba que existe `../claude-code-text-agents/` y que contiene `guidelines/GUIDELINE-*.md`. Si falta, muestra `GuidelineMissingError` o error de ruta claro y detén el flujo.
+Comprueba que existe `guidelines/` y que contiene `GUIDELINE-*.md`. Si falta, muestra `GuidelineMissingError` o error de ruta claro y detén el flujo.
 
-Si `../claude-code-text-agents/inbox/` no existe, crea `../claude-code-text-agents/inbox/.gitkeep`.
+Si `inbox/` no existe, crea `inbox/.gitkeep`.
 
 Verifica que el operador tiene configurados los datos del radar que usara `radar-catalog-client`:
 
@@ -89,7 +88,7 @@ Si hay items, normalizalos como `CANDIDATAS_BRUTAS`. Cada candidata conserva:
 
 ## PASO 3 - Filtrado editorial inline
 
-Lee completo `../claude-code-text-agents/guidelines/GUIDELINE-{MEDIO}.md`. Ten presentes `WATCHLIST_DATA` y `AFINADO`.
+Lee completo `guidelines/GUIDELINE-{MEDIO}.md`. Ten presentes `WATCHLIST_DATA` y `AFINADO`.
 
 Para cada candidata del radar evalua:
 
@@ -148,7 +147,7 @@ Examina la respuesta del enricher:
 
 ### 5.a - Ficha completa devuelta
 
-Continua como hasta hoy: fusiona la ficha con metadatos del radar y escribe `../claude-code-text-agents/inbox/{DD-MM-YYYY}-{slug-producto}.md`.
+Continua como hasta hoy: fusiona la ficha con metadatos del radar y escribe `inbox/{DD-MM-YYYY}-{slug-producto}.md`.
 
 El frontmatter visible debe incluir:
 

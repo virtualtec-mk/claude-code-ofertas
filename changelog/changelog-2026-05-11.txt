@@ -1,0 +1,12 @@
+=== 11/05/2026 ===
+- change: product-researcher migrado de WebFetch a Playwright MCP como vía principal de extracción, con flujo manual (URLBlockedError) como fallback.
+  Motivación: Amazon y AliExpress devolvían HTML mínimo o placeholders sin hidratar a clientes no-navegador, lo que convertía el fallback manual en el flujo habitual y rompía la promesa "pega la URL y recibe el artículo".
+  Cambios:
+    * `.claude/agents/product-researcher.md`: eliminada tool WebFetch; añadidas tools del plugin Playwright (browser_navigate, browser_snapshot, browser_wait_for, browser_take_screenshot, browser_close). Reescrita la sección "Estrategia de extracción": wait_for por patrón de precio (más estable entre locales/A-B tests que esperar un CTA), snapshot como fuente primaria, screenshot solo como fallback visual, browser_close obligatorio incluso en rama de error.
+    * Frontmatter del output: campo `fuente` pasa de `automatica | manual` a `automatica-playwright | manual`.
+    * `CLAUDE.md`: renombrada "Política de uso de WebFetch" → "Política de uso de herramientas de scraping". Añadida sección "Requisitos del entorno" referenciando el plugin. Actualizada definición de URLBlockedError para reflejar el nuevo disparador (Playwright + captcha/timeout/plugin ausente). Actualizada la regla de capas y la cláusula "Lo que el sistema nunca hace".
+    * Nuevo `docs/instalacion-playwright.txt` con instrucciones para perfil no técnico: qué es el plugin, cómo instalar, cómo verificar, qué esperar, qué hacer si no se puede instalar, troubleshooting habitual y campo para pinear versión.
+  Impacto para el redactor: necesita instalar el plugin de Playwright MCP en Claude Code. Si no se instala, el sistema sigue funcionando pero cae al flujo manual en la mayoría de URLs.
+  Tradeoffs aceptados: latencia por extracción sube de 1-3s a 5-15s, mayor consumo de tokens (DOM/snapshot). A cambio, tasa esperada de éxito automático: 70-90% Amazon, 50-70% AliExpress.
+  Validación pendiente: el redactor debe probar con 5 URLs de Amazon y 5 de AliExpress reales y registrar éxitos/fallos para validar los criterios de aceptación del plan `docs/plans/2026-05-11-001-revision-scraping-playwright-hibrido.md`.
+  Plan: docs/plans/2026-05-11-001-revision-scraping-playwright-hibrido.md

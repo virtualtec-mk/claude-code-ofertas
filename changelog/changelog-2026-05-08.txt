@@ -1,0 +1,3 @@
+=== 08/05/2026 17:42 ===
+- feat: sistema de agentes redactores de artículos de oferta (Phase 1) → https://github.com/virtualtec-mk/claude-code-writer/commit/ab70f997d9c84e072752085b0b37892ac1950b6c
+

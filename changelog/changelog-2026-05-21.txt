@@ -66,3 +66,121 @@ Pendiente derivado (NO incluido aquí):
     documentar resultados en historial/.
   - Plan paralelo en radar_editorial para R1/R2/R3 según el contrato
     cross-repo definido en el plan.
+
+
+====================================================
+[Notas heredadas del repo claude-code-writer]
+====================================================
+
+=== 21/05/2026 ===
+- feat: nueva persona-redactora `experto-hogar-cocina`.
+  Motivación: el catálogo no tenía una persona específica para electrodomésticos
+  grandes, muebles, cocina de equipamiento, decoración o climatización. La persona
+  más cercana (`el-que-llega-tarde-a-casa`) está calibrada para la cocina cotidiana
+  con prisa, no para la decisión de compra de un horno empotrable o una nevera a
+  diez años vista. Se creaba el riesgo de forzar la persona y desalinear el tono.
+
+  La nueva persona habla en tramos de mercado (gama de entrada / media / alta),
+  durabilidad real, encaje físico (medidas del hueco, peso, instalación) y
+  servicio postventa. No se mete en obra (eso sigue siendo
+  `el-manitas-de-fin-de-semana`); cubre la franja entre "lo que se compra para
+  vivir" y "lo que se monta el sábado".
+
+  Archivos:
+  - `knowledge/personas-redactoras/experto-hogar-cocina.md` (nuevo).
+  - `knowledge/personas-redactoras/README.md` actualizado con la fila en el catálogo.
+
+- feat: refuerzo anti-muletillas y capa de persona en el `headline-generator`.
+  Motivación: feedback del redactor. Los titulares generados sonaban a IA por tres
+  causas distintas: (1) vocabulario comodín ("se pone a tiro", "tiene sentido",
+  "construcción sólida", "con gancho", "rebaja seria") admitido sin cuota, (2) la
+  persona-redactora no llegaba al headline-generator (sólo llegaba al writer),
+  (3) los 10 estilos se aplicaban igual a todas las categorías de producto.
+
+  Cambios:
+
+  1) `knowledge/headline-recipes.md`
+     - Sección 5 "Palabras que funcionan" → degradada a "Palabras y giros de uso
+       restringido" con **cuota dura: máximo 2 titulares de 30** pueden contener
+       alguna de estas expresiones. Tabla de sustitutos naturales por dato real
+       del producto.
+     - Sección 5.bis nueva "Muletillas IA en titulares (lista negra dura, cuota 0)".
+       Recoge variantes que delatan generación automática y obligan a reescribir.
+     - Sección nueva "Patrones sintácticos por categoría". Matriz por nueve
+       categorías (electrodomésticos grandes / tech / hogar pequeño / moda /
+       belleza / deporte / bricolaje / infantil / viajes) con patrones que
+       funcionan y patrones que cantan a IA en cada una.
+
+  2) `.claude/agents/headline-generator.md`
+     - Nueva entrada en el input: `PERSONA_REDACTORA_FINAL`.
+     - Paso 1 amplía las fuentes obligatorias: ahora incluye la ficha de la
+       persona-redactora y, dentro, el bloque "Cómo titula esta persona" si
+       existe.
+     - Paso 3.bis nuevo "Filtro de persona + filtro de categoría" antes de la
+       auto-revisión.
+     - Paso 4 (auto-revisión) amplía de 8 a 11 puntos: cuota de vocabulario
+       restringido (4), lista negra dura (5) y coherencia con la persona (6).
+     - Bloque NOTAS del output amplía con cuota usada y persona aplicada.
+
+  3) `knowledge/personas-redactoras/README.md`
+     - Estructura de ficha pasa de 5 a 6 bloques. Nuevo bloque 6: "Cómo titula
+       esta persona" — leído por el `headline-generator`. Documentado el estado
+       progresivo (las personas más usadas lo tienen ya escrito; las demás
+       funcionan con deducción desde el resto de la ficha).
+
+  4) Fichas de persona con bloque 6 ya escrito:
+     - `experto-hogar-cocina.md`
+     - `el-que-llega-tarde-a-casa.md`
+     - `el-techie-que-prueba-todo.md`
+
+     Las cinco personas restantes (`el-bloguer-de-moda`, `el-deportista-amateur`,
+     `la-beauty-editor`, `el-padre-con-hijos-pequenos`, `el-manitas-de-fin-de-semana`,
+     `el-que-viaja-ligero`) funcionan por deducción hasta que se usen en un
+     artículo real.
+
+  5) `.claude/skills/crear-articulo/SKILL.md`
+     - PASO 6 mono y multi: la invocación del `headline-generator` pasa ahora
+       `PERSONA_REDACTORA_FINAL` y `POSICION_PRECIO_FINAL`. Se añade un bloque
+       de "Refuerzos obligatorios" recordando la cuota dura, la lista negra y
+       la matriz por categoría.
+
+  Decisión consciente: NO se han añadido las muletillas a `knowledge/frases-vetadas.md`.
+  Las muletillas de titular son contextuales (un dato útil en cuerpo puede ser muletilla
+  en titular y viceversa). El archivo `frases-vetadas.md` se mantiene como capa
+  del writer y el editor-in-chief; las reglas de titular viven en
+  `headline-recipes.md`.
+
+  Impacto esperado: titulares con vocabulario más natural, ganchos basados en
+  datos físicos del producto y diferenciación clara entre personas-redactoras.
+  Calibración real a partir de los próximos artículos generados.
+
+- feat: convención tipográfica del sistema — símbolos € y % pegados al número.
+  Motivación: feedback del redactor. La convención del proyecto pasa a ser "175€"
+  y "31%" sin espacio, en titular, subtítulo, cuerpo, FAQ, frontmatter y
+  disclaimer, en todos los medios. La norma RAE admite el espacio fino (175 €)
+  pero se prioriza la convención periodística digital de pegar el símbolo.
+
+  Las unidades de medida (kg, l, W, GB, MP, Hz, cm) mantienen el espacio:
+  "28 kg", "70 l", "2.400 W", "144 Hz". La excepción es solo para € (y otras
+  monedas: $, £) y para %.
+
+  Archivos actualizados con la regla:
+  - `knowledge/frases-vetadas.md` (sección "Convenciones de puntuación en
+    español"): invertida la regla; ahora la convención del sistema es pegado.
+  - `knowledge/headline-recipes.md` (sección 2.ter nueva).
+  - Ejemplos corregidos en `guidelines/GUIDELINE-abc.md` ("400€",
+    "200€"), `knowledge/manifiesto-editorial.md` ("80€"),
+    `knowledge/posicion-precio-por-angulo.md` ("48,11€"),
+    `knowledge/personas-redactoras/la-beauty-editor.md` ("50€").
+
+  Los artículos ya publicados en `knowledge/ejemplos-publicados/` no se reescriben:
+  son histórico de cómo se escribía antes y conservan su tipografía original.
+
+- feat: equilibrio entre precio absoluto y descuento porcentual en titulares.
+  Motivación: feedback del redactor. La tanda anterior abusaba del "31%" como
+  única señal de precio. Se documenta en `knowledge/headline-recipes.md`
+  (sección 2.bis nueva) un reparto orientativo en una tanda de 30: aproximadamente
+  un tercio con cifra absoluta ("por menos de 175€"), un tercio con porcentaje
+  ("31%"), un tercio sin cifra explícita. Ajustable según ángulo
+  (`liquidacion` y `precio-psicologico` se apoyan más en cifra;
+  `recomendacion-personal` y `uso-practico` pueden prescindir en mayoría).

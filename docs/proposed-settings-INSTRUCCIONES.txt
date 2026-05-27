@@ -1,0 +1,52 @@
+CÓMO APLICAR EL NUEVO .claude/settings.json
+================================================
+
+Tras el merge del 27/05/2026, el `.claude/settings.json` activo en el repo
+quedó conservado en su versión antigua (la del localizador) porque el
+clasificador de auto-mode de Claude Code bloquea cualquier modificación
+automática de ese archivo (es una protección anti-self-elevation).
+
+El archivo definitivo (combinado de ambos repos + hook SessionStart) está
+en `docs/proposed-settings.json`.
+
+PASOS PARA APLICARLO MANUALMENTE
+--------------------------------
+
+Opción 1 — Comando único (recomendado, lo lanzas tú desde tu terminal):
+
+  cp docs/proposed-settings.json .claude/settings.json
+
+Opción 2 — Desde Claude Code, ejecuta:
+
+  /update-config
+
+  y dile: "sustituye .claude/settings.json por el contenido de
+  docs/proposed-settings.json".
+
+Opción 3 — Editor manual: abre `docs/proposed-settings.json`, copia su
+contenido y pégalo en `.claude/settings.json`.
+
+VERIFICACIÓN
+------------
+
+Después de aplicar, comprueba:
+
+1. Que el hook SessionStart se ejecuta. Reinicia la sesión de Claude
+   Code y deberías ver al arrancar:
+
+      ✓ Sistema al día.
+   o:
+      ✓ Sistema actualizado desde GitHub.
+
+2. Que los permisos de WebFetch incluyen los dominios de Amazon,
+   AliExpress, Chollometro, Telegram y Railway.
+
+3. Que los Write permits incluyen drafts/, guidelines/, inbox/,
+   watchlists/, historial/, knowledge/, changelog/, docs/qa/,
+   docs/plans/ y docs/brainstorms/.
+
+Si algo falla, restaura el `.claude/settings.json` actual desde el backup
+(/tmp/backup-ofertas-2026-05-27/.claude/settings.json) y avísame.
+
+Una vez verificado, puedes borrar `docs/proposed-settings.json` y este
+archivo de instrucciones — son artefactos de la migración.
