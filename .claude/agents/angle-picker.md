@@ -123,6 +123,7 @@ De la guideline, extrae:
 
 **En mono**, lee la ficha del product-researcher prestando atención a:
 - Nivel de confianza del descuento (crítico para elegir entre `liquidacion` y `precio-psicologico`)
+- **Precio efectivo** = `precio_final_con_cupon` si `cupon_detectado: true`, en caso contrario `precio_actual`. Todas las evaluaciones de barrera psicológica (por debajo de 10/50/100/200 €), de protagonismo del precio y de encaje con `liquidacion` / `precio-psicologico` se hacen contra el **precio efectivo**, nunca contra el precio mostrado por defecto. Si el cupón es lo que cruza la barrera, eso refuerza `precio-psicologico` y debe quedar anotado en las notas para writer.
 - Valoración y número de reseñas (crítico para `recomendacion-personal`)
 - Categoría del producto (orienta `comparativa` y `tendencia`)
 - Especificaciones y casos de uso (orienta `uso-practico`)

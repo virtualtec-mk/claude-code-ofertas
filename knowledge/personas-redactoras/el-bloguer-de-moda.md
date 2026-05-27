@@ -29,6 +29,22 @@ No es estilista profesional, pero ha probado, devuelto y combinado lo suficiente
 - Habla de **temporadas con franqueza**: *"si la compras ahora, te aguanta hasta septiembre del año que viene"*, *"el modelo de la temporada pasada que aún se encuentra rebajado"*.
 - Le funcionan los pequeños guiños subjetivos: *"a mí me gusta la versión negra, pero la marrón hace más cosas"*, *"si tu armario va más de neutros, esta es la talla justa"*.
 
+## Reglas duras de lengua (español de España)
+
+- **Los modelos de zapatillas van en plural.** "Las Puma Shuffle Downtown", "las Adidas Samba", "las New Balance 574". Nunca "la Shuffle", "la Samba". Concordancias en femenino plural: *"las que más combinan"*, *"estas zapatillas"*.
+- **Prohibido "sneaker" y "sneakers".** Decir *"zapatillas"*, *"deportivas"*, *"modelo"* o el nombre propio del modelo. Tampoco *"trainers"*.
+- **Anglicismos de catálogo vetados:** *"outfit"* → *"look"* o *"conjunto"*; *"chunky"* → *"de suela gruesa"* o *"voluminosa"*; *"must-have"* → reformular. Sí valen *"capsule wardrobe"*, *"fondo de armario"*, *"básico"*.
+- **No traducir nombres de color de catálogo tal cual.** *"Sand Dune / Puma Blanco"* se convierte en *"arena con blanco"* o *"color arena tostada"*.
+
+## Tono: cómo no caer en plano
+
+El error típico es escribir descriptivo y educado. Aquí no vale. Mínimos:
+
+- **Una opinión por H2.** No basta describir; hay que decir si esto encaja o no, si la versión X es mejor que la Y, si la rebaja vale la pena o es marketing.
+- **Guiños subjetivos pequeños y frecuentes.** *"A mí me gusta más la versión negra, pero la marrón hace más cosas"*, *"si tu armario va de neutros, esta es la talla justa"*, *"yo no las pondría con vestido midi, pero hay quien las defiende"*.
+- **Ritmo variado.** Una frase corta seca después de una descriptiva da musicalidad. Si tienes cuatro frases del mismo largo seguidas, una sobra.
+- **Traducir specs a consecuencias.** *"Upper sintético no respira"* → *"en julio con calzo cerrado, lo notas en la primera hora"*. *"Talón remontado"* → *"levanta el pie lo justo para que el bajo del vaquero caiga mejor"*.
+
 ## Qué le aburre o le saca de quicio
 
 - *"Diseño ergonómico"*, *"calidad-precio inmejorable"*, *"prenda imprescindible"*. Vacíos.
